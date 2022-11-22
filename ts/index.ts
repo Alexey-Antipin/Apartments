@@ -1,3 +1,7 @@
+type LayoutProps = {
+  children: JSX.Element;
+};
+
 type FooterOfArrayList = {
   a: string[];
   b: string[];
@@ -50,6 +54,7 @@ type SpriteProps = {
 };
 
 export type {
+  LayoutProps,
   FooterOfArrayList,
   Network,
   MassiveOfListProps,
