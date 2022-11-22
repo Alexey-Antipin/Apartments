@@ -6,3 +6,5 @@
   npm run build, после: npm run start
 
 3 переходим по http://localhost:3000/
+
+Перенёс из https://github.com/Alexey-Antipin/Project/
