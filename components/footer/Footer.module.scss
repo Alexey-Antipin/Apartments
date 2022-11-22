@@ -1,0 +1,121 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+
+  min-height: 280px;
+  max-width: 1940px;
+  width: 100%;
+
+  background: #ffffff;
+  box-shadow: 0px -11px 40px rgba(39, 95, 158, 0.05);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1940px;
+  width: 65%;
+
+  margin-left: 80px;
+  margin-top: 38px;
+}
+.info {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
+
+  color: #8291a3;
+
+  margin-top: 44px;
+  margin-left: 28px;
+}
+.title-address {
+  font-family: "Inter-Medium", sans-serif;
+
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+.address {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 11px;
+
+  color: #8291a3;
+}
+.telefon {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 11px;
+
+  color: #8291a3;
+}
+.colour {
+  color: #8291a3;
+}
+.navigation {
+  display: flex;
+  justify-content: center;
+  max-width: 1940px;
+  width: 100%;
+}
+.list {
+  font-family: "Inter-Regular", sans-serif;
+  color: #8291a3;
+}
+.item {
+  padding: 8px;
+}
+.item-second-block {
+  padding: 8px;
+}
+.item-second-block:nth-child(1) {
+  font-family: "Inter-Bold", sans-serif;
+  color: #1e2123;
+}
+.item-black {
+  font-family: "Inter-Bold", sans-serif;
+  color: #1e2123;
+}
+.list-black {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Inter-Bold", sans-serif;
+  padding-right: 36px;
+  color: #1e2123;
+}
+.list:nth-child(2) {
+  padding-right: 55px;
+}
+.list:nth-child(3) {
+  padding-right: 116px;
+}
+.block {
+  display: flex;
+  justify-content: space-between;
+
+  max-width: 1020px;
+  width: 100%;
+
+  margin-top: 40px;
+  padding-left: 40px;
+}
+.social-network {
+  @extend %flex;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  max-width: 260px;
+}
+.title {
+  font-family: "Inter-Medium", sans-serif;
+}
+.card {
+  @extend %flex;
+  max-width: 380px;
+  width: 100%;
+}
+
+%flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}

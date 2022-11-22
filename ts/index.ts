@@ -1,3 +1,15 @@
+type FooterOfArrayList = {
+  a: string[];
+  b: string[];
+  c: string[];
+  d: string[];
+};
+
+type Network = {
+  name: string;
+  href: string;
+};
+
 type MassiveOfListProps = {
   massive?: MassiveOfList[];
   classes?: MassiveOfClassesProps;
@@ -38,6 +50,8 @@ type SpriteProps = {
 };
 
 export type {
+  FooterOfArrayList,
+  Network,
   MassiveOfListProps,
   MassiveOfClassesProps,
   MassiveOfList,
