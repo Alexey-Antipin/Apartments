@@ -63,35 +63,17 @@ export const Footer: React.FC = () => {
           <List
             classes={{
               classUl: styles["list-black"],
-              classList: styles.item,
             }}
-            usuallyArray={arraysList.a}
-            usuallyList={true}
+            array={arraysList.a}
           />
           <List
             classes={{
-              classUl: styles.list,
               classList: styles["item-second-block"],
             }}
-            usuallyArray={arraysList.b}
-            usuallyList={true}
+            array={arraysList.b}
           />
-          <List
-            classes={{
-              classUl: styles.list,
-              classList: styles.item,
-            }}
-            usuallyArray={arraysList.c}
-            usuallyList={true}
-          />
-          <List
-            classes={{
-              classUl: styles.list,
-              classList: styles.item,
-            }}
-            usuallyArray={arraysList.d}
-            usuallyList={true}
-          />
+          <List array={arraysList.c} />
+          <List array={arraysList.d} />
         </nav>
 
         <div className={styles.block}>

@@ -15,35 +15,19 @@ type Network = {
 };
 
 type MassiveOfListProps = {
-  massive?: MassiveOfList[];
   classes?: MassiveOfClassesProps;
-  hook?: {
-    activeId: number;
-    setActiveId: (value: number) => void;
-  };
-  usuallyList?: boolean;
-  usuallyArray?: string[];
+  array: string[];
 };
 
 type MassiveOfClassesProps = {
-  classSprite?: string;
   classUl?: string;
-  classParagraph?: string;
-  classColour?: string;
   classList?: string;
 };
 
 type MassiveOfList = {
   id: number;
   text: string;
-  sprite?: string | number;
-  colour?: string;
-  underLine?: boolean;
-  characterSprite?: {
-    height?: string;
-    width?: string;
-    colour?: string;
-  };
+  sprite?: string;
 };
 
 type SpriteProps = {

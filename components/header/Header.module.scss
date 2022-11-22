@@ -1,14 +1,29 @@
 .navbar {
   display: flex;
+  justify-content: space-between;
+
   height: 40px;
   max-width: 1940px;
+  width: 100%;
+
   padding: 0 80px;
   background: #f8f8f8;
 }
-.menu {
+.list {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 10px;
+
+  max-width: 820px;
   width: 100%;
+  padding: 0;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40px;
 }
 .text {
   font-family: "Inter-Medium", sans-serif;
@@ -17,27 +32,40 @@
   color: #8291a3;
   padding: 10px 0px;
 }
-.text:hover {
-  color: #e6e2fd;
+.text--active {
+  color: #1e2123;
 }
+.sprite-margin {
+  margin-right: 5px;
+}
+.focus {
+  height: 3px;
+}
+.focus--active {
+  background: #ffd54f;
+  width: 100%;
+}
+
 .list-size {
   display: flex;
   align-items: center;
-  max-width: 320px;
+  max-width: 280px;
   width: 100%;
 }
+
 .login {
   font-family: "Inter-Medium", sans-serif;
   font-size: 14px;
   padding: 10px 0px;
+}
+.login-default {
+  color: #8291a3;
+}
+.login-colour {
   color: #664ef9;
 }
 .login:hover {
   color: #e6e2fd;
-}
-
-.margin {
-  margin-right: 5px;
 }
 .margin-heart {
   margin-left: 11px;
@@ -47,6 +75,7 @@
 .navigation {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   height: 60px;
   max-width: 1940px;
@@ -54,49 +83,41 @@
 
   background: #ffffff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
-}
-.navigation-menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-  margin: 0 80px;
-}
-
-.logo {
-  margin-right: 10px;
-}
-.navigation-text {
-  display: flex;
-  flex-direction: row-reverse;
-  font-family: "Inter-SemiBold";
-  font-size: 14px;
-  color: #0b0b0b;
-  padding: 10px 0px;
+  padding: 0px 80px;
 }
 .navigation-list {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  height: 60px;
+  max-width: 1000px;
+  width: 100%;
+
+  padding: 0px 40px;
+}
+.navigation-item {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 60px;
-  padding-top: 10px;
 }
-.margin-sign {
-  margin-left: 15px;
+.navigation-text {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  color: #0b0b0b;
+  padding: 20px 0px;
 }
+
 .button {
   font-family: "Inter-Bold", sans-serif;
   font-size: 14px;
 
   height: 40px;
-  width: 240px;
+  min-width: 240px;
 
   color: #ffffff;
   background: linear-gradient(90deg, #9d94ff 0%, #6b50e9 94.5%);
 
   border: none;
   border-radius: 19px;
-  margin-left: 10px;
 }
