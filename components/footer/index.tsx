@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Sprite } from "../../svg";
 import { FooterOfArrayList, Network } from "../../ts";
 import styles from "./Footer.module.scss";
-import { List } from "../../common/List/List";
+import { List } from "../../common/List";
 
 export const Footer: React.FC = () => {
   const socialNetwork: Network[] = [

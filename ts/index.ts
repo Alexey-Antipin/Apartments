@@ -1,3 +1,25 @@
+type ResponseError = {
+  message: string;
+};
+
+type ArticleProps = {
+  list: Article[];
+};
+
+type LinkProps = {
+  link: string;
+  deeperLink?: string;
+};
+
+type Article = {
+  id: string;
+  title: string;
+  time: string;
+  photo: string;
+  text: string[];
+  description: string;
+};
+
 type LayoutProps = {
   children: JSX.Element;
 };
@@ -38,6 +60,10 @@ type SpriteProps = {
 };
 
 export type {
+  ResponseError,
+  ArticleProps,
+  LinkProps,
+  Article,
   LayoutProps,
   FooterOfArrayList,
   Network,
