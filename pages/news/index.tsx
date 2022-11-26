@@ -10,6 +10,7 @@ import axios from "axios";
 const News: React.FC = () => {
   //id click, потом убрать.
   let id = 1;
+  
   const network: Array<string> = [
     "vk",
     "facebook-2",
@@ -34,7 +35,7 @@ const News: React.FC = () => {
 
   const getArticles = async () => {
     let { data } = await axios.get<Article[]>(
-      "http://localhost:3000/api/articles"
+      "http://localhost:3000/api/articles?begin=0&end=3"
     );
     setArticles(data);
   };

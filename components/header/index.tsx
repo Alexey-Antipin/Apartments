@@ -9,15 +9,16 @@ import clsx from "clsx";
 export const Header: React.FC = () => {
   const [activeId, setActiveId] = useState<number>(0);
   const link: MassiveOfList[] = [
-    { id: 1, text: "Главная" },
-    { id: 2, text: "Новости" },
-    { id: 3, text: "Размещение и тарифы" },
+    { id: 1, text: "Главная", href: "./" },
+    { id: 2, text: "Новости", href: "./news" },
+    { id: 3, text: "Размещение и тарифы", href: "./" },
     {
       id: 4,
       text: "Объявления на карте",
+      href: "./",
       sprite: "sign",
     },
-    { id: 5, text: "Контакты" },
+    { id: 5, text: "Контакты", href: "./" },
   ];
   const listRight: MassiveOfList[] = [
     { id: 1, text: "Закладки" },
@@ -52,7 +53,7 @@ export const Header: React.FC = () => {
                   styles.text,
                   activeId === elem.id && styles["text--active"]
                 )}
-                href={"./"}>
+                href={elem.href || "./"}>
                 {elem.sprite && (
                   <span className={styles["sprite-margin"]}>
                     <Sprite

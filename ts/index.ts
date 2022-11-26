@@ -67,6 +67,7 @@ type MassiveOfList = {
   id: number;
   text: string;
   sprite?: string;
+  href?: string;
 };
 
 type SpriteProps = {
