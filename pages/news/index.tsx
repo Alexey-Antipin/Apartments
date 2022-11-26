@@ -34,7 +34,7 @@ const News: React.FC = () => {
 
   const getArticles = async () => {
     let { data } = await axios.get<Article[]>(
-      `http://localhost:3000/api/articles?_start=${id}&_limit=3`
+      "http://localhost:3000/api/articles"
     );
     setArticles(data);
   };

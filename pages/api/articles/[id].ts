@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { articles } from "../../../mock-data/articles";
-import { Article,ResponseError } from "../../../ts";
+import articles from "../../../mocks/articles.json";
+import { Article, ResponseError } from "../../../ts";
 
 export default function personHandler(
   req: NextApiRequest,

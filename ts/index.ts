@@ -1,3 +1,20 @@
+type PageProps = {
+  articles: Article[];
+  currentPage: number;
+  totalData: number;
+};
+
+type PaginationProps = {
+  totalItems: number;
+  currentPage: number;
+  itemsPerPage?: number;
+};
+
+type PropsLimitOfPage = {
+  limit: number;
+  page: number;
+};
+
 type ResponseError = {
   message: string;
 };
@@ -60,6 +77,9 @@ type SpriteProps = {
 };
 
 export type {
+  PageProps,
+  PaginationProps,
+  PropsLimitOfPage,
   ResponseError,
   ArticleProps,
   LinkProps,

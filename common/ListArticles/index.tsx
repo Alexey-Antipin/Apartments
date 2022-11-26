@@ -12,8 +12,12 @@ export const ListArticles: React.FC<ArticleProps> = ({ list }) => {
               <Image
                 className={styles.image}
                 src={item.photo}
-                fill
                 alt="home"
+                priority
+                fill
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
               />
             </div>
             <h3 className={styles.title}>{item.title}</h3>
