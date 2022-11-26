@@ -1,3 +1,16 @@
+type ContactsOfField = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+type Icon = {
+  name: string;
+  colour: string;
+  width: string;
+  height: string;
+};
+
 type PageProps = {
   articles: Article[];
   currentPage: number;
@@ -78,6 +91,8 @@ type SpriteProps = {
 };
 
 export type {
+  ContactsOfField,
+  Icon,
   PageProps,
   PaginationProps,
   PropsLimitOfPage,
