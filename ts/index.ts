@@ -1,3 +1,15 @@
+type RegistrationOfFormik = {
+  login: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+type AuthorizationOfFormik = {
+  login: string;
+  password: string;
+};
+
 type ContactsOfField = {
   name: string;
   email: string;
@@ -91,6 +103,8 @@ type SpriteProps = {
 };
 
 export type {
+  RegistrationOfFormik,
+  AuthorizationOfFormik,
   ContactsOfField,
   Icon,
   PageProps,

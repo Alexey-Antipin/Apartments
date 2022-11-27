@@ -5,9 +5,11 @@ import { Network, ContactsOfField, Icon } from "../../ts";
 import * as Yup from "yup";
 import styles from "./Contacts.module.scss";
 import clsx from "clsx";
+import axios from "axios";
 
 const Contacts: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [messageOfSend, setMessageOfSend] = useState<string>("");
 
   const icon: Icon[] = [
     { name: "sign", colour: "#FFFFFF", width: "12", height: "15" },
@@ -41,8 +43,16 @@ const Contacts: React.FC = () => {
       .min(25, "Минимум 25 символов!")
       .required("Поле обязательно!"),
   });
-  const onSubmit = (values: ContactsOfField) => {
-    console.log(values);
+
+  const onSubmit = async (values: ContactsOfField) => {
+    let { name, email, message } = values;
+    
+    let { data } = await axios.post<string>(
+      `http://localhost:3000/api/send/`,
+      { name, email, message }
+    );
+
+    setMessageOfSend(data);
     setOpen(true);
   };
 
@@ -191,7 +201,9 @@ const Contacts: React.FC = () => {
             />
 
             {/* Send */}
-            <button className={styles.send}>Отправить</button>
+            <button type="submit" className={styles.send}>
+              Отправить
+            </button>
           </Form>
         )}
       </Formik>
@@ -205,12 +217,10 @@ const Contacts: React.FC = () => {
               Ваше письмо отправлено!
             </h2>
 
-            <p className={styles["modal-text"]}>
-              Какое-то сообщение о том, что письмо отправлено, какое-то
-              сообщение, что письмо отправлено.
-            </p>
+            <p className={styles["modal-text"]}>{messageOfSend}</p>
 
             <button
+              type="button"
               className={styles["modal-button"]}
               onClick={() => setOpen(false)}>
               Закрыть окно
