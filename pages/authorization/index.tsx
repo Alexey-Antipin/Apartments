@@ -24,16 +24,11 @@ const Authorization: React.FC = () => {
     login: Yup.string().required("Поле обязательно!"),
   });
 
-  type T = {
-    rememberUser: string;
-    name: string;
-  };
-
   const onSubmit = async (values: AuthorizationOfFormik) => {
     let { login, password } = values;
 
     await axios
-      .get("http://localhost:3000/api/get-account/", {
+      .get('http://localhost:3000/api/get-account/', {
         params: { login, password, remember },
       })
       .then((res) => {

@@ -1,3 +1,8 @@
+type TypesOfArticles = {
+  article: Article;
+  articles: Article[];
+};
+
 type SelectOfProps = {
   massive: MassiveOfSelect;
   active: number;
@@ -121,6 +126,7 @@ type SpriteProps = {
 };
 
 export type {
+  TypesOfArticles,
   SelectOfProps,
   MassiveOfSelect,
   RegistrationOfFormik,

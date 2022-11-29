@@ -1,23 +1,18 @@
 import { NextApiResponse, NextApiRequest } from "next";
-import articles from "../../../mocks/articles.json";
 import { Article, ResponseError } from "../../../ts";
+import articles from "../../../mocks/articles.json";
 
 const HandlerArticles = (
   req: NextApiRequest,
   res: NextApiResponse<Article[] | ResponseError>
 ) => {
-  let { id, begin, end } = req.query;
+  let { rangeMin, rangeMax } = req.query;
 
-  const elemBegin = Number(begin);
-  const elemEnd = Number(end);
-
-  const filteredById = articles.filter((elem) => elem.id !== id);
-
-  const filtered = filteredById.slice(elemBegin, elemEnd);
+  const filtered = articles.slice(Number(rangeMin), Number(rangeMax));
 
   return filtered.length > 0
     ? res.status(200).json(filtered)
-    : res.status(404).json({ message: `Пользователь: ${id} не найден.` });
+    : res.status(404).json({ message: "Ошибка" });
 };
 
 export default HandlerArticles;

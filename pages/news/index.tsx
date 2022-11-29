@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
 import { LinkNavigation, ListArticles } from "../../common";
+import { Article, TypesOfArticles } from "../../ts";
 import styles from "./News.module.scss";
+import { Sprite } from "../../svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Sprite } from "../../svg";
-import { Article } from "../../ts";
 import axios from "axios";
 
-const News: React.FC = () => {
-  //id click, потом убрать.
-  let id = 1;
-  
+const News = ({ article, articles }: TypesOfArticles) => {
   const network: Array<string> = [
     "vk",
     "facebook-2",
@@ -18,32 +14,6 @@ const News: React.FC = () => {
     "telegram",
     "whatsapp",
   ];
-  const [article, setArticle] = useState<Article>();
-  const [articles, setArticles] = useState<Article[]>([]);
-
-  useEffect(() => {
-    combineData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getData = async () => {
-    let { data } = await axios.get<Article>(
-      `http://localhost:3000/api/articles/1`
-    );
-    setArticle(data);
-  };
-
-  const getArticles = async () => {
-    let { data } = await axios.get<Article[]>(
-      "http://localhost:3000/api/articles?begin=0&end=3"
-    );
-    setArticles(data);
-  };
-
-  const combineData = async () => {
-    await getData();
-    await getArticles();
-  };
 
   return (
     <>
@@ -51,7 +21,7 @@ const News: React.FC = () => {
         <div className={styles.wrapper}>
           <LinkNavigation
             link={"Новости"}
-            deeperLink={article?.title || "Cтатьи не существует."}
+            deeperLink={article.title || "Cтатьи не существует."}
           />
         </div>
 
@@ -88,7 +58,7 @@ const News: React.FC = () => {
           <div className={styles["news-photo-position"]}>
             <Image
               className={styles["news-photo"]}
-              src={(article && article.photo) || "/nophoto.png"}
+              src={article.photo || "/nophoto.png"}
               alt="article"
               priority
               fill
@@ -98,7 +68,7 @@ const News: React.FC = () => {
 
         <div className={styles["text-block"]}>
           {article &&
-            article?.text.map((item, index: number) => {
+            article.text.map((item: string, index: number) => {
               return (
                 <div key={index}>
                   <p>{item}</p>
@@ -119,5 +89,21 @@ const News: React.FC = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  let id = 1;
+  let rangeMin = id - 1;
+  let rangeMax = rangeMin + 4;
+
+  let { data } = await axios.get<Article[]>(
+    "http://localhost:3000/api/articles",
+    { params: { rangeMin, rangeMax } }
+  );
+
+  const list = data.slice(1, 4);
+  const item = data.filter((el) => el.id == id.toString());
+
+  return { props: { articles: list, article: item[0] } };
+}
 
 export default News;
