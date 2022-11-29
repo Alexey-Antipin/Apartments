@@ -24,18 +24,23 @@ const Authorization: React.FC = () => {
     login: Yup.string().required("Поле обязательно!"),
   });
 
+  type T = {
+    rememberUser: string;
+    name: string;
+  };
+
   const onSubmit = async (values: AuthorizationOfFormik) => {
     let { login, password } = values;
 
     await axios
-      .get<string>("http://localhost:3000/api/get-account/", {
+      .get("http://localhost:3000/api/get-account/", {
         params: { login, password, remember },
       })
       .then((res) => {
-        if (res.data == "true") {
-          document.cookie = "user=People; max-age=10800";
+        if (res.data.rememberUser == "true") {
+          document.cookie = `user=${res.data[0]}; max-age=10800`;
         } else {
-          document.cookie = "user=People;";
+          document.cookie = `user=${res.data[0]};`;
         }
         router.push("./");
       })

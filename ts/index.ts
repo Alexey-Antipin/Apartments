@@ -1,3 +1,21 @@
+type SelectOfProps = {
+  massive: MassiveOfSelect;
+  active: number;
+  setActive: (value: number) => void;
+};
+
+type MassiveOfSelectList = {
+  id: number;
+  text: string;
+};
+
+type MassiveOfSelect = {
+  id: number;
+  text: string;
+  sprite?: string;
+  list: MassiveOfSelectList[];
+};
+
 type RegistrationOfFormik = {
   login: string;
   email: string;
@@ -92,7 +110,7 @@ type MassiveOfList = {
   id: number;
   text: string;
   sprite?: string;
-  href?: string;
+  href: string;
 };
 
 type SpriteProps = {
@@ -103,6 +121,8 @@ type SpriteProps = {
 };
 
 export type {
+  SelectOfProps,
+  MassiveOfSelect,
   RegistrationOfFormik,
   AuthorizationOfFormik,
   ContactsOfField,

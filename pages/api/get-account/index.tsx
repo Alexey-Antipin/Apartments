@@ -6,10 +6,10 @@ const GetAccount = (req: NextApiRequest, res: NextApiResponse) => {
 
   if (user.login === login && user.password === password) {
     if (remember == "true") {
-      res.status(200).json("true");
+      res.status(200).json([user.login, "true"]);
       return;
     }
-    res.status(200).json("Вход в аккаунт");
+    res.status(200).json([user.login]);
   } else {
     res
       .status(400)

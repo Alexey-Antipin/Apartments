@@ -8,7 +8,7 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
           width="16"
           height="14"
           viewBox="0 0 480 450"
-          fill="#8291A3"
+          fill={colour}
           xmlns="http://www.w3.org/2000/svg">
           <path
             d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -18,7 +18,7 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
 		s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
 		c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
 		C444.801,187.101,434.001,213.101,414.401,232.701z"
-            stroke="#8291A3"
+            stroke={colour}
             strokeWidth="25"
           />
         </svg>
