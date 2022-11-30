@@ -1,0 +1,53 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  color: #0b0b0b;
+  padding: 20px 0px;
+}
+
+.sprite-margin {
+  margin-left: 15px;
+}
+
+.focus {
+  height: 3px;
+}
+
+.focus-active {
+  background: #ffd54f;
+  width: 100%;
+}
+
+.underlist {
+  position: absolute;
+  top: 84px;
+
+  height: 222px;
+  width: 242px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 40px rgba(135, 124, 202, 0.3);
+  border-radius: 10px;
+}
+
+.underlist-item {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+.underlist-item:hover {
+  background: #f8f8f8;
+}

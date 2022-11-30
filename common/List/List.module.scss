@@ -1,0 +1,13 @@
+.list {
+  font-family: "Inter-Regular", sans-serif;
+  color: #8291a3;
+}
+.list:nth-child(2) {
+  padding-right: 55px;
+}
+.list:nth-child(3) {
+  padding-right: 116px;
+}
+.item {
+  padding: 8px;
+}

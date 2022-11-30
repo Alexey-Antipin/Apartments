@@ -1,0 +1,130 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 280px;
+  max-width: 1940px;
+  position: relative;
+
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    rgba(148, 175, 255, 0.1),
+    rgba(78, 100, 249, 0.1)
+  );
+}
+.wrapper {
+  margin-top: 60px;
+  margin-right: 40px;
+  max-width: 790px;
+  width: 100%;
+}
+.network {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 840px;
+  width: 100%;
+}
+.date {
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+
+  height: 37px;
+  width: 141px;
+
+  padding: 10px 16px;
+
+  background: rgba(102, 78, 249, 0.1);
+  border-radius: 18px;
+
+  color: #6e60c4;
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+.label {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+
+  width: 240px;
+  margin-left: 15px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 35px;
+  width: 35px;
+
+  background: rgba(102, 78, 249, 0.1);
+  border-radius: 19px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.block {
+  position: relative;
+
+  height: 564px;
+  width: 844px;
+}
+.point {
+  position: absolute;
+  top: 36px;
+  left: -100px;
+  height: 60px;
+  width: 60px;
+}
+.news-photo-position {
+  position: relative;
+  top: -32px;
+  height: 100%;
+  max-width: 844px;
+}
+.news-photo {
+  border-radius: 10px;
+}
+.text-block {
+  height: 540px;
+  width: 844px;
+
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+}
+
+.footer {
+  height: 738px;
+  max-width: 1940px;
+  position: relative;
+
+  background: linear-gradient(
+    90deg,
+    rgba(148, 175, 255, 0.1),
+    rgba(78, 100, 249, 0.1)
+  );
+}
+.container {
+  width: 1300px;
+  margin: 0 auto;
+}
+.main-title {
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 25px;
+
+  padding-top: 62px;
+  padding-bottom: 45px;
+  padding-left: 10px;
+  color: #1e2123;
+}

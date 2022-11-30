@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  margin-top: 80px;
+  margin-left: 80px;
+  margin-bottom: 102px;
+}
+.item {
+  font-family: "Inter-Regular", sans-serif;
+  @extend %item;
+  color: #686868;
+
+}
+.item-active {
+  font-family: "Inter-Bold", sans-serif;
+  border-bottom: 2px solid #ffd54f;
+  @extend %item;
+  color: #000000;
+}
+
+%item{
+  font-size: 18px;
+  padding: 0px 7px;
+  margin: 0px 8px;
+}
