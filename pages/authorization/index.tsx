@@ -1,22 +1,24 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { authorizationThunk } from "../../redux/reducers/authorizationReducer";
+import { remember } from "../../redux/reducers/authorizationReducer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import styles from "./Authorization.module.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { AuthorizationOfFormik } from "../../ts";
+import styles from "./Authorization.module.scss";
+import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import * as Yup from "yup";
-import axios from "axios";
 import clsx from "clsx";
 
 const Authorization: React.FC = () => {
   const router = useRouter();
-  const [remember, setRemember] = useState<boolean>(false);
-  const [errorUser, setErrorUser] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const authorization = useAppSelector((state) => state.authorization);
 
   const initialValues: AuthorizationOfFormik = {
     login: "",
     password: "",
+    remember: "false",
   };
 
   const validationField = Yup.object({
@@ -24,22 +26,15 @@ const Authorization: React.FC = () => {
     login: Yup.string().required("Поле обязательно!"),
   });
 
-  const onSubmit = async (values: AuthorizationOfFormik) => {
-    let { login, password } = values;
+  const onSubmit = (values: AuthorizationOfFormik) => {
+    let { login, password, remember } = values;
 
-    await axios
-      .get('http://localhost:3000/api/get-account/', {
-        params: { login, password, remember },
-      })
-      .then((res) => {
-        if (res.data.rememberUser == "true") {
-          document.cookie = `user=${res.data[0]}; max-age=10800`;
-        } else {
-          document.cookie = `user=${res.data[0]};`;
-        }
-        router.push("./");
-      })
-      .catch((error) => setErrorUser(error.response.data));
+    dispatch(authorizationThunk({ login, password, remember })).then(
+      (authorization) => {
+        authorization.meta.requestStatus == "fulfilled" &&
+          router.push("./");
+      }
+    );
   };
 
   return (
@@ -98,7 +93,9 @@ const Authorization: React.FC = () => {
                   />
                   <span
                     className={
-                      errors.password ? styles["error-icons"] : styles.icons
+                      errors.password
+                        ? styles["error-icons"]
+                        : styles.icons
                     }>
                     <Sprite id="lock" colour="#686868" />
                   </span>
@@ -110,19 +107,23 @@ const Authorization: React.FC = () => {
                 />
 
                 <div className={styles.control}>
-                  <label className={styles["label-block"]} htmlFor="switch">
+                  <label
+                    className={styles["label-block"]}
+                    htmlFor="switch">
                     <button
                       className={clsx(
                         styles.switch,
-                        remember && styles["switch-on"]
+                        authorization.remember && styles["switch-on"]
                       )}
-                      onClick={() => setRemember(!remember)}
+                      onClick={() =>
+                        dispatch(remember(!authorization.remember))
+                      }
                       type="button"
                       id="switch">
                       <div
                         className={clsx(
                           styles.round,
-                          remember && styles["round-on"]
+                          authorization.remember && styles["round-on"]
                         )}></div>
                     </button>
 
@@ -141,13 +142,17 @@ const Authorization: React.FC = () => {
             )}
           </Formik>
 
-          {errorUser && (
-            <p className={styles["error-from-server"]}>{errorUser}</p>
+          {authorization.error_user && (
+            <p className={styles["error-from-server"]}>
+              {authorization.error_user}
+            </p>
           )}
 
           <p className={styles.account}>
             Еще нет аккаунта?
-            <Link className={styles["account-create"]} href="/registration">
+            <Link
+              className={styles["account-create"]}
+              href="/registration">
               Создайте акканут
             </Link>
           </p>

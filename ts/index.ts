@@ -31,6 +31,7 @@ type RegistrationOfFormik = {
 type AuthorizationOfFormik = {
   login: string;
   password: string;
+  remember: string;
 };
 
 type ContactsOfField = {
