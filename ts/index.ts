@@ -1,10 +1,5 @@
 import { FormikState } from "formik";
 
-type TypesOfArticles = {
-  article: Article;
-  articles: Article[];
-};
-
 type SelectOfProps = {
   massive: MassiveOfSelect;
   active: number;
@@ -134,7 +129,6 @@ type SpriteProps = {
 
 export type {
   ResetForm,
-  TypesOfArticles,
   SelectOfProps,
   MassiveOfSelect,
   RegistrationOfFormik,
