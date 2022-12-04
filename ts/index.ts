@@ -1,3 +1,5 @@
+import { FormikState } from "formik";
+
 type TypesOfArticles = {
   article: Article;
   articles: Article[];
@@ -38,6 +40,10 @@ type ContactsOfField = {
   name: string;
   email: string;
   message: string;
+};
+
+type ResetForm = {
+  resetForm: (values?: Partial<FormikState<ContactsOfField>> | undefined) => void;
 };
 
 type Icon = {
@@ -127,6 +133,7 @@ type SpriteProps = {
 };
 
 export type {
+  ResetForm,
   TypesOfArticles,
   SelectOfProps,
   MassiveOfSelect,

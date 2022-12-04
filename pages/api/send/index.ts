@@ -1,3 +1,4 @@
+import { writeFile } from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const HandlerSend = (req: NextApiRequest, res: NextApiResponse) => {
@@ -12,6 +13,17 @@ const HandlerSend = (req: NextApiRequest, res: NextApiResponse) => {
   const badResponse = "По определенной причине, письмо не отправлено";
 
   try {
+    writeFile(
+      "./mocks/message.json",
+      JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+      (err) => {
+        if (err) throw "Ошибка!";
+      }
+    );
     res.status(200).json(goodResponse);
   } catch (error) {
     res.status(404).json(badResponse);

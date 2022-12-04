@@ -1,9 +1,12 @@
-import { authorizationThunk } from "../../redux/reducers/authorizationReducer";
-import { remember } from "../../redux/reducers/authorizationReducer";
+import {
+  authorizationThunk,
+  remember,
+} from "../../redux/reducers/authorizationReducer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { AuthorizationOfFormik } from "../../ts";
 import styles from "./Authorization.module.scss";
+import { RootState } from "../../redux/store";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import Link from "next/link";
@@ -13,7 +16,7 @@ import clsx from "clsx";
 const Authorization: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const authorization = useAppSelector((state) => state.authorization);
+  const authorization = useAppSelector((state:RootState) => state.authorization);
 
   const initialValues: AuthorizationOfFormik = {
     login: "",
