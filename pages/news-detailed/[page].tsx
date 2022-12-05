@@ -1,18 +1,18 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-} from "next";
+import getData from "../../common/Pagination/GetData";
+import styles from "./NewsDetailed.module.scss";
+import { Article, PageProps } from "../../ts";
+import { Sprite } from "../../svg";
 import { useState } from "react";
 import {
   LinkNavigation,
   ListArticles,
   PaginationNumbering,
 } from "../../common";
-import getData from "../../common/Pagination/GetData";
-import { Sprite } from "../../svg";
-import { Article, PageProps } from "../../ts";
-import styles from "./NewsDetailed.module.scss";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsContext,
+} from "next";
 
 const PaginatedPage: React.FC<PageProps> = ({
   articles,

@@ -33,7 +33,7 @@ const Authorization: React.FC = () => {
     let { login, password, remember } = values;
 
     dispatch(authorizationThunk({ login, password, remember })).then(
-      (authorization) => {
+      (authorization: any) => {
         authorization.meta.requestStatus == "fulfilled" &&
           router.push("./");
       }

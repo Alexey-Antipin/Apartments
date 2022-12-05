@@ -1,16 +1,16 @@
+import { Network, ContactsOfField, Icon, ResetForm } from "../../ts";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { RootState } from "../../redux/store";
+import styles from "./Contacts.module.scss";
+import { Sprite } from "../../svg";
+import * as Yup from "yup";
+import clsx from "clsx";
 import {
   contactsThunk,
   closeModal,
   openModal,
 } from "../../redux/reducers/contactsReducer";
-import { RootState } from "../../redux/store";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Network, ContactsOfField, Icon, ResetForm } from "../../ts";
-import styles from "./Contacts.module.scss";
-import { Sprite } from "../../svg";
-import * as Yup from "yup";
-import clsx from "clsx";
 
 const Contacts: React.FC = () => {
   const dispatch = useAppDispatch();
