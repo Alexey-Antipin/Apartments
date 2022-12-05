@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authorizationSlice from "../reducers/authorizationReducer";
+import registrationSlice from "../reducers/registrationReducer";
 import contactsSlice from "../reducers/contactsReducer";
-import newsReducer from "../reducers/newsReducer";
+import newsSlice from "../reducers/newsReducer";
 
 export const store = configureStore({
   reducer: {
     authorization: authorizationSlice,
+    registration: registrationSlice,
     contacts: contactsSlice,
-    news: newsReducer,
+    news: newsSlice,
   },
 });
 

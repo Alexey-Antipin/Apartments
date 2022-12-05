@@ -34,7 +34,7 @@ export const newsThunk = createAsyncThunk("news/newsList", async () => {
   return { list, item };
 });
 
-export const newsReducer = createSlice({
+export const newsSlice= createSlice({
   name: "news",
   initialState,
   reducers: {},
@@ -48,4 +48,4 @@ export const newsReducer = createSlice({
     );
   },
 });
-export default newsReducer.reducer;
+export default newsSlice.reducer;
