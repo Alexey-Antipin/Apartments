@@ -1,12 +1,21 @@
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { newsThunk } from "../../redux/reducers/newsReducer";
 import { LinkNavigation, ListArticles } from "../../common";
-import { Article, TypesOfArticles } from "../../ts";
+import { RootState } from "../../redux/store";
 import styles from "./News.module.scss";
 import { Sprite } from "../../svg";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
 
-const News = ({ article, articles }: TypesOfArticles) => {
+const News = () => {
+  const dispatch = useAppDispatch();
+  const { list, item } = useAppSelector((state: RootState) => state.news);
+
+  useEffect(() => {
+    dispatch(newsThunk());
+  }, []);
+
   const network: Array<string> = [
     "vk",
     "facebook-2",
@@ -21,13 +30,13 @@ const News = ({ article, articles }: TypesOfArticles) => {
         <div className={styles.wrapper}>
           <LinkNavigation
             link={"Новости"}
-            deeperLink={article.title || "Cтатьи не существует."}
+            deeperLink={item[0].title || "Cтатьи не существует."}
           />
         </div>
 
         <div className={styles.network}>
           <time className={styles.date}>
-            {(article && article.time) || "00.00.0000"}
+            {item[0].time || "00.00.0000"}
           </time>
 
           <div className={styles.nav}>
@@ -58,7 +67,7 @@ const News = ({ article, articles }: TypesOfArticles) => {
           <div className={styles["news-photo-position"]}>
             <Image
               className={styles["news-photo"]}
-              src={article.photo || "/nophoto.png"}
+              src={item[0].photo || "/nophoto.png"}
               alt="article"
               priority
               fill
@@ -67,43 +76,26 @@ const News = ({ article, articles }: TypesOfArticles) => {
         </div>
 
         <div className={styles["text-block"]}>
-          {article &&
-            article.text.map((item: string, index: number) => {
-              return (
-                <div key={index}>
-                  <p>{item}</p>
-                  <br />
-                </div>
-              );
-            })}
-          {!article && <div>Cтатьи не существует.</div>}
+          {item[0].text.map((item: string, index: number) => {
+            return (
+              <div key={index}>
+                <p>{item}</p>
+                <br />
+              </div>
+            );
+          })}
+          {!item[0] && <div>Cтатьи не существует.</div>}
         </div>
       </div>
 
       <div className={styles.footer}>
         <div className={styles.container}>
           <h2 className={styles["main-title"]}>Читайте также</h2>
-          <ListArticles list={articles} />
+          <ListArticles list={list} />
         </div>
       </div>
     </>
   );
 };
-
-export async function getServerSideProps() {
-  let id = 1;
-  let rangeMin = id - 1;
-  let rangeMax = rangeMin + 4;
-
-  let { data } = await axios.get<Article[]>(
-    "http://localhost:3000/api/articles",
-    { params: { rangeMin, rangeMax } }
-  );
-
-  const list = data.slice(1, 4);
-  const item = data.filter((el) => el.id == id.toString());
-
-  return { props: { articles: list, article: item[0] } };
-}
 
 export default News;

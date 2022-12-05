@@ -1,6 +1,11 @@
-import { useState } from "react";
-import { Sprite } from "../../svg";
+import { redistrationThunk } from "../../redux/reducers/registrationReducer";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RegistrationOfFormik } from "../../ts";
+import styles from "./Registration.module.scss";
+import { RootState } from "../../redux/store";
+import { Sprite } from "../../svg";
+import Link from "next/link";
+import * as Yup from "yup";
 import {
   ErrorMessage,
   Field,
@@ -9,13 +14,12 @@ import {
   FormikErrors,
   FormikTouched,
 } from "formik";
-import * as Yup from "yup";
-import styles from "./Registration.module.scss";
-import Link from "next/link";
-import axios from "axios";
 
 const Registration: React.FC = () => {
-  const [modal, setModal] = useState(false);
+  const dispatch = useAppDispatch();
+  const registration = useAppSelector(
+    (state: RootState) => state.registration
+  );
 
   const field = {
     type: ["text", "email", "password", "password"],
@@ -64,18 +68,10 @@ const Registration: React.FC = () => {
       .required("Обязательное поле!"),
   });
 
-  const onSubmit = async (values: RegistrationOfFormik) => {
+  const onSubmit = (values: RegistrationOfFormik) => {
     let { login, email, password } = values;
 
-    await axios.post<string>(
-      "http://localhost:3000/api/create-account/",
-      {
-        login,
-        email,
-        password,
-      }
-    );
-    setModal(true);
+    dispatch(redistrationThunk({ login, email, password }));
   };
 
   const errorsField = (
@@ -91,9 +87,7 @@ const Registration: React.FC = () => {
       case 3:
         return errors.password && touched.password;
       case 4:
-        return (
-          errors.confirmPassword && touched.confirmPassword
-        );
+        return errors.confirmPassword && touched.confirmPassword;
       default:
         return true;
     }
@@ -101,7 +95,7 @@ const Registration: React.FC = () => {
 
   return (
     <div className={styles.background}>
-      {!modal ? (
+      {!registration.modal ? (
         <div className={styles.registration}>
           <Formik
             initialValues={initialValues}
@@ -109,9 +103,7 @@ const Registration: React.FC = () => {
             onSubmit={onSubmit}>
             {({ errors, values, touched }) => (
               <Form className={styles.form}>
-                <h1 className={styles.title}>
-                  Регистрация
-                </h1>
+                <h1 className={styles.title}>Регистрация</h1>
 
                 {Object.keys(values).map((item, index) => (
                   <label
@@ -145,8 +137,7 @@ const Registration: React.FC = () => {
 
                     <ErrorMessage name={item}>
                       {() => (
-                        <div
-                          className={styles["icon-error"]}>
+                        <div className={styles["icon-error"]}>
                           <Sprite
                             id="warning"
                             height="20"
@@ -162,13 +153,9 @@ const Registration: React.FC = () => {
                 {((errors.login && touched.login) ||
                   (errors.email && touched.email) ||
                   (errors.password && touched.password) ||
-                  (errors.confirmPassword &&
-                    touched.confirmPassword)) && (
+                  (errors.confirmPassword && touched.confirmPassword)) && (
                   <div className={styles["button-error"]}>
-                    <span
-                      className={
-                        styles["button-error-text"]
-                      }>
+                    <span className={styles["button-error-text"]}>
                       Ошибка ввода
                     </span>
                     <Sprite
@@ -180,9 +167,7 @@ const Registration: React.FC = () => {
                   </div>
                 )}
 
-                <button
-                  className={styles.send}
-                  type="submit">
+                <button className={styles.send} type="submit">
                   Зарегистрироваться
                 </button>
               </Form>
@@ -190,15 +175,11 @@ const Registration: React.FC = () => {
           </Formik>
 
           <div className={styles["block-text"]}>
-            <p className={styles["text-title"]}>
-              Пользователь обязуется:
-            </p>
+            <p className={styles["text-title"]}>Пользователь обязуется:</p>
 
             <ul>
               {text.map((text: string, index: number) => (
-                <li
-                  className={styles["text-paragraph"]}
-                  key={index}>
+                <li className={styles["text-paragraph"]} key={index}>
                   <span className={styles["text-round"]} />
                   {text}
                 </li>
@@ -221,13 +202,11 @@ const Registration: React.FC = () => {
             Подтвердите регистрацию
           </h2>
           <p className={styles["modal-paragraph"]}>
-            Письмо для подтверждения аккаунта отправлено
-            почту. Перейдите по ссылке, указанной в письме.
-            Если письма нет, то проверьте спам.
+            Письмо для подтверждения аккаунта отправлено почту. Перейдите
+            по ссылке, указанной в письме. Если письма нет, то проверьте
+            спам.
           </p>
-          <Link
-            className={styles["modal-button"]}
-            href="./">
+          <Link className={styles["modal-button"]} href="./">
             Понятно
           </Link>
         </div>

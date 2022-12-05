@@ -1,15 +1,20 @@
-import { useState } from "react";
-import { Sprite } from "../../svg";
+import { Network, ContactsOfField, Icon, ResetForm } from "../../ts";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Network, ContactsOfField, Icon } from "../../ts";
-import * as Yup from "yup";
+import { RootState } from "../../redux/store";
 import styles from "./Contacts.module.scss";
+import { Sprite } from "../../svg";
+import * as Yup from "yup";
 import clsx from "clsx";
-import axios from "axios";
+import {
+  contactsThunk,
+  closeModal,
+  openModal,
+} from "../../redux/reducers/contactsReducer";
 
 const Contacts: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [messageOfSend, setMessageOfSend] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const contacts = useAppSelector((state: RootState) => state.contacts);
 
   const icon: Icon[] = [
     { name: "sign", colour: "#FFFFFF", width: "12", height: "15" },
@@ -44,16 +49,14 @@ const Contacts: React.FC = () => {
       .required("Поле обязательно!"),
   });
 
-  const onSubmit = async (values: ContactsOfField) => {
+  const onSubmit = async (
+    values: ContactsOfField,
+    { resetForm }: ResetForm
+  ) => {
     let { name, email, message } = values;
-    
-    let { data } = await axios.post<string>(
-      `http://localhost:3000/api/send/`,
-      { name, email, message }
-    );
-
-    setMessageOfSend(data);
-    setOpen(true);
+    dispatch(contactsThunk({ name, email, message }));
+    dispatch(openModal());
+    resetForm();
   };
 
   return (
@@ -209,7 +212,7 @@ const Contacts: React.FC = () => {
       </Formik>
 
       {/* modal window */}
-      {open && (
+      {contacts.modal && (
         <>
           <div className={styles.background}></div>
           <div className={styles.modal}>
@@ -217,12 +220,14 @@ const Contacts: React.FC = () => {
               Ваше письмо отправлено!
             </h2>
 
-            <p className={styles["modal-text"]}>{messageOfSend}</p>
+            <p className={styles["modal-text"]}>
+              {contacts.messageOfSend}
+            </p>
 
             <button
               type="button"
               className={styles["modal-button"]}
-              onClick={() => setOpen(false)}>
+              onClick={() => dispatch(closeModal())}>
               Закрыть окно
             </button>
           </div>

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { LinkNavigation, ListArticles } from "../../common";
-import { Sprite } from "../../svg";
-import styles from "./NewsDetailed.module.scss";
-import { GetStaticProps } from "next";
-import getProducts from "../../common/Pagination/GetData";
 import { PaginationNumbering } from "../../common/Pagination/PaginationNumbering";
+import { LinkNavigation, ListArticles } from "../../common";
+import getProducts from "../../common/Pagination/GetData";
+import styles from "./NewsDetailed.module.scss";
 import { Article, PageProps } from "../../ts";
+import { GetStaticProps } from "next";
+import { Sprite } from "../../svg";
+import { useState } from "react";
 
 const NewsDetailed: React.FC<PageProps> = ({
   articles,

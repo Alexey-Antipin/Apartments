@@ -1,7 +1,4 @@
-type TypesOfArticles = {
-  article: Article;
-  articles: Article[];
-};
+import { FormikState } from "formik";
 
 type SelectOfProps = {
   massive: MassiveOfSelect;
@@ -31,12 +28,17 @@ type RegistrationOfFormik = {
 type AuthorizationOfFormik = {
   login: string;
   password: string;
+  remember: string;
 };
 
 type ContactsOfField = {
   name: string;
   email: string;
   message: string;
+};
+
+type ResetForm = {
+  resetForm: (values?: Partial<FormikState<ContactsOfField>> | undefined) => void;
 };
 
 type Icon = {
@@ -126,7 +128,7 @@ type SpriteProps = {
 };
 
 export type {
-  TypesOfArticles,
+  ResetForm,
   SelectOfProps,
   MassiveOfSelect,
   RegistrationOfFormik,
