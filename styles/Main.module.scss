@@ -1,0 +1,204 @@
+.wrapper {
+  padding: 0px 80px;
+}
+.block-filter {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  background-image: url("/background.png"),
+    linear-gradient(#7e6af3, #6540cd);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.title {
+  height: 36px;
+  width: 629px;
+
+  font-family: "Inter-Bold";
+  font-size: 30px;
+  line-height: 36px;
+
+  color: #ffffff;
+  text-shadow: 0px 2px 5px rgba(0, 14, 142, 0.3);
+  padding-top: 82px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+}
+.title-colour {
+  padding-left: 4px;
+  color: #ffd54f;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  max-width: 1940px;
+
+  background: #ffffff;
+  border-radius: 0px 10px 10px 10px;
+  padding: 0 20px;
+  margin: 0 123px;
+}
+.title-under {
+  height: 17px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 11px;
+
+  color: #bdbdbd;
+}
+
+.block-line {
+  height: 68px;
+  width: 1px;
+
+  background: rgba(101, 78, 249, 0.1);
+  margin: 0px 20px;
+}
+.block-padding {
+  padding: 0 20px;
+}
+.default-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 37px;
+  width: 150px;
+
+  background: #f8f8f8;
+  border-radius: 20px;
+  border: none;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+  color: #686868;
+}
+.default-item:focus {
+  outline: 2px solid rgba(102, 78, 249, 0.8);
+}
+.list-drop {
+  position: absolute;
+  height: 185px;
+  width: 150px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 40px rgba(135, 124, 202, 0.3);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.item {
+  height: 37px;
+  width: 150px;
+  border-radius: 10px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+  color: #1e2123;
+
+  padding: 10px 15px;
+}
+.item:hover {
+  background: #f8f8f8;
+}
+
+.filter-price-flex {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.trait {
+  height: 14px;
+  width: 7px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 100%;
+
+  color: #4e64f9;
+}
+.filter-price {
+  height: 37px;
+  width: 80px;
+
+  background: #f8f8f8;
+  padding: 14px;
+
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+}
+
+.button {
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+  color: #1e2123;
+
+  background: none;
+  border: none;
+}
+.button-center {
+  display: flex;
+  align-items: center;
+}
+.button-main {
+  height: 37px;
+  width: 123px;
+
+  background: #ffd54f;
+  border-radius: 22px;
+  border: none;
+
+  font-family: "Inter-Bold";
+  font-size: 14px;
+  line-height: 17px;
+  color: #242424;
+}
+.text-padding {
+  padding-right: 12px;
+}
+
+.select-list {
+  display: flex;
+  justify-content: center;
+  height: 37px;
+  width: 150px;
+
+  background: #f8f8f8;
+  border-radius: 20px;
+  padding: 0px 15px;
+}
+.select-underList {
+  top: 30px;
+  left: 0px;
+  width: 150px;
+}
+.select-sprite {
+  margin-left: auto;
+  transform: rotate(90deg);
+}
+
+.list-ul {
+  display: flex;
+  align-items: center;
+  width: 637px;
+
+  border-radius: 10px 10px 0px 0px;
+  margin: 50px 0px 0px 123px;
+  background: rgba(45, 57, 136, 0.5);
+}
