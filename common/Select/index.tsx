@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
@@ -6,22 +6,29 @@ import Link from "next/link";
 import clsx from "clsx";
 
 export const Select: React.FC<SelectOfProps> = ({
-  classItem,
-  active,
-  massive,
-  setActive,
+  classItemActive,
+  classUnderList,
   underlining,
   classSprite,
-  classUnderList,
+  classHover,
+  classItem,
+  classText,
+  setActive,
+  massive,
+  active,
+  ban,
 }) => {
+  const [openWindow, setOpenWindow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
+  const ref = useRef<any>();
 
   useEffect(() => {
     if (!open) return;
 
     const handleClick = (e: any) => {
-      if (e.target.className !== styles.text) {
+      if (!ref.current.contains(e.target)) {
+        setOpenWindow(false);
         setOpen(false);
       }
     };
@@ -34,27 +41,37 @@ export const Select: React.FC<SelectOfProps> = ({
   });
 
   const handClickOpenOfList = (elem: number) => {
+    setOpenWindow(!open);
     setActive(elem);
-    setOpen(true);
+    setOpen(!open);
   };
 
   const handClickOfItem = (elem: number) => {
+    setOpenWindow(false);
     setListId(elem);
   };
 
   return (
     <li
-      className={clsx(classItem , styles.item)}
-      onClick={() => handClickOpenOfList(massive.id)}>
+      className={clsx(
+        !open && classHover,
+        openWindow && classItemActive,
+        classItem,
+        styles.item
+      )}
+      onClick={() => handClickOpenOfList(massive.id)}
+      ref={ref}>
       <div className={styles.block}>
         {/* Смена слова при клике. */}
-
-        {active === massive.id && listId ? (
-          <div className={styles.text}>
+        {/* ban - запрет смена слова при клике. */}
+        {(ban || active === massive.id) && listId ? (
+          <div className={clsx(classText || styles.text)}>
             {massive.list[listId - 1].text}
           </div>
         ) : (
-          <div className={styles.text}>{massive.text}</div>
+          <div className={clsx(classText || styles.text)}>
+            {massive.text}
+          </div>
         )}
 
         {/* svg - картинка. */}
@@ -64,7 +81,7 @@ export const Select: React.FC<SelectOfProps> = ({
               id={massive.sprite}
               height="15"
               width="12"
-              colour="#FFD54F"
+              colour={massive.spriteColour || "#FFD54F"}
             />
           </span>
         )}

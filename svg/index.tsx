@@ -343,14 +343,14 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
     case "mark":
       return (
         <svg
-          width="7"
-          height="12"
+          width={width || "7"}
+          height={height || "12"}
           viewBox="0 0 7 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
             d="M1.21484 10.75L5.96484 6L1.21484 1.25"
-            stroke="#242424"
+            stroke={colour}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

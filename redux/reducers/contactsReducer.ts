@@ -6,7 +6,7 @@ import {
 import { ContactsOfField } from "../../ts";
 import axios from "axios";
 
-export type AuthorizationState = { messageOfSend: string; modal: boolean };
+type AuthorizationState = { messageOfSend: string; modal: boolean };
 
 const initialState: AuthorizationState = {
   messageOfSend: "",
