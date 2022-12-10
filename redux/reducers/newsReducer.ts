@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { Article } from "../../ts";
 import axios from "axios";
 
-export type newsState = {
+type newsState = {
   item: Article[];
   list: Article[];
 };
@@ -34,7 +34,7 @@ export const newsThunk = createAsyncThunk("news/newsList", async () => {
   return { list, item };
 });
 
-export const newsSlice= createSlice({
+export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {},
