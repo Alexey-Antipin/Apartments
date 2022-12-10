@@ -10,13 +10,16 @@ import { RootState } from "../../redux/store";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import Link from "next/link";
+import Head from "next/head";
 import * as Yup from "yup";
 import clsx from "clsx";
 
 const Authorization: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const authorization = useAppSelector((state:RootState) => state.authorization);
+  const authorization = useAppSelector(
+    (state: RootState) => state.authorization
+  );
 
   const initialValues: AuthorizationOfFormik = {
     login: "",
@@ -42,6 +45,10 @@ const Authorization: React.FC = () => {
 
   return (
     <div className={styles.background}>
+      <Head>
+        <title>Авторизация</title>
+      </Head>
+
       <div className={styles.container}>
         <div className={styles.authorization}>
           <h1 className={styles.title}>Авторизация</h1>

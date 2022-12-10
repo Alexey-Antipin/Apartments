@@ -1,8 +1,9 @@
-import getData from "../../common/Pagination/GetData";
+import getProducts from "../../common/Pagination/GetData";
 import styles from "./NewsDetailed.module.scss";
 import { Article, PageProps } from "../../ts";
 import { Sprite } from "../../svg";
 import { useState } from "react";
+import Head from "next/head";
 import {
   LinkNavigation,
   ListArticles,
@@ -32,6 +33,10 @@ const PaginatedPage: React.FC<PageProps> = ({
 
   return (
     <div className="NewsDetailed">
+      <Head>
+        <title>Новости</title>
+      </Head>
+
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <LinkNavigation link={news} />
@@ -71,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
   const page = Number(params?.page) || 1;
-  const { articles, total } = await getData({ limit: 9, page });
+  const { articles, total } = await getProducts({ limit: 9, page });
 
   if (!articles.length) {
     return {
