@@ -6,6 +6,7 @@ import { Article, PageProps } from "../../ts";
 import { GetStaticProps } from "next";
 import { Sprite } from "../../svg";
 import { useState } from "react";
+import Head from "next/head";
 
 const NewsDetailed: React.FC<PageProps> = ({
   articles,
@@ -25,6 +26,10 @@ const NewsDetailed: React.FC<PageProps> = ({
 
   return (
     <div className="NewsDetailed">
+      <Head>
+        <title>Новости</title>
+      </Head>
+
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <LinkNavigation link={news} />

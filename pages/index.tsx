@@ -7,6 +7,7 @@ import { useState } from "react";
 import { List } from "../common";
 import { Sprite } from "../svg";
 import Image from "next/image";
+import Head from "next/head";
 
 const Home: React.FC = () => {
   const [active, setActive] = useState<number>(0);
@@ -56,6 +57,10 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>Главная</title>
+      </Head>
+
       {/* Фильтр городов. */}
       <div className={styles["block-filter"]}>
         <h1 className={styles.title}>
@@ -168,7 +173,7 @@ const Home: React.FC = () => {
           ))}
         </div>
       </div>
-      
+
       <div className={styles["position-picture"]}>
         <Image src={"/points.png"} alt="points" height={61} width={61} />
       </div>
