@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { RootState } from "../../redux/store";
 import styles from "./Contacts.module.scss";
 import { Sprite } from "../../svg";
+import Head from "next/head";
 import * as Yup from "yup";
 import clsx from "clsx";
 import {
@@ -61,6 +62,10 @@ const Contacts: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>Контакты</title>
+      </Head>
+
       <div className={styles.call}>
         <h1 className={styles["call-title"]}>Контакты</h1>
 

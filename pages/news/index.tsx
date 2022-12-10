@@ -7,6 +7,7 @@ import { Sprite } from "../../svg";
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 
 const News = () => {
   const dispatch = useAppDispatch();
@@ -26,17 +27,21 @@ const News = () => {
 
   return (
     <>
+      <Head>
+        <title>Новости</title>
+      </Head>
+
       <div className={styles.header}>
         <div className={styles.wrapper}>
           <LinkNavigation
             link={"Новости"}
-            deeperLink={item[0].title || "Cтатьи не существует."}
+            deeperLink={item[0]?.title || "Cтатьи не существует."}
           />
         </div>
 
         <div className={styles.network}>
           <time className={styles.date}>
-            {item[0].time || "00.00.0000"}
+            {item[0]?.time || "00.00.0000"}
           </time>
 
           <div className={styles.nav}>
@@ -67,7 +72,7 @@ const News = () => {
           <div className={styles["news-photo-position"]}>
             <Image
               className={styles["news-photo"]}
-              src={item[0].photo || "/nophoto.png"}
+              src={item[0]?.photo || "/nophoto.png"}
               alt="article"
               priority
               fill
@@ -76,7 +81,7 @@ const News = () => {
         </div>
 
         <div className={styles["text-block"]}>
-          {item[0].text.map((item: string, index: number) => {
+          {item[0]?.text.map((item: string, index: number) => {
             return (
               <div key={index}>
                 <p>{item}</p>

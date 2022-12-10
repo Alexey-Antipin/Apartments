@@ -5,6 +5,7 @@ import styles from "./Registration.module.scss";
 import { RootState } from "../../redux/store";
 import { Sprite } from "../../svg";
 import Link from "next/link";
+import Head from "next/head";
 import * as Yup from "yup";
 import {
   ErrorMessage,
@@ -95,6 +96,10 @@ const Registration: React.FC = () => {
 
   return (
     <div className={styles.background}>
+      <Head>
+        <title>Регистрация</title>
+      </Head>
+
       {!registration.modal ? (
         <div className={styles.registration}>
           <Formik
