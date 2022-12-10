@@ -1,77 +1,110 @@
-import clsx from "clsx";
-import Link from "next/link";
-import React, { useState } from "react";
-import { Sprite } from "../../svg";
-import { MassiveOfSelect, SelectOfProps } from "../../ts";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Select.module.scss";
+import { SelectOfProps } from "../../ts";
+import { Sprite } from "../../svg";
+import Link from "next/link";
+import clsx from "clsx";
 
 export const Select: React.FC<SelectOfProps> = ({
+  classItemActive,
+  classUnderList,
+  underlining,
+  classSprite,
+  classHover,
+  classItem,
+  classText,
+  setActive,
   massive,
   active,
-  setActive,
+  ban,
 }) => {
+  const [openWindow, setOpenWindow] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
-  const [toggle, setToggle] = useState<boolean>(true);
+  const ref = useRef<any>();
 
-  const handlerClick = (element: number) => {
-    setActive(element);
+  useEffect(() => {
+    if (!open) return;
 
-    // Обнуление списка, при клике иного элемента.
-    if (active !== massive.id) {
-      setListId(0);
-    }
+    const handleClick = (e: any) => {
+      if (!ref.current.contains(e.target)) {
+        setOpenWindow(false);
+        setOpen(false);
+      }
+    };
 
-    // Открытие списка, при повторном клике.
-    if (!toggle) {
-      setToggle(true);
-    }
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+
+  const handClickOpenOfList = (elem: number) => {
+    setOpenWindow(!open);
+    setActive(elem);
+    setOpen(!open);
   };
 
-  const handleClickOfItem = (element: number) => {
-    setListId(element);
-    setToggle(false);
+  const handClickOfItem = (elem: number) => {
+    setOpenWindow(false);
+    setListId(elem);
   };
 
   return (
-    <li className={styles.item} onClick={() => handlerClick(massive.id)}>
+    <li
+      className={clsx(
+        !open && classHover,
+        openWindow && classItemActive,
+        classItem,
+        styles.item
+      )}
+      onClick={() => handClickOpenOfList(massive.id)}
+      ref={ref}>
       <div className={styles.block}>
         {/* Смена слова при клике. */}
-        {active === massive.id && listId ? (
-          <div className={styles.text}>
+        {/* ban - запрет смена слова при клике. */}
+        {(ban || active === massive.id) && listId ? (
+          <div className={clsx(classText || styles.text)}>
             {massive.list[listId - 1].text}
           </div>
         ) : (
-          <div className={styles.text}>{massive.text}</div>
+          <div className={clsx(classText || styles.text)}>
+            {massive.text}
+          </div>
         )}
 
         {/* svg - картинка. */}
         {massive.sprite && (
-          <span className={styles["sprite-margin"]}>
+          <span className={classSprite || styles["sprite-margin"]}>
             <Sprite
               id={massive.sprite}
               height="15"
               width="12"
-              colour="#FFD54F"
+              colour={massive.spriteColour || "#FFD54F"}
             />
           </span>
         )}
       </div>
 
-      {/* Почеркивание при клике. */}
-      <span
-        className={clsx(
-          styles.focus,
-          active === massive.id && styles["focus-active"]
-        )}></span>
+      {/* Почёркивание при клике. */}
+      {/*Если почёркивание не нужно, тогда передаём: underlining = false*/}
+      {underlining == true && (
+        <span
+          className={clsx(
+            styles.focus,
+            active === massive.id && styles["focus-active"]
+          )}></span>
+      )}
 
       {/* Внутренный список. */}
-      {active === massive.id && toggle && (
-        <ul className={styles.underlist}>
+      {active === massive.id && open && (
+        <ul className={clsx(classUnderList, styles.underlist)}>
           {massive.list.map((elem, index: number) => (
             <li
               className={styles["underlist-item"]}
-              key={index}
-              onClick={() => handleClickOfItem(elem.id)}>
+              onClick={() => handClickOfItem(elem.id)}
+              key={index}>
               <Link href="./">{elem.text}</Link>
             </li>
           ))}

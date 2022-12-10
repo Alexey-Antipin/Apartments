@@ -1,9 +1,17 @@
 import { FormikState } from "formik";
 
 type SelectOfProps = {
-  massive: MassiveOfSelect;
+  ban?: boolean;
   active: number;
+  massive: MassiveOfSelect;
   setActive: (value: number) => void;
+  classUnderList?: string;
+  classItemActive?: string;
+  underlining?: boolean;
+  classSprite?: string;
+  classHover?: string;
+  classItem?: string;
+  classText?: string;
 };
 
 type MassiveOfSelectList = {
@@ -15,6 +23,7 @@ type MassiveOfSelect = {
   id: number;
   text: string;
   sprite?: string;
+  spriteColour?: string;
   list: MassiveOfSelectList[];
 };
 
@@ -38,7 +47,9 @@ type ContactsOfField = {
 };
 
 type ResetForm = {
-  resetForm: (values?: Partial<FormikState<ContactsOfField>> | undefined) => void;
+  resetForm: (
+    values?: Partial<FormikState<ContactsOfField>> | undefined
+  ) => void;
 };
 
 type Icon = {
@@ -105,12 +116,15 @@ type Network = {
 
 type MassiveOfListProps = {
   classes?: MassiveOfClassesProps;
+  active?: boolean;
+  title?: string;
   array: string[];
 };
 
 type MassiveOfClassesProps = {
   classUl?: string;
   classList?: string;
+  classTitle?: string;
 };
 
 type MassiveOfList = {

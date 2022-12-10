@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { AuthorizationOfFormik } from "../../ts";
 import axios from "axios";
 
-export type AuthorizationState = {
+type AuthorizationState = {
   remember: boolean;
   error_user: string;
 };
