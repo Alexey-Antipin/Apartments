@@ -6,19 +6,11 @@ import Link from "next/link";
 import clsx from "clsx";
 
 export const Select: React.FC<SelectOfProps> = ({
-  classItemActive,
-  classUnderList,
-  underlining,
-  classSprite,
-  classHover,
-  classItem,
-  classText,
+  alternative,
   setActive,
-  massive,
   active,
-  ban,
+  massive,
 }) => {
-  const [openWindow, setOpenWindow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
   const ref = useRef<any>();
@@ -28,7 +20,6 @@ export const Select: React.FC<SelectOfProps> = ({
 
     const handleClick = (e: any) => {
       if (!ref.current.contains(e.target)) {
-        setOpenWindow(false);
         setOpen(false);
       }
     };
@@ -41,42 +32,49 @@ export const Select: React.FC<SelectOfProps> = ({
   });
 
   const handClickOpenOfList = (elem: number) => {
-    setOpenWindow(!open);
     setActive(elem);
     setOpen(!open);
   };
 
   const handClickOfItem = (elem: number) => {
-    setOpenWindow(false);
     setListId(elem);
   };
 
   return (
     <li
-      className={clsx(
-        !open && classHover,
-        openWindow && classItemActive,
-        classItem,
-        styles.item
-      )}
+      className={styles.item}
       onClick={() => handClickOpenOfList(massive.id)}
       ref={ref}>
-      <div className={styles.block}>
+      <div
+        className={clsx(
+          open && alternative && styles["alternative-block-active"],
+          !open && alternative && styles["alternative-block-hover"],
+          (alternative && styles["alternative-block"]) || styles.block
+        )}>
         {/* Смена слова при клике. */}
-        {/* ban - запрет смена слова при клике. */}
-        {(ban || active === massive.id) && listId ? (
-          <div className={clsx(classText || styles.text)}>
+        {(alternative || active === massive.id) && listId ? (
+          <div
+            className={clsx(
+              (alternative && styles["alternative-text"]) || styles.text
+            )}>
             {massive.list[listId - 1].text}
           </div>
         ) : (
-          <div className={clsx(classText || styles.text)}>
+          <div
+            className={clsx(
+              (alternative && styles["alternative-text"]) || styles.text
+            )}>
             {massive.text}
           </div>
         )}
 
         {/* svg - картинка. */}
         {massive.sprite && (
-          <span className={classSprite || styles["sprite-margin"]}>
+          <span
+            className={clsx(
+              (alternative && styles["alternative-sprite"]) ||
+                styles["sprite-margin"]
+            )}>
             <Sprite
               id={massive.sprite}
               height="15"
@@ -88,8 +86,7 @@ export const Select: React.FC<SelectOfProps> = ({
       </div>
 
       {/* Почёркивание при клике. */}
-      {/*Если почёркивание не нужно, тогда передаём: underlining = false*/}
-      {underlining == true && (
+      {!alternative && (
         <span
           className={clsx(
             styles.focus,
@@ -99,10 +96,17 @@ export const Select: React.FC<SelectOfProps> = ({
 
       {/* Внутренный список. */}
       {active === massive.id && open && (
-        <ul className={clsx(classUnderList, styles.underlist)}>
+        <ul
+          className={clsx(
+            (alternative && styles["alternative-underlist"]) ||
+              styles.underlist
+          )}>
           {massive.list.map((elem, index: number) => (
             <li
-              className={styles["underlist-item"]}
+              className={clsx(
+                (alternative && styles["alternative-underlist-item"]) ||
+                  styles["underlist-item"]
+              )}
               onClick={() => handClickOfItem(elem.id)}
               key={index}>
               <Link href="./">{elem.text}</Link>

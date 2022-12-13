@@ -3,12 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { Article } from "../../ts";
 import axios from "axios";
 
-type newsState = {
+type NewsState = {
   item: Article[];
   list: Article[];
 };
 
-const initialState: newsState = {
+const initialState: NewsState = {
   list: [],
   item: [],
 };
@@ -41,7 +41,7 @@ export const newsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       newsThunk.fulfilled,
-      (state, action: PayloadAction<newsState>) => {
+      (state, action: PayloadAction<NewsState>) => {
         state.list = action.payload.list;
         state.item = action.payload.item;
       }

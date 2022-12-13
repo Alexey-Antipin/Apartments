@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type registrationField = {
+type RegistrationField = {
   login: string;
   email: string;
   password: string;
 };
 
-type registrationState = { modal: boolean };
+type RegistrationState = { modal: boolean };
 
-const initialState: registrationState = {
+const initialState: RegistrationState = {
   modal: false,
 };
 
 export const redistrationThunk = createAsyncThunk(
   "redistration/redistrationUser",
-  async ({ login, email, password }: registrationField) => {
+  async ({ login, email, password }: RegistrationField) => {
     await axios.post<string>("http://localhost:3000/api/create-account/", {
       login,
       email,

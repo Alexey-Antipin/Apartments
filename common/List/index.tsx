@@ -4,12 +4,13 @@ import { useState } from "react";
 import clsx from "clsx";
 
 export const List: React.FC<MassiveOfListProps> = ({
+  beginNumber,
   classes,
   array,
   active,
   title,
 }) => {
-  const [activeItem, setActiveItem] = useState<number>(0);
+  const [activeItem, setActiveItem] = useState<number>(beginNumber || 0);
   return (
     <>
       {title && <h2 className={classes?.classTitle}>{title}</h2>}

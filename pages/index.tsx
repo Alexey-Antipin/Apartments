@@ -1,59 +1,26 @@
-import styles from "../styles/Main.module.scss";
+import { articlesThunk } from "../redux/reducers/articlesReducer";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ImageBlock } from "../common/ImageBlock";
-import { useAppSelector } from "../redux/hooks";
+import { LinkNavigation, List } from "../common";
+import styles from "../styles/Main.module.scss";
+import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
 import { Select } from "../common/Select";
-import { useState } from "react";
-import { List } from "../common";
+import { Slider } from "../common/Slider";
 import { Sprite } from "../svg";
 import Image from "next/image";
 import Head from "next/head";
 
 const Home: React.FC = () => {
-  const [active, setActive] = useState<number>(0);
+  const dispatch = useAppDispatch();
   const main = useAppSelector((state: RootState) => state.main);
-  const pictureSize = [
-    {
-      index: 1,
-      width: 516,
-      title_2h: "СНЯТЬ КВАРТИРУ",
-      title_3h: "Квартиры на сутки",
-      cl_title_2h: styles["title_2h-1"],
-      cl_title_3h: styles["title_3h-1"],
-    },
-    {
-      index: 2,
-      width: 407,
-      title_2h: "СНЯТЬ КОТТЕДЖ НА ПРАЗДНИК",
-      title_3h: "Коттеджи и усадьбы",
-      cl_title_2h: styles["title_2h-1"],
-      cl_title_3h: styles["title_3h-2"],
-    },
-    {
-      index: 3,
-      width: 407,
-      title_2h: "ПОПАРИТЬСЯ В БАНЕ С ДРУЗЬЯМИ",
-      title_3h: "Бани и сауны",
-      cl_title_2h: styles["title_2h-1"],
-      cl_title_3h: styles["title_3h-2"],
-    },
-    {
-      index: 4,
-      width: 516,
-      title_2h: "ЕСЛИ СРОЧНО НУЖНА МАШИНА",
-      title_3h: "Авто на прокат",
-      cl_title_2h: styles["title_2h-2"],
-      cl_title_3h: styles["title_3h-3"],
-    },
-  ];
-  const cities = [
-    "Минск",
-    "Витебск",
-    "Гродно",
-    "Гомель",
-    "Брест",
-    "Могилев",
-  ];
+  const rooms = useAppSelector((state: RootState) => state.articles);
+  const [active, setActive] = useState<number>(0);
+
+  useEffect(() => {
+    let interval = 6;
+    dispatch(articlesThunk(interval));
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -70,6 +37,7 @@ const Home: React.FC = () => {
 
         <List
           array={main.array}
+          beginNumber={1}
           active={true}
           classes={{
             classUl: styles["list-ul"],
@@ -82,17 +50,10 @@ const Home: React.FC = () => {
               <div>
                 <h2 className={styles["title-under"]}>{el}</h2>
                 <Select
-                  classItemActive={styles["select-list-active"]}
-                  classUnderList={styles["select-underList"]}
-                  classSprite={styles["select-sprite"]}
-                  classText={styles["select-text"]}
-                  classItem={styles["select-list"]}
-                  classHover={styles["select-hover"]}
                   massive={main.massive[0]}
                   setActive={setActive}
-                  underlining={false}
+                  alternative={true}
                   active={active}
-                  ban={true}
                 />
               </div>
               <div className={styles["block-line"]} />
@@ -141,15 +102,16 @@ const Home: React.FC = () => {
 
       {/* Показ и выбор городов */}
       <div className={styles.block}>
+
         {/* Картинки */}
         <div className={styles["block-picture"]}>
-          {pictureSize.map((el) => (
+          {main.pictureSize.map((el) => (
             <ImageBlock
               title_2h={el.title_2h}
               title_3h={el.title_3h}
               cl_title_2h={el.cl_title_2h}
               cl_title_3h={el.cl_title_3h}
-              cities={cities}
+              cities={main.cities}
               width={el.width}
               index={el.index}
               key={el.index}
@@ -177,6 +139,15 @@ const Home: React.FC = () => {
       <div className={styles["position-picture"]}>
         <Image src={"/points.png"} alt="points" height={61} width={61} />
       </div>
+
+      {/* Квартиры и слайдер */}
+      <>
+        <LinkNavigation
+          link="Новости"
+          deeperLink="Аренда квартир в Минске"
+        />
+        <Slider array={rooms.articles} />
+      </>
     </div>
   );
 };

@@ -36,7 +36,10 @@ const NewsDetailed: React.FC<PageProps> = ({
         </div>
 
         <div className={styles["container-list"]}>
-          <ListArticles list={list} />
+          <ListArticles
+            classes={{ classUl: styles["link-articles"] }}
+            list={list}
+          />
         </div>
 
         <PaginationNumbering

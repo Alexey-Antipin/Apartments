@@ -1,8 +1,7 @@
-import clsx from "clsx";
-import React from "react";
-import { Sprite } from "../../svg";
-import { LinkProps } from "../../ts";
 import styles from "./LinkNavigation.module.scss";
+import { LinkProps } from "../../ts";
+import { Sprite } from "../../svg";
+import React from "react";
 
 export const LinkNavigation: React.FC<LinkProps> = ({
   link,

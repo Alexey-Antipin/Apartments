@@ -1,0 +1,127 @@
+[
+  {
+    "id": "1",
+    "class": "Gold",
+    "price": "65.00 BYN",
+    "room_people": "4 (2+2)",
+    "room": "4",
+    "city": "Могилёв",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Грушевка",
+    "area": "Шабаны",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание ...",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "https://wa.me/1XXXXXXXXXX",
+        "email": "vladimir6234@tut.by"
+      }
+    }
+  },
+  {
+    "id": "2",
+    "class": "Gold",
+    "price": "165.00 BYN",
+    "room_people": "3 (2+1)",
+    "room": "3",
+    "city": "Могилёв",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Октябрьская",
+    "area": "Заводской р.",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание ...",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "https://wa.me/1XXXXXXXXXX",
+        "email": "vladimir6234@tut.by"
+      }
+    }
+  },
+  {
+    "id": "3",
+    "class": "Gold",
+    "price": "265.00 BYN",
+    "room_people": "2 (2+0)",
+    "room": "2",
+    "city": "Могилёв",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Площадь Ленина",
+    "area": "Ленинский р.",
+    "square": "179 м²",
+    "photo": "/picture/room_2.png",
+    "width": "406",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание ...",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "https://wa.me/1XXXXXXXXXX",
+        "email": "vladimir6234@tut.by"
+      }
+    }
+  },
+  {
+    "id": "4",
+    "class": "Gold",
+    "price": "65.00 BYN",
+    "room_people": "1 (1+0)",
+    "room": "1",
+    "city": "Могилёв",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Фрунзенская",
+    "area": "Московский р.",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание ...",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "https://wa.me/1XXXXXXXXXX",
+        "email": "vladimir6234@tut.by"
+      }
+    }
+  },
+  {
+    "id": "5",
+    "class": "Gold",
+    "price": "365.00 BYN",
+    "room_people": "5 (2+3)",
+    "room": "5",
+    "city": "Могилёв",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Пушкинская",
+    "area": "Октябрьский р.",
+    "square": "179 м²",
+    "photo": "/picture/room_2.png",
+    "width": "406",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание ...",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "https://wa.me/1XXXXXXXXXX",
+        "email": "vladimir6234@tut.by"
+      }
+    }
+  }
+]

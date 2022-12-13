@@ -1,17 +1,38 @@
 import { FormikState } from "formik";
 
+type ArticleRoom = {
+  id: string;
+  class: string;
+  price: string;
+  room_people: string;
+  room: number;
+  city: string;
+  street: string;
+  station: string;
+  area: string;
+  square: string;
+  width: number;
+  description: string;
+  photo: string;
+  title?: string;
+  time?: string;
+  contacts: {
+    master: string;
+    telefon: string;
+    email: string;
+    link: {
+      viber: string;
+      whats_app: string;
+      email: string;
+    };
+  };
+};
+
 type SelectOfProps = {
-  ban?: boolean;
-  active: number;
-  massive: MassiveOfSelect;
+  alternative?: boolean;
   setActive: (value: number) => void;
-  classUnderList?: string;
-  classItemActive?: string;
-  underlining?: boolean;
-  classSprite?: string;
-  classHover?: string;
-  classItem?: string;
-  classText?: string;
+  massive: MassiveOfSelect;
+  active: number;
 };
 
 type MassiveOfSelectList = {
@@ -81,7 +102,11 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: Article[];
+  list: ArticleRoom[];
+  classes?: {
+    classUl?: string;
+    classList?: string;
+  };
 };
 
 type LinkProps = {
@@ -94,6 +119,7 @@ type Article = {
   title: string;
   time: string;
   photo: string;
+  width: number;
   text: string[];
   description: string;
 };
@@ -116,6 +142,7 @@ type Network = {
 
 type MassiveOfListProps = {
   classes?: MassiveOfClassesProps;
+  beginNumber?: number;
   active?: boolean;
   title?: string;
   array: string[];
@@ -142,6 +169,7 @@ type SpriteProps = {
 };
 
 export type {
+  ArticleRoom,
   ResetForm,
   SelectOfProps,
   MassiveOfSelect,
