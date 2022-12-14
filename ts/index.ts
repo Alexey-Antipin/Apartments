@@ -14,8 +14,6 @@ type ArticleRoom = {
   width: number;
   description: string;
   photo: string;
-  title?: string;
-  time?: string;
   contacts: {
     master: string;
     telefon: string;
@@ -33,6 +31,8 @@ type SelectOfProps = {
   setActive: (value: number) => void;
   massive: MassiveOfSelect;
   active: number;
+  block_metro?:boolean;
+  metro?: boolean;
 };
 
 type MassiveOfSelectList = {
@@ -102,7 +102,7 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: ArticleRoom[];
+  list: any;
   classes?: {
     classUl?: string;
     classList?: string;
@@ -110,8 +110,11 @@ type ArticleProps = {
 };
 
 type LinkProps = {
-  link: string;
-  deeperLink?: string;
+  option_v1?: boolean;
+  option_v2?: boolean;
+  option_v3?: boolean;
+  deepLink: string;
+  main: string;
 };
 
 type Article = {

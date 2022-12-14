@@ -4,11 +4,17 @@ import { ArticleRoom } from "../../ts";
 import axios from "axios";
 
 type ArticlesState = {
-  articles: ArticleRoom[];
+  articles: {
+    items: ArticleRoom[];
+    lengthItems: number;
+  };
 };
 
 const initialState: ArticlesState = {
-  articles: [],
+  articles: {
+    items: [],
+    lengthItems: 0,
+  },
 };
 
 export const articlesThunk = createAsyncThunk(
@@ -41,7 +47,7 @@ export const articlesSlice = createSlice({
       }
     );
     builder.addCase(articlesThunk.rejected, (state) => {
-      state.articles = [];
+      state.articles.items = [];
     });
   },
 });

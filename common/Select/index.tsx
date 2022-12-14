@@ -10,6 +10,8 @@ export const Select: React.FC<SelectOfProps> = ({
   setActive,
   active,
   massive,
+  block_metro,
+  metro,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
@@ -49,20 +51,32 @@ export const Select: React.FC<SelectOfProps> = ({
         className={clsx(
           open && alternative && styles["alternative-block-active"],
           !open && alternative && styles["alternative-block-hover"],
-          (alternative && styles["alternative-block"]) || styles.block
+          (alternative !== block_metro
+            ? styles["alternative-block"]
+            : styles["alternative-block-metro"]) || styles.block
         )}>
+        {metro && (
+          <div className={styles["metro-sprite"]}>
+            <Sprite id="metro" />
+          </div>
+        )}
+
         {/* Смена слова при клике. */}
         {(alternative || active === massive.id) && listId ? (
           <div
             className={clsx(
-              (alternative && styles["alternative-text"]) || styles.text
+              (alternative !== block_metro
+                ? styles["alternative-text"]
+                : styles["alternative-text-metro"]) || styles.text
             )}>
             {massive.list[listId - 1].text}
           </div>
         ) : (
           <div
             className={clsx(
-              (alternative && styles["alternative-text"]) || styles.text
+              (alternative !== block_metro
+                ? styles["alternative-text"]
+                : styles["alternative-text-metro"]) || styles.text
             )}>
             {massive.text}
           </div>
@@ -109,7 +123,8 @@ export const Select: React.FC<SelectOfProps> = ({
               )}
               onClick={() => handClickOfItem(elem.id)}
               key={index}>
-              <Link href="./">{elem.text}</Link>
+              {alternative && <p>{elem.text}</p>}
+              {!alternative && <Link href="./">{elem.text}</Link>}
             </li>
           ))}
         </ul>

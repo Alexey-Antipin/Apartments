@@ -62,12 +62,13 @@
   height: 37px;
   width: 150px;
 
+  border: 2px solid rgba(101, 78, 249, 0);
   background: #f8f8f8;
   border-radius: 20px;
-  border: 2px solid rgba(101, 78, 249, 0);
 }
 .alternative-block-active {
   background: #ffffff;
+  box-shadow: 0px 25px 40px rgba(135, 124, 202, 0.3);
   border: 2px solid rgba(102, 78, 249, 0.8);
 }
 .alternative-block-hover:hover {
@@ -91,9 +92,8 @@
   top: 30px;
 
   height: 222px;
-  width: 150px;
+  width: 100%;
 
-  box-shadow: 0px 0px 40px rgba(135, 124, 202, 0.3);
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
@@ -106,4 +106,30 @@
 }
 .alternative-underlist-item:hover {
   background: #f8f8f8;
+}
+
+.alternative-block-metro {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 37px;
+  width: 180px;
+
+  border: 2px solid rgba(101, 78, 249, 0);
+  background: #f8f8f8;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 96, 206, 0.1);
+}
+
+.metro-sprite {
+  padding-left: 14px;
+}
+.alternative-text-metro {
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+
+  padding: 12px;
+  padding-left: 8px;
+  color: #686868;
 }

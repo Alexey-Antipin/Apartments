@@ -10,6 +10,8 @@ import { Slider } from "../common/Slider";
 import { Sprite } from "../svg";
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
+import clsx from "clsx";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +22,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
+    console.log(rooms.articles);
   }, []);
 
   return (
@@ -100,10 +103,9 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Показ и выбор городов */}
+      {/* Показ и выбор городов. */}
       <div className={styles.block}>
-
-        {/* Картинки */}
+        {/* Картинки. */}
         <div className={styles["block-picture"]}>
           {main.pictureSize.map((el) => (
             <ImageBlock
@@ -134,20 +136,71 @@ const Home: React.FC = () => {
             />
           ))}
         </div>
-      </div>
 
-      <div className={styles["position-picture"]}>
-        <Image src={"/points.png"} alt="points" height={61} width={61} />
+        {/* Куб точек. */}
+        <div className={styles["position-picture"]}>
+          <Image src={"/points.png"} alt="points" height={61} width={61} />
+        </div>
       </div>
 
       {/* Квартиры и слайдер */}
-      <>
+      <div className={styles["block-slider"]}>
         <LinkNavigation
-          link="Новости"
-          deeperLink="Аренда квартир в Минске"
+          deepLink="Аренда квартир в Минске"
+          main="КВАРТИРЫ НА СУТКИ"
+          option_v3={true}
         />
-        <Slider array={rooms.articles} />
-      </>
+
+        {/* Slider */}
+        <div className={styles["slider-margin"]}>
+          <Slider array={rooms.articles.items} />
+        </div>
+
+        {/* Фон. */}
+        <div className={styles.background} />
+
+        {/* Внутри фона. */}
+        <div className={styles["background-select"]}>
+          {/* Метро && Район */}
+          {[0, 1].map((_, index) => (
+            <div key={index}>
+              <Select
+                massive={main.metroAndArea[index]}
+                setActive={setActive}
+                metro={index === 0}
+                block_metro={true}
+                alternative={true}
+                active={active}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Под slider'ом */}
+        <div className={styles["block-under-slider"]}>
+          <div>
+            <div className={styles["articles-length"]}>
+              {rooms.articles.lengthItems}
+              <span className={styles["articles-plus"]}>+</span>
+            </div>
+            <p className={styles["under-text"]}>Предложений по Минску</p>
+          </div>
+
+          <div
+            className={clsx(
+              styles["block-line-margin"],
+              styles["block-line"]
+            )}
+          />
+
+          <Link href="./" className={styles["button-watch-alles"]}>
+            Посмотреть все
+            <div className={styles["sprite-margin"]}>
+              <Sprite id="mark" colour="#ffffff" />
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

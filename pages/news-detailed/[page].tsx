@@ -39,7 +39,7 @@ const PaginatedPage: React.FC<PageProps> = ({
 
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <LinkNavigation link={news} />
+          <LinkNavigation main={news} deepLink={news} option_v1={true} />
         </div>
 
         <div className={styles["container-list"]}>

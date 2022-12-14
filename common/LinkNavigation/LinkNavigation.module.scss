@@ -1,11 +1,13 @@
-.link {
-  font-family: "Inter-Regular", sans-serif;
-  font-size: 14px;
-}
 .block {
   display: flex;
   align-items: center;
 }
+
+.main {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+}
+
 .round {
   display: inline-block;
   height: 3px;
@@ -15,15 +17,30 @@
   background: #4e64f9;
   margin: 0px 7px;
 }
-.text {
-  color: #686868;
-}
-.text-blue {
-  margin-left: 10px;
-  color: #4e64f9;
-}
-.title {
+
+.deepLink {
   font-family: "Inter-Bold", sans-serif;
   font-size: 30px;
+  color: #000000;
+
   margin-top: 25px;
+}
+.deepLink-margin {
+  margin-top: 15px;
+}
+
+.option_v1_main {
+  color: #686868;
+}
+.option_v2_main {
+  color: #4e64f9;
+  margin-left: 7px;
+}
+.option_v2_deepLink {
+  color: #686868;
+}
+.option_v3_main {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  color: #4e64f9;
 }

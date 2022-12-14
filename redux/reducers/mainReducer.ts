@@ -8,20 +8,21 @@ type Object = {
 };
 
 type ObjectSize = {
-  index: number;
-  width: number;
-  title_2h: string;
-  title_3h: string;
   cl_title_2h: string;
   cl_title_3h: string;
+  title_2h: string;
+  title_3h: string;
+  index: number;
+  width: number;
 };
 
 type MainState = {
-  array: string[];
-  cities: string[];
-  pictureSize: ObjectSize[];
+  metroAndArea: MassiveOfSelect[];
   massive: MassiveOfSelect[];
+  pictureSize: ObjectSize[];
   massiveList: Object[];
+  cities: string[];
+  array: string[];
 };
 
 const initialState: MainState = {
@@ -125,6 +126,36 @@ const initialState: MainState = {
         "Коттеджи и усадьбы (жилье) на Нарочи ",
         "Коттеджи и усадьбы (жилье) у воды,",
         "на берегу, на озере",
+      ],
+    },
+  ],
+  metroAndArea: [
+    {
+      id: 1,
+      text: "Метро",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Шабаны" },
+        { id: 2, text: "Пушкинская" },
+        { id: 3, text: "Фрунзенская" },
+        { id: 4, text: "Октябрьская" },
+        { id: 5, text: "Площадь Победы" },
+        { id: 6, text: "Площадь Ленина" },
+      ],
+    },
+    {
+      id: 2,
+      text: "Район",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Минске" },
+        { id: 2, text: "Гомеле" },
+        { id: 3, text: "Бресте" },
+        { id: 4, text: "Витебске" },
+        { id: 5, text: "Гродно" },
+        { id: 6, text: "Могилеве" },
       ],
     },
   ],

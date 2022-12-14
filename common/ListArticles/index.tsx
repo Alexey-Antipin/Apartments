@@ -9,7 +9,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
 }) => {
   return (
     <ul className={classes?.classUl || styles.list}>
-      {list.map((item, index) => {
+      {list.map((item: any, index: number) => {
         return (
           <li className={classes?.classList || styles.element} key={index}>
             {item.class == "Gold" && (
