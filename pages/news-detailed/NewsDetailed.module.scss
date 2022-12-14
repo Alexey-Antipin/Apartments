@@ -62,3 +62,16 @@
   border-radius: 19px;
   border: none;
 }
+
+.link-articles {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 31px;
+
+  padding-left: 60px;
+  padding-right: 90px;
+
+  position: relative;
+  z-index: 1;
+}

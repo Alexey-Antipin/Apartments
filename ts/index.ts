@@ -1,17 +1,38 @@
 import { FormikState } from "formik";
 
+type ArticleRoom = {
+  id: string;
+  class: string;
+  price: string;
+  room_people: string;
+  room: number;
+  city: string;
+  street: string;
+  station: string;
+  area: string;
+  square: string;
+  width: number;
+  description: string;
+  photo: string;
+  contacts: {
+    master: string;
+    telefon: string;
+    email: string;
+    link: {
+      viber: string;
+      whats_app: string;
+      email: string;
+    };
+  };
+};
+
 type SelectOfProps = {
-  ban?: boolean;
-  active: number;
-  massive: MassiveOfSelect;
+  alternative?: boolean;
   setActive: (value: number) => void;
-  classUnderList?: string;
-  classItemActive?: string;
-  underlining?: boolean;
-  classSprite?: string;
-  classHover?: string;
-  classItem?: string;
-  classText?: string;
+  massive: MassiveOfSelect;
+  active: number;
+  block_metro?:boolean;
+  metro?: boolean;
 };
 
 type MassiveOfSelectList = {
@@ -81,12 +102,19 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: Article[];
+  list: any;
+  classes?: {
+    classUl?: string;
+    classList?: string;
+  };
 };
 
 type LinkProps = {
-  link: string;
-  deeperLink?: string;
+  option_v1?: boolean;
+  option_v2?: boolean;
+  option_v3?: boolean;
+  deepLink: string;
+  main: string;
 };
 
 type Article = {
@@ -94,6 +122,7 @@ type Article = {
   title: string;
   time: string;
   photo: string;
+  width: number;
   text: string[];
   description: string;
 };
@@ -116,6 +145,7 @@ type Network = {
 
 type MassiveOfListProps = {
   classes?: MassiveOfClassesProps;
+  beginNumber?: number;
   active?: boolean;
   title?: string;
   array: string[];
@@ -142,6 +172,7 @@ type SpriteProps = {
 };
 
 export type {
+  ArticleRoom,
   ResetForm,
   SelectOfProps,
   MassiveOfSelect,

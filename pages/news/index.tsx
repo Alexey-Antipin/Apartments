@@ -34,8 +34,9 @@ const News = () => {
       <div className={styles.header}>
         <div className={styles.wrapper}>
           <LinkNavigation
-            link={"Новости"}
-            deeperLink={item[0]?.title || "Cтатьи не существует."}
+            deepLink={item[0]?.title || "Cтатьи не существует."}
+            option_v2={true}
+            main={"Новости"}
           />
         </div>
 

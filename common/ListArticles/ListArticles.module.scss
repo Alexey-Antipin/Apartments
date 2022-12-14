@@ -1,6 +1,5 @@
 .list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 31px;
 
@@ -17,12 +16,17 @@
 }
 .image-block {
   position: relative;
+
   height: 220px;
   max-width: 426px;
+
+  background: #e4e2e2;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .image {
   display: block;
-  border-radius: 10px;
+  margin: 0 auto;
 }
 .title {
   font-family: "Inter-Bold", sans-serif;
@@ -64,4 +68,142 @@
   background: rgba(102, 78, 249, 0.1);
   border-radius: 17px;
   margin: 20px;
+}
+.label {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  font-family: "Inter-Bold";
+  font-size: 18px;
+  line-height: 22px;
+
+  text-shadow: 0px 1px 0px rgba(147, 79, 0, 0.3);
+  color: #ffffff;
+
+  background: linear-gradient(106.06deg, #ffd54f 1.12%, #fec100 97.96%);
+  border-radius: 0px 10px 10px 10px;
+  padding: 9px 12px;
+  z-index: 1;
+}
+
+.info-room-block {
+  display: flex;
+  padding: 20px;
+}
+.info-price {
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Inter-Bold";
+  font-size: 20px;
+  line-height: 24px;
+
+  margin-right: auto;
+  color: #664ef9;
+}
+.info-price-day {
+  font-family: "Inter-Regular";
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #bdbdbd;
+}
+.info-block {
+  display: flex;
+  gap: 8px;
+}
+.info-room {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+
+  background: #f8f8f8;
+  border-radius: 18px;
+
+  padding: 8px;
+  color: #686868;
+}
+.description-room{
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+
+  color: #8291a3;
+  margin: 20px 20px;
+  margin-bottom: 12px;
+}
+
+.block-city{
+  padding: 0 20px;
+}
+.block-street {
+  display: flex;
+  gap: 11px;
+
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  line-height: 19px;
+}
+.block-metro {
+  display: flex;
+  gap: 30px;
+
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #000000;
+}
+.block-flex{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding-top: 11px;
+}
+.point {
+  height: 6px;
+  width: 6px;
+
+  background: #bdbdbd;
+  border-radius: 50%;
+}
+
+.button-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.button-contacts {
+  @extend %button;
+
+  display: flex;
+  gap: 13px;
+
+  background: #ffffff;
+  box-shadow: 0px 5px 20px rgba(0, 96, 206, 0.1);
+  border-radius: 18px;
+  color: #664ef9;
+}
+.button-More {
+  @extend %button;
+
+  background: rgba(255, 213, 79, 0.1);
+  border-radius: 17px;
+  color: #fec100;
+}
+
+%button {
+  font-family: "Inter-Bold";
+  font-size: 14px;
+  line-height: 17px;
+
+  padding: 10px 15px;
+
+  outline: none;
+  border: none;
 }
