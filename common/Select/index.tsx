@@ -6,12 +6,12 @@ import Link from "next/link";
 import clsx from "clsx";
 
 export const Select: React.FC<SelectOfProps> = ({
-  alternative,
   setActive,
-  active,
   massive,
-  block_metro,
-  metro,
+  active,
+  option_3v,
+  option_2v,
+  option_1v,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
@@ -44,39 +44,47 @@ export const Select: React.FC<SelectOfProps> = ({
 
   return (
     <li
-      className={styles.item}
+      className={clsx(
+        option_1v && styles.item,
+        option_2v && styles["alternative-list"],
+        option_3v && styles["metro-block"]
+      )}
       onClick={() => handClickOpenOfList(massive.id)}
       ref={ref}>
       <div
         className={clsx(
-          open && alternative && styles["alternative-block-active"],
-          !open && alternative && styles["alternative-block-hover"],
-          (alternative !== block_metro
-            ? styles["alternative-block"]
-            : styles["alternative-block-metro"]) || styles.block
+          option_1v && styles.block,
+          (option_2v || option_3v) &&
+            open &&
+            styles["alternative-block-active"],
+          (option_2v || option_3v) &&
+            !open &&
+            styles["alternative-block-hover"],
+          (option_2v || option_3v) && styles["alternative-block"]
         )}>
-        {metro && (
+          
+        {option_3v && massive.sprite_2 && (
           <div className={styles["metro-sprite"]}>
-            <Sprite id="metro" />
+            <Sprite id={massive.sprite_2} />
           </div>
         )}
 
         {/* Смена слова при клике. */}
-        {(alternative || active === massive.id) && listId ? (
+        {(option_2v || option_3v || active === massive.id) && listId ? (
           <div
             className={clsx(
-              (alternative !== block_metro
-                ? styles["alternative-text"]
-                : styles["alternative-text-metro"]) || styles.text
+              option_1v && styles.text,
+              option_2v && styles["alternative-text"],
+              option_3v && styles["metro-text"]
             )}>
             {massive.list[listId - 1].text}
           </div>
         ) : (
           <div
             className={clsx(
-              (alternative !== block_metro
-                ? styles["alternative-text"]
-                : styles["alternative-text-metro"]) || styles.text
+              option_1v && styles.text,
+              option_2v && styles["alternative-text"],
+              option_3v && styles["metro-text"]
             )}>
             {massive.text}
           </div>
@@ -86,12 +94,12 @@ export const Select: React.FC<SelectOfProps> = ({
         {massive.sprite && (
           <span
             className={clsx(
-              (alternative && styles["alternative-sprite"]) ||
-                styles["sprite-margin"]
+              option_1v && styles["sprite-margin"],
+              (option_2v || option_3v) && styles["alternative-sprite"]
             )}>
             <Sprite
               id={massive.sprite}
-              height="15"
+              height="12"
               width="12"
               colour={massive.spriteColour || "#FFD54F"}
             />
@@ -100,7 +108,7 @@ export const Select: React.FC<SelectOfProps> = ({
       </div>
 
       {/* Почёркивание при клике. */}
-      {!alternative && (
+      {!option_2v && !option_3v && (
         <span
           className={clsx(
             styles.focus,
@@ -112,19 +120,20 @@ export const Select: React.FC<SelectOfProps> = ({
       {active === massive.id && open && (
         <ul
           className={clsx(
-            (alternative && styles["alternative-underlist"]) ||
-              styles.underlist
+            option_1v && styles.underlist,
+            (option_2v || option_3v) && styles["alternative-underlist"]
           )}>
           {massive.list.map((elem, index: number) => (
             <li
               className={clsx(
-                (alternative && styles["alternative-underlist-item"]) ||
-                  styles["underlist-item"]
+                option_1v && styles["underlist-item"],
+                (option_2v || option_3v) &&
+                  styles["alternative-underlist-item"]
               )}
               onClick={() => handClickOfItem(elem.id)}
               key={index}>
-              {alternative && <p>{elem.text}</p>}
-              {!alternative && <Link href="./">{elem.text}</Link>}
+              {(option_2v || option_3v) && <p>{elem.text}</p>}
+              {option_1v && <Link href="./">{elem.text}</Link>}
             </li>
           ))}
         </ul>

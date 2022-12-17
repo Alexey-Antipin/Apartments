@@ -7,6 +7,15 @@ type Object = {
   massive: string[];
 };
 
+type ObjectCard = {
+  sprite?: string;
+  title: string;
+  paragraph: string;
+  paragraph_2?: string;
+  button: string;
+  cross?: string;
+};
+
 type ObjectSize = {
   cl_title_2h: string;
   cl_title_3h: string;
@@ -21,6 +30,7 @@ type MainState = {
   massive: MassiveOfSelect[];
   pictureSize: ObjectSize[];
   massiveList: Object[];
+  card: ObjectCard[];
   cities: string[];
   array: string[];
 };
@@ -134,6 +144,7 @@ const initialState: MainState = {
       id: 1,
       text: "Метро",
       sprite: "mark",
+      sprite_2: "metro",
       spriteColour: "#664EF9",
       list: [
         { id: 1, text: "Шабаны" },
@@ -157,6 +168,31 @@ const initialState: MainState = {
         { id: 5, text: "Гродно" },
         { id: 6, text: "Могилеве" },
       ],
+    },
+  ],
+  card: [
+    {
+      sprite: "hand_people",
+      title: "Начните привлекать клиентов бесплатно!",
+      paragraph:
+        "Пройдя простую регистрацию на сайте у Вас появится личный кабинет, в котором возможно <strong> бесплатно создавать и публиковать </strong> объявления на сайте. ",
+      button: "+  Разместить объявление",
+    },
+    {
+      sprite: "raise_ad",
+      title: "Поднимайте объявления",
+      paragraph:
+        "Вы в любое время можете <strong> поднимать </strong> объявления <strong> вверх первой страницы </strong> каталога, они разместятся сразу после платных объявлений до тех пор, пока другой пользователь не повторит процедуру.",
+      button: "Узнать стоимость услуги",
+    },
+    {
+      title: "Приоритет Gold",
+      paragraph:
+        "Приоритетное размещение <strong> Gold </strong> позволяет <strong> закрепить ваше объявление </strong> в верхней <br/> части каталога!",
+      paragraph_2:
+        "Gold объявления <strong> перемещаются <br/> каждые 5 мин </strong> на 1 позицию, что делает размещение одинаковым для всех.",
+      button: "Еще о тарифе Gold",
+      cross: "/cross.png",
     },
   ],
 };

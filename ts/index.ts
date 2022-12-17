@@ -27,12 +27,13 @@ type ArticleRoom = {
 };
 
 type SelectOfProps = {
-  alternative?: boolean;
   setActive: (value: number) => void;
   massive: MassiveOfSelect;
   active: number;
-  block_metro?:boolean;
-  metro?: boolean;
+  
+  option_1v?: boolean;
+  option_2v?: boolean;
+  option_3v?:boolean;
 };
 
 type MassiveOfSelectList = {
@@ -44,6 +45,7 @@ type MassiveOfSelect = {
   id: number;
   text: string;
   sprite?: string;
+  sprite_2?: string;
   spriteColour?: string;
   list: MassiveOfSelectList[];
 };

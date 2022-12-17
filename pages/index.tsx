@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
 import { Select } from "../common/Select";
 import { Slider } from "../common/Slider";
+import parse from "html-react-parser";
 import { Sprite } from "../svg";
 import Image from "next/image";
 import Head from "next/head";
@@ -22,7 +23,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
-    console.log(rooms.articles);
   }, []);
 
   return (
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
                 <Select
                   massive={main.massive[0]}
                   setActive={setActive}
-                  alternative={true}
+                  option_2v={true}
                   active={active}
                 />
               </div>
@@ -167,9 +167,7 @@ const Home: React.FC = () => {
               <Select
                 massive={main.metroAndArea[index]}
                 setActive={setActive}
-                metro={index === 0}
-                block_metro={true}
-                alternative={true}
+                option_3v={true}
                 active={active}
               />
             </div>
@@ -199,6 +197,94 @@ const Home: React.FC = () => {
               <Sprite id="mark" colour="#ffffff" />
             </div>
           </Link>
+        </div>
+      </div>
+
+      {/* Карта */}
+      <div className={styles["map-wrapper"]}>
+        <h2 className={styles["map-title-h2"]}>Поиск квартир на карте</h2>
+
+        <h3 className={styles["map-title-h3"]}>
+          Ищите квартиры на сутки в центре города,
+          <br /> возле парка или в живописном районе
+        </h3>
+
+        <button className={styles["map-button"]}>
+          <Sprite id="sign" height="15" width="15" colour="#FFD54F" />
+          Открыть карту
+        </button>
+
+        <Image
+          className={styles["map-image"]}
+          src="/white-points.png"
+          height={61}
+          width={61}
+          alt="points"
+        />
+
+        <div className={styles["map-block"]}>
+          {main.card.map((el, index) => (
+            <div
+              className={clsx(
+                styles["map-item"],
+                index === 2 && styles["map-item-yellow"]
+              )}
+              key={index}>
+              {el.sprite ? (
+                <div className={styles["map-sprite-and-text"]}>
+                  <div className={styles["map-sprite"]}>
+                    <Sprite id={el.sprite} />
+                  </div>
+                  <h4 className={styles["map-title-h4"]}>{el.title}</h4>
+                </div>
+              ) : (
+                <div>
+                  <h4 className={styles["map-title-gold"]}>{el.title}</h4>
+                </div>
+              )}
+
+              <div>
+                <p className={styles["map-paragraph"]}>
+                  {parse(el.paragraph)}
+                </p>
+                <br />
+
+                {el.paragraph_2 && (
+                  <p className={styles["map-paragraph"]}>
+                    {parse(el.paragraph_2)}
+                  </p>
+                )}
+              </div>
+
+              {index === 0 ? (
+                <button className={styles["map-button-white"]}>
+                  {el.button}
+                </button>
+              ) : (
+                <button
+                  className={
+                    (index === 1 && styles["map-button-white"]) ||
+                    styles["map-button-violet"]
+                  }>
+                  {el.button}
+                  <div className={styles["map-sprite-mark"]}>
+                    <Sprite
+                      id="mark"
+                      height="10"
+                      width="10"
+                      colour={(index === 1 && "black") || "white"}
+                    />
+                  </div>
+                </button>
+              )}
+
+              {el.cross && (
+                <div className={styles["map-image-background"]}>
+                  <Image src={el.cross} alt="block" fill />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
