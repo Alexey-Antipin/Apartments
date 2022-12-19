@@ -295,7 +295,12 @@ const Home: React.FC = () => {
 
                 {el.cross && (
                   <div className={styles["map-image-background"]}>
-                    <Image src={el.cross} alt="block" fill />
+                    <Image
+                      src={el.cross}
+                      alt="block"
+                      height={230}
+                      width={270}
+                    />
                   </div>
                 )}
               </div>

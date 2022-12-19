@@ -379,7 +379,7 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
           viewBox="0 0 66 66"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_2831_1744)">
+          <g clipPath="url(#clip0_2831_1744)">
             <path
               d="M48.922 39.9641L57.4843 31.4915C60.6822 28.2936 66.8326 32.3282 63.5098 36.2373L53.1419 48.4352C52.736 48.9125 52.2696 49.3357 51.7551 49.6936C50.0838 50.7617 48.0933 51.1176 46.132 51.1176H30.7462C29.6335 51.1176 28.5213 51.182 27.416 51.3104L22.9909 51.8075L13.8125 42.9008C13.8125 42.9008 19.0192 33.0682 29.233 35.8943C31.1432 36.4232 33.1198 36.675 35.1019 36.675H45.2136C49.9738 36.675 50.0114 44.2385 45.1739 44.2385H36.3713"
               fill="white"
@@ -387,7 +387,7 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
             <path
               d="M16.9617 63.3978L25.6935 54.4395C25.696 54.4371 25.696 54.4331 25.6935 54.4306L10.8772 40.0525C10.8747 40.05 10.8707 40.0505 10.8683 40.0525L2.0542 49.203L16.9617 63.3978Z"
               fill="#FFD54F"
-              fill-opacity="0.4"
+              fillOpacity="0.4"
             />
             <path
               d="M12.5318 13.3267C9.76411 13.5889 7.59863 15.9194 7.59863 18.756V24.5629C7.59863 25.5656 8.41149 26.379 9.41468 26.379H21.8673C22.8704 26.379 23.6833 25.5656 23.6833 24.5629V18.756C23.6833 15.9174 21.5149 13.5849 18.7437 13.3262"
@@ -434,8 +434,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="41.5015"
               y2="20.2995"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FFD54F" />
-              <stop offset="1" stop-color="#FEC100" />
+              <stop stopColor="#FFD54F" />
+              <stop offset="1" stopColor="#FEC100" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_2831_1744"
@@ -444,8 +444,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="62.1652"
               y2="46.8332"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_2831_1744"
@@ -454,8 +454,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="32.2906"
               y2="44.183"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <linearGradient
               id="paint3_linear_2831_1744"
@@ -464,8 +464,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="54.3339"
               y2="14.1436"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <clipPath id="clip0_2831_1744">
               <rect
@@ -486,7 +486,7 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
           viewBox="0 0 55 55"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_2831_1764)">
+          <g clipPath="url(#clip0_2831_1764)">
             <rect
               x="26.9424"
               y="2.63281"
@@ -535,8 +535,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="52.5566"
               y2="27.5076"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_2831_1764"
@@ -545,8 +545,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="46.9251"
               y2="8.41797"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_2831_1764"
@@ -555,8 +555,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="46.9251"
               y2="27.5078"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <linearGradient
               id="paint3_linear_2831_1764"
@@ -565,8 +565,8 @@ export const Sprite = ({ id, colour, height, width }: SpriteProps) => {
               x2="46.9251"
               y2="46.5977"
               gradientUnits="userSpaceOnUse">
-              <stop stop-color="#9D94FF" />
-              <stop offset="1" stop-color="#6B50E9" />
+              <stop stopColor="#9D94FF" />
+              <stop offset="1" stopColor="#6B50E9" />
             </linearGradient>
             <clipPath id="clip0_2831_1764">
               <rect
