@@ -171,21 +171,25 @@ export const Header: React.FC = () => {
             massive={underList[0]}
             active={activeId}
             setActive={setActiveId}
+            option_1v={true}
           />
           <Select
             massive={underList[1]}
             active={activeId}
             setActive={setActiveId}
+            option_1v={true}
           />
           <Select
             massive={underList[2]}
             active={activeId}
             setActive={setActiveId}
+            option_1v={true}
           />
           <Select
             massive={underList[3]}
             active={activeId}
             setActive={setActiveId}
+            option_1v={true}
           />
         </ul>
 
