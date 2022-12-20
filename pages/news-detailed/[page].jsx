@@ -1,21 +1,20 @@
-import { PaginationNumbering } from "../../common/Pagination/PaginationNumbering";
-import { LinkNavigation, ListArticles } from "../../common";
 import getProducts from "../../common/Pagination/GetData";
 import styles from "./NewsDetailed.module.scss";
-import { Article, PageProps } from "../../ts";
-import { GetStaticProps } from "next";
 import { Sprite } from "../../svg";
+import propTypes from "prop-types";
 import { useState } from "react";
 import Head from "next/head";
+import {
+  LinkNavigation,
+  ListArticles,
+  PaginationNumbering,
+} from "../../common";
 
-const NewsDetailed: React.FC<PageProps> = ({
-  articles,
-  totalData,
-  currentPage,
-}) => {
+const PaginatedPage = ({ articles, currentPage, totalData }) => {
+
   const news = "Новости";
-  const [value, setValue] = useState<string>("");
-  const [list, setList] = useState<Article[]>(articles);
+  const [value, setValue] = useState("");
+  const [list, setList] = useState(articles);
 
   const searchArticle = () => {
     let newList = articles.filter((item) => {
@@ -68,19 +67,58 @@ const NewsDetailed: React.FC<PageProps> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { articles, total } = await getProducts({
-    limit: 9,
-    page: 1,
-  });
+export const getStaticProps = async ({ params }) => {
+  const page = Number(params?.page) || 1;
+  const { articles, total } = await getProducts({ limit: 9, page });
+
+  if (!articles.length) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (page === 1) {
+    return {
+      redirect: {
+        destination: "/news-detailed",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
       articles,
       totalData: total,
-      currentPage: 1,
+      currentPage: page,
     },
+    revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
   };
 };
 
-export default NewsDetailed;
+PaginatedPage.propTypes = {
+  articles: propTypes.arrayOf(
+    propTypes.shape({
+      description: propTypes.string,
+      id: propTypes.string,
+      photo: propTypes.string,
+      text: propTypes.array,
+      time: propTypes.string,
+      title: propTypes.string,
+      width: propTypes.number,
+    })
+  ),
+  totalData: propTypes.number,
+  currentPage: propTypes.number,
+};
+
+export const getStaticPaths = async () => {
+  return {
+    paths: Array.from({ length: 5 }).map(
+      (_, index) => `/news-detailed/${index + 2}`
+    ),
+    fallback: "blocking",
+  };
+};
+
+export default PaginatedPage;

@@ -1,3 +1,4 @@
+import { Dispatch } from "@reduxjs/toolkit";
 import { FormikState } from "formik";
 
 type ArticleRoom = {
@@ -29,11 +30,12 @@ type ArticleRoom = {
 type SelectOfProps = {
   setActive: (value: number) => void;
   massive: MassiveOfSelect;
+  category?: string;
   active: number;
-  
+
   option_1v?: boolean;
   option_2v?: boolean;
-  option_3v?:boolean;
+  option_3v?: boolean;
 };
 
 type MassiveOfSelectList = {

@@ -9,12 +9,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 
-const News = () => {
+const News: React.FC = () => {
   const dispatch = useAppDispatch();
   const { list, item } = useAppSelector((state: RootState) => state.news);
 
   useEffect(() => {
     dispatch(newsThunk());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const network: Array<string> = [

@@ -7,24 +7,53 @@ import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
 import { Select } from "../common/Select";
 import { Slider } from "../common/Slider";
+import { useRouter } from "next/router";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  selectPriceMin,
+  selectPriceMax,
+} from "../redux/reducers/selectReducer";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
+  const [active, setActive] = useState<number>(0);
+  const [valueMin, setValueMin] = useState<string>("");
+  const [valueMax, setValueMax] = useState<string>("");
+
+  const router = useRouter();
   const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
-  const [active, setActive] = useState<number>(0);
+  const parameters = useAppSelector((state: RootState) => state.select);
 
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    return event.target.value.replace(/^[^0-9]{0,3}$/, "");
+  };
+
+  const handleClick = () => {
+    dispatch(selectPriceMin(valueMin));
+
+    if (valueMin > valueMax) {
+      dispatch(selectPriceMax(valueMin));
+    } else {
+      dispatch(selectPriceMax(valueMax));
+    }
+
+    if (parameters.city) {
+      return router.push(`./catalog/?${parameters.city}`);
+    }
+    router.push(`./catalog/?${main.massiveList[0].massive[0]}`);
+  };
 
   return (
     <>
@@ -55,10 +84,11 @@ const Home: React.FC = () => {
                 <div>
                   <h2 className={styles["title-under"]}>{el}</h2>
                   <Select
-                    massive={main.massive[0]}
+                    massive={main.massive[index]}
                     setActive={setActive}
                     option_2v={true}
                     active={active}
+                    category={el}
                   />
                 </div>
                 <div className={styles["block-line"]} />
@@ -73,14 +103,20 @@ const Home: React.FC = () => {
               <div className={styles["filter-price-flex"]}>
                 <input
                   className={styles["filter-price"]}
-                  type="number"
+                  onChange={(event: any) =>
+                    setValueMin(handleChange(event))
+                  }
+                  value={valueMin}
                   placeholder="От"
+                  maxLength={5}
                 />
                 <div className={styles.trait}>-</div>
                 <input
                   className={styles["filter-price"]}
-                  type="number"
+                  onChange={(event) => setValueMax(handleChange(event))}
+                  value={valueMax}
                   placeholder="До"
+                  maxLength={5}
                 />
               </div>
             </div>
@@ -100,7 +136,9 @@ const Home: React.FC = () => {
             </div>
 
             {/* Показать */}
-            <button className={styles["button-main"]}>
+            <button
+              className={styles["button-main"]}
+              onClick={() => handleClick()}>
               <span className={styles["text-padding"]}>Показать</span>
               <Sprite id="mark" colour="black" />
             </button>
