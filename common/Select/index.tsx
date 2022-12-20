@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  selectCity,
+  selectCountRooms,
+} from "../../redux/reducers/selectReducer";
 
 export const Select: React.FC<SelectOfProps> = ({
   setActive,
+  category,
   massive,
   active,
   option_3v,
@@ -15,6 +22,8 @@ export const Select: React.FC<SelectOfProps> = ({
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
+  const header = useAppSelector((state: RootState) => state.header);
+  const dispatch = useAppDispatch();
   const ref = useRef<any>();
 
   useEffect(() => {
@@ -33,13 +42,21 @@ export const Select: React.FC<SelectOfProps> = ({
     };
   });
 
-  const handClickOpenOfList = (elem: number) => {
+  const handleClickOpenOfList = (elem: number) => {
     setActive(elem);
     setOpen(!open);
   };
 
-  const handClickOfItem = (elem: number) => {
+  const handleClickOfItem = (elem: number) => {
     setListId(elem);
+  };
+
+  const handleClickOfDispatch = (category: string, arg: any) => {
+    if (category == "Город") {
+      dispatch(selectCity(arg));
+    } else {
+      dispatch(selectCountRooms(arg));
+    }
   };
 
   return (
@@ -49,7 +66,7 @@ export const Select: React.FC<SelectOfProps> = ({
         option_2v && styles["alternative-list"],
         option_3v && styles["metro-block"]
       )}
-      onClick={() => handClickOpenOfList(massive.id)}
+      onClick={() => handleClickOpenOfList(massive.id)}
       ref={ref}>
       <div
         className={clsx(
@@ -62,7 +79,6 @@ export const Select: React.FC<SelectOfProps> = ({
             styles["alternative-block-hover"],
           (option_2v || option_3v) && styles["alternative-block"]
         )}>
-          
         {option_3v && massive.sprite_2 && (
           <div className={styles["metro-sprite"]}>
             <Sprite id={massive.sprite_2} />
@@ -130,10 +146,21 @@ export const Select: React.FC<SelectOfProps> = ({
                 (option_2v || option_3v) &&
                   styles["alternative-underlist-item"]
               )}
-              onClick={() => handClickOfItem(elem.id)}
+              onClick={() => (
+                handleClickOfItem(elem.id),
+                (option_1v || option_2v) &&
+                  handleClickOfDispatch(
+                    (option_1v && "Город") ||
+                      (option_2v && category) ||
+                      "",
+                    header.underList[0].list[index].text
+                  )
+              )}
               key={index}>
+              {option_1v && (
+                <Link href={`./catalog/?${elem.text}`}>{elem.text}</Link>
+              )}
               {(option_2v || option_3v) && <p>{elem.text}</p>}
-              {option_1v && <Link href="./">{elem.text}</Link>}
             </li>
           ))}
         </ul>
