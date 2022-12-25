@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  min-height: 420px;
+  max-width: 1940px;
+  width: 100%;
+
+  background-image: url("/background.png"),
+    linear-gradient(#7e6af3, #6540cd);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 70px 77px;
+  padding-bottom: 95px;
+}
+.title-h2 {
+  font-family: "Inter-Bold";
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+
+  color: #ffffff;
+}
+.title-h3 {
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #ffffff;
+}
+.button {
+  display: flex;
+  gap: 12px;
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  line-height: 17px;
+
+  border-radius: 19px;
+  padding: 10px 18px;
+
+  background: #ffffff;
+  color: #1e2123;
+
+  outline: none;
+  border: none;
+}

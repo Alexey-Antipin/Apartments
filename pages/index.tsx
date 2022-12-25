@@ -3,57 +3,31 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ImageBlock } from "../common/ImageBlock";
 import { LinkNavigation, List } from "../common";
 import styles from "../styles/Main.module.scss";
+import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
 import { Select } from "../common/Select";
 import { Slider } from "../common/Slider";
-import { useRouter } from "next/router";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
-import {
-  selectPriceMin,
-  selectPriceMax,
-} from "../redux/reducers/selectReducer";
+import { FilterRooms } from "../common/filter";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const [active, setActive] = useState<number>(0);
-  const [valueMin, setValueMin] = useState<string>("");
-  const [valueMax, setValueMax] = useState<string>("");
 
-  const router = useRouter();
   const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
-  const parameters = useAppSelector((state: RootState) => state.select);
 
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    return event.target.value.replace(/^[^0-9]{0,3}$/, "");
-  };
-
-  const handleClick = () => {
-    dispatch(selectPriceMin(valueMin));
-
-    if (valueMin > valueMax) {
-      dispatch(selectPriceMax(valueMin));
-    } else {
-      dispatch(selectPriceMax(valueMax));
-    }
-
-    if (parameters.city) {
-      return router.push(`./catalog/?${parameters.city}`);
-    }
-    router.push(`./catalog/?${main.massiveList[0].massive[0]}`);
-  };
 
   return (
     <>
@@ -77,72 +51,7 @@ const Home: React.FC = () => {
               classUl: styles["list-ul"],
             }}
           />
-          <div className={styles.navbar}>
-            {/* Город && Комнаты */}
-            {["Город", "Комнаты"].map((el, index) => (
-              <div className={styles["select-flex"]} key={index}>
-                <div>
-                  <h2 className={styles["title-under"]}>{el}</h2>
-                  <Select
-                    massive={main.massive[index]}
-                    setActive={setActive}
-                    option_2v={true}
-                    active={active}
-                    category={el}
-                  />
-                </div>
-                <div className={styles["block-line"]} />
-              </div>
-            ))}
-
-            {/* Цена за сутки (BYN) */}
-            <div>
-              <h2 className={styles["title-under"]}>
-                Цена за сутки (BYN)
-              </h2>
-              <div className={styles["filter-price-flex"]}>
-                <input
-                  className={styles["filter-price"]}
-                  onChange={(event: any) =>
-                    setValueMin(handleChange(event))
-                  }
-                  value={valueMin}
-                  placeholder="От"
-                  maxLength={5}
-                />
-                <div className={styles.trait}>-</div>
-                <input
-                  className={styles["filter-price"]}
-                  onChange={(event) => setValueMax(handleChange(event))}
-                  value={valueMax}
-                  placeholder="До"
-                  maxLength={5}
-                />
-              </div>
-            </div>
-            <div className={styles["block-line"]} />
-
-            {/* Больше опций */}
-            <div className={styles["button-center"]}>
-              <button className={styles.button}>Больше опций</button>
-              <Sprite id="setting" />
-            </div>
-            <div className={styles["block-line"]} />
-
-            {/* На карте */}
-            <div className={styles["block-padding"]}>
-              <button className={styles.button}>На карте</button>
-              <Sprite id="sign" colour="#664EF9" height="15" width="12" />
-            </div>
-
-            {/* Показать */}
-            <button
-              className={styles["button-main"]}
-              onClick={() => handleClick()}>
-              <span className={styles["text-padding"]}>Показать</span>
-              <Sprite id="mark" colour="black" />
-            </button>
-          </div>
+          <FilterRooms option={true}/>
         </div>
 
         {/* Показ и выбор городов. */}
@@ -250,101 +159,91 @@ const Home: React.FC = () => {
 
       <div>
         {/* Карта. */}
-        <div className={styles["map-wrapper"]}>
-          <h2 className={styles["map-title-h2"]}>
-            Поиск квартир на карте
-          </h2>
+        <MapBackground>
+          <>
+            <Image
+              className={styles["map-image"]}
+              src="/white-points.png"
+              height={61}
+              width={61}
+              alt="points"
+            />
 
-          <h3 className={styles["map-title-h3"]}>
-            Ищите квартиры на сутки в центре города,
-            <br /> возле парка или в живописном районе
-          </h3>
-
-          <button className={styles["map-button"]}>
-            <Sprite id="sign" height="15" width="15" colour="#FFD54F" />
-            Открыть карту
-          </button>
-
-          <Image
-            className={styles["map-image"]}
-            src="/white-points.png"
-            height={61}
-            width={61}
-            alt="points"
-          />
-
-          <div className={styles["map-block"]}>
-            {main.card.map((el, index) => (
-              <div
-                className={clsx(
-                  styles["map-item"],
-                  index === 2 && styles["map-item-yellow"]
-                )}
-                key={index}>
-                {el.sprite ? (
-                  <div className={styles["map-sprite-and-text"]}>
-                    <div className={styles["map-sprite"]}>
-                      <Sprite id={el.sprite} />
-                    </div>
-                    <h4 className={styles["map-title-h4"]}>{el.title}</h4>
-                  </div>
-                ) : (
-                  <div>
-                    <h4 className={styles["map-title-gold"]}>
-                      {el.title}
-                    </h4>
-                  </div>
-                )}
-
-                <div>
-                  <p className={styles["map-paragraph"]}>
-                    {parse(el.paragraph)}
-                  </p>
-                  <br />
-
-                  {el.paragraph_2 && (
-                    <p className={styles["map-paragraph"]}>
-                      {parse(el.paragraph_2)}
-                    </p>
+            <div className={styles["map-block"]}>
+              {main.card.map((el, index) => (
+                <div
+                  className={clsx(
+                    styles["map-item"],
+                    index === 2 && styles["map-item-yellow"]
                   )}
-                </div>
+                  key={index}>
+                  {el.sprite ? (
+                    <div className={styles["map-sprite-and-text"]}>
+                      <div className={styles["map-sprite"]}>
+                        <Sprite id={el.sprite} />
+                      </div>
+                      <h4 className={styles["map-title-h4"]}>
+                        {el.title}
+                      </h4>
+                    </div>
+                  ) : (
+                    <div>
+                      <h4 className={styles["map-title-gold"]}>
+                        {el.title}
+                      </h4>
+                    </div>
+                  )}
 
-                {index === 0 ? (
-                  <button className={styles["map-button-white"]}>
-                    {el.button}
-                  </button>
-                ) : (
-                  <button
-                    className={
-                      (index === 1 && styles["map-button-white"]) ||
-                      styles["map-button-violet"]
-                    }>
-                    {el.button}
-                    <div className={styles["map-sprite-mark"]}>
-                      <Sprite
-                        id="mark"
-                        height="10"
-                        width="10"
-                        colour={(index === 1 && "black") || "white"}
+                  <div>
+                    <p className={styles["map-paragraph"]}>
+                      {parse(el.paragraph)}
+                    </p>
+                    <br />
+
+                    {el.paragraph_2 && (
+                      <p className={styles["map-paragraph"]}>
+                        {parse(el.paragraph_2)}
+                      </p>
+                    )}
+                  </div>
+
+                  {index === 0 ? (
+                    <button className={styles["map-button-white"]}>
+                      {el.button}
+                    </button>
+                  ) : (
+                    <button
+                      className={
+                        (index === 1 && styles["map-button-white"]) ||
+                        styles["map-button-violet"]
+                      }>
+                      {el.button}
+                      <div className={styles["map-sprite-mark"]}>
+                        <Sprite
+                          id="mark"
+                          height="10"
+                          width="10"
+                          colour={(index === 1 && "black") || "white"}
+                        />
+                      </div>
+                    </button>
+                  )}
+
+                  {el.cross && (
+                    <div className={styles["map-image-background"]}>
+                      <Image
+                        src={el.cross}
+                        alt="block"
+                        height={230}
+                        width={270}
                       />
                     </div>
-                  </button>
-                )}
-
-                {el.cross && (
-                  <div className={styles["map-image-background"]}>
-                    <Image
-                      src={el.cross}
-                      alt="block"
-                      height={230}
-                      width={270}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+        </MapBackground>
 
         {/* Описание. */}
         <div className={styles["description-wrapper"]}>

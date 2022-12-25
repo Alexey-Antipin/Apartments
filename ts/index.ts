@@ -29,9 +29,12 @@ type ArticleRoom = {
 
 type SelectOfProps = {
   setActive: (value: number) => void;
+  active: number;
+  setZeroing?: (value: number) => void;
+  zeroing?: number;
+ 
   massive: MassiveOfSelect;
   category?: string;
-  active: number;
 
   option_1v?: boolean;
   option_2v?: boolean;
@@ -46,6 +49,7 @@ type MassiveOfSelectList = {
 type MassiveOfSelect = {
   id: number;
   text: string;
+  title?: string;
   sprite?: string;
   sprite_2?: string;
   spriteColour?: string;

@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authorizationSlice from "../reducers/authorizationReducer";
 import registrationSlice from "../reducers/registrationReducer";
+import catalogSlice from "../reducers/catalogReducer";
 import articlesSlice from "../reducers/articlesReducer";
 import contactsSlice from "../reducers/contactsReducer";
 import headerSlice from "../reducers/headerReducer";
 import selectSlice from "../reducers/selectReducer";
-import mainSlice from "./../reducers/mainReducer";
+import mainSlice from "../reducers/mainReducer";
 import newsSlice from "../reducers/newsReducer";
 
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
     registration: registrationSlice,
     contacts: contactsSlice,
     articles: articlesSlice,
+    catalog: catalogSlice,
     select: selectSlice,
     header: headerSlice,
     main: mainSlice,
