@@ -34,6 +34,8 @@
   margin: 20px 20px;
 }
 .description {
+  @extend %text;
+  -webkit-line-clamp: 5;
   font-family: "Inter-Regular", sans-serif;
   font-size: 14px;
 
@@ -128,7 +130,10 @@
   padding: 8px;
   color: #686868;
 }
-.description-room{
+.description-room {
+  @extend %text;
+  -webkit-line-clamp: 4;
+  
   font-family: "Inter-Regular", sans-serif;
   font-size: 14px;
 
@@ -137,7 +142,13 @@
   margin-bottom: 12px;
 }
 
-.block-city{
+%text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.block-city {
   padding: 0 20px;
 }
 .block-street {
@@ -158,7 +169,7 @@
 
   color: #000000;
 }
-.block-flex{
+.block-flex {
   display: flex;
   align-items: center;
   gap: 6px;

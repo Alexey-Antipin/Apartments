@@ -54,7 +54,7 @@ const initialState: MainState = {
       ],
     },
     {
-      id: 2,
+      id: 1,
       title: "Район",
       text: "Выберите",
       sprite: "mark",
@@ -69,7 +69,7 @@ const initialState: MainState = {
       ],
     },
     {
-      id: 3,
+      id: 1,
       title: "Метро",
       text: "Выберите",
       sprite: "mark",

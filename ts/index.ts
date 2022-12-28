@@ -1,4 +1,3 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import { FormikState } from "formik";
 
 type ArticleRoom = {
@@ -32,7 +31,7 @@ type SelectOfProps = {
   active: number;
   setZeroing?: (value: number) => void;
   zeroing?: number;
- 
+
   massive: MassiveOfSelect;
   category?: string;
 
@@ -95,14 +94,16 @@ type PageProps = {
 };
 
 type PaginationProps = {
-  totalItems: number;
-  currentPage: number;
   itemsPerPage?: number;
+  currentPage: number;
+  totalItems: number;
+  link: string;
 };
 
 type PropsLimitOfPage = {
   limit: number;
   page: number;
+  array: any[];
 };
 
 type ResponseError = {
@@ -179,7 +180,24 @@ type SpriteProps = {
   width?: string;
 };
 
+type Object = { id: number; text: string; status: boolean };
+
+type Massive = {
+  list: Object[];
+};
+
+type CheckboxState = {
+  checkboxMassive: Massive[];
+};
+
+type CheckboxProps = {
+  massive: Object[];
+  numberling: any;
+};
+
 export type {
+  CheckboxProps,
+  CheckboxState,
   ArticleRoom,
   ResetForm,
   SelectOfProps,

@@ -53,7 +53,7 @@ const News: React.FC = () => {
               {network.map((elem, index) => (
                 <li className={styles.item} key={index}>
                   <Link href="/">
-                    <Sprite id={elem} colour="#664EF9" height="13" />
+                    <Sprite id={elem} colour="#664EF9" height="20" width="20" />
                   </Link>
                 </li>
               ))}

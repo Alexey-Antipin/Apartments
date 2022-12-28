@@ -1,4 +1,4 @@
-import articlesMinskRooms from "../../mocks/cities/rooms/minsk.js";
+import {cities} from "../../mocks";
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
 import getProducts from "../../common/Pagination/GetData";
@@ -14,6 +14,8 @@ import { Article } from "../../ts";
 import Link from "next/link";
 import Head from "next/head";
 
+type Params = { params: { page: string } };
+
 type Props = {
   currentPage: number;
   totalData: number;
@@ -27,8 +29,9 @@ const Catalog: React.FC<Props> = ({
 }) => {
   const [linkCity, setLinkCity] = useState<string>("Квартиры в Минске");
   const [city, setCity] = useState<string>("Квартиры в Минске");
-  const select = useAppSelector((state: RootState) => state.select);
+
   const tagRooms = useAppSelector((state: RootState) => state.catalog);
+  const select = useAppSelector((state: RootState) => state.select);
 
   const network = [
     { net: "vk", href: "./" },
@@ -110,19 +113,46 @@ const Catalog: React.FC<Props> = ({
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ params }: Params) => {
+  const page = Number(params?.page) || 1;
   const { articles, total } = await getProducts({
     limit: 9,
-    page: 1,
-    array: articlesMinskRooms,
+    page,
+    array: cities.minsk,
   });
+
+  if (!articles.length) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (page === 1) {
+    return {
+      redirect: {
+        destination: "/catalog",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
       articles,
       totalData: total,
-      currentPage: 1,
+      currentPage: page,
+      a: params,
     },
+    revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
+  };
+};
+
+export const getStaticPaths = async () => {
+  return {
+    paths: Array.from({ length: 5 }).map(
+      (_, index) => `/catalog/${index + 2}`
+    ),
+    fallback: "blocking",
   };
 };
 

@@ -1,12 +1,13 @@
-import Link from "next/link";
-import { Logic } from "../Logic";
-import { PaginationProps } from "../../../ts";
 import styles from "./Pagination.module.scss";
+import { PaginationProps } from "../../../ts";
+import { Logic } from "../Logic";
+import Link from "next/link";
 
 export const PaginationNumbering = ({
-  totalItems,
-  currentPage,
   itemsPerPage = 9,
+  currentPage,
+  totalItems,
+  link,
 }: PaginationProps) => {
   const pages = Logic(totalItems, currentPage, itemsPerPage);
 
@@ -20,7 +21,7 @@ export const PaginationNumbering = ({
         ) : (
           <Link
             key={index}
-            href={`/news-detailed/${pageNumber}`}
+            href={`/${link}/${pageNumber}`}
             className={
               pageNumber === currentPage
                 ? styles["item-active"]

@@ -22,7 +22,7 @@ export const Select: React.FC<SelectOfProps> = ({
   option_2v,
   option_1v,
 }) => {
-  const [listId, setListId] = useState(0);
+  const [listId, setListId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
 
   const header = useAppSelector((state: RootState) => state.header);

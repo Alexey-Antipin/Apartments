@@ -1,7 +1,7 @@
 import styles from "./ListArticles.module.scss";
 import { ArticleProps } from "../../ts";
-import Image from "next/image";
 import { Sprite } from "../../svg";
+import Image from "next/image";
 
 export const ListArticles: React.FC<ArticleProps> = ({
   list,

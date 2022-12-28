@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
 import { useEffect, useRef, useState } from "react";
+import { RootState } from "../../redux/store";
 import styles from "./Filter.module.scss";
 import { useRouter } from "next/router";
+import { Checkbox } from "../checkbox";
 import { Select } from "../Select";
 import { Sprite } from "../../svg";
 import clsx from "clsx";
@@ -12,6 +13,7 @@ import {
 } from "../../redux/reducers/selectReducer";
 
 type ClassFilter = {
+  classSelectflex: string;
   classNavbar: string;
   classTitle: string;
   classFlex: string;
@@ -32,7 +34,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   option,
 }) => {
   const ref: any = useRef();
-  const parameters = useAppSelector((state: RootState) => state.select);
+  const checkbox = useAppSelector((state: RootState) => state.checkbox);
   const main = useAppSelector((state: RootState) => state.main);
 
   const [activeSettings, setActiveSettings] = useState<number>(0);
@@ -58,13 +60,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
     } else {
       dispatch(selectPriceMax(valueMax));
     }
-
-    if (parameters.city || parameters.rooms) {
-      return router.push(
-        `./catalog/?${parameters.city || parameters.rooms}`
-      );
-    }
-    router.push(`./catalog/?${main.massiveList[0].massive[0]}`);
+    router.push(`./catalog/`);
   };
 
   const handleClickOfClean = () => {
@@ -94,11 +90,11 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   });
 
   return (
-    <>
-      <div className={clsx(classes?.classNavbar, styles.navbar)} ref={ref}>
+    <div className={clsx(classes?.classNavbar, styles.navbar)} ref={ref}>
+      <div className={classes?.classSelectflex || styles["select-flex"]}>
         {/* Город && Комнаты */}
         {(massive || cities).map((el, index) => (
-          <div className={styles["select-flex"]} key={index}>
+          <div className={styles["select-map"]} key={index}>
             <div className={classes?.classFlex}>
               <h2 className={classes?.classTitle || styles["title-under"]}>
                 {el.city}
@@ -140,17 +136,13 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
           </div>
         </div>
         {/* Больше опций */}
-        <div className={styles["button-center"]}>
+        <div
+          className={styles["button-center"]}
+          onClick={() => setSettings(!settings)}>
           <div className={clsx(classes?.classLine, styles.line)} />
 
-          <div>
-            <button
-              className={styles.button}
-              onClick={() => setSettings(!settings)}>
-              Больше опций
-            </button>
-            <Sprite id="setting" />
-          </div>
+          <button className={styles.button}>Больше опций</button>
+          <Sprite id="setting" />
 
           <div className={clsx(classes?.classLine, styles.line)} />
         </div>
@@ -193,29 +185,38 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
             </button>
           </>
         )}
-        {settings && (
-          <div className={styles["filter-block"]}>
-            <div className={styles.filter}>
-              {main.filterList.map((array, index) => (
-                <div className={styles["filter-list"]} key={index}>
-                  <h2
-                    className={
-                      classes?.classTitle || styles["title-under"]
-                    }>
-                    {array.title}
-                  </h2>
-                  <Select
-                    massive={array}
-                    option_3v={true}
-                    setActive={setActiveSettings}
-                    active={activeSettings}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
-    </>
+      {settings && (
+        <div className={styles["filter-block"]}>
+          <div className={styles.filter}>
+            {main.filterList.map((array, index) => (
+              <div className={styles["filter-list"]} key={index}>
+                <h2
+                  className={classes?.classTitle || styles["title-under"]}>
+                  {array.title}
+                </h2>
+                <Select
+                  massive={array}
+                  option_3v={true}
+                  setActive={setActiveSettings}
+                  active={activeSettings}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className={styles["checkbox-block"]}>
+            <Checkbox
+              massive={checkbox.checkboxMassive[0].list}
+              numberling={0}
+            />
+            <Checkbox
+              massive={checkbox.checkboxMassive[1].list}
+              numberling={1}
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };

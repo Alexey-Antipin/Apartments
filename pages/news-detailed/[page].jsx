@@ -1,5 +1,6 @@
 import getProducts from "../../common/Pagination/GetData";
 import styles from "./NewsDetailed.module.scss";
+import {cities} from "../../mocks";
 import { Sprite } from "../../svg";
 import propTypes from "prop-types";
 import { useState } from "react";
@@ -11,7 +12,6 @@ import {
 } from "../../common";
 
 const PaginatedPage = ({ articles, currentPage, totalData }) => {
-
   const news = "Новости";
   const [value, setValue] = useState("");
   const [list, setList] = useState(articles);
@@ -45,6 +45,7 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
           totalItems={totalData}
           currentPage={currentPage}
           itemsPerPage={9}
+          link={"news-detailed"}
         />
 
         <div className={styles.background}>
@@ -69,7 +70,11 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
 
 export const getStaticProps = async ({ params }) => {
   const page = Number(params?.page) || 1;
-  const { articles, total } = await getProducts({ limit: 9, page });
+  const { articles, total } = await getProducts({
+    limit: 9,
+    page,
+    array: cities.articlesNews,
+  });
 
   if (!articles.length) {
     return {

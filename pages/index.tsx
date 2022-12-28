@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ImageBlock } from "../common/ImageBlock";
 import { LinkNavigation, List } from "../common";
 import styles from "../styles/Main.module.scss";
+import { FilterRooms } from "../common/filter";
 import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
@@ -14,7 +15,6 @@ import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
-import { FilterRooms } from "../common/filter";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
