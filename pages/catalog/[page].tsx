@@ -1,4 +1,3 @@
-import {cities} from "../../mocks";
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
 import getProducts from "../../common/Pagination/GetData";
@@ -9,6 +8,7 @@ import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
 import { useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
+import {cities} from "../../mocks";
 import { Sprite } from "../../svg";
 import { Article } from "../../ts";
 import Link from "next/link";

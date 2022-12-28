@@ -1,4 +1,3 @@
-import articlesMinskRooms from "../../mocks/cities/rooms/minsk.js";
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
 import getProducts from "../../common/Pagination/GetData";
@@ -11,6 +10,7 @@ import { useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
 import { Sprite } from "../../svg";
 import { Article } from "../../ts";
+import {cities} from "../../mocks";
 import Link from "next/link";
 import Head from "next/head";
 
@@ -114,7 +114,7 @@ export const getStaticProps = async () => {
   const { articles, total } = await getProducts({
     limit: 9,
     page: 1,
-    array: articlesMinskRooms,
+    array: cities.minsk,
   });
 
   return {
