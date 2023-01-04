@@ -14,6 +14,9 @@ type ArticleRoom = {
   width: number;
   description: string;
   photo: string;
+  photoMassive: PhotoMassive[];
+  title?: string;
+  time?: string;
   contacts: {
     master: string;
     telefon: string;
@@ -26,6 +29,11 @@ type ArticleRoom = {
   };
 };
 
+type PhotoMassive = {
+  photo: string;
+  width: number;
+};
+
 type SelectOfProps = {
   setActive: (value: number) => void;
   active: number;
@@ -33,8 +41,6 @@ type SelectOfProps = {
   zeroing?: number;
 
   massive: MassiveOfSelect;
-  category?: string;
-
   option_1v?: boolean;
   option_2v?: boolean;
   option_3v?: boolean;
@@ -50,6 +56,7 @@ type MassiveOfSelect = {
   text: string;
   title?: string;
   sprite?: string;
+  element?: string;
   sprite_2?: string;
   spriteColour?: string;
   list: MassiveOfSelectList[];
@@ -97,6 +104,9 @@ type PaginationProps = {
   itemsPerPage?: number;
   currentPage: number;
   totalItems: number;
+  classes?: {
+    wrapper: string;
+  };
   link: string;
 };
 
@@ -111,7 +121,9 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: any;
+  list: ArticleRoom[];
+  sliderTrue?: boolean;
+  useSquare?: boolean;
   classes?: {
     classUl?: string;
     classList?: string;
@@ -174,6 +186,7 @@ type MassiveOfList = {
 };
 
 type SpriteProps = {
+  insideColour?: string;
   id: string | number;
   colour?: string;
   height?: string;
@@ -188,6 +201,7 @@ type Massive = {
 
 type CheckboxState = {
   checkboxMassive: Massive[];
+  settings: boolean;
 };
 
 type CheckboxProps = {

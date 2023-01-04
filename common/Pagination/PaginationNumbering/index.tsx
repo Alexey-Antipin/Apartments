@@ -4,6 +4,7 @@ import { Logic } from "../Logic";
 import Link from "next/link";
 
 export const PaginationNumbering = ({
+  classes,
   itemsPerPage = 9,
   currentPage,
   totalItems,
@@ -12,7 +13,7 @@ export const PaginationNumbering = ({
   const pages = Logic(totalItems, currentPage, itemsPerPage);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={classes?.wrapper || styles.wrapper}>
       {pages.map((pageNumber, index) =>
         pageNumber === "..." ? (
           <span key={index} className={styles.item}>

@@ -1,15 +1,50 @@
+import { useEffect, useRef, useState } from "react";
 import styles from "./ListArticles.module.scss";
 import { ArticleProps } from "../../ts";
 import { Sprite } from "../../svg";
+import { Slider } from "../Slider";
 import Image from "next/image";
 
 export const ListArticles: React.FC<ArticleProps> = ({
-  list,
+  sliderTrue,
+  useSquare,
   classes,
+  list,
 }) => {
+  const ref = useRef<HTMLUListElement>(null);
+  const [openContacts, setOpenContacts] = useState<number | null>(null);
+
+  const handleClickOfButton = (elem: number) => {
+    if (elem == openContacts) {
+      setOpenContacts(null);
+      return;
+    }
+    setOpenContacts(elem);
+  };
+
+  useEffect(() => {
+    if (openContacts == null) return;
+
+    const handleClick = (event: MouseEvent) => {
+      if (ref.current == null) {
+        return;
+      }
+      if (!ref.current.contains(event.target as Element)) {
+        setOpenContacts(null);
+        return;
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+
   return (
-    <ul className={classes?.classUl || styles.list}>
-      {list.map((item: any, index: number) => {
+    <ul className={classes?.classUl || styles.list} ref={ref}>
+      {list.map((item, index: number) => {
         return (
           <li className={classes?.classList || styles.element} key={index}>
             {item.class == "Gold" && (
@@ -17,14 +52,43 @@ export const ListArticles: React.FC<ArticleProps> = ({
             )}
 
             <div className={styles["image-block"]}>
-              <Image
-                className={styles.image}
-                height={226}
-                width={item.width}
-                priority
-                src={item.photo}
-                alt="home"
-              />
+              {sliderTrue ? (
+                <Slider
+                  interval={1624}
+                  step={406}
+                  classes={{
+                    containerSlider: styles["slider-container"],
+                    wrapperSlider: styles["slider-wrapper"],
+                    buttonDisabled: styles["slider-button-disabled"],
+                    blockButton: styles["slider-block"],
+                    button: styles["slider-button"],
+                  }}
+                  colourSliderDisabled={"#b4b4b4"}
+                  colourSlider={"#FFFFFF"}
+                  id={item.id}>
+                  {[0, 1, 2, 3, 4].map((el, index) => (
+                    <div className={styles["slider-image"]} key={index}>
+                      <Image
+                        className={styles.image}
+                        height={226}
+                        width={item.photoMassive[el].width}
+                        alt={item.photoMassive[el].photo}
+                        src={item.photoMassive[el].photo}
+                        priority
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                <Image
+                  className={styles.image}
+                  height={226}
+                  width={item.width}
+                  priority
+                  src={item.photo}
+                  alt="home"
+                />
+              )}
             </div>
 
             {item.price && (
@@ -52,9 +116,11 @@ export const ListArticles: React.FC<ArticleProps> = ({
                       {item.room} комн.
                     </div>
 
-                    <div className={styles["info-room"]}>
-                      {item.square}
-                    </div>
+                    {useSquare && (
+                      <div className={styles["info-room"]}>
+                        {item.square}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -107,7 +173,17 @@ export const ListArticles: React.FC<ArticleProps> = ({
 
             {item.price && (
               <div className={styles["button-block"]}>
-                <button className={styles["button-contacts"]}>
+                <button className={styles["button-add"]}>
+                  <Sprite
+                    insideColour="#EB5757"
+                    colour="#EB57571A"
+                    id="heart"
+                  />
+                </button>
+
+                <button
+                  className={styles["button-contacts"]}
+                  onClick={() => handleClickOfButton(index)}>
                   <Sprite id="mobile" colour="#664EF9" />
                   <div>Контакты</div>
                 </button>
@@ -115,6 +191,47 @@ export const ListArticles: React.FC<ArticleProps> = ({
                 <button className={styles["button-More"]}>
                   Подробнее
                 </button>
+              </div>
+            )}
+
+            {/* Контакты владельца */}
+            {openContacts === index && (
+              <div className={styles.contacts}>
+                <div className={styles["contacts-face"]}></div>
+                <h2 className={styles["contacts-title"]}>Владелец</h2>
+                <div className={styles["contacts-data"]}>
+                  {item.contacts.master}
+                </div>
+                {/* Телефон */}
+                <a
+                  className={styles["contacts-data"]}
+                  href={`tel:${item.contacts.telefon}`}>
+                  {item.contacts.telefon}
+                </a>
+                {/* Почта */}
+                <a
+                  className={styles["contacts-email"]}
+                  href={`mailto:${item.contacts.email}`}>
+                  {item.contacts.email}
+                </a>
+                {/* Ссылки */}
+                <div className={styles["contacts-block"]}>
+                  <a
+                    className={styles["contacts-links"]}
+                    href={`viber://chat?${item.contacts.link.viber}`}>
+                    <Sprite id="viber" colour="#FFFFFF" />
+                  </a>
+                  <a
+                    className={styles["contacts-links"]}
+                    href={`https://wa.me/${item.contacts.link.whats_app}`}>
+                    <Sprite id="whatsapp" colour="#FFFFFF" />
+                  </a>
+                  <a
+                    className={styles["contacts-links"]}
+                    href={`mailto:${item.contacts.link.email}`}>
+                    <Sprite id="email" colour="#FFFFFF" />
+                  </a>
+                </div>
               </div>
             )}
           </li>

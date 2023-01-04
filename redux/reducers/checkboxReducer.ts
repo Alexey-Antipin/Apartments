@@ -8,6 +8,7 @@ type Action = {
 };
 
 const initialState: CheckboxState = {
+  settings: false,
   checkboxMassive: [
     {
       list: [
@@ -41,9 +42,12 @@ export const checkboxSlice = createSlice({
         action.payload.indexElement
       ].status = action.payload.status;
     },
+    toogleBox(state, action: PayloadAction<boolean>) {
+      state.settings = action.payload;
+    },
   },
 });
 
-export const { checkbox } = checkboxSlice.actions;
+export const { checkbox, toogleBox } = checkboxSlice.actions;
 
 export default checkboxSlice.reducer;

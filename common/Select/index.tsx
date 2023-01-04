@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
+import { useAppDispatch } from "../../redux/hooks";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import clsx from "clsx";
 import {
-  selectCity,
   selectCountRooms,
+  defaultSettings,
+  selectCity,
 } from "../../redux/reducers/selectReducer";
 
 export const Select: React.FC<SelectOfProps> = ({
@@ -16,7 +16,6 @@ export const Select: React.FC<SelectOfProps> = ({
   active,
   setZeroing,
   zeroing,
-  category,
   massive,
   option_3v,
   option_2v,
@@ -24,8 +23,6 @@ export const Select: React.FC<SelectOfProps> = ({
 }) => {
   const [listId, setListId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
-
-  const header = useAppSelector((state: RootState) => state.header);
   const dispatch = useAppDispatch();
   const ref = useRef<any>();
 
@@ -61,11 +58,20 @@ export const Select: React.FC<SelectOfProps> = ({
     setListId(elem);
   };
 
-  const handleClickOfDispatch = (category: string, arg: any) => {
-    if (category == "Город") {
-      dispatch(selectCity(arg));
-    } else {
-      dispatch(selectCountRooms(arg));
+  const handleClickOfDispatch = (
+    type: string,
+    num: number
+  ) => {
+    switch (type) {
+      case "Город":
+        dispatch(selectCity(num));
+        break;
+      case "Комнаты":
+        dispatch(selectCountRooms(num));
+        break;
+      default:
+        dispatch(defaultSettings());
+        break;
     }
   };
 
@@ -162,10 +168,8 @@ export const Select: React.FC<SelectOfProps> = ({
                 handleClickOfItem(elem.id),
                 (option_1v || option_2v) &&
                   handleClickOfDispatch(
-                    (option_1v && "Город") ||
-                      (option_2v && category) ||
-                      "",
-                    header.underList[0].list[index].text
+                    massive.element || "",
+                    elem.id - 1
                   )
               )}
               key={index}>

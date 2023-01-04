@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { toogleBox } from "../../redux/reducers/checkboxReducer";
 import { useEffect, useRef, useState } from "react";
 import { RootState } from "../../redux/store";
 import styles from "./Filter.module.scss";
@@ -11,10 +12,13 @@ import {
   selectPriceMin,
   selectPriceMax,
 } from "../../redux/reducers/selectReducer";
+import { MassiveOfSelect } from "../../ts";
 
 type ClassFilter = {
   classSelectflex: string;
+  classSettings?: string;
   classNavbar: string;
+  classList?: string;
   classTitle: string;
   classFlex: string;
   classLine: string;
@@ -22,20 +26,20 @@ type ClassFilter = {
 
 type FilterRoomsTypes = {
   classes?: ClassFilter;
-  massive?: Massive[];
+  component?: JSX.Element;
+  arrayRooms?: boolean;
   option?: boolean;
 };
 
-type Massive = { city: string; index: number };
-
 export const FilterRooms: React.FC<FilterRoomsTypes> = ({
+  arrayRooms,
+  component,
   classes,
-  massive,
   option,
 }) => {
-  const ref: any = useRef();
   const checkbox = useAppSelector((state: RootState) => state.checkbox);
   const main = useAppSelector((state: RootState) => state.main);
+  const ref: any = useRef();
 
   const [activeSettings, setActiveSettings] = useState<number>(0);
   const [settings, setSettings] = useState<boolean>(false);
@@ -43,11 +47,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const [valueMin, setValueMin] = useState<string>("");
   const [zeroing, setZeroing] = useState<number>();
   const [active, setActive] = useState<number>(0);
-
-  const cities = [
-    { city: "Город", index: 0 },
-    { city: "Комнаты", index: 1 },
-  ];
+  const rooms: MassiveOfSelect = main.massive[1];
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -61,6 +61,11 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
       dispatch(selectPriceMax(valueMax));
     }
     router.push(`./catalog/`);
+  };
+
+  const handleClickSettings = () => {
+    setSettings(!settings);
+    dispatch(toogleBox(!settings));
   };
 
   const handleClickOfClean = () => {
@@ -93,20 +98,21 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
     <div className={clsx(classes?.classNavbar, styles.navbar)} ref={ref}>
       <div className={classes?.classSelectflex || styles["select-flex"]}>
         {/* Город && Комнаты */}
-        {(massive || cities).map((el, index) => (
+        {((arrayRooms && [rooms]) || main.massive).map((item, index) => (
           <div className={styles["select-map"]} key={index}>
-            <div className={classes?.classFlex}>
+            <div
+              className={classes?.classFlex}
+              onClick={() => setSettings(false)}>
               <h2 className={classes?.classTitle || styles["title-under"]}>
-                {el.city}
+                {item.element}
               </h2>
               <Select
-                massive={main.massive[el.index]}
-                option_2v={true}
-                category={el.city}
                 setActive={setActive}
                 active={active}
                 setZeroing={setZeroing}
                 zeroing={zeroing}
+                option_2v={true}
+                massive={item}
               />
             </div>
             <div className={clsx(classes?.classLine, styles.line)} />
@@ -138,7 +144,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
         {/* Больше опций */}
         <div
           className={styles["button-center"]}
-          onClick={() => setSettings(!settings)}>
+          onClick={() => handleClickSettings()}>
           <div className={clsx(classes?.classLine, styles.line)} />
 
           <button className={styles.button}>Больше опций</button>
@@ -187,10 +193,12 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
         )}
       </div>
       {settings && (
-        <div className={styles["filter-block"]}>
+        <div className={classes?.classSettings || styles["filter-block"]}>
           <div className={styles.filter}>
             {main.filterList.map((array, index) => (
-              <div className={styles["filter-list"]} key={index}>
+              <div
+                className={classes?.classList || styles["filter-list"]}
+                key={index}>
                 <h2
                   className={classes?.classTitle || styles["title-under"]}>
                   {array.title}
@@ -217,6 +225,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
           </div>
         </div>
       )}
+      {component}
     </div>
   );
 };

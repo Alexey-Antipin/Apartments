@@ -1,7 +1,7 @@
 import { articlesThunk } from "../redux/reducers/articlesReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ImageBlock } from "../common/ImageBlock";
-import { LinkNavigation, List } from "../common";
+import { LinkNavigation, List, ListArticles } from "../common";
 import styles from "../styles/Main.module.scss";
 import { FilterRooms } from "../common/filter";
 import { MapBackground } from "../common/map";
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
               classUl: styles["list-ul"],
             }}
           />
-          <FilterRooms option={true}/>
+          <FilterRooms option={true} />
         </div>
 
         {/* Показ и выбор городов. */}
@@ -98,62 +98,73 @@ const Home: React.FC = () => {
             />
           </div>
         </div>
+      </div>
 
-        {/* Квартиры и слайдер. */}
-        <div className={styles["block-slider"]}>
+      {/* Квартиры и слайдер. */}
+      <div className={styles["block-slider"]}>
+        <div className={styles["slider-link"]}>
           <LinkNavigation
             deepLink="Аренда квартир в Минске"
             main="КВАРТИРЫ НА СУТКИ"
             option_v3={true}
           />
+        </div>
 
-          {/* Slider */}
-          <div className={styles["slider-margin"]}>
-            <Slider array={rooms.articles.items} />
-          </div>
-
-          {/* Фон. */}
-          <div className={styles.background} />
-
-          {/* Внутри фона. */}
-          <div className={styles["background-select"]}>
-            {/* Метро && Район */}
-            {[0, 1].map((_, index) => (
-              <div key={index}>
-                <Select
-                  massive={main.metroAndArea[index]}
-                  setActive={setActive}
-                  option_3v={true}
-                  active={active}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Под slider'ом */}
-          <div className={styles["block-under-slider"]}>
-            <div>
-              <div className={styles["articles-length"]}>
-                {rooms.articles.lengthItems}
-                <span className={styles["articles-plus"]}>+</span>
-              </div>
-              <p className={styles["under-text"]}>Предложений по Минску</p>
-            </div>
-
-            <div
-              className={clsx(
-                styles["block-line-margin"],
-                styles["block-line"]
-              )}
+        {/* Slider */}
+        <div className={styles["slider-margin"]}>
+          <Slider interval={1490} step={1490}>
+            <ListArticles
+              list={rooms.articles.items}
+              useSquare={true}
+              classes={{
+                classUl: styles["block-list"],
+                classList: styles["item-list"],
+              }}
             />
+          </Slider>
+        </div>
 
-            <Link href="./" className={styles["button-watch-alles"]}>
-              Посмотреть все
-              <div className={styles["sprite-margin"]}>
-                <Sprite id="mark" colour="#ffffff" />
-              </div>
-            </Link>
+        {/* Фон. */}
+        <div className={styles.background} />
+
+        {/* Внутри фона. */}
+        <div className={styles["background-select"]}>
+          {/* Метро && Район */}
+          {[0, 1].map((_, index) => (
+            <div key={index}>
+              <Select
+                massive={main.metroAndArea[index]}
+                setActive={setActive}
+                option_3v={true}
+                active={active}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Под slider'ом */}
+        <div className={styles["block-under-slider"]}>
+          <div>
+            <div className={styles["articles-length"]}>
+              {rooms.articles.lengthItems}
+              <span className={styles["articles-plus"]}>+</span>
+            </div>
+            <p className={styles["under-text"]}>Предложений по Минску</p>
           </div>
+
+          <div
+            className={clsx(
+              styles["block-line-margin"],
+              styles["block-line"]
+            )}
+          />
+
+          <Link href="./" className={styles["button-watch-alles"]}>
+            Посмотреть все
+            <div className={styles["sprite-margin"]}>
+              <Sprite id="mark" colour="#ffffff" />
+            </div>
+          </Link>
         </div>
       </div>
 

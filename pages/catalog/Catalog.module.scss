@@ -25,7 +25,9 @@
   font-size: 20px;
   line-height: 100%;
 
-  padding: 80px;
+  padding: 140px 80px;
+  padding-bottom: 30px;
+
   color: #1e2123;
 }
 .block-link {
@@ -72,18 +74,21 @@
   justify-content: space-between;
   margin: 86px 80px 58px 0px;
 }
+.filterRooms-position {
+  margin-bottom: 340px;
+}
 
 .navbar {
   height: 82px;
-  padding: 0 80px;
   box-shadow: 0px 20px 40px rgba(39, 95, 158, 0.08);
-
   margin: 0px;
 }
 .select-flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  padding: 0 80px;
   height: 82px;
   width: 100%;
 }
@@ -96,10 +101,31 @@
 
   color: #664ef9;
 }
+.settings-flex {
+  position: relative;
+  top: -8px;
+
+  max-width: 1940px;
+  width: 100%;
+
+  background: #ffffff;
+  border: 1px solid rgba(78, 100, 249, 0.1);
+  border-radius: 0px 0px 15px 15px;
+  padding: 20px 80px;
+
+  box-shadow: 0px 20px 40px rgba(135, 124, 202, 0.15);
+  z-index: 2;
+}
+
 .filter-flex {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.list-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
 }
 .line {
   height: 82px;
@@ -112,17 +138,27 @@
 .catalog-list {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   justify-content: space-between;
   gap: 31px;
+
+  min-height: 1600px;
   padding: 0 80px;
 }
 .catalog-item {
   display: flex;
   flex-direction: column;
   position: relative;
+
+  height: 529px;
   width: 406px;
 
   background: #fffefe;
   box-shadow: 0px 5px 15px 0px rgba(205, 205, 205, 0.5);
   border-radius: 10px;
+}
+
+.pagination-wrapper {
+  display: flex;
+  margin-left: 80px;
 }

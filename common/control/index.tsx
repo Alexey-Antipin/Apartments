@@ -3,25 +3,26 @@ import { Sprite } from "../../svg";
 import { useState } from "react";
 
 type List = {
-  sprite: string;
-  text: string;
   view: (index: number) => void;
-  classBtn: string;
   default_sprite?: string;
+  classBtn: string;
+  sprite: string;
+  colour: string;
+  text: string;
 };
 
 export const Control = () => {
-  const [viewOfList, setViewOfList] = useState<boolean>(true);
+  const [colourSprite, setColourSprite] = useState<boolean>(true);
 
   const defaultOfView = () => {
-    setViewOfList(true);
+    setColourSprite(true);
   };
 
   const handleClickOfList = (index: number) => {
     if (index == 1) {
-      setViewOfList(true);
+      setColourSprite(true);
     } else {
-      setViewOfList(false);
+      setColourSprite(false);
     }
   };
 
@@ -37,24 +38,28 @@ export const Control = () => {
       view: defaultOfView,
       classBtn: styles.button,
       default_sprite: "mark",
+      colour: "#7A7F86",
     },
     {
       sprite: "list",
       text: "Список",
       view: handleClickOfList,
-      classBtn: (viewOfList && styles.button) || styles["button-off"],
+      classBtn: (colourSprite && styles.button) || styles["button-off"],
+      colour: colourSprite ? "#664EF9" : "#BDBDBD",
     },
     {
       sprite: "square",
       text: "Плитки",
       view: handleClickOfList,
-      classBtn: (viewOfList && styles["button-off"]) || styles.button,
+      classBtn: (colourSprite && styles["button-off"]) || styles.button,
+      colour: colourSprite ? "#BDBDBD" : "#664EF9",
     },
     {
       sprite: "sign",
       text: "Показать на карте",
       view: defaultOfMap,
       classBtn: styles.button,
+      colour: "#664EF9",
     },
   ];
 
@@ -65,7 +70,12 @@ export const Control = () => {
           className={el.classBtn}
           onClick={() => el.view(index)}
           key={index}>
-          <Sprite id={el.sprite} colour="#664EF9" height="15" width="12" />
+          <Sprite
+            id={el.sprite}
+            colour={el.colour}
+            height="15"
+            width="12"
+          />
 
           {el.text}
 

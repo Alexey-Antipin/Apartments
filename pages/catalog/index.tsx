@@ -8,16 +8,16 @@ import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
 import { useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
+import { ArticleRoom } from "../../ts";
+import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
-import { Article } from "../../ts";
-import {cities} from "../../mocks";
 import Link from "next/link";
 import Head from "next/head";
 
 type Props = {
   currentPage: number;
   totalData: number;
-  articles: Article[];
+  articles: ArticleRoom[];
 };
 
 const Catalog: React.FC<Props> = ({
@@ -25,10 +25,15 @@ const Catalog: React.FC<Props> = ({
   totalData,
   currentPage,
 }) => {
-  const [linkCity, setLinkCity] = useState<string>("Квартиры в Минске");
-  const [city, setCity] = useState<string>("Квартиры в Минске");
-  const select = useAppSelector((state: RootState) => state.select);
+  const [linkCity, setLinkCity] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+
+  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
   const tagRooms = useAppSelector((state: RootState) => state.catalog);
+  const header = useAppSelector(
+    (state: RootState) => state.header.underList[0]
+  );
+  const select = useAppSelector((state: RootState) => state.select);
 
   const network = [
     { net: "vk", href: "./" },
@@ -39,14 +44,17 @@ const Catalog: React.FC<Props> = ({
   ];
 
   useEffect(() => {
-    if (!select.city) return;
-
-    const town = select.city.replace(/на сутки/gi, "");
-    const linkTown = select.city.replace(/квартиры/gi, "Аренда квартир");
+    const town = header.list[select.city].text.replace(/на сутки/gi, "");
+    const linkTown = header.list[select.city].text.replace(
+      /квартиры/gi,
+      "Аренда квартир"
+    );
 
     setLinkCity(linkTown);
     setCity(town);
-  }, [select.city]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -66,21 +74,31 @@ const Catalog: React.FC<Props> = ({
         </div>
       </div>
 
-      <FilterRooms
-        classes={{
-          classNavbar: styles.navbar,
-          classSelectflex: styles["select-flex"],
-          classTitle: styles["title-under"],
-          classFlex: styles["filter-flex"],
-          classLine: styles.line,
-        }}
-        massive={[{ city: "Комнаты", index: 1 }]}
-      />
-      <Control />
+      <div
+        className={
+          checkboxs.settings ? styles["filterRooms-position"] : ""
+        }>
+        <FilterRooms
+          classes={{
+            classNavbar: styles.navbar,
+            classSelectflex: styles["select-flex"],
+            classSettings: styles["settings-flex"],
+            classTitle: styles["title-under"],
+            classFlex: styles["filter-flex"],
+            classList: styles["list-flex"],
+            classLine: styles.line,
+          }}
+          component={<Control />}
+          arrayRooms={true}
+        />
+      </div>
 
-      <h2 className={styles["title-h2"]}>Найдено 234 результата</h2>
+      <h2 className={styles["title-h2"]}>
+        Найдено {totalData} результата
+      </h2>
 
       <ListArticles
+        sliderTrue={true}
         list={articles}
         classes={{
           classUl: styles["catalog-list"],
@@ -90,6 +108,7 @@ const Catalog: React.FC<Props> = ({
 
       <div className={styles["block-footer"]}>
         <PaginationNumbering
+          classes={{ wrapper: styles["pagination-wrapper"] }}
           totalItems={totalData}
           currentPage={currentPage}
           itemsPerPage={9}

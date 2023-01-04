@@ -177,8 +177,13 @@
   position: relative;
   margin-top: 114px;
 }
+.slider-link {
+  padding: 0 80px;
+}
 .slider-margin {
-  margin-top: 44px;
+  padding: 0 60px;
+  margin: 44px 20px 0px 20px;
+  overflow: hidden;
 }
 
 .background {
@@ -212,6 +217,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 88px;
+  padding: 0 80px;
 }
 
 .articles-length {
@@ -491,4 +497,20 @@
   height: 1px;
   opacity: 0.1;
   background: #664ef9;
+}
+
+.block-list {
+  display: flex;
+  gap: 90px;
+  transition: 1s;
+}
+.item-list {
+  position: relative;
+
+  min-height: 500px;
+  min-width: 406px;
+
+  background: #fffefe;
+  box-shadow: 0px 5px 15px 0px rgba(205, 205, 205, 0.5);
+  border-radius: 10px;
 }
