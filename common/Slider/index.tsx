@@ -55,7 +55,9 @@ export const Slider: React.FC<SliderOfProps> = ({
 
   const controllerRounds = () => {
     let documentPosition = document.getElementById(`round-active-${id}`);
-    documentPosition!.style.left = `${positionRound}px`;
+    if (documentPosition !== null) {
+      documentPosition.style.left = `${positionRound}px`;
+    }
   };
 
   const handleClickPrev = () => {

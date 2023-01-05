@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Context } from "../../components/context";
 import styles from "./ListArticles.module.scss";
 import { ArticleProps } from "../../ts";
 import { Sprite } from "../../svg";
@@ -11,8 +12,10 @@ export const ListArticles: React.FC<ArticleProps> = ({
   classes,
   list,
 }) => {
-  const ref = useRef<HTMLUListElement>(null);
   const [openContacts, setOpenContacts] = useState<number | null>(null);
+  const [listHearts, setListHearts] = useState<Array<string>>([]);
+  const ref = useRef<HTMLUListElement>(null);
+  const context = useContext(Context);
 
   const handleClickOfButton = (elem: number) => {
     if (elem == openContacts) {
@@ -20,6 +23,18 @@ export const ListArticles: React.FC<ArticleProps> = ({
       return;
     }
     setOpenContacts(elem);
+  };
+
+  const handleClick = (id: string) => {
+    let el = listHearts.filter((element) => element == id);
+    console.log(el);
+    if (el.length) {
+      context.setHeart((prev: number) => prev - 1);
+      setListHearts(listHearts.filter((element) => element !== id));
+    } else {
+      context.setHeart((prev: number) => prev + 1);
+      setListHearts([...listHearts, id]);
+    }
   };
 
   useEffect(() => {
@@ -173,7 +188,9 @@ export const ListArticles: React.FC<ArticleProps> = ({
 
             {item.price && (
               <div className={styles["button-block"]}>
-                <button className={styles["button-add"]}>
+                <button
+                  className={styles["button-add"]}
+                  onClick={() => handleClick(item.id)}>
                   <Sprite
                     insideColour="#EB5757"
                     colour="#EB57571A"
