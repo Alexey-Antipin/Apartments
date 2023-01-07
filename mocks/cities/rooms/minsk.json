@@ -29,6 +29,20 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },
+    "more": {
+      "gasCooker": true,
+      "oven": false,
+      "coffeeMaker": false,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
     }
   },
   {
@@ -61,6 +75,20 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },
+    "more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": false,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
     }
   },
   {
@@ -93,6 +121,19 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
     }
   },
   {
@@ -125,6 +166,19 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": true,
+      "dishes": true,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
     }
   },
   {
@@ -157,6 +211,19 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": true,
+      "water": true
     }
   },
   {
@@ -189,6 +256,19 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": true,
+      "dishwasher": false,
+      "tv": true,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
     }
   }
 ]
