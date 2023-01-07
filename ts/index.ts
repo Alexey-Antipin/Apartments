@@ -122,6 +122,7 @@ type ResponseError = {
 
 type ArticleProps = {
   list: ArticleRoom[];
+  alternative?: boolean;
   sliderTrue?: boolean;
   useSquare?: boolean;
   classes?: {

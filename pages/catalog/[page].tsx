@@ -1,16 +1,17 @@
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
 import getProducts from "../../common/Pagination/GetData";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../components/context";
 import { useAppSelector } from "../../redux/hooks";
 import { FilterRooms } from "../../common/filter";
 import { MapBackground } from "../../common/map";
 import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
-import { useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
+import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
-import { Article } from "../../ts";
 import Link from "next/link";
 import Head from "next/head";
 
@@ -19,7 +20,7 @@ type Params = { params: { page: string } };
 type Props = {
   currentPage: number;
   totalData: number;
-  articles: Article[];
+  articles: ArticleRoom[];
 };
 
 const Catalog: React.FC<Props> = ({
@@ -30,11 +31,13 @@ const Catalog: React.FC<Props> = ({
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
+  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
   const tagRooms = useAppSelector((state: RootState) => state.catalog);
   const header = useAppSelector(
     (state: RootState) => state.header.underList[0]
   );
   const select = useAppSelector((state: RootState) => state.select);
+  const context = useContext(Context);
 
   const network = [
     { net: "vk", href: "./" },
@@ -75,27 +78,40 @@ const Catalog: React.FC<Props> = ({
         </div>
       </div>
 
-      <FilterRooms
-        classes={{
-          classNavbar: styles.navbar,
-          classSelectflex: styles["select-flex"],
-          classTitle: styles["title-under"],
-          classFlex: styles["filter-flex"],
-          classLine: styles.line,
-        }}
-        massive={[{ city: "Комнаты", index: 1 }]}
-      />
-      <Control />
+      <div
+        className={
+          checkboxs.settings ? styles["filterRooms-position"] : ""
+        }>
+        <FilterRooms
+          classes={{
+            classNavbar: styles.navbar,
+            classSelectflex: styles["select-flex"],
+            classSettings: styles["settings-flex"],
+            classTitle: styles["title-under"],
+            classFlex: styles["filter-flex"],
+            classList: styles["list-flex"],
+            classLine: styles.line,
+          }}
+          component={<Control />}
+          arrayRooms={true}
+        />
+      </div>
 
       <h2 className={styles["title-h2"]}>
         Найдено {totalData} результата
       </h2>
 
       <ListArticles
+        alternative={!context.colourSprite}
+        sliderTrue={true}
         list={articles}
         classes={{
-          classUl: styles["catalog-list"],
-          classList: styles["catalog-item"],
+          classUl: context.colourSprite
+            ? styles["catalog-list"]
+            : styles["catalog-list-row"],
+          classList: context.colourSprite
+            ? styles["catalog-item"]
+            : styles["catalog-item-row"],
         }}
       />
 

@@ -7,10 +7,12 @@ import { useState } from "react";
 import "../styles/globals.scss";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [colourSprite, setColourSprite] = useState<boolean>(true);
   const [heart, setHeart] = useState<number>(0);
 
   return (
-    <Context.Provider value={{heart, setHeart}}>
+    <Context.Provider
+      value={{ heart, setHeart, colourSprite, setColourSprite }}>
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />

@@ -1,6 +1,7 @@
+import { Context } from "../../components/context";
 import styles from "./Control.module.scss";
+import { useContext } from "react";
 import { Sprite } from "../../svg";
-import { useState } from "react";
 
 type List = {
   view: (index: number) => void;
@@ -12,17 +13,17 @@ type List = {
 };
 
 export const Control = () => {
-  const [colourSprite, setColourSprite] = useState<boolean>(true);
+  const context = useContext(Context);
 
   const defaultOfView = () => {
-    setColourSprite(true);
+    context.setColourSprite(true);
   };
 
   const handleClickOfList = (index: number) => {
     if (index == 1) {
-      setColourSprite(true);
+      context.setColourSprite(true);
     } else {
-      setColourSprite(false);
+      context.setColourSprite(false);
     }
   };
 
@@ -44,15 +45,17 @@ export const Control = () => {
       sprite: "list",
       text: "Список",
       view: handleClickOfList,
-      classBtn: (colourSprite && styles.button) || styles["button-off"],
-      colour: colourSprite ? "#664EF9" : "#BDBDBD",
+      classBtn:
+        (context.colourSprite && styles.button) || styles["button-off"],
+      colour: context.colourSprite ? "#664EF9" : "#BDBDBD",
     },
     {
       sprite: "square",
       text: "Плитки",
       view: handleClickOfList,
-      classBtn: (colourSprite && styles["button-off"]) || styles.button,
-      colour: colourSprite ? "#BDBDBD" : "#664EF9",
+      classBtn:
+        (context.colourSprite && styles["button-off"]) || styles.button,
+      colour: context.colourSprite ? "#BDBDBD" : "#664EF9",
     },
     {
       sprite: "sign",

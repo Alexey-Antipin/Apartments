@@ -1,12 +1,13 @@
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
 import getProducts from "../../common/Pagination/GetData";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../components/context";
 import { useAppSelector } from "../../redux/hooks";
 import { FilterRooms } from "../../common/filter";
 import { MapBackground } from "../../common/map";
 import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
-import { useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
@@ -34,6 +35,7 @@ const Catalog: React.FC<Props> = ({
     (state: RootState) => state.header.underList[0]
   );
   const select = useAppSelector((state: RootState) => state.select);
+  const context = useContext(Context);
 
   const network = [
     { net: "vk", href: "./" },
@@ -98,11 +100,16 @@ const Catalog: React.FC<Props> = ({
       </h2>
 
       <ListArticles
+        alternative={!context.colourSprite}
         sliderTrue={true}
         list={articles}
         classes={{
-          classUl: styles["catalog-list"],
-          classList: styles["catalog-item"],
+          classUl: context.colourSprite
+            ? styles["catalog-list"]
+            : styles["catalog-list-row"],
+          classList: context.colourSprite
+            ? styles["catalog-item"]
+            : styles["catalog-item-row"],
         }}
       />
 

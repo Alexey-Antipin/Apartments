@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { toogleBox } from "../../redux/reducers/checkboxReducer";
-import { useEffect, useRef, useState } from "react";
+import { HTMLProps, useEffect, useRef, useState } from "react";
 import { RootState } from "../../redux/store";
+import { MassiveOfSelect } from "../../ts";
 import styles from "./Filter.module.scss";
 import { useRouter } from "next/router";
 import { Checkbox } from "../checkbox";
@@ -12,7 +13,6 @@ import {
   selectPriceMin,
   selectPriceMax,
 } from "../../redux/reducers/selectReducer";
-import { MassiveOfSelect } from "../../ts";
 
 type ClassFilter = {
   classSelectflex: string;
@@ -39,7 +39,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
 }) => {
   const checkbox = useAppSelector((state: RootState) => state.checkbox);
   const main = useAppSelector((state: RootState) => state.main);
-  const ref: any = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [activeSettings, setActiveSettings] = useState<number>(0);
   const [settings, setSettings] = useState<boolean>(false);
@@ -81,8 +81,11 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   useEffect(() => {
     if (!settings) return;
 
-    const handleClick = (e: any) => {
-      if (!ref.current.contains(e.target)) {
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current == null) {
+        return;
+      }
+      if (!ref.current.contains(e.target as Element)) {
         setSettings(false);
       }
     };

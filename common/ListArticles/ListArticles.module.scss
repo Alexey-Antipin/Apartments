@@ -76,6 +76,9 @@
   top: -1px;
   right: -1px;
 
+  height: 37px;
+  width: 66px;
+
   font-family: "Inter-Bold";
   font-size: 18px;
   line-height: 22px;
@@ -116,19 +119,8 @@
   gap: 8px;
 }
 .info-room {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  font-family: "Inter-Medium";
-  font-size: 14px;
-  line-height: 17px;
-
-  background: #f8f8f8;
-  border-radius: 18px;
-
+  @extend %info;
   padding: 8px;
-  color: #686868;
 }
 .description-room {
   @extend %text;
@@ -140,6 +132,20 @@
   color: #8291a3;
   margin: 20px 20px;
   margin-bottom: 12px;
+}
+
+%info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+
+  background: #f8f8f8;
+  border-radius: 18px;
+  color: #686868;
 }
 
 %text {
@@ -216,15 +222,13 @@
   z-index: 1;
 }
 .button-contacts {
+  @extend %button-settings;
   @extend %button;
 
-  display: flex;
-  gap: 13px;
-
   background: #ffffff;
-  box-shadow: 0px 5px 20px rgba(0, 96, 206, 0.1);
-  border-radius: 18px;
-  color: #664ef9;
+}
+.button-contacts:hover {
+  background: rgba(240, 239, 239, 0.7);
 }
 .button-More {
   @extend %button;
@@ -232,6 +236,9 @@
   background: rgba(255, 213, 79, 0.1);
   border-radius: 17px;
   color: #fec100;
+}
+.button-More:hover {
+  background: rgba(255, 213, 79, 0.3);
 }
 
 %button {
@@ -243,6 +250,14 @@
 
   outline: none;
   border: none;
+}
+%button-settings {
+  display: flex;
+  gap: 13px;
+
+  box-shadow: 0px 5px 20px rgba(0, 96, 206, 0.1);
+  border-radius: 18px;
+  color: #664ef9;
 }
 
 .contacts {
@@ -318,16 +333,10 @@
 }
 .slider-container {
   display: flex;
-  transition: 1s all;
 }
 .slider-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: relative;
+  @extend %slider-block;
   top: -126px;
-  padding: 0px 3px;
 }
 
 .slider-button {
@@ -353,6 +362,7 @@
 .slider-image {
   display: flex;
   min-width: 406px;
+  flex-shrink: 0;
   transition: 1s;
 }
 
@@ -360,4 +370,145 @@
   height: 28px;
   width: 29px;
   border-radius: 23px;
+}
+%slider-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  padding: 0px 3px;
+}
+
+.alternative-label {
+  position: absolute;
+  top: 0px;
+  left: 476px;
+}
+.alternative-slider-block {
+  @extend %slider-block;
+  top: -160px;
+}
+.alternative-image-block {
+  position: relative;
+
+  height: 300px;
+  width: 542px;
+  flex-shrink: 0;
+
+  background: #e4e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.alternative-slider-image {
+  width: 100%;
+  transition: 1s;
+  flex-shrink: 0;
+}
+.alternative-block {
+  background: #fffefe;
+  box-shadow: 0px 5px 15px 0px rgba(205, 205, 205, 0.5);
+  border-radius: 0px 10px 10px 0px;
+  padding: 0px 25px;
+}
+.alternative-street-colour {
+  svg {
+    height: 20px;
+    width: 16px;
+  }
+  svg path {
+    fill: #664ef9;
+  }
+}
+.alternative-colour {
+  svg path {
+    fill: #664ef9;
+  }
+}
+.alternative-point {
+  color: #664ef9;
+}
+.alternative-metro {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.alternative-button-block {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.alternative-button {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 133px;
+  height: 35px;
+
+  background: rgba(235, 87, 87, 0.1);
+  border-radius: 22px;
+  border: none;
+}
+.alternative-button:hover {
+  background: rgba(235, 87, 87, 0.2);
+}
+.alternative-button-more {
+  margin-left: auto;
+}
+.alternative-button-more:hover {
+  background: rgba(255, 213, 79, 0.3);
+  margin-left: auto;
+}
+.alternative-button:hover {
+  svg {
+    fill: rgba(235, 87, 87, 0.4);
+  }
+}
+.alternative-button-text {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  line-height: 17px;
+
+  width: 78px;
+  color: #eb5757;
+}
+.alternative-button-contacts {
+  @extend %button-settings;
+  @extend %button;
+  background: #f8f8f8;
+}
+.alternative-button-contacts:hover {
+  background: rgba(224, 221, 221, 0.8);
+}
+.alternative-order {
+  order: -1;
+}
+.alternative-info {
+  @extend %info;
+  padding: 8px 14px;
+}
+.alternative-room-block {
+  padding: 26px 0px 0px 0px;
+}
+.alternative-info-price {
+  margin-right: 0;
+  margin-left: auto;
+}
+.alternative-room {
+  -webkit-line-clamp: 3;
+  margin: 14px 0px 24px 0px;
+}
+.alternative-text {
+  font-family: "Inter-Bold";
+  font-size: 20px;
+  line-height: 100%;
+
+  color: #1e2123;
+}
+.alternative-contacts {
+  top: 1px;
+  left: 260px;
 }

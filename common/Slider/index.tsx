@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { Context } from "../../components/context";
 import styles from "./Slider.module.scss";
 import { Sprite } from "../../svg";
 
@@ -7,7 +8,6 @@ type SliderOfProps = {
   classes?: {
     containerSlider: string;
     buttonDisabled: string;
-    wrapperSlider: string;
     blockButton: string;
     button: string;
   };
@@ -30,6 +30,7 @@ export const Slider: React.FC<SliderOfProps> = ({
   const [disabled, setDisabled] = useState<boolean | null>(true);
   const [positionRound, setPositionRound] = useState<number>(169);
   const [position, setPosition] = useState<number>(0);
+  const context = useContext(Context);
   const slider = useRef<any>(null);
 
   useEffect(() => {
@@ -43,7 +44,16 @@ export const Slider: React.FC<SliderOfProps> = ({
     controller();
     controllerRounds();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position, positionRound]);
+  }, [position, positionRound, context.colourSprite]);
+
+  useEffect(() => {
+    if (context.colourSprite) {
+      setPositionRound(169);
+    } else {
+      setPositionRound(237);
+    }
+    setPosition(0)
+  }, [context.colourSprite]);
 
   const controller = () => {
     if (slider.current !== null) {
@@ -73,7 +83,7 @@ export const Slider: React.FC<SliderOfProps> = ({
   };
 
   return (
-    <div className={classes?.wrapperSlider || styles.slider}>
+    <>
       <div className={classes?.containerSlider} ref={slider}>
         {children}
       </div>
@@ -132,6 +142,6 @@ export const Slider: React.FC<SliderOfProps> = ({
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };

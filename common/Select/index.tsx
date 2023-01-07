@@ -23,8 +23,8 @@ export const Select: React.FC<SelectOfProps> = ({
 }) => {
   const [listId, setListId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLLIElement>(null);
   const dispatch = useAppDispatch();
-  const ref = useRef<any>();
 
   useEffect(() => {
     if (zeroing == 0 && setZeroing) {
@@ -36,8 +36,11 @@ export const Select: React.FC<SelectOfProps> = ({
   useEffect(() => {
     if (!open) return;
 
-    const handleClick = (e: any) => {
-      if (!ref.current.contains(e.target)) {
+    const handleClick = (e: MouseEvent ) => {
+      if (ref.current == null) {
+        return;
+      }
+      if (!ref.current.contains(e.target as Element)) {
         setOpen(false);
       }
     };
@@ -58,10 +61,7 @@ export const Select: React.FC<SelectOfProps> = ({
     setListId(elem);
   };
 
-  const handleClickOfDispatch = (
-    type: string,
-    num: number
-  ) => {
+  const handleClickOfDispatch = (type: string, num: number) => {
     switch (type) {
       case "Город":
         dispatch(selectCity(num));
@@ -167,10 +167,7 @@ export const Select: React.FC<SelectOfProps> = ({
               onClick={() => (
                 handleClickOfItem(elem.id),
                 (option_1v || option_2v) &&
-                  handleClickOfDispatch(
-                    massive.element || "",
-                    elem.id - 1
-                  )
+                  handleClickOfDispatch(massive.element || "", elem.id - 1)
               )}
               key={index}>
               {option_1v && (
