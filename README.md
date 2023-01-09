@@ -14,26 +14,26 @@
 Домашнее задание №1;<br/>
 занятие №2:https://github.com/Alexey-Antipin/flue-pipe
 
-Домашнее задание №2;
+Домашнее задание №2;<br/>
 занятие №4:https://github.com/Alexey-Antipin/ajax-homework
 
-Домашнее задание №3;
+Домашнее задание №3;<br/>
 занятие №6:https://github.com/Alexey-Antipin/Background
 
-Домашнее задание №4;
+Домашнее задание №4;<br/>
 занятие №8:https://github.com/Alexey-Antipin/Project/pull/2/commits/ea6ac080de868091f03f20bc7dd74422d894267e
 
-Домашнее задание №5;
+Домашнее задание №5;<br/>
 занятие №10:https://github.com/Alexey-Antipin/Project/pull/5
 
-Домашнее задание №6;
+Домашнее задание №6;<br/>
 занятие №12:https://github.com/Alexey-Antipin/Project-Next-js/pull/2
 
-Домашнее задание №7;
+Домашнее задание №7;<br/>
 занятие №14:https://github.com/Alexey-Antipin/Project/pull/4/commits/b76c8a8bca6d7432088fe84700187a925916472e
 
-Домашнее задание №8;
+Домашнее задание №8;<br/>
 занятие №16:https://github.com/Alexey-Antipin/Project-Next-js/pull/7
 
-Домашнее задание №9;
+Домашнее задание №9;<br/>
 занятие №18: https://github.com/Alexey-Antipin/Project-Next-js/pull/8/commits/81e758b2abd446028538fe5aa2fcc1c243e719d9
