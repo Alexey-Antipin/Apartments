@@ -21,7 +21,7 @@
 
 занятие №10:https://github.com/Alexey-Antipin/Project/pull/5
 
-занятие №12:дз о context
+занятие №12:https://github.com/Alexey-Antipin/Project-Next-js/pull/2
 
 занятие №14:https://github.com/Alexey-Antipin/Project/pull/4/commits/b76c8a8bca6d7432088fe84700187a925916472e
 
