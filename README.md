@@ -9,9 +9,9 @@
 
 Перенёс из https://github.com/Alexey-Antipin/Project/
 
-#Домашние задания:#
+Домашние задания:
 
-Домашнее задание №1;
+Домашнее задание №1;<br/>
 занятие №2:https://github.com/Alexey-Antipin/flue-pipe
 
 Домашнее задание №2;
