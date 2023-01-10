@@ -27,6 +27,7 @@ type ObjectSize = {
 
 type MainState = {
   metroAndArea: MassiveOfSelect[];
+  filterList: MassiveOfSelect[];
   massive: MassiveOfSelect[];
   pictureSize: ObjectSize[];
   massiveList: Object[];
@@ -36,6 +37,53 @@ type MainState = {
 };
 
 const initialState: MainState = {
+  filterList: [
+    {
+      id: 1,
+      title: "Спальные места",
+      text: "Выберите",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Квартиры в Минске" },
+        { id: 2, text: "Квартиры в Гомеле" },
+        { id: 3, text: "Квартиры в Бресте" },
+        { id: 4, text: "Квартиры в Витебске" },
+        { id: 5, text: "Квартиры в Гродно" },
+        { id: 6, text: "Квартиры в Могилеве" },
+      ],
+    },
+    {
+      id: 1,
+      title: "Район",
+      text: "Выберите",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Минский" },
+        { id: 2, text: "Гомельский" },
+        { id: 3, text: "Брестский" },
+        { id: 4, text: "Витебский" },
+        { id: 5, text: "Гродновский" },
+        { id: 6, text: "Могилевский" },
+      ],
+    },
+    {
+      id: 1,
+      title: "Метро",
+      text: "Выберите",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Шабаны" },
+        { id: 2, text: "Пушкинская" },
+        { id: 3, text: "Фрунзенская" },
+        { id: 4, text: "Октябрьская" },
+        { id: 5, text: "Площадь Победы" },
+        { id: 6, text: "Площадь Ленина" },
+      ],
+    },
+  ],
   array: [
     "Квартиры на сутки",
     "Коттеджи и усадьбы",
@@ -81,6 +129,7 @@ const initialState: MainState = {
     {
       id: 1,
       text: "Выберите",
+      element: "Город",
       sprite: "mark",
       spriteColour: "#664EF9",
       list: [
@@ -95,6 +144,7 @@ const initialState: MainState = {
     {
       id: 2,
       text: "Выберите",
+      element: "Комнаты",
       sprite: "mark",
       spriteColour: "#664EF9",
       list: [

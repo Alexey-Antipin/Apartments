@@ -2,13 +2,13 @@ import { PaginationNumbering } from "../../common/Pagination/PaginationNumbering
 import { LinkNavigation, ListArticles } from "../../common";
 import getProducts from "../../common/Pagination/GetData";
 import styles from "./NewsDetailed.module.scss";
+import {cities} from "../../mocks";
 import propTypes from "prop-types";
 import { Sprite } from "../../svg";
 import { useState } from "react";
 import Head from "next/head";
 
 const NewsDetailed = ({ articles, totalData, currentPage }) => {
-
   const news = "Новости";
   const [value, setValue] = useState("");
   const [list, setList] = useState(articles);
@@ -42,6 +42,7 @@ const NewsDetailed = ({ articles, totalData, currentPage }) => {
           totalItems={totalData}
           currentPage={currentPage}
           itemsPerPage={9}
+          link={"news-detailed"}
         />
 
         <div className={styles.background}>
@@ -68,6 +69,7 @@ export const getStaticProps = async () => {
   const { articles, total } = await getProducts({
     limit: 9,
     page: 1,
+    array: cities.articlesNews,
   });
 
   return {

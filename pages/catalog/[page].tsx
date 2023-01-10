@@ -1,5 +1,6 @@
 import { ListArticles, PaginationNumbering } from "../../common";
 import { LinkNavigation } from "../../common/LinkNavigation";
+import getProducts from "../../common/Pagination/GetData";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
 import { useAppSelector } from "../../redux/hooks";
@@ -14,16 +15,27 @@ import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
 
-const Catalog: React.FC = () => {
-  const [articles, setArticles] = useState<ArticleRoom[]>([]);
+type Params = { params: { page: string } };
+
+type Props = {
+  currentPage: number;
+  totalData: number;
+  articles: ArticleRoom[];
+};
+
+const Catalog: React.FC<Props> = ({
+  articles,
+  totalData,
+  currentPage,
+}) => {
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
+  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
+  const tagRooms = useAppSelector((state: RootState) => state.catalog);
   const header = useAppSelector(
     (state: RootState) => state.header.underList[0]
   );
-  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
-  const catalog = useAppSelector((state: RootState) => state.catalog);
   const select = useAppSelector((state: RootState) => state.select);
   const context = useContext(Context);
 
@@ -36,10 +48,6 @@ const Catalog: React.FC = () => {
   ];
 
   useEffect(() => {
-    setArticles(catalog.articles);
-  }, [catalog.articles]);
-
-  useEffect(() => {
     const town = header.list[select.city].text.replace(/на сутки/gi, "");
     const linkTown = header.list[select.city].text.replace(
       /квартиры/gi,
@@ -49,9 +57,6 @@ const Catalog: React.FC = () => {
     setLinkCity(linkTown);
     setCity(town);
 
-    if (catalog.articles.length == 0) {
-      setArticles(cities.minsk);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -65,7 +70,7 @@ const Catalog: React.FC = () => {
         <LinkNavigation option_v1={true} main={city} deepLink={linkCity} />
         <h3 className={styles["title-h3"]}>Рекомендуем посмотреть</h3>
         <div className={styles["block-link"]}>
-          {catalog.recommendedRooms.map((el, index) => (
+          {tagRooms.recommendedRooms.map((el, index) => (
             <Link className={styles.link} key={index} href="./">
               {el}
             </Link>
@@ -73,7 +78,10 @@ const Catalog: React.FC = () => {
         </div>
       </div>
 
-      <div className={checkboxs.settings ? styles["filterRooms-position"] : ""}>
+      <div
+        className={
+          checkboxs.settings ? styles["filterRooms-position"] : ""
+        }>
         <FilterRooms
           classes={{
             classNavbar: styles.navbar,
@@ -90,7 +98,7 @@ const Catalog: React.FC = () => {
       </div>
 
       <h2 className={styles["title-h2"]}>
-        Найдено {articles.length} результата
+        Найдено {totalData} результата
       </h2>
 
       <ListArticles
@@ -110,8 +118,8 @@ const Catalog: React.FC = () => {
       <div className={styles["block-footer"]}>
         <PaginationNumbering
           classes={{ wrapper: styles["pagination-wrapper"] }}
-          totalItems={catalog.totalData}
-          currentPage={catalog.currentPage}
+          totalItems={totalData}
+          currentPage={currentPage}
           itemsPerPage={9}
           link={`catalog`}
         />
@@ -128,6 +136,49 @@ const Catalog: React.FC = () => {
       <MapBackground wrapper={styles.wrapper} paragraph={true} />
     </>
   );
+};
+
+export const getStaticProps = async ({ params }: Params) => {
+  const page = Number(params?.page) || 1;
+  const { articles, total } = await getProducts({
+    limit: 9,
+    page,
+    array: cities.minsk,
+  });
+
+  if (!articles.length) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (page === 1) {
+    return {
+      redirect: {
+        destination: "/catalog",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      articles,
+      totalData: total,
+      currentPage: page,
+      a: params,
+    },
+    revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
+  };
+};
+
+export const getStaticPaths = async () => {
+  return {
+    paths: Array.from({ length: 5 }).map(
+      (_, index) => `/catalog/${index + 2}`
+    ),
+    fallback: "blocking",
+  };
 };
 
 export default Catalog;

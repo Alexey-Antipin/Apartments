@@ -1,36 +1,45 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
+import { useAppDispatch } from "../../redux/hooks";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import clsx from "clsx";
 import {
-  selectCity,
   selectCountRooms,
+  selectCity,
 } from "../../redux/reducers/selectReducer";
 
 export const Select: React.FC<SelectOfProps> = ({
   setActive,
-  category,
-  massive,
   active,
+  setZeroing,
+  zeroing,
+  massive,
   option_3v,
   option_2v,
   option_1v,
 }) => {
-  const [open, setOpen] = useState<boolean>(false);
   const [listId, setListId] = useState<number>(0);
-  const header = useAppSelector((state: RootState) => state.header);
+  const [open, setOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLLIElement>(null);
   const dispatch = useAppDispatch();
-  const ref = useRef<any>();
+
+  useEffect(() => {
+    if (zeroing == 0 && setZeroing) {
+      setZeroing(1);
+      setListId(0);
+    }
+  }, [zeroing, setZeroing]);
 
   useEffect(() => {
     if (!open) return;
 
-    const handleClick = (e: any) => {
-      if (!ref.current.contains(e.target)) {
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current == null) {
+        return;
+      }
+      if (!ref.current.contains(e.target as Element)) {
         setOpen(false);
       }
     };
@@ -51,86 +60,93 @@ export const Select: React.FC<SelectOfProps> = ({
     setListId(elem);
   };
 
-  const handleClickOfDispatch = (category: string, arg: any) => {
-    if (category == "Город") {
-      dispatch(selectCity(arg));
-    } else {
-      dispatch(selectCountRooms(arg));
+  const handleClickOfDispatch = (type: string, num: number) => {
+    switch (type) {
+      case "Город":
+        dispatch(selectCity(num));
+        break;
+      case "Комнаты":
+        dispatch(selectCountRooms(num));
+        break;
+      default:
+        break;
     }
   };
 
   return (
-    <li
-      className={clsx(
-        option_1v && styles.item,
-        option_2v && styles["alternative-list"],
-        option_3v && styles["metro-block"]
-      )}
-      onClick={() => handleClickOpenOfList(massive.id)}
-      ref={ref}>
-      <div
+    <ul className={styles.position}>
+      <li
         className={clsx(
-          option_1v && styles.block,
-          (option_2v || option_3v) &&
-            open &&
-            styles["alternative-block-active"],
-          (option_2v || option_3v) &&
-            !open &&
-            styles["alternative-block-hover"],
-          (option_2v || option_3v) && styles["alternative-block"]
-        )}>
-        {option_3v && massive.sprite_2 && (
-          <div className={styles["metro-sprite"]}>
-            <Sprite id={massive.sprite_2} />
-          </div>
+          option_1v && styles.item,
+          option_2v && styles["alternative-list"],
+          option_3v && styles["metro-block"]
         )}
+        onClick={() => handleClickOpenOfList(massive.id)}
+        ref={ref}>
+        <div
+          className={clsx(
+            option_1v && styles.block,
+            (option_2v || option_3v) &&
+              open &&
+              styles["alternative-block-active"],
+            (option_2v || option_3v) &&
+              !open &&
+              styles["alternative-block-hover"],
+            (option_2v || option_3v) && styles["alternative-block"]
+          )}>
+          {option_3v && massive.sprite_2 && (
+            <div className={styles["metro-sprite"]}>
+              <Sprite id={massive.sprite_2} />
+            </div>
+          )}
 
-        {/* Смена слова при клике. */}
-        {(option_2v || option_3v || active === massive.id) && listId ? (
-          <div
-            className={clsx(
-              option_1v && styles.text,
-              option_2v && styles["alternative-text"],
-              option_3v && styles["metro-text"]
-            )}>
-            {massive.list[listId - 1].text}
-          </div>
-        ) : (
-          <div
-            className={clsx(
-              option_1v && styles.text,
-              option_2v && styles["alternative-text"],
-              option_3v && styles["metro-text"]
-            )}>
-            {massive.text}
-          </div>
-        )}
+          {/* Смена слова при клике. */}
+          {(option_2v || option_3v || active === massive.id) && listId ? (
+            <div
+              className={clsx(
+                option_1v && styles.text,
+                option_2v && styles["alternative-text"],
+                option_3v && styles["metro-text"]
+              )}>
+              {massive.list[listId - 1].text}
+            </div>
+          ) : (
+            <div
+              className={clsx(
+                option_1v && styles.text,
+                option_2v && styles["alternative-text"],
+                option_3v && styles["metro-text"]
+              )}>
+              {massive.text}
+            </div>
+          )}
 
-        {/* svg - картинка. */}
-        {massive.sprite && (
+          {/* svg - картинка. */}
+          {massive.sprite && (
+            <span
+              className={clsx(
+                option_1v && styles["sprite-margin"],
+                (option_2v || option_3v) && styles["alternative-sprite"]
+              )}>
+              <Sprite
+                id={massive.sprite}
+                height="12"
+                width="12"
+                colour={massive.spriteColour || "#FFD54F"}
+              />
+            </span>
+          )}
+        </div>
+
+        {/* Почёркивание при клике. */}
+        {!option_2v && !option_3v && (
           <span
             className={clsx(
-              option_1v && styles["sprite-margin"],
-              (option_2v || option_3v) && styles["alternative-sprite"]
-            )}>
-            <Sprite
-              id={massive.sprite}
-              height="12"
-              width="12"
-              colour={massive.spriteColour || "#FFD54F"}
-            />
-          </span>
+              styles.focus,
+              active === massive.id && styles["focus-active"]
+            )}></span>
         )}
-      </div>
-
-      {/* Почёркивание при клике. */}
-      {!option_2v && !option_3v && (
-        <span
-          className={clsx(
-            styles.focus,
-            active === massive.id && styles["focus-active"]
-          )}></span>
-      )}
+      </li>
 
       {/* Внутренный список. */}
       {active === massive.id && open && (
@@ -143,18 +159,12 @@ export const Select: React.FC<SelectOfProps> = ({
             <li
               className={clsx(
                 option_1v && styles["underlist-item"],
-                (option_2v || option_3v) &&
-                  styles["alternative-underlist-item"]
+                (option_2v || option_3v) && styles["alternative-underlist-item"]
               )}
               onClick={() => (
                 handleClickOfItem(elem.id),
                 (option_1v || option_2v) &&
-                  handleClickOfDispatch(
-                    (option_1v && "Город") ||
-                      (option_2v && category) ||
-                      "",
-                    header.underList[0].list[index].text
-                  )
+                  handleClickOfDispatch(massive.element || "", elem.id)
               )}
               key={index}>
               {option_1v && (
@@ -165,6 +175,6 @@ export const Select: React.FC<SelectOfProps> = ({
           ))}
         </ul>
       )}
-    </li>
+    </ul>
   );
 };

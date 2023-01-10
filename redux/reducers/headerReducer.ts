@@ -4,11 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 type HeaderState = {
   link: MassiveOfList[];
   underList: MassiveOfSelect[];
-  bookmark: {
-    id: number;
-    text: string;
-    href: string;
-  };
 };
 
 const initialState: HeaderState = {
@@ -23,8 +18,8 @@ const initialState: HeaderState = {
       sprite: "sign",
     },
     { id: 5, text: "Контакты", href: "./contacts" },
+    { id: 6, text: "Закладки", href: "./", sprite: "heart" },
   ],
-  bookmark: { id: 6, text: "Закладки", href: "./" },
   underList: [
     {
       id: 7,

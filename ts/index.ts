@@ -1,4 +1,3 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import { FormikState } from "formik";
 
 type ArticleRoom = {
@@ -15,6 +14,9 @@ type ArticleRoom = {
   width: number;
   description: string;
   photo: string;
+  photoMassive: PhotoMassive[];
+  title?: string;
+  time?: string;
   contacts: {
     master: string;
     telefon: string;
@@ -25,14 +27,34 @@ type ArticleRoom = {
       email: string;
     };
   };
+  more: {
+    gasCooker: boolean;
+    oven: boolean;
+    coffeeMaker: boolean;
+    microwave: boolean;
+    dishes: boolean;
+    dishwasher: boolean;
+    tv: boolean;
+    teapot: boolean;
+    refrigerator: boolean;
+    broom: boolean;
+    food: boolean;
+    water: boolean;
+  };
+};
+
+type PhotoMassive = {
+  photo: string;
+  width: number;
 };
 
 type SelectOfProps = {
   setActive: (value: number) => void;
-  massive: MassiveOfSelect;
-  category?: string;
   active: number;
+  setZeroing?: (value: number) => void;
+  zeroing?: number;
 
+  massive: MassiveOfSelect;
   option_1v?: boolean;
   option_2v?: boolean;
   option_3v?: boolean;
@@ -46,7 +68,9 @@ type MassiveOfSelectList = {
 type MassiveOfSelect = {
   id: number;
   text: string;
+  title?: string;
   sprite?: string;
+  element?: string;
   sprite_2?: string;
   spriteColour?: string;
   list: MassiveOfSelectList[];
@@ -91,14 +115,19 @@ type PageProps = {
 };
 
 type PaginationProps = {
-  totalItems: number;
-  currentPage: number;
   itemsPerPage?: number;
+  currentPage: number;
+  totalItems: number;
+  classes?: {
+    wrapper: string;
+  };
+  link: string;
 };
 
 type PropsLimitOfPage = {
   limit: number;
   page: number;
+  array: any[];
 };
 
 type ResponseError = {
@@ -106,7 +135,10 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: any;
+  list: ArticleRoom[];
+  alternative?: boolean;
+  sliderTrue?: boolean;
+  useSquare?: boolean;
   classes?: {
     classUl?: string;
     classList?: string;
@@ -169,13 +201,32 @@ type MassiveOfList = {
 };
 
 type SpriteProps = {
+  insideColour?: string;
   id: string | number;
   colour?: string;
   height?: string;
   width?: string;
 };
 
+type Object = { id: number; text: string; status: boolean };
+
+type Massive = {
+  list: Object[];
+};
+
+type CheckboxState = {
+  checkboxMassive: Massive[];
+  settings: boolean;
+};
+
+type CheckboxProps = {
+  massive: Object[];
+  numberling: any;
+};
+
 export type {
+  CheckboxProps,
+  CheckboxState,
   ArticleRoom,
   ResetForm,
   SelectOfProps,

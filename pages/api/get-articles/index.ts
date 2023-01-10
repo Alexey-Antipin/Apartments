@@ -1,15 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import articles from "../../../mocks/cities/rooms/minsk.json";
-import news from "../../../mocks/articles.json";
+import {cities} from "../../../mocks";
 import { Article } from "../../../ts";
 
 const GetArticles = (req: NextApiRequest, res: NextApiResponse) => {
   let { interval } = req.query;
   let number = Number(interval);
-  let lengthArticles = articles.length;
+  let lengthArticles = cities.minsk.length;
 
   try {
-    let link_articles: Article[] = news.slice(0, 5);
+    let link_articles: Article[] = cities.articlesNews.slice(0, 5);
 
     let links = link_articles.map((el) => ({
       title: el.title,
@@ -17,7 +16,7 @@ const GetArticles = (req: NextApiRequest, res: NextApiResponse) => {
     }));
 
     if (number) {
-      let new_articles = articles.slice(0, number);
+      let new_articles = cities.minsk.slice(0, number);
       res.status(200).json({
         items: new_articles,
         lengthItems: lengthArticles,
@@ -27,7 +26,7 @@ const GetArticles = (req: NextApiRequest, res: NextApiResponse) => {
     }
     res
       .status(200)
-      .json({ items: articles, lengthItems: lengthArticles, news: links });
+      .json({ items: cities.minsk, lengthItems: lengthArticles, news: links });
   } catch (error) {
     res.status(400).json([]);
   }

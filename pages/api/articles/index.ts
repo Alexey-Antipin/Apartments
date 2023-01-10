@@ -1,6 +1,6 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import { Article, ResponseError } from "../../../ts";
-import articles from "../../../mocks/articles.json";
+import {cities} from "../../../mocks";
 
 const HandlerArticles = (
   req: NextApiRequest,
@@ -8,7 +8,7 @@ const HandlerArticles = (
 ) => {
   let { rangeMin, rangeMax } = req.query;
 
-  const filtered = articles.slice(Number(rangeMin), Number(rangeMax));
+  const filtered = cities.articlesNews.slice(Number(rangeMin), Number(rangeMax));
 
   return filtered.length > 0
     ? res.status(200).json(filtered)
