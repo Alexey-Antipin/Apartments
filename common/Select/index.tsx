@@ -7,7 +7,6 @@ import Link from "next/link";
 import clsx from "clsx";
 import {
   selectCountRooms,
-  defaultSettings,
   selectCity,
 } from "../../redux/reducers/selectReducer";
 
@@ -36,7 +35,7 @@ export const Select: React.FC<SelectOfProps> = ({
   useEffect(() => {
     if (!open) return;
 
-    const handleClick = (e: MouseEvent ) => {
+    const handleClick = (e: MouseEvent) => {
       if (ref.current == null) {
         return;
       }
@@ -70,7 +69,6 @@ export const Select: React.FC<SelectOfProps> = ({
         dispatch(selectCountRooms(num));
         break;
       default:
-        dispatch(defaultSettings());
         break;
     }
   };
@@ -161,13 +159,12 @@ export const Select: React.FC<SelectOfProps> = ({
             <li
               className={clsx(
                 option_1v && styles["underlist-item"],
-                (option_2v || option_3v) &&
-                  styles["alternative-underlist-item"]
+                (option_2v || option_3v) && styles["alternative-underlist-item"]
               )}
               onClick={() => (
                 handleClickOfItem(elem.id),
                 (option_1v || option_2v) &&
-                  handleClickOfDispatch(massive.element || "", elem.id - 1)
+                  handleClickOfDispatch(massive.element || "", elem.id)
               )}
               key={index}>
               {option_1v && (

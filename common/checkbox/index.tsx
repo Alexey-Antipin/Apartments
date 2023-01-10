@@ -4,10 +4,7 @@ import { useDispatch } from "react-redux";
 import { CheckboxProps } from "../../ts";
 import { Sprite } from "../../svg";
 
-export const Checkbox: React.FC<CheckboxProps> = ({
-  massive,
-  numberling,
-}) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ massive, numberling }) => {
   const dispatch = useDispatch();
 
   const handleClick = (element: { id: number; status: boolean }) => {
@@ -25,17 +22,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       {massive.map((el, index: number) => (
         <li className={styles.item} key={index}>
           <button
-            className={
-              el.status ? styles["button-on"] : styles["button-off"]
-            }
+            className={el.status ? styles["button-on"] : styles["button-off"]}
             onClick={() => handleClick(el)}
             id={`click-button-${numberling}-${el.id}`}>
             <Sprite id="checkbox" />
           </button>
 
-          <label
-            className={styles.text}
-            htmlFor={`click-button-${numberling}-${el.id}`}>
+          <label className={styles.text} htmlFor={`click-button-${numberling}-${el.id}`}>
             {el.text}
           </label>
         </li>

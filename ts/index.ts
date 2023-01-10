@@ -27,6 +27,20 @@ type ArticleRoom = {
       email: string;
     };
   };
+  more: {
+    gasCooker: boolean;
+    oven: boolean;
+    coffeeMaker: boolean;
+    microwave: boolean;
+    dishes: boolean;
+    dishwasher: boolean;
+    tv: boolean;
+    teapot: boolean;
+    refrigerator: boolean;
+    broom: boolean;
+    food: boolean;
+    water: boolean;
+  };
 };
 
 type PhotoMassive = {

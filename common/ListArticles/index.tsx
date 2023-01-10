@@ -168,7 +168,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
                         alternative && styles["alternative-info-price"],
                         styles["info-price"]
                       )}>
-                      {item.price}
+                      {item.price}  BYN
                       <span className={styles["info-price-day"]}>
                         за сутки
                       </span>

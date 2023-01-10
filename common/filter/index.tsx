@@ -1,17 +1,21 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { choiceCity } from "../../redux/reducers/catalogReducer";
 import { toogleBox } from "../../redux/reducers/checkboxReducer";
-import { HTMLProps, useEffect, useRef, useState } from "react";
+import getProducts from "../../common/Pagination/GetData";
+import { ArticleRoom, MassiveOfSelect } from "../../ts";
+import { useEffect, useRef, useState } from "react";
 import { RootState } from "../../redux/store";
-import { MassiveOfSelect } from "../../ts";
 import styles from "./Filter.module.scss";
 import { useRouter } from "next/router";
 import { Checkbox } from "../checkbox";
+import { cities } from "../../mocks";
 import { Select } from "../Select";
 import { Sprite } from "../../svg";
 import clsx from "clsx";
 import {
   selectPriceMin,
   selectPriceMax,
+  defaultPrice,
 } from "../../redux/reducers/selectReducer";
 
 type ClassFilter = {
@@ -38,6 +42,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   option,
 }) => {
   const checkbox = useAppSelector((state: RootState) => state.checkbox);
+  const select = useAppSelector((state: RootState) => state.select);
   const main = useAppSelector((state: RootState) => state.main);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -52,28 +57,105 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const handleClick = () => {
-    dispatch(selectPriceMin(valueMin));
+  useEffect(() => {
+    optionPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valueMin, valueMax]);
 
-    if (valueMin > valueMax) {
+  // Показать объекты
+  const handleClick = () => {
+    // Выбор города
+    const newCity: ArticleRoom[] = optionCity();
+
+    // Фильтр цен
+    const arrayPrice = filterPrice(newCity);
+
+    const { articles, total } = getProducts({
+      limit: 9,
+      page: 1,
+      array: arrayPrice,
+    });
+
+    dispatch(
+      choiceCity({
+        articles,
+        totalData: total,
+        currentPage: 1,
+      })
+    );
+
+    if (router.pathname !== "/catalog") {
+      router.push(`./catalog/`);
+    }
+  };
+
+  // Выбор города
+  const optionCity = () => {
+    switch (select.city) {
+      case 0:
+        return cities.minsk;
+      case 1:
+        return cities.gomel;
+      case 2:
+        return cities.brest;
+      case 3:
+        return cities.vitebsk;
+      case 4:
+        return cities.grodno;
+      case 5:
+        return cities.mogilev;
+      default:
+        return cities.minsk;
+    }
+  };
+
+  // Выбор цен
+  const optionPrice = () => {
+    // Минимум цена
+    if (valueMin) {
+      dispatch(selectPriceMin(valueMin));
+    } else {
+      dispatch(selectPriceMin("0"));
+    }
+
+    // Максимум цена
+    if (!valueMax) {
+      dispatch(selectPriceMax("10000"));
+      return;
+    }
+
+    if (valueMin >= valueMax) {
       dispatch(selectPriceMax(valueMin));
     } else {
       dispatch(selectPriceMax(valueMax));
     }
-    router.push(`./catalog/`);
   };
 
+  // Фильтр цен и комнат
+  const filterPrice = (array: ArticleRoom[]) => {
+    return array.filter(
+      (item) =>
+        +select.priceMin <= +item.price &&
+        +item.price <= +select.priceMax &&
+        (select.rooms !== 0 ? select.rooms == item.room : item.room)
+    );
+  };
+
+  // Больше опций
   const handleClickSettings = () => {
     setSettings(!settings);
     dispatch(toogleBox(!settings));
   };
 
+  // Очистить всё
   const handleClickOfClean = () => {
+    dispatch(defaultPrice());
     setValueMax("");
     setValueMin("");
     setZeroing(0);
   };
 
+  // Только числа
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     return event.target.value.replace(/^[^0-9]{0,3}$/, "");
   };
@@ -182,14 +264,9 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
 
             {/* Показать объекты */}
             <button
-              className={clsx(
-                styles["button-main"],
-                styles["button-colour"]
-              )}
+              className={clsx(styles["button-main"], styles["button-colour"])}
               onClick={() => handleClick()}>
-              <span className={styles["text-padding"]}>
-                Показать объекты
-              </span>
+              <span className={styles["text-padding"]}>Показать объекты</span>
               <Sprite id="mark" colour="#FFFFFF" />
             </button>
           </>
@@ -202,8 +279,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
               <div
                 className={classes?.classList || styles["filter-list"]}
                 key={index}>
-                <h2
-                  className={classes?.classTitle || styles["title-under"]}>
+                <h2 className={classes?.classTitle || styles["title-under"]}>
                   {array.title}
                 </h2>
                 <Select

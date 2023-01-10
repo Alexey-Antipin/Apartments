@@ -30,11 +30,10 @@ export const selectSlice = createSlice({
     selectPriceMax(state, action: PayloadAction<string>) {
       state.priceMax = action.payload;
     },
-    defaultSettings(state) {
+    defaultPrice(state) {
       state.priceMax = "10000";
       state.priceMin = "0";
       state.rooms = 0;
-      state.city = 0;
     },
   },
 });
@@ -44,7 +43,7 @@ export const {
   selectCountRooms,
   selectPriceMin,
   selectPriceMax,
-  defaultSettings,
+  defaultPrice,
 } = selectSlice.actions;
 
 export default selectSlice.reducer;
