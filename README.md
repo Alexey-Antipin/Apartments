@@ -27,7 +27,7 @@
 занятие №10:https://github.com/Alexey-Antipin/Project/pull/5
 
 Домашнее задание №6;<br/>
-занятие №12-redux: https://github.com/Alexey-Antipin/Project-Next-js/pull/2
+занятие №12-redux: https://github.com/Alexey-Antipin/Project-Next-js/pull/2<br/>
 занятие №12-context:https://github.com/Alexey-Antipin/Project-Next-js/pull/9/commits/7c3d60d5fbc802ec8f013e03f3e74258f54eea3d#diff-a9827ce1be32c607c948881a89b99c592f752898f9c49e0dea0b7199eb151029
 
 Домашнее задание №7;<br/>
