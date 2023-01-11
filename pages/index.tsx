@@ -22,12 +22,26 @@ const Home: React.FC = () => {
 
   const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
+  const select = useAppSelector((state: RootState) => state.select);
 
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    filterSlider();
+  }, [select.metro, select.area]);
+
+  const filterSlider = () => {
+    if (!select.metro || !select.area) {
+      return rooms.articles.items;
+    }
+    return rooms.articles.items.filter(
+      (item) => select.metro == item.station && select.area == item.area
+    );
+  };
 
   return (
     <>
@@ -90,12 +104,7 @@ const Home: React.FC = () => {
 
           {/* Куб точек. */}
           <div className={styles["position-picture"]}>
-            <Image
-              src={"/points.png"}
-              alt="points"
-              height={61}
-              width={61}
-            />
+            <Image src={"/points.png"} alt="points" height={61} width={61} />
           </div>
         </div>
       </div>
@@ -114,7 +123,7 @@ const Home: React.FC = () => {
         <div className={styles["slider-margin"]}>
           <Slider interval={1490} step={1490}>
             <ListArticles
-              list={rooms.articles.items}
+              list={filterSlider()}
               useSquare={true}
               classes={{
                 classUl: styles["block-list"],
@@ -153,10 +162,7 @@ const Home: React.FC = () => {
           </div>
 
           <div
-            className={clsx(
-              styles["block-line-margin"],
-              styles["block-line"]
-            )}
+            className={clsx(styles["block-line-margin"], styles["block-line"])}
           />
 
           <Link href="./" className={styles["button-watch-alles"]}>
@@ -193,15 +199,11 @@ const Home: React.FC = () => {
                       <div className={styles["map-sprite"]}>
                         <Sprite id={el.sprite} />
                       </div>
-                      <h4 className={styles["map-title-h4"]}>
-                        {el.title}
-                      </h4>
+                      <h4 className={styles["map-title-h4"]}>{el.title}</h4>
                     </div>
                   ) : (
                     <div>
-                      <h4 className={styles["map-title-gold"]}>
-                        {el.title}
-                      </h4>
+                      <h4 className={styles["map-title-gold"]}>{el.title}</h4>
                     </div>
                   )}
 
@@ -291,8 +293,8 @@ const Home: React.FC = () => {
                 <p className={styles["description-paragraph"]}>
                   <strong>Нужна квартира на сутки в Минске?</strong>
                   <br />
-                  На веб-сайте sdaem.by вас ждет масса выгодных
-                  предложений. Каталог насчитывает
+                  На веб-сайте sdaem.by вас ждет масса выгодных предложений.
+                  Каталог насчитывает
                   <strong> более 500 квартир.</strong>
                   <br />
                   Благодаря удобной навигации вы быстро найдете подходящий
@@ -314,12 +316,12 @@ const Home: React.FC = () => {
             <p className={styles["description-paragraph"]}>
               Чтобы снять квартиру на сутки в Минске, вам достаточно
               определиться с выбором и связаться с владельцем для уточнения
-              условий аренды и заключить договор. Заметим, на сайте
-              представлены исключительно квартиры на сутки без посредников,
-              что избавляет посетителей от необходимости взаимодействовать
-              с агентствами, тратя свое время и деньги. Также пользователи
-              сайта могут совершенно бесплатно размещать объявления о
-              готовности сдать квартиру на сутки.
+              условий аренды и заключить договор. Заметим, на сайте представлены
+              исключительно квартиры на сутки без посредников, что избавляет
+              посетителей от необходимости взаимодействовать с агентствами,
+              тратя свое время и деньги. Также пользователи сайта могут
+              совершенно бесплатно размещать объявления о готовности сдать
+              квартиру на сутки.
             </p>
           </div>
 
@@ -349,9 +351,7 @@ const Home: React.FC = () => {
                     {el.date}
                   </time>
 
-                  {index !== 4 && (
-                    <hr className={styles["description-line"]} />
-                  )}
+                  {index !== 4 && <hr className={styles["description-line"]} />}
                 </div>
               ))}
             </div>

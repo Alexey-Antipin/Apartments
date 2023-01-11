@@ -5,11 +5,15 @@ type SelectState = {
   priceMax: string;
   rooms: number;
   city: number;
+  metro: string;
+  area: string;
 };
 
 const initialState: SelectState = {
   priceMin: "",
   priceMax: "",
+  metro: "",
+  area: "",
   rooms: 0,
   city: 0,
 };
@@ -30,6 +34,12 @@ export const selectSlice = createSlice({
     selectPriceMax(state, action: PayloadAction<string>) {
       state.priceMax = action.payload;
     },
+    selectMetro(state, action: PayloadAction<string>) {
+      state.metro = action.payload;
+    },
+    selectArea(state, action: PayloadAction<string>) {
+      state.area = action.payload;
+    },
     defaultPrice(state) {
       state.priceMax = "10000";
       state.priceMin = "0";
@@ -44,6 +54,8 @@ export const {
   selectPriceMin,
   selectPriceMax,
   defaultPrice,
+  selectMetro,
+  selectArea,
 } = selectSlice.actions;
 
 export default selectSlice.reducer;

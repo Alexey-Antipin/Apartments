@@ -8,6 +8,8 @@ import clsx from "clsx";
 import {
   selectCountRooms,
   selectCity,
+  selectMetro,
+  selectArea,
 } from "../../redux/reducers/selectReducer";
 
 export const Select: React.FC<SelectOfProps> = ({
@@ -67,6 +69,12 @@ export const Select: React.FC<SelectOfProps> = ({
         break;
       case "Комнаты":
         dispatch(selectCountRooms(num));
+        break;
+      case "Метро":
+        dispatch(selectMetro(massive.list[num - 1].text));
+        break;
+      case "Район":
+        dispatch(selectArea(massive.list[num - 1].text));
         break;
       default:
         break;
@@ -163,8 +171,7 @@ export const Select: React.FC<SelectOfProps> = ({
               )}
               onClick={() => (
                 handleClickOfItem(elem.id),
-                (option_1v || option_2v) &&
-                  handleClickOfDispatch(massive.element || "", elem.id)
+                handleClickOfDispatch(massive.element || "", elem.id)
               )}
               key={index}>
               {option_1v && (

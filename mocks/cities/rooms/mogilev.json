@@ -7,8 +7,8 @@
     "room": "4",
     "city": "Могилёв",
     "street": "б-р Мулявина, д. 10",
-    "station": "Грушевка",
-    "area": "Шабаны",
+    "station": "Шабаны",
+    "area": "Заводской р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
     "photoMassive": [
@@ -190,7 +190,7 @@
     "city": "Могилёв",
     "street": "б-р Мулявина, д. 10",
     "station": "Пушкинская",
-    "area": "Октябрьский р.",
+    "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
     "photoMassive": [
