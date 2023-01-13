@@ -1,7 +1,7 @@
 import { articlesThunk } from "../redux/reducers/articlesReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { ImageBlock } from "../common/ImageBlock";
 import { LinkNavigation, List, ListArticles } from "../common";
+import { ImageBlock } from "../common/ImageBlock";
 import styles from "../styles/Main.module.scss";
 import { FilterRooms } from "../common/filter";
 import { MapBackground } from "../common/map";
@@ -32,6 +32,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     filterSlider();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select.metro, select.area]);
 
   const filterSlider = () => {
@@ -74,13 +75,14 @@ const Home: React.FC = () => {
           <div className={styles["block-picture"]}>
             {main.pictureSize.map((el) => (
               <ImageBlock
-                title_2h={el.title_2h}
-                title_3h={el.title_3h}
                 cl_title_2h={el.cl_title_2h}
                 cl_title_3h={el.cl_title_3h}
+                title_2h={el.title_2h}
+                title_3h={el.title_3h}
                 cities={main.cities}
+                massive={el.massive}
+                indexMap={el.index}
                 width={el.width}
-                index={el.index}
                 key={el.index}
               />
             ))}
@@ -165,7 +167,7 @@ const Home: React.FC = () => {
             className={clsx(styles["block-line-margin"], styles["block-line"])}
           />
 
-          <Link href="./" className={styles["button-watch-alles"]}>
+          <Link href="./catalog" className={styles["button-watch-alles"]}>
             Посмотреть все
             <div className={styles["sprite-margin"]}>
               <Sprite id="mark" colour="#ffffff" />
@@ -356,7 +358,9 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            <Link className={styles["description-button"]} href="./">
+            <Link
+              className={styles["description-button"]}
+              href="./news-detailed">
               Посмотреть все
               <div className={styles["description-sprite"]}>
                 <Sprite id="mark" colour="#664ef9" />

@@ -21,6 +21,7 @@ type ObjectSize = {
   cl_title_3h: string;
   title_2h: string;
   title_3h: string;
+  massive: string[];
   index: number;
   width: number;
 };
@@ -90,7 +91,7 @@ const initialState: MainState = {
     "Бани и сауны",
     "Авто напрокат",
   ],
-  cities: ["Минск", "Витебск", "Гродно", "Гомель", "Брест", "Могилев"],
+  cities: ["Минск", "Гомель", "Брест", "Витебск", "Гродно", "Могилев"],
   pictureSize: [
     {
       index: 1,
@@ -99,6 +100,7 @@ const initialState: MainState = {
       title_3h: "Квартиры на сутки",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-1"],
+      massive: ["picture-1"],
     },
     {
       index: 2,
@@ -107,6 +109,7 @@ const initialState: MainState = {
       title_3h: "Коттеджи и усадьбы",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-2"],
+      massive: ["picture-2", "room-1", "room-2", "room-3", "picture-2"],
     },
     {
       index: 3,
@@ -115,6 +118,7 @@ const initialState: MainState = {
       title_3h: "Бани и сауны",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-2"],
+      massive: ["picture-3", "room-1", "room-2", "room-3", "picture-3"],
     },
     {
       index: 4,
@@ -123,6 +127,7 @@ const initialState: MainState = {
       title_3h: "Авто на прокат",
       cl_title_2h: styles["title_2h-2"],
       cl_title_3h: styles["title_3h-3"],
+      massive: ["picture-4", "room-1", "room-2", "room-3", "picture-4"],
     },
   ],
   massive: [
