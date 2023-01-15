@@ -1,12 +1,14 @@
-import { ListArticles, PaginationNumbering } from "../../common";
+import { PaginationNumbering, getData } from "../../common/pagination";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { choiceCity } from "../../redux/reducers/catalogReducer";
 import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
-import { useAppSelector } from "../../redux/hooks";
 import { FilterRooms } from "../../common/filter";
 import { MapBackground } from "../../common/map";
 import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
+import { ListArticles } from "../../common";
 import styles from "./Catalog.module.scss";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
@@ -14,18 +16,24 @@ import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
 
-const Catalog: React.FC = () => {
-  const [articles, setArticles] = useState<ArticleRoom[]>([]);
+type Props = {
+  articles: ArticleRoom[];
+  currentPage: number;
+  totalData: number;
+};
+
+const Catalog: React.FC<Props> = (props) => {
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
-  const header = useAppSelector(
-    (state: RootState) => state.header.underList[0]
-  );
   const checkboxs = useAppSelector((state: RootState) => state.checkbox);
   const catalog = useAppSelector((state: RootState) => state.catalog);
   const select = useAppSelector((state: RootState) => state.select);
   const context = useContext(Context);
+  const dispatch = useAppDispatch();
+  const header = useAppSelector(
+    (state: RootState) => state.header.underList[0]
+  );
 
   const network = [
     { net: "vk", href: "./" },
@@ -36,8 +44,11 @@ const Catalog: React.FC = () => {
   ];
 
   useEffect(() => {
-    setArticles(catalog.articles);
-  }, [catalog.articles]);
+    if (!catalog.articles.length) {
+      dispatch(choiceCity(props));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const town = header.list[select.city].text.replace(/на сутки/gi, "");
@@ -49,9 +60,6 @@ const Catalog: React.FC = () => {
     setLinkCity(linkTown);
     setCity(town);
 
-    if (catalog.articles.length == 0) {
-      setArticles(cities.minsk);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select.city]);
 
@@ -90,13 +98,13 @@ const Catalog: React.FC = () => {
       </div>
 
       <h2 className={styles["title-h2"]}>
-        Найдено {articles.length} результата
+        Найдено {catalog.totalData} результата
       </h2>
 
       <ListArticles
         alternative={!context.colourSprite}
         sliderTrue={true}
-        list={articles}
+        list={catalog.articles}
         classes={{
           classUl: context.colourSprite
             ? styles["catalog-list"]
@@ -128,6 +136,22 @@ const Catalog: React.FC = () => {
       <MapBackground wrapper={styles.wrapper} paragraph={true} />
     </>
   );
+};
+
+export const getStaticProps = () => {
+  const { articles, total } = getData({
+    limit: 9,
+    page: 1,
+    array: cities.minsk,
+  });
+
+  return {
+    props: {
+      articles,
+      totalData: total,
+      currentPage: 1,
+    },
+  };
 };
 
 export default Catalog;

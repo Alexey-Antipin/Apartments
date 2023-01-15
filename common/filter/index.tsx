@@ -78,9 +78,9 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
 
     dispatch(
       choiceCity({
-        articles,
         totalData: total,
         currentPage: 1,
+        articles,
       })
     );
 
