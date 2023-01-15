@@ -1,5 +1,5 @@
 import { ListArticles, PaginationNumbering } from "../../common";
-import { LinkNavigation } from "../../common/LinkNavigation";
+import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
 import { useAppSelector } from "../../redux/hooks";
@@ -53,7 +53,7 @@ const Catalog: React.FC = () => {
       setArticles(cities.minsk);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [select.city]);
 
   return (
     <>

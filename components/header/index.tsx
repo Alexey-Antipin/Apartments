@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
-import { Select } from "../../common/Select";
+import { Select } from "../../common/select";
 import styles from "./Header.module.scss";
 import { getCookie } from "cookies-next";
 import { Context } from "../context";

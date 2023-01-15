@@ -1,10 +1,12 @@
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import styles from "../../styles/Main.module.scss";
-import { createSlice } from "@reduxjs/toolkit";
 import { MassiveOfSelect } from "../../ts";
+import axios from "axios";
 
 type Object = {
-  title: string;
   massive: string[];
+  sprite?: boolean;
+  title: string;
 };
 
 type ObjectCard = {
@@ -33,9 +35,12 @@ type MainState = {
   pictureSize: ObjectSize[];
   massiveList: Object[];
   card: ObjectCard[];
+  amountRooms: { amount: string[]; cottage: string[] };
   cities: string[];
   array: string[];
 };
+
+type LengthRooms = { amount: string[]; count: string[] };
 
 const initialState: MainState = {
   filterList: [
@@ -181,7 +186,17 @@ const initialState: MainState = {
         "Коттеджи",
         "Загородный комплекс",
         "Базы отдыха",
-        "Еще",
+      ],
+    },
+    {
+      title: "Еще",
+      sprite: true,
+      massive: [
+        "Пример - 1",
+        "Пример - 2",
+        "Пример - 3",
+        "Пример - 4",
+        "Пример - 5",
       ],
     },
     {
@@ -252,12 +267,30 @@ const initialState: MainState = {
       cross: "/cross.png",
     },
   ],
+  amountRooms: { amount: [], cottage: [] },
 };
+
+export const amountOfRoomsThunk = createAsyncThunk(
+  "main/mainAmountOfRooms",
+  async () => {
+    let { data } = await axios.get("http://localhost:3000/api/get-amount");
+    return data;
+  }
+);
 
 export const mainSlice = createSlice({
   name: "main",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      amountOfRoomsThunk.fulfilled,
+      (state, action: PayloadAction<LengthRooms>) => {
+        state.amountRooms.cottage = action.payload.count;
+        state.amountRooms.amount = action.payload.amount;
+      }
+    );
+  },
 });
 
 export default mainSlice.reducer;

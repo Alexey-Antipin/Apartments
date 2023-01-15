@@ -68,7 +68,7 @@ export const Select: React.FC<SelectOfProps> = ({
         dispatch(selectCity(num));
         break;
       case "Комнаты":
-        dispatch(selectCountRooms(num));
+        dispatch(selectCountRooms(num + 1));
         break;
       case "Метро":
         dispatch(selectMetro(massive.list[num - 1].text));
@@ -171,7 +171,7 @@ export const Select: React.FC<SelectOfProps> = ({
               )}
               onClick={() => (
                 handleClickOfItem(elem.id),
-                handleClickOfDispatch(massive.element || "", elem.id)
+                handleClickOfDispatch(massive.element || "", index)
               )}
               key={index}>
               {option_1v && (

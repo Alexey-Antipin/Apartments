@@ -1,6 +1,6 @@
 import { ListArticles, PaginationNumbering } from "../../common";
-import { LinkNavigation } from "../../common/LinkNavigation";
-import getProducts from "../../common/Pagination/GetData";
+import { LinkNavigation } from "../../common/linkNavigation";
+import getProducts from "../../common/Pagination/getData";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
 import { useAppSelector } from "../../redux/hooks";

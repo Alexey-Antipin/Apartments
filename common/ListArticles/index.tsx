@@ -3,7 +3,7 @@ import { Context } from "../../components/context";
 import styles from "./ListArticles.module.scss";
 import { ArticleProps } from "../../ts";
 import { Sprite } from "../../svg";
-import { Slider } from "../Slider";
+import { Slider } from "../slider";
 import Image from "next/image";
 import clsx from "clsx";
 

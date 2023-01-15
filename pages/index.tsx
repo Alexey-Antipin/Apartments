@@ -1,3 +1,4 @@
+import { amountOfRoomsThunk } from "../redux/reducers/mainReducer";
 import { articlesThunk } from "../redux/reducers/articlesReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { LinkNavigation, List, ListArticles } from "../common";
@@ -7,8 +8,8 @@ import { FilterRooms } from "../common/filter";
 import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
-import { Select } from "../common/Select";
-import { Slider } from "../common/Slider";
+import { Select } from "../common/select";
+import { Slider } from "../common/slider";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
 import Image from "next/image";
@@ -23,10 +24,12 @@ const Home: React.FC = () => {
   const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
   const select = useAppSelector((state: RootState) => state.select);
+  const amount = [main.amountRooms.amount, main.amountRooms.cottage];
 
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
+    dispatch(amountOfRoomsThunk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -35,6 +38,7 @@ const Home: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select.metro, select.area]);
 
+  // Фильтр
   const filterSlider = () => {
     if (!select.metro || !select.area) {
       return rooms.articles.items;
@@ -90,16 +94,18 @@ const Home: React.FC = () => {
 
           {/* Выбор городов. */}
           <div className={styles["city-block"]}>
-            {[0, 1, 2].map((el) => (
+            {[0, 1, 2, 3].map((el) => (
               <List
                 key={el}
-                title={main.massiveList[el].title}
                 array={main.massiveList[el].massive}
+                header={main.massiveList[el]}
                 classes={{
-                  classList: styles["city-List"],
+                  classDisabled: styles["city-disabled"],
                   classTitle: styles["city-title"],
+                  classList: styles["city-list"],
                   classUl: styles["city-ul"],
                 }}
+                amount={amount[el]}
               />
             ))}
           </div>

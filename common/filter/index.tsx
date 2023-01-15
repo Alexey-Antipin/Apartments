@@ -1,15 +1,15 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { choiceCity } from "../../redux/reducers/catalogReducer";
 import { toogleBox } from "../../redux/reducers/checkboxReducer";
-import getProducts from "../../common/Pagination/GetData";
 import { ArticleRoom, MassiveOfSelect } from "../../ts";
 import { useEffect, useRef, useState } from "react";
+import getProducts from "../pagination/getData";
 import { RootState } from "../../redux/store";
 import styles from "./Filter.module.scss";
 import { useRouter } from "next/router";
 import { Checkbox } from "../checkbox";
 import { cities } from "../../mocks";
-import { Select } from "../Select";
+import { Select } from "../select";
 import { Sprite } from "../../svg";
 import clsx from "clsx";
 import {

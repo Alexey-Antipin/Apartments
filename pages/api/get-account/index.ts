@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import user from "../../../mocks/users.json";
+import user from "../../../mocks/user/users.json";
 
 const GetAccount = (req: NextApiRequest, res: NextApiResponse) => {
   let { login, password, remember } = req.query;

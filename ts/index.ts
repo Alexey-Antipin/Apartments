@@ -135,7 +135,7 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: ArticleRoom[];
+  list: any[];
   alternative?: boolean;
   sliderTrue?: boolean;
   useSquare?: boolean;
@@ -183,14 +183,16 @@ type MassiveOfListProps = {
   classes?: MassiveOfClassesProps;
   beginNumber?: number;
   active?: boolean;
-  title?: string;
+  header?: { sprite?: boolean; title: string };
+  amount?: string[];
   array: string[];
 };
 
 type MassiveOfClassesProps = {
-  classUl?: string;
-  classList?: string;
+  classDisabled?:string;
   classTitle?: string;
+  classList?: string;
+  classUl?: string;
 };
 
 type MassiveOfList = {

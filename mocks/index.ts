@@ -1,3 +1,7 @@
+import recreationCenters from "./cities/cottage/recreation-centers.json";
+import countryComplex from "./cities/cottage/country-complex.json";
+import farmsteads from "./cities/cottage/farmsteads.json";
+import cottages from "./cities/cottage/cottages.json";
 import vitebsk from "./cities/rooms/vitebsk.json";
 import mogilev from "./cities/rooms/mogilev.json";
 import articlesNews from "./news/articles.json";
@@ -16,6 +20,13 @@ type Cities = {
   brest: any[];
 };
 
+type Cottage = {
+  recreationCenters: any[];
+  countryComplex: any[];
+  farmsteads: any[];
+  cottages: any[];
+};
+
 const cities: Cities = {
   vitebsk,
   mogilev,
@@ -26,4 +37,11 @@ const cities: Cities = {
   articlesNews,
 };
 
-export { cities };
+const cottage: Cottage = {
+  recreationCenters,
+  countryComplex,
+  farmsteads,
+  cottages,
+};
+
+export { cities, cottage };
