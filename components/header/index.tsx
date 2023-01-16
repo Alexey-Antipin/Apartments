@@ -13,17 +13,21 @@ import clsx from "clsx";
 export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");
   const [activeId, setActiveId] = useState<number>(0);
+  const context = useContext(Context);
+
+  const { remember } = useAppSelector(
+    (state: RootState) => state.authorization
+  );
   const { link, underList } = useAppSelector(
     (state: RootState) => state.header
   );
-  const context = useContext(Context);
 
   useEffect(() => {
     let cookieUser = getCookie("user");
 
     if (!cookieUser) return;
     setCookie(cookieUser);
-  }, []);
+  }, [remember]);
 
   return (
     <>
@@ -59,6 +63,7 @@ export const Header: React.FC = () => {
                 <Link
                   className={clsx(
                     styles.text,
+                    index == 5 && styles["text-medium"],
                     activeId === elem.id && styles["text--active"]
                   )}
                   href={elem.href || "./"}>
@@ -77,7 +82,19 @@ export const Header: React.FC = () => {
           ))}
 
           {cookie ? (
-            <p className={styles.login}>{cookie}</p>
+            <li className={styles["item-login"]}>
+              <Image
+                className={styles.image}
+                src="/user/user.png"
+                alt="user"
+                height={30}
+                width={30}
+              />
+              <p className={styles["text-medium"]}>{cookie}</p>
+              <div className={styles["sprite-mark"]}>
+                <Sprite id="mark" colour="#4E64F9" width="10" height="14" />
+              </div>
+            </li>
           ) : (
             <li className={styles.item}>
               <Link

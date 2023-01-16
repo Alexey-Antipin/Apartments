@@ -66,33 +66,33 @@ type MassiveOfSelectList = {
 };
 
 type MassiveOfSelect = {
-  id: number;
-  text: string;
-  title?: string;
-  sprite?: string;
-  element?: string;
-  sprite_2?: string;
-  spriteColour?: string;
   list: MassiveOfSelectList[];
+  spriteColour?: string;
+  sprite_2?: string;
+  element?: string;
+  sprite?: string;
+  title?: string;
+  text: string;
+  id: number;
 };
 
 type RegistrationOfFormik = {
+  confirmPassword: string;
+  password: string;
   login: string;
   email: string;
-  password: string;
-  confirmPassword: string;
 };
 
 type AuthorizationOfFormik = {
-  login: string;
   password: string;
-  remember: string;
+  remember: boolean;
+  login: string;
 };
 
 type ContactsOfField = {
-  name: string;
-  email: string;
   message: string;
+  email: string;
+  name: string;
 };
 
 type ResetForm = {

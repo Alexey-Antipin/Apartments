@@ -91,10 +91,15 @@
   border-radius: 50%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   margin-left: 3px;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s;
 }
 .round-on {
   margin-left: 16px;
+}
+
+.switch-block {
+  position: absolute;
+  opacity: 0;
 }
 
 .switch {
@@ -103,10 +108,12 @@
 
   border-radius: 100px;
   border: none;
-  margin-right: 8px;
-  transition: 0.5s;
-  padding: 0;
+
   background: #bdbdbd;
+  transition: 0.5s;
+
+  margin-right: 8px;
+  padding-top: 3px;
 }
 .switch-on {
   background: #664ef9;
@@ -121,6 +128,9 @@
   @extend %text-violet;
   margin-left: 36px;
 }
+.forgot:hover {
+  color: #9a8cf5;
+}
 .entrance {
   height: 50px;
   width: 306px;
@@ -133,6 +143,9 @@
   border: none;
   margin-bottom: 25px;
 }
+.entrance:hover {
+  background: #ffcc25;
+}
 
 .account {
   @extend %text;
@@ -143,7 +156,9 @@
   @extend %text-violet;
   padding-left: 10px;
 }
-
+.account-create:hover {
+  color: #9a8cf5;
+}
 .formik-error-block {
   border: 2px solid lightcoral;
 }
