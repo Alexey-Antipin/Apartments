@@ -37,12 +37,12 @@
   margin-left: 6px;
   svg {
     transition: 1s;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
   }
 }
 .sprite-active {
   svg {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
   }
 }
 
