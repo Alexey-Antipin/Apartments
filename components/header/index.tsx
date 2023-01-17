@@ -1,6 +1,6 @@
 import { accountDelete } from "../../redux/reducers/authorizationReducer";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { RootState } from "../../redux/store";
 import { Select } from "../../common/select";
 import { deleteCookie } from "cookies-next";
@@ -17,6 +17,7 @@ export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");
   const [toggle, setToggle] = useState<boolean | null>(null);
   const [activeId, setActiveId] = useState<number>(0);
+  const user = useRef<HTMLLIElement>(null);
   const context = useContext(Context);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -39,6 +40,21 @@ export const Header: React.FC = () => {
     }
   }, [account]);
 
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (user.current == null) return;
+      if (!user.current.contains(e.target as Element)) {
+        setToggle(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+
   // Открытие списка под пользователем
   const handleClick = () => {
     if (toggle == null) {
@@ -50,12 +66,14 @@ export const Header: React.FC = () => {
   // Вход в другой аккаунт сразу
   const anotherAccount = () => {
     router.push("./authorization");
+    setToggle(false);
   };
 
   // Выход пользователя
   const exitAccount = () => {
     deleteCookie("user");
     dispatch(accountDelete());
+    setToggle(false);
   };
 
   return (
@@ -111,7 +129,7 @@ export const Header: React.FC = () => {
           ))}
 
           {cookie ? (
-            <li className={styles.item}>
+            <li className={styles.item} ref={user}>
               <button
                 className={styles["item-login"]}
                 onClick={() => handleClick()}>
