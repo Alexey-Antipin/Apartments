@@ -1,9 +1,12 @@
+import { accountDelete } from "../../redux/reducers/authorizationReducer";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useContext, useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { Select } from "../../common/select";
+import { deleteCookie } from "cookies-next";
 import styles from "./Header.module.scss";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import { Context } from "../context";
 import { Sprite } from "../../svg";
 import Image from "next/image";
@@ -12,22 +15,48 @@ import clsx from "clsx";
 
 export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");
+  const [toggle, setToggle] = useState<boolean | null>(null);
   const [activeId, setActiveId] = useState<number>(0);
   const context = useContext(Context);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const { remember } = useAppSelector(
-    (state: RootState) => state.authorization
-  );
+  const { account } = useAppSelector((state: RootState) => state.authorization);
   const { link, underList } = useAppSelector(
     (state: RootState) => state.header
   );
 
   useEffect(() => {
+    // Ищем cookie
     let cookieUser = getCookie("user");
 
-    if (!cookieUser) return;
-    setCookie(cookieUser);
-  }, [remember]);
+    // Если есть user
+    if (cookieUser) {
+      setCookie(cookieUser);
+    } else {
+      // Иначе
+      setCookie(false);
+    }
+  }, [account]);
+
+  // Открытие списка под пользователем
+  const handleClick = () => {
+    if (toggle == null) {
+      setToggle(false);
+    }
+    setToggle(!toggle);
+  };
+
+  // Вход в другой аккаунт сразу
+  const anotherAccount = () => {
+    router.push("./authorization");
+  };
+
+  // Выход пользователя
+  const exitAccount = () => {
+    deleteCookie("user");
+    dispatch(accountDelete());
+  };
 
   return (
     <>
@@ -82,17 +111,45 @@ export const Header: React.FC = () => {
           ))}
 
           {cookie ? (
-            <li className={styles["item-login"]}>
-              <Image
-                className={styles.image}
-                src="/user/user.png"
-                alt="user"
-                height={30}
-                width={30}
-              />
-              <p className={styles["text-medium"]}>{cookie}</p>
-              <div className={styles["sprite-mark"]}>
-                <Sprite id="mark" colour="#4E64F9" width="10" height="14" />
+            <li className={styles.item}>
+              <button
+                className={styles["item-login"]}
+                onClick={() => handleClick()}>
+                <Image
+                  className={styles.image}
+                  src="/user/user.png"
+                  alt="user"
+                  height={30}
+                  width={30}
+                />
+                <p className={styles["text-medium"]}>{cookie}</p>
+                <div
+                  className={clsx(
+                    toggle == true && styles["sprite-mark-on"],
+                    toggle == false && styles["sprite-mark-off"],
+                    styles["sprite-mark"]
+                  )}>
+                  <Sprite id="mark" colour="#4E64F9" width="10" height="14" />
+                </div>
+              </button>
+
+              <div
+                className={clsx(
+                  toggle == true && styles["block-account-on"],
+                  toggle == false && styles["block-account-off"],
+                  styles["block-account"]
+                )}>
+                <button
+                  className={styles["account"]}
+                  onClick={() => anotherAccount()}>
+                  Перейти в другой аккаунт
+                </button>
+
+                <button
+                  className={styles["account"]}
+                  onClick={() => exitAccount()}>
+                  Выход с аккаунта
+                </button>
               </div>
             </li>
           ) : (

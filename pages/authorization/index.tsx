@@ -1,4 +1,7 @@
-import { authorizationThunk } from "../../redux/reducers/authorizationReducer";
+import {
+  accountUser,
+  authorizationThunk,
+} from "../../redux/reducers/authorizationReducer";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AuthorizationOfFormik } from "../../ts";
@@ -34,6 +37,7 @@ const Authorization: React.FC = () => {
 
     dispatch(authorizationThunk({ login, password, remember })).then((res) => {
       if (res.meta.requestStatus == "fulfilled") {
+        dispatch(accountUser());
         router.push("./");
       }
     });

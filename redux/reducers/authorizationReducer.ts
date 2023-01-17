@@ -4,14 +4,14 @@ import { AuthorizationOfFormik } from "../../ts";
 import axios from "axios";
 
 type AuthorizationState = {
-  remember: boolean;
+  account: boolean;
   error_user: string;
 };
 
 type GetData = { rememberUser: boolean; token: string };
 
 const initialState: AuthorizationState = {
-  remember: false,
+  account: false,
   error_user: "",
 };
 
@@ -44,11 +44,18 @@ export const authorizationThunk = createAsyncThunk(
 export const authorizationSlice = createSlice({
   name: "authorization",
   initialState,
-  reducers: {},
+  reducers: {
+    accountDelete(state) {
+      state.account = false;
+    },
+    accountUser(state) {
+      state.account = true;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(authorizationThunk.fulfilled, (state) => {
       state.error_user = "";
-      state.remember = true;
+      state.account = true;
     });
     builder.addCase(
       authorizationThunk.rejected,
@@ -58,5 +65,7 @@ export const authorizationSlice = createSlice({
     );
   },
 });
+
+export const { accountUser, accountDelete } = authorizationSlice.actions;
 
 export default authorizationSlice.reducer;
