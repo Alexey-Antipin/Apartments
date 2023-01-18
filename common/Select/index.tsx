@@ -71,10 +71,10 @@ export const Select: React.FC<SelectOfProps> = ({
         dispatch(selectCountRooms(num + 1));
         break;
       case "Метро":
-        dispatch(selectMetro(massive.list[num - 1].text));
+        dispatch(selectMetro(massive.list[num].text));
         break;
       case "Район":
-        dispatch(selectArea(massive.list[num - 1].text));
+        dispatch(selectArea(massive.list[num].text));
         break;
       default:
         break;

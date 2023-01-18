@@ -66,12 +66,12 @@ const initialState: MainState = {
       sprite: "mark",
       spriteColour: "#664EF9",
       list: [
-        { id: 1, text: "Минский" },
-        { id: 2, text: "Гомельский" },
-        { id: 3, text: "Брестский" },
-        { id: 4, text: "Витебский" },
-        { id: 5, text: "Гродновский" },
-        { id: 6, text: "Могилевский" },
+        { id: 1, text: "Заводской р." },
+        { id: 2, text: "Ленинский р." },
+        { id: 3, text: "Московский р." },
+        { id: 4, text: "Октябрьский р." },
+        { id: 5, text: "Шабанский р." },
+        { id: 6, text: "Могилёвский р." },
       ],
     },
     {

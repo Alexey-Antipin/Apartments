@@ -4,7 +4,7 @@ import styles from "./Slider.module.scss";
 import { Sprite } from "../../svg";
 
 type SliderOfProps = {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   classes?: {
     containerSlider: string;
     buttonDisabled: string;

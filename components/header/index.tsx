@@ -41,6 +41,8 @@ export const Header: React.FC = () => {
   }, [account]);
 
   useEffect(() => {
+    if (toggle == null) return;
+    
     const handleClick = (e: MouseEvent) => {
       if (user.current == null) return;
       if (!user.current.contains(e.target as Element)) {
@@ -113,7 +115,7 @@ export const Header: React.FC = () => {
                     index == 5 && styles["text-medium"],
                     activeId === elem.id && styles["text--active"]
                   )}
-                  href={elem.href || "./"}>
+                  href={elem.href}>
                   {elem.text}
                 </Link>
               </div>

@@ -8,17 +8,17 @@ type HeaderState = {
 
 const initialState: HeaderState = {
   link: [
-    { id: 1, text: "Главная", href: "./" },
-    { id: 2, text: "Новости", href: "./news" },
-    { id: 3, text: "Размещение и тарифы", href: "./" },
+    { id: 1, text: "Главная", href: "/" },
+    { id: 2, text: "Новости", href: "/news" },
+    { id: 3, text: "Размещение и тарифы", href: "/" },
     {
       id: 4,
       text: "Объявления на карте",
       href: "./",
       sprite: "sign",
     },
-    { id: 5, text: "Контакты", href: "./contacts" },
-    { id: 6, text: "Закладки", href: "./", sprite: "heart" },
+    { id: 5, text: "Контакты", href: "/contacts" },
+    { id: 6, text: "Закладки", href: "/", sprite: "heart" },
   ],
   underList: [
     {

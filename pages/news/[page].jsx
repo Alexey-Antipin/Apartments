@@ -1,6 +1,7 @@
 import getProducts from "../../common/Pagination/GetData";
-import styles from "./NewsDetailed.module.scss";
-import {cities} from "../../mocks";
+import { DateArticles } from "../../common/date";
+import styles from "./News.module.scss";
+import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
 import propTypes from "prop-types";
 import { useState } from "react";
@@ -24,7 +25,7 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
   };
 
   return (
-    <div className="NewsDetailed">
+    <div>
       <Head>
         <title>Новости</title>
       </Head>
@@ -45,7 +46,7 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
           totalItems={totalData}
           currentPage={currentPage}
           itemsPerPage={9}
-          link={"news-detailed"}
+          link={"news"}
         />
 
         <div className={styles.background}>
@@ -56,9 +57,7 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
               onChange={(event) => setValue(event.target.value)}
               value={value}
             />
-            <button
-              className={styles.button}
-              onClick={() => searchArticle()}>
+            <button className={styles.button} onClick={() => searchArticle()}>
               <Sprite id="search" />
             </button>
           </div>
@@ -68,12 +67,17 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
   );
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = ({ params }) => {
   const page = Number(params?.page) || 1;
-  const { articles, total } = await getProducts({
+  const { articles, total } = getProducts({
     limit: 9,
     page,
     array: cities.articlesNews,
+  });
+
+  articles.forEach((_, index, array) => {
+    let timeCurrent = DateArticles(array[index].time);
+    array[index].time = timeCurrent;
   });
 
   if (!articles.length) {
@@ -85,7 +89,7 @@ export const getStaticProps = async ({ params }) => {
   if (page === 1) {
     return {
       redirect: {
-        destination: "/news-detailed",
+        destination: "/news",
         permanent: false,
       },
     };
@@ -119,9 +123,7 @@ PaginatedPage.propTypes = {
 
 export const getStaticPaths = async () => {
   return {
-    paths: Array.from({ length: 5 }).map(
-      (_, index) => `/news-detailed/${index + 2}`
-    ),
+    paths: Array.from({ length: 5 }).map((_, index) => `/news/${index + 2}`),
     fallback: "blocking",
   };
 };

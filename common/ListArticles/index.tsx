@@ -303,7 +303,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
               {!item.price && (
                 <div className={styles.block}>
                   <time className={styles.date}>{item.time}</time>
-                  <a className={styles.link} href={`./${item.id}`}>
+                  <a className={styles.link} href={`/news-detailed/${item.id}`}>
                     Читать
                   </a>
                 </div>

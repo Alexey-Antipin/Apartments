@@ -292,6 +292,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
             ))}
           </div>
 
+          {/* Флажки */}
           <div className={styles["checkbox-block"]}>
             <Checkbox
               massive={checkbox.checkboxMassive[0].list}

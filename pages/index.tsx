@@ -1,6 +1,7 @@
 import { amountOfRoomsThunk } from "../redux/reducers/mainReducer";
 import { articlesThunk } from "../redux/reducers/articlesReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { countNewsThunk } from "../redux/reducers/newsReducer";
 import { LinkNavigation, List, ListArticles } from "../common";
 import { ImageBlock } from "../common/ImageBlock";
 import styles from "../styles/Main.module.scss";
@@ -12,6 +13,7 @@ import { Select } from "../common/select";
 import { Slider } from "../common/slider";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
+import { Article } from "../ts";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -21,6 +23,7 @@ const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const [active, setActive] = useState<number>(0);
 
+  const newsArticles = useAppSelector((state: RootState) => state.news);
   const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
   const select = useAppSelector((state: RootState) => state.select);
@@ -30,6 +33,7 @@ const Home: React.FC = () => {
     let interval = 6;
     dispatch(articlesThunk(interval));
     dispatch(amountOfRoomsThunk());
+    dispatch(countNewsThunk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -147,10 +151,10 @@ const Home: React.FC = () => {
         {/* Внутри фона. */}
         <div className={styles["background-select"]}>
           {/* Метро && Район */}
-          {[0, 1].map((_, index) => (
-            <div key={index}>
+          {[0, 1].map((elem) => (
+            <div key={elem}>
               <Select
-                massive={main.metroAndArea[index]}
+                massive={main.metroAndArea[elem]}
                 setActive={setActive}
                 option_3v={true}
                 active={active}
@@ -347,16 +351,18 @@ const Home: React.FC = () => {
 
             {/* Список новостей. */}
             <div className={styles["description-list"]}>
-              {rooms.articles.news.map((el: any, index) => (
+              {newsArticles.news.map((el: Article, index: number) => (
                 <div key={index}>
-                  <p className={styles["description-paragraph-news"]}>
+                  <Link
+                    className={styles["description-paragraph-news"]}
+                    href={`news-detailed/${el.id}`}>
                     {el.title}
-                  </p>
+                  </Link>
 
                   <time
                     className={styles["description-time"]}
-                    dateTime="2023-01-15">
-                    {el.date}
+                    dateTime={el.time}>
+                    {el.time}
                   </time>
 
                   {index !== 4 && <hr className={styles["description-line"]} />}
@@ -364,9 +370,7 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            <Link
-              className={styles["description-button"]}
-              href="./news-detailed">
+            <Link className={styles["description-button"]} href="./news">
               Посмотреть все
               <div className={styles["description-sprite"]}>
                 <Sprite id="mark" colour="#664ef9" />
