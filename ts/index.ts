@@ -14,6 +14,7 @@ type ArticleRoom = {
   width: number;
   description: string;
   photo: string;
+  places: string;
   photoMassive: PhotoMassive[];
   title?: string;
   time?: string;
@@ -54,6 +55,7 @@ type SelectOfProps = {
   setZeroing?: (value: number) => void;
   zeroing?: number;
 
+  cancelClosed?: (value: boolean) => void;
   massive: MassiveOfSelect;
   option_1v?: boolean;
   option_2v?: boolean;
@@ -189,7 +191,7 @@ type MassiveOfListProps = {
 };
 
 type MassiveOfClassesProps = {
-  classDisabled?:string;
+  classDisabled?: string;
   classTitle?: string;
   classList?: string;
   classUl?: string;
@@ -218,7 +220,25 @@ type Massive = {
 
 type CheckboxState = {
   checkboxMassive: Massive[];
+  checkboxForComparison: [
+    gasCooker: string,
+    oven: string,
+    coffeeMaker: string,
+    microwave: string,
+    dishes: string,
+    dishwasher: string,
+    tv: string,
+    teapot: string,
+    refrigerator: string,
+    broom: string,
+    food: string,
+    water: string
+  ];
   settings: boolean;
+};
+
+type MoreCheckbox = {
+  [key: string]: boolean;
 };
 
 type CheckboxProps = {
@@ -229,12 +249,14 @@ type CheckboxProps = {
 export type {
   CheckboxProps,
   CheckboxState,
+  MoreCheckbox,
   ArticleRoom,
   ResetForm,
+  Object,
   SelectOfProps,
   MassiveOfSelect,
-  RegistrationOfFormik,
   AuthorizationOfFormik,
+  RegistrationOfFormik,
   ContactsOfField,
   Icon,
   PageProps,

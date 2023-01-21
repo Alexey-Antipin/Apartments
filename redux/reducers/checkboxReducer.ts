@@ -31,6 +31,20 @@ const initialState: CheckboxState = {
       ],
     },
   ],
+  checkboxForComparison: [
+    "gasCooker",
+    "oven",
+    "coffeeMaker",
+    "microwave",
+    "dishes",
+    "dishwasher",
+    "tv",
+    "teapot",
+    "refrigerator",
+    "broom",
+    "food",
+    "water",
+  ],
 };
 
 export const checkboxSlice = createSlice({
@@ -45,9 +59,10 @@ export const checkboxSlice = createSlice({
     toogleBox(state, action: PayloadAction<boolean>) {
       state.settings = action.payload;
     },
+    reset: () => initialState,
   },
 });
 
-export const { checkbox, toogleBox } = checkboxSlice.actions;
+export const { checkbox, toogleBox, reset } = checkboxSlice.actions;
 
 export default checkboxSlice.reducer;

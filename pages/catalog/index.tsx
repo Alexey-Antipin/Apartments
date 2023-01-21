@@ -1,6 +1,6 @@
 import { PaginationNumbering, getData } from "../../common/pagination";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity } from "../../redux/reducers/catalogReducer";
+import { choiceCity, } from "../../redux/reducers/catalogReducer";
 import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
@@ -26,6 +26,7 @@ const Catalog: React.FC<Props> = (props) => {
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
+  const network = useAppSelector((state: RootState) => state.main.network);
   const checkboxs = useAppSelector((state: RootState) => state.checkbox);
   const catalog = useAppSelector((state: RootState) => state.catalog);
   const select = useAppSelector((state: RootState) => state.select);
@@ -35,24 +36,16 @@ const Catalog: React.FC<Props> = (props) => {
     (state: RootState) => state.header.underList[0]
   );
 
-  const network = [
-    { net: "vk", href: "./" },
-    { net: "facebook-2", href: "./" },
-    { net: "viber", href: "./" },
-    { net: "telegram", href: "./" },
-    { net: "whatsapp", href: "./" },
-  ];
-
   useEffect(() => {
     if (!catalog.articles.length) {
       dispatch(choiceCity(props));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const town = header.list[select.city].text.replace(/на сутки/gi, "");
-    const linkTown = header.list[select.city].text.replace(
+    const town = header.list[select.filter.city].text.replace(/на сутки/gi, "");
+    const linkTown = header.list[select.filter.city].text.replace(
       /квартиры/gi,
       "Аренда квартир"
     );
@@ -61,7 +54,7 @@ const Catalog: React.FC<Props> = (props) => {
     setCity(town);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [select.city]);
+  }, [select.filter.city]);
 
   return (
     <>

@@ -10,9 +10,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({ massive, numberling }) => {
   const handleClick = (element: { id: number; status: boolean }) => {
     dispatch(
       checkbox({
-        index: numberling,
         indexElement: element.id - 1,
         status: !element.status,
+        index: numberling,
       })
     );
   };

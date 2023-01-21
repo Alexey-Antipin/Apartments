@@ -11,6 +11,7 @@
     "area": "Заводской р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Юге",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -57,6 +58,7 @@
     "area": "Заводской р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Юге",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_3.png", "width": 406 },
@@ -103,6 +105,7 @@
     "area": "Ленинский р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Севере",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_4.png", "width": 406 },
@@ -121,7 +124,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -148,6 +152,7 @@
     "area": "Московский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Севере",
     "photoMassive": [
       { "photo": "/picture/room_5.png", "width": 406 },
       { "photo": "/picture/room.png", "width": 165 },
@@ -166,7 +171,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -193,6 +199,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Севере",
     "photoMassive": [
       { "photo": "/picture/room_4.png", "width": 406 },
       { "photo": "/picture/room.png", "width": 165 },
@@ -211,7 +218,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -238,6 +246,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -256,7 +265,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -270,7 +280,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "7",
     "class": "Gold",
     "price": "335.00 ",
@@ -282,6 +293,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -300,7 +312,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -314,7 +327,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "8",
     "class": "Gold",
     "price": "335.00 ",
@@ -326,6 +340,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -344,7 +359,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -358,7 +374,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "9",
     "class": "Gold",
     "price": "335.00 ",
@@ -370,6 +387,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -388,7 +406,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -402,7 +421,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "10",
     "class": "Gold",
     "price": "335.00 ",
@@ -414,6 +434,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -432,7 +453,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -446,7 +468,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "11",
     "class": "Gold",
     "price": "335.00 ",
@@ -458,6 +481,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -476,7 +500,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,
@@ -490,7 +515,8 @@
       "food": false,
       "water": false
     }
-  }, {
+  },
+  {
     "id": "12",
     "class": "Gold",
     "price": "335.00 ",
@@ -502,6 +528,7 @@
     "area": "Могилёвский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Юге",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -520,7 +547,8 @@
         "whats_app": "89999999996",
         "email": "vladimir6234@tut.by"
       }
-    },"more": {
+    },
+    "more": {
       "gasCooker": true,
       "oven": true,
       "coffeeMaker": true,

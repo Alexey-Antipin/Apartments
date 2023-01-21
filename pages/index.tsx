@@ -40,15 +40,17 @@ const Home: React.FC = () => {
   useEffect(() => {
     filterSlider();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [select.metro, select.area]);
+  }, [select.mainPage.metro, select.mainPage.area]);
 
   // Фильтр
   const filterSlider = () => {
-    if (!select.metro || !select.area) {
+    if (!select.mainPage.metro || !select.mainPage.area) {
       return rooms.articles.items;
     }
     return rooms.articles.items.filter(
-      (item) => select.metro == item.station && select.area == item.area
+      (item) =>
+        select.mainPage.metro == item.station &&
+        select.mainPage.area == item.area
     );
   };
 
