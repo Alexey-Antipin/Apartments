@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../../components/context";
 import styles from "./ListArticles.module.scss";
+import { Context } from "../../components";
 import { ArticleProps } from "../../ts";
 import { Sprite } from "../../svg";
 import { Slider } from "../slider";

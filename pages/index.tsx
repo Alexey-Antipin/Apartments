@@ -1,16 +1,5 @@
-import { amountOfRoomsThunk } from "../redux/reducers/mainReducer";
-import { articlesThunk } from "../redux/reducers/articlesReducer";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { countNewsThunk } from "../redux/reducers/newsReducer";
-import { LinkNavigation, List, ListArticles } from "../common";
-import { ImageBlock } from "../common/ImageBlock";
 import styles from "../styles/Main.module.scss";
-import { FilterRooms } from "../common/blockFilter/filter";
-import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
-import { RootState } from "../redux/store";
-import { Select } from "../common/select";
-import { Slider } from "../common/slider";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
 import { Article } from "../ts";
@@ -18,11 +7,29 @@ import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  LinkNavigation,
+  MapBackground,
+  ListArticles,
+  FilterRooms,
+  ImageBlock,
+  Select,
+  Slider,
+  List,
+} from "../common";
+import {
+  amountOfRoomsThunk,
+  useAppDispatch,
+  useAppSelector,
+  countNewsThunk,
+  articlesThunk,
+  RootState,
+} from "../redux";
 
 const Home: React.FC = () => {
   const [active, setActive] = useState<number>(0);
   const dispatch = useAppDispatch();
-  
+
   const newsArticles = useAppSelector((state: RootState) => state.news);
   const rooms = useAppSelector((state: RootState) => state.articles);
   const select = useAppSelector((state: RootState) => state.select);

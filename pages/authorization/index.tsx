@@ -1,18 +1,19 @@
-import {
-  accountUser,
-  authorizationThunk,
-} from "../../redux/reducers/authorizationReducer";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AuthorizationOfFormik } from "../../ts";
 import styles from "./Authorization.module.scss";
-import { RootState } from "../../redux/store";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
 import * as Yup from "yup";
 import clsx from "clsx";
+import {
+  authorizationThunk,
+  useAppDispatch,
+  useAppSelector,
+  accountUser,
+  RootState,
+} from "../../redux";
 
 const Authorization: React.FC = () => {
   const authorization = useAppSelector(

@@ -1,21 +1,26 @@
-import { PaginationNumbering, getData } from "../../common/pagination";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity } from "../../redux/reducers/catalogReducer";
-import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
-import { switchRooms } from "../../common/switchRooms";
-import { Context } from "../../components/context";
-import { FilterRooms } from "../../common/blockFilter/filter";
-import { MapBackground } from "../../common/map";
-import { Control } from "../../common/control";
-import { RootState } from "../../redux/store";
-import { ListArticles } from "../../common";
 import styles from "./Catalog.module.scss";
+import { Context } from "../../components";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
+import {
+  PaginationNumbering,
+  LinkNavigation,
+  MapBackground,
+  ListArticles,
+  FilterRooms,
+  getData,
+  Control,
+} from "../../common";
+import {
+  useAppDispatch,
+  useAppSelector,
+  choiceCity,
+  RootState,
+} from "../../redux";
 
 type Props = {
   articles: ArticleRoom[];
@@ -68,10 +73,7 @@ const Catalog: React.FC<Props> = (props) => {
         <h3 className={styles["title-h3"]}>Рекомендуем посмотреть</h3>
         <div className={styles["block-link"]}>
           {catalog.recommendedRooms.map((item, index) => (
-            <div
-              className={styles.link}
-              onClick={() => switchRooms(item)}
-              key={index}>
+            <div className={styles.link} onClick={() => {}} key={index}>
               {item}
             </div>
           ))}

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
@@ -9,11 +8,12 @@ import {
   selectMetroMainPage,
   selectAreaMainPage,
   selectCountRooms,
+  useAppDispatch,
   selectPlaces,
   selectMetro,
   selectCity,
   selectArea,
-} from "../../redux/reducers/selectReducer";
+} from "../../redux";
 
 export const Select: React.FC<SelectOfProps> = ({
   cancelClosed,

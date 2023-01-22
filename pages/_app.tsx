@@ -1,5 +1,4 @@
-import { Context } from "../components/context";
-import Layout from "../components/layout";
+import { Context, Layout } from "../components";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";

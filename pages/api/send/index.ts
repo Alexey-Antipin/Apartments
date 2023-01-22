@@ -1,5 +1,5 @@
-import { writeFile } from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
+import { writeFile } from "fs";
 
 const HandlerSend = (req: NextApiRequest, res: NextApiResponse) => {
   let { name, email, message } = req.body;

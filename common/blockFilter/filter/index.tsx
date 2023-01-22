@@ -1,9 +1,5 @@
-import { reset, toogleBox } from "../../../redux/reducers/checkboxReducer";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { defaultPrice } from "../../../redux/reducers/selectReducer";
 import { MassiveOfSelect, ArticleRoom } from "../../../ts";
 import { useEffect, useRef, useState } from "react";
-import { RootState } from "../../../redux/store";
 import { filterSend } from "../filterSend";
 import styles from "./Filter.module.scss";
 import { Checkbox } from "../../checkbox";
@@ -12,6 +8,14 @@ import { Select } from "../../select";
 import { Sprite } from "../../../svg";
 import clsx from "clsx";
 import {
+  useAppDispatch,
+  useAppSelector,
+  defaultPrice,
+  RootState,
+  toogleBox,
+  reset,
+} from "../../../redux";
+import {
   additionalOptions,
   filterApartment,
   selectionPrice,
@@ -19,6 +23,7 @@ import {
   filterSelects,
   filterPrice,
 } from "../";
+
 
 type ClassFilter = {
   classSelectflex: string;

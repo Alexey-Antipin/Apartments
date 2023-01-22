@@ -1,17 +1,20 @@
-import { accountDelete } from "../../redux/reducers/authorizationReducer";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useContext, useEffect, useRef, useState } from "react";
-import { RootState } from "../../redux/store";
-import { Select } from "../../common/select";
 import { deleteCookie } from "cookies-next";
 import styles from "./Header.module.scss";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
+import { Select } from "../../common";
 import { Context } from "../context";
 import { Sprite } from "../../svg";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  useAppSelector,
+  useAppDispatch,
+  accountDelete,
+  RootState,
+} from "../../redux";
 
 export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");
@@ -42,7 +45,7 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     if (toggle == null) return;
-    
+
     const handleClick = (e: MouseEvent) => {
       if (user.current == null) return;
       if (!user.current.contains(e.target as Element)) {

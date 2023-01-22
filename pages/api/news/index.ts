@@ -1,5 +1,5 @@
 import { NextApiResponse, NextApiRequest } from "next";
-import { DateArticles } from "../../../common/date";
+import { DateArticles } from "../../../common";
 import { cities } from "../../../mocks";
 
 type Articles = { articles: Object[] };

@@ -2,7 +2,7 @@ import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
 import {
   selectPriceMax,
   selectPriceMin,
-} from "../../../redux/reducers/selectReducer";
+} from "../../../redux";
 
 // Выбор цен
 export const selectionPrice = (

@@ -1,6 +1,5 @@
-import { selectCity } from "../../redux/reducers/selectReducer";
-import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, selectCity } from "../../redux";
+import React, { useRef, useState } from "react";
 import styles from "./ImageBlock.module.scss";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";

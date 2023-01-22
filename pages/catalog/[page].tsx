@@ -1,20 +1,26 @@
-import { PaginationNumbering, getData } from "../../common/pagination";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity } from "../../redux/reducers/catalogReducer";
-import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../components/context";
-import { FilterRooms } from "../../common/blockFilter/filter";
-import { MapBackground } from "../../common/map";
-import { Control } from "../../common/control";
-import { RootState } from "../../redux/store";
-import { ListArticles } from "../../common";
 import styles from "./Catalog.module.scss";
+import { Context } from "../../components";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
+import {
+  PaginationNumbering,
+  LinkNavigation,
+  MapBackground,
+  ListArticles,
+  FilterRooms,
+  getData,
+  Control,
+} from "../../common";
+import {
+  useAppDispatch,
+  useAppSelector,
+  choiceCity,
+  RootState,
+} from "../../redux";
 
 type Params = { params: { page: string } };
 
@@ -37,13 +43,6 @@ const Catalog: React.FC<Props> = (props) => {
   const header = useAppSelector(
     (state: RootState) => state.header.underList[0]
   );
-  
-  useEffect(() => {
-    if (!catalog.articles.length) {
-      dispatch(choiceCity(props));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const town = header.list[select.filter.city].text.replace(/на сутки/gi, "");
@@ -58,6 +57,13 @@ const Catalog: React.FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select.filter.city]);
 
+  useEffect(() => {
+    if (!catalog.articles.length) {
+      dispatch(choiceCity(props));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>
@@ -68,10 +74,13 @@ const Catalog: React.FC<Props> = (props) => {
         <LinkNavigation option_v1={true} main={city} deepLink={linkCity} />
         <h3 className={styles["title-h3"]}>Рекомендуем посмотреть</h3>
         <div className={styles["block-link"]}>
-          {catalog.recommendedRooms.map((el, index) => (
-            <Link className={styles.link} key={index} href="./">
-              {el}
-            </Link>
+          {catalog.recommendedRooms.map((item, index) => (
+            <div
+              className={styles.link}
+              onClick={() => {}}
+              key={index}>
+              {item}
+            </div>
           ))}
         </div>
       </div>
@@ -93,13 +102,13 @@ const Catalog: React.FC<Props> = (props) => {
       </div>
 
       <h2 className={styles["title-h2"]}>
-        Найдено {props.totalData} результата
+        Найдено {catalog.totalData} результата
       </h2>
 
       <ListArticles
         alternative={!context.colourSprite}
         sliderTrue={true}
-        list={props.articles}
+        list={catalog.articles}
         classes={{
           classUl: context.colourSprite
             ? styles["catalog-list"]
@@ -113,8 +122,8 @@ const Catalog: React.FC<Props> = (props) => {
       <div className={styles["block-footer"]}>
         <PaginationNumbering
           classes={{ wrapper: styles["pagination-wrapper"] }}
-          totalItems={props.totalData}
-          currentPage={props.currentPage}
+          totalItems={catalog.totalData}
+          currentPage={catalog.currentPage}
           itemsPerPage={9}
           link={`catalog`}
         />

@@ -1,6 +1,4 @@
-import { choiceCity } from "../../redux/reducers/catalogReducer";
-import { selectCity } from "../../redux/reducers/selectReducer";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, choiceCity, selectCity } from "../../redux";
 import getProducts from "../pagination/getData";
 import { MassiveOfListProps } from "../../ts";
 import styles from "./List.module.scss";

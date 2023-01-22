@@ -1,19 +1,18 @@
-import getProducts from "../../common/Pagination/GetData";
-import { DateArticles } from "../../common/date";
 import styles from "./News.module.scss";
 import { cities } from "../../mocks";
-import { Sprite } from "../../svg";
 import propTypes from "prop-types";
+import { Sprite } from "../../svg";
 import { useState } from "react";
 import Head from "next/head";
 import {
+  PaginationNumbering,
   LinkNavigation,
   ListArticles,
-  PaginationNumbering,
+  DateArticles,
+  getProducts,
 } from "../../common";
 
 const PaginatedPage = ({ articles, currentPage, totalData }) => {
-  const news = "Новости";
   const [value, setValue] = useState("");
   const [list, setList] = useState(articles);
 
@@ -32,7 +31,11 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
 
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <LinkNavigation main={news} deepLink={news} option_v1={true} />
+          <LinkNavigation
+            deepLink={"Новости"}
+            main={"Новости"}
+            option_v1={true}
+          />
         </div>
 
         <div className={styles["container-list"]}>

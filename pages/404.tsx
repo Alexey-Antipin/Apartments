@@ -1,7 +1,7 @@
+import styles from "../styles/Error.module.scss";
+import { Sprite } from "../svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Sprite } from "../svg";
-import styles from "../styles/Error.module.scss";
 
 const Error: React.FC = () => {
   return (

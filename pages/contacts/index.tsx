@@ -1,17 +1,18 @@
 import { Network, ContactsOfField, Icon, ResetForm } from "../../ts";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { RootState } from "../../redux/store";
 import styles from "./Contacts.module.scss";
 import { Sprite } from "../../svg";
 import Head from "next/head";
 import * as Yup from "yup";
 import clsx from "clsx";
 import {
+  useAppDispatch,
+  useAppSelector,
   contactsThunk,
+  RootState,
   closeModal,
   openModal,
-} from "../../redux/reducers/contactsReducer";
+} from "../../redux";
 
 const Contacts: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -70,8 +71,8 @@ const Contacts: React.FC = () => {
         <h1 className={styles["call-title"]}>Контакты</h1>
 
         <p className={styles["call-paragraph"]}>
-          Если у Вас есть пожелания, предложения или претензии по
-          организации работы сайта мы всегда рады услышать Ваше мнение.
+          Если у Вас есть пожелания, предложения или претензии по организации
+          работы сайта мы всегда рады услышать Ваше мнение.
         </p>
 
         <div className={styles["call-block"]}>
@@ -110,8 +111,7 @@ const Contacts: React.FC = () => {
             </a>
 
             <time dateTime="08:00-22:00">
-              <span className={styles.time}>Режим работы:</span>{" "}
-              08:00-22:00
+              <span className={styles.time}>Режим работы:</span> 08:00-22:00
             </time>
           </address>
         </div>
@@ -221,13 +221,9 @@ const Contacts: React.FC = () => {
         <>
           <div className={styles.background}></div>
           <div className={styles.modal}>
-            <h2 className={styles["modal-title"]}>
-              Ваше письмо отправлено!
-            </h2>
+            <h2 className={styles["modal-title"]}>Ваше письмо отправлено!</h2>
 
-            <p className={styles["modal-text"]}>
-              {contacts.messageOfSend}
-            </p>
+            <p className={styles["modal-text"]}>{contacts.messageOfSend}</p>
 
             <button
               type="button"

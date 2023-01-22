@@ -1,14 +1,17 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { newsThunk } from "../../redux/reducers/newsReducer";
 import { LinkNavigation, ListArticles } from "../../common";
 import styles from "./NewsDetailed.module.scss";
-import { RootState } from "../../redux/store";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import {
+  useAppDispatch,
+  useAppSelector,
+  RootState,
+  newsThunk,
+} from "../../redux";
 
 const News: React.FC = () => {
   const router = useRouter();
@@ -49,7 +52,9 @@ const News: React.FC = () => {
         </div>
 
         <div className={styles.network}>
-          <time className={styles.date}>{articleCurrent.time || "00.00.0000"}</time>
+          <time className={styles.date}>
+            {articleCurrent.time || "00.00.0000"}
+          </time>
 
           <div className={styles.nav}>
             <span className={styles.label}>Поделиться</span>

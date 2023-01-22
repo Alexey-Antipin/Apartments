@@ -4,6 +4,8 @@ import { selectionPrice } from "./selectionPrice";
 import { selectionCity } from "./selectionCity";
 import { filterSelects } from "./filterSelects";
 import { filterPrice } from "./filterPrice";
+import { filterSend } from "./filterSend";
+import { FilterRooms } from "./filter";
 
 export {
   additionalOptions,
@@ -11,5 +13,7 @@ export {
   selectionPrice,
   selectionCity,
   filterSelects,
+  FilterRooms,
   filterPrice,
+  filterSend,
 };
