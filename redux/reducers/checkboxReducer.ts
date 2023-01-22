@@ -31,20 +31,6 @@ export const initialState: CheckboxState = {
       ],
     },
   ],
-  checkboxForComparison: [
-    "gasCooker",
-    "oven",
-    "coffeeMaker",
-    "microwave",
-    "dishes",
-    "dishwasher",
-    "tv",
-    "teapot",
-    "refrigerator",
-    "broom",
-    "food",
-    "water",
-  ],
 };
 
 export const checkboxSlice = createSlice({

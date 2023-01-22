@@ -220,20 +220,6 @@ type Massive = {
 
 type CheckboxState = {
   checkboxMassive: Massive[];
-  checkboxForComparison: [
-    gasCooker: string,
-    oven: string,
-    coffeeMaker: string,
-    microwave: string,
-    dishes: string,
-    dishwasher: string,
-    tv: string,
-    teapot: string,
-    refrigerator: string,
-    broom: string,
-    food: string,
-    water: string
-  ];
   settings: boolean;
 };
 

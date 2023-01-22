@@ -4,8 +4,8 @@ import { choiceCity } from "../../../redux";
 import { ArticleRoom } from "../../../ts";
 import { NextRouter } from "next/router";
 
-// Отправка запроса
-export const filterSend = (
+// Перенаправление в каталог
+export const redirectOfCatalog = (
   massive: ArticleRoom[],
   dispatch: ThunkDispatch<{}, undefined, AnyAction>,
   router: NextRouter

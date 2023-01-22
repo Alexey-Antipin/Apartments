@@ -1,11 +1,12 @@
+import { additionalOptions, redirectOfCatalog, selectionPrice } from "../";
 import { MassiveOfSelect, ArticleRoom } from "../../../ts";
 import { useEffect, useRef, useState } from "react";
-import { filterSend } from "../filterSend";
 import styles from "./Filter.module.scss";
 import { Checkbox } from "../../checkbox";
 import { useRouter } from "next/router";
 import { Select } from "../../select";
 import { Sprite } from "../../../svg";
+import axios from "axios";
 import clsx from "clsx";
 import {
   useAppDispatch,
@@ -15,15 +16,6 @@ import {
   toogleBox,
   reset,
 } from "../../../redux";
-import {
-  additionalOptions,
-  filterApartment,
-  selectionPrice,
-  selectionCity,
-  filterSelects,
-  filterPrice,
-} from "../";
-
 
 type ClassFilter = {
   classSelectflex: string;
@@ -64,24 +56,28 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const rooms: MassiveOfSelect = main.massive[1];
 
   // Показать объекты
-  const handleClick = () => {
-    // Выбор города
-    const newCity: ArticleRoom[] = selectionCity(select);
+  const handleClick = async () => {
+    const statuses = additionalOptions(checkbox);
 
-    // Фильтр цен
-    const arrayPrice = filterPrice(newCity, select);
+    // Запрос города
+    let { data } = await axios.get<ArticleRoom[]>(
+      "http://localhost:3000/api/get-city/",
+      {
+        params: {
+          city: select.filter.city,
+          priceMin: select.filter.priceMin,
+          priceMax: select.filter.priceMax,
+          rooms: select.filter.rooms,
+          places: select.filter.places,
+          metro: select.filter.metro,
+          area: select.filter.area,
+          statuses: statuses,
+        },
+      }
+    );
 
-    // Фильтр комнат
-    const arrayApartment = filterApartment(arrayPrice, select);
-
-    // Фильтр спальные места, район, метро
-    const arrayRestOfElements = filterSelects(arrayApartment, select);
-
-    // Дополнительные опции
-    const options = additionalOptions(arrayRestOfElements, checkbox);
-
-    // Отправка запроса
-    filterSend(options, dispatch, router);
+    // Перенаправление в каталог, деление на страницы
+    redirectOfCatalog(data, dispatch, router);
   };
 
   // Больше опций
