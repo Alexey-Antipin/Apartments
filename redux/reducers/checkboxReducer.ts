@@ -7,7 +7,7 @@ type Action = {
   index: number;
 };
 
-const initialState: CheckboxState = {
+export const initialState: CheckboxState = {
   settings: false,
   checkboxMassive: [
     {

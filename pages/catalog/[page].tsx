@@ -4,7 +4,7 @@ import { choiceCity } from "../../redux/reducers/catalogReducer";
 import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/context";
-import { FilterRooms } from "../../common/filter";
+import { FilterRooms } from "../../common/blockFilter/filter";
 import { MapBackground } from "../../common/map";
 import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";

@@ -5,7 +5,7 @@ import { countNewsThunk } from "../redux/reducers/newsReducer";
 import { LinkNavigation, List, ListArticles } from "../common";
 import { ImageBlock } from "../common/ImageBlock";
 import styles from "../styles/Main.module.scss";
-import { FilterRooms } from "../common/filter";
+import { FilterRooms } from "../common/blockFilter/filter";
 import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
@@ -20,13 +20,13 @@ import Link from "next/link";
 import clsx from "clsx";
 
 const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
   const [active, setActive] = useState<number>(0);
-
+  const dispatch = useAppDispatch();
+  
   const newsArticles = useAppSelector((state: RootState) => state.news);
-  const main = useAppSelector((state: RootState) => state.main);
   const rooms = useAppSelector((state: RootState) => state.articles);
   const select = useAppSelector((state: RootState) => state.select);
+  const main = useAppSelector((state: RootState) => state.main);
   const amount = [main.amountRooms.amount, main.amountRooms.cottage];
 
   useEffect(() => {

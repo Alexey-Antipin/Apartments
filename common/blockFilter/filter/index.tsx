@@ -1,22 +1,24 @@
-import { reset, toogleBox } from "../../redux/reducers/checkboxReducer";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity } from "../../redux/reducers/catalogReducer";
+import { reset, toogleBox } from "../../../redux/reducers/checkboxReducer";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { defaultPrice } from "../../../redux/reducers/selectReducer";
+import { MassiveOfSelect, ArticleRoom } from "../../../ts";
 import { useEffect, useRef, useState } from "react";
-import getProducts from "../pagination/getData";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../../redux/store";
+import { filterSend } from "../filterSend";
 import styles from "./Filter.module.scss";
+import { Checkbox } from "../../checkbox";
 import { useRouter } from "next/router";
-import { Checkbox } from "../checkbox";
-import { cities } from "../../mocks";
-import { Select } from "../select";
-import { Sprite } from "../../svg";
+import { Select } from "../../select";
+import { Sprite } from "../../../svg";
 import clsx from "clsx";
 import {
-  selectPriceMin,
-  selectPriceMax,
-  defaultPrice,
-} from "../../redux/reducers/selectReducer";
-import { MassiveOfSelect, MoreCheckbox, ArticleRoom, Object } from "../../ts";
+  additionalOptions,
+  filterApartment,
+  selectionPrice,
+  selectionCity,
+  filterSelects,
+  filterPrice,
+} from "../";
 
 type ClassFilter = {
   classSelectflex: string;
@@ -45,6 +47,8 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const select = useAppSelector((state: RootState) => state.select);
   const main = useAppSelector((state: RootState) => state.main);
   const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [cancelClosed, setCancelClosed] = useState<boolean>(false);
   const [activeSettings, setActiveSettings] = useState<number>(0);
@@ -54,153 +58,25 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const [active, setActive] = useState<number>(0);
   const rooms: MassiveOfSelect = main.massive[1];
 
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
   // Показать объекты
   const handleClick = () => {
     // Выбор города
-    const newCity: ArticleRoom[] = optionCity();
+    const newCity: ArticleRoom[] = selectionCity(select);
 
     // Фильтр цен
-    const arrayPrice = filterPrice(newCity);
+    const arrayPrice = filterPrice(newCity, select);
+
+    // Фильтр комнат
+    const arrayApartment = filterApartment(arrayPrice, select);
 
     // Фильтр спальные места, район, метро
-    const arrayRestOfElements = filterSelects(arrayPrice);
+    const arrayRestOfElements = filterSelects(arrayApartment, select);
 
     // Дополнительные опции
-    const options = additionalOptions(arrayRestOfElements);
+    const options = additionalOptions(arrayRestOfElements, checkbox);
 
-    const { articles, total } = getProducts({
-      limit: 9,
-      page: 1,
-      array: options,
-    });
-
-    dispatch(
-      choiceCity({
-        totalData: total,
-        currentPage: 1,
-        articles,
-      })
-    );
-
-    if (router.pathname !== "/catalog") {
-      router.push(`./catalog/`);
-    }
-  };
-
-  // Выбор города
-  const optionCity = () => {
-    switch (select.filter.city) {
-      case 0:
-        return cities.minsk;
-      case 1:
-        return cities.gomel;
-      case 2:
-        return cities.brest;
-      case 3:
-        return cities.vitebsk;
-      case 4:
-        return cities.grodno;
-      case 5:
-        return cities.mogilev;
-      default:
-        return cities.minsk;
-    }
-  };
-
-  // Выбор цен
-  const optionPrice = () => {
-    // Минимум цена
-    if (valueMin) {
-      dispatch(selectPriceMin(valueMin));
-    } else {
-      dispatch(selectPriceMin("0"));
-    }
-
-    // Максимум цена
-    if (!valueMax) {
-      dispatch(selectPriceMax("10000"));
-      return;
-    }
-
-    if (valueMin >= valueMax) {
-      dispatch(selectPriceMax(valueMin));
-    } else {
-      dispatch(selectPriceMax(valueMax));
-    }
-  };
-
-  // Фильтр цен и комнат
-  const filterPrice = (array: ArticleRoom[]) => {
-    return array.filter(
-      (item) =>
-        +select.filter.priceMin <= +item.price &&
-        +item.price <= +select.filter.priceMax &&
-        (select.filter.rooms !== 0
-          ? select.filter.rooms == item.room
-          : item.room)
-    );
-  };
-
-  // Фильтр спальные места, район, метро
-  const filterSelects = (array: ArticleRoom[]) => {
-    // Деструктуризация
-    let { places, metro, area } = select.filter;
-
-    // Если не выбрано ничего
-    if (!places && !metro && !area) {
-      return array;
-    }
-
-    // Если выбраны
-    return array.filter((item) => {
-      return (
-        (places ? item.places == places : item.places) &&
-        (metro ? item.station == metro : item.station) &&
-        (area ? item.area == area : item.area)
-      );
-    });
-  };
-
-  // Дополнительные опции
-  const additionalOptions = (array: ArticleRoom[]) => {
-    // Ключи
-    let keys = checkbox.checkboxForComparison;
-
-    // Список
-    let box: Object[] = [
-      ...checkbox.checkboxMassive[0].list,
-      ...checkbox.checkboxMassive[1].list,
-    ];
-
-    // Запись статусов
-    let statuses: Array<boolean> = [];
-
-    // Получение статусов
-    box.forEach((item) => {
-      return statuses.push(item.status);
-    });
-
-    // Если в statuses всё false
-    if (statuses.includes(true)) {
-      // Готовый объект для сравнивания
-      let more: MoreCheckbox = {};
-
-      // Создание: ключ - значение
-      box.forEach((item, index: number) => {
-        more[keys[index]] = item.status;
-      });
-
-      // Фильтруем массив
-      return array.filter((item) => {
-        return JSON.stringify(item.more) === JSON.stringify(more);
-      });
-    } else {
-      // Иначе возвращаем нетронутый массив
-      return array;
-    }
+    // Отправка запроса
+    filterSend(options, dispatch, router);
   };
 
   // Больше опций
@@ -223,7 +99,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   };
 
   useEffect(() => {
-    optionPrice();
+    selectionPrice(valueMin, valueMax, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valueMin, valueMax]);
 

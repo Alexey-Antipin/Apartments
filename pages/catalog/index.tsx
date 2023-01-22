@@ -1,10 +1,11 @@
 import { PaginationNumbering, getData } from "../../common/pagination";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity, } from "../../redux/reducers/catalogReducer";
+import { choiceCity } from "../../redux/reducers/catalogReducer";
 import { LinkNavigation } from "../../common/linkNavigation";
 import { useContext, useEffect, useState } from "react";
+import { switchRooms } from "../../common/switchRooms";
 import { Context } from "../../components/context";
-import { FilterRooms } from "../../common/filter";
+import { FilterRooms } from "../../common/blockFilter/filter";
 import { MapBackground } from "../../common/map";
 import { Control } from "../../common/control";
 import { RootState } from "../../redux/store";
@@ -37,13 +38,6 @@ const Catalog: React.FC<Props> = (props) => {
   );
 
   useEffect(() => {
-    if (!catalog.articles.length) {
-      dispatch(choiceCity(props));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     const town = header.list[select.filter.city].text.replace(/на сутки/gi, "");
     const linkTown = header.list[select.filter.city].text.replace(
       /квартиры/gi,
@@ -56,6 +50,13 @@ const Catalog: React.FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select.filter.city]);
 
+  useEffect(() => {
+    if (!catalog.articles.length) {
+      dispatch(choiceCity(props));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>
@@ -66,10 +67,13 @@ const Catalog: React.FC<Props> = (props) => {
         <LinkNavigation option_v1={true} main={city} deepLink={linkCity} />
         <h3 className={styles["title-h3"]}>Рекомендуем посмотреть</h3>
         <div className={styles["block-link"]}>
-          {catalog.recommendedRooms.map((el, index) => (
-            <Link className={styles.link} key={index} href="./">
-              {el}
-            </Link>
+          {catalog.recommendedRooms.map((item, index) => (
+            <div
+              className={styles.link}
+              onClick={() => switchRooms(item)}
+              key={index}>
+              {item}
+            </div>
           ))}
         </div>
       </div>

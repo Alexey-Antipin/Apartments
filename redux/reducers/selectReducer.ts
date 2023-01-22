@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type SelectState = {
+export type SelectState = {
   filter: {
     priceMin: string;
     priceMax: string;
