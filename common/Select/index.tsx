@@ -9,10 +9,13 @@ import {
   selectAreaMainPage,
   selectCountRooms,
   useAppDispatch,
+  selectCallCity,
+  defaultPrice,
   selectPlaces,
   selectMetro,
   selectCity,
   selectArea,
+  reset,
 } from "../../redux";
 
 export const Select: React.FC<SelectOfProps> = ({
@@ -71,6 +74,14 @@ export const Select: React.FC<SelectOfProps> = ({
 
   const handleClickOfDispatch = (type: string, num: number) => {
     switch (type) {
+      case "Город-Меню":
+        dispatch(selectCallCity(true));
+        dispatch(selectCity(num));
+
+        // Обнуляем
+        dispatch(defaultPrice());
+        dispatch(reset());
+        break;
       case "Город":
         dispatch(selectCity(num));
         break;

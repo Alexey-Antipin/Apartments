@@ -3,62 +3,34 @@ import { deleteCookie } from "cookies-next";
 import styles from "./Header.module.scss";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import { Select } from "../../common";
+import { additionalOptions, redirectOfCatalog, Select } from "../../common";
 import { Context } from "../context";
 import { Sprite } from "../../svg";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import {
+  selectCallCity,
   useAppSelector,
   useAppDispatch,
   accountDelete,
   RootState,
 } from "../../redux";
+import { ArticleRoom } from "../../ts";
+import axios from "axios";
 
 export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");
   const [toggle, setToggle] = useState<boolean | null>(null);
   const [activeId, setActiveId] = useState<number>(0);
+
+  const { authorization, header, select, checkbox } = useAppSelector(
+    (state: RootState) => state
+  );
   const user = useRef<HTMLLIElement>(null);
   const context = useContext(Context);
   const dispatch = useAppDispatch();
   const router = useRouter();
-
-  const { account } = useAppSelector((state: RootState) => state.authorization);
-  const { link, underList } = useAppSelector(
-    (state: RootState) => state.header
-  );
-
-  useEffect(() => {
-    // Ищем cookie
-    let cookieUser = getCookie("user");
-
-    // Если есть user
-    if (cookieUser) {
-      setCookie(cookieUser);
-    } else {
-      // Иначе
-      setCookie(false);
-    }
-  }, [account]);
-
-  useEffect(() => {
-    if (toggle == null) return;
-
-    const handleClick = (e: MouseEvent) => {
-      if (user.current == null) return;
-      if (!user.current.contains(e.target as Element)) {
-        setToggle(false);
-      }
-    };
-
-    document.addEventListener("click", handleClick);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  });
 
   // Открытие списка под пользователем
   const handleClick = () => {
@@ -81,12 +53,75 @@ export const Header: React.FC = () => {
     setToggle(false);
   };
 
+  useEffect(() => {
+    // Ищем cookie
+    let cookieUser = getCookie("user");
+
+    // Если есть user
+    if (cookieUser) {
+      setCookie(cookieUser);
+    } else {
+      // Иначе
+      setCookie(false);
+    }
+  }, [authorization.account]);
+
+  useEffect(() => {
+    if (toggle == null) return;
+
+    const handleClick = (e: MouseEvent) => {
+      if (user.current == null) return;
+      if (!user.current.contains(e.target as Element)) {
+        setToggle(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+
+  useEffect(() => {
+    if (!select.callCity) return;
+
+    const handleClickOfButton = async () => {
+      const statuses = additionalOptions(checkbox);
+
+      // Запрос города
+      let { data } = await axios.get<ArticleRoom[]>(
+        "http://localhost:3000/api/get-city/",
+        {
+          params: {
+            city: select.filter.city,
+            priceMin: select.filter.priceMin,
+            priceMax: select.filter.priceMax,
+            rooms: select.filter.rooms,
+            places: select.filter.places,
+            metro: select.filter.metro,
+            area: select.filter.area,
+            statuses: statuses,
+          },
+        }
+      );
+
+      // Перенаправление в каталог, деление на страницы
+      redirectOfCatalog(data, dispatch, router);
+
+      dispatch(selectCallCity(false));
+    };
+    handleClickOfButton();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [select.callCity]);
+
   return (
     <>
       {/* Верхний блок */}
       <nav>
         <ul className={styles.list}>
-          {link.map((elem, index) => (
+          {header.link.map((elem, index) => (
             <li
               className={styles.item}
               onClick={() => setActiveId(elem.id)}
@@ -195,9 +230,9 @@ export const Header: React.FC = () => {
           {[0, 1, 2, 3].map((element) => (
             <Select
               key={element}
-              massive={underList[element]}
-              active={activeId}
+              massive={header.underList[element]}
               setActive={setActiveId}
+              active={activeId}
               option_1v={true}
             />
           ))}

@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type SelectState = {
+  callCity: boolean;
+  mainPage: {
+    metro: string;
+    area: string;
+  };
   filter: {
     priceMin: string;
     priceMax: string;
@@ -10,13 +15,14 @@ export type SelectState = {
     metro: string;
     area: string;
   };
-  mainPage: {
-    metro: string;
-    area: string;
-  };
 };
 
 const initialState: SelectState = {
+  callCity: false,
+  mainPage: {
+    metro: "",
+    area: "",
+  },
   filter: {
     priceMax: "",
     priceMin: "",
@@ -25,10 +31,6 @@ const initialState: SelectState = {
     area: "",
     rooms: 0,
     city: 0,
-  },
-  mainPage: {
-    metro: "",
-    area: "",
   },
 };
 
@@ -66,13 +68,18 @@ export const selectSlice = createSlice({
       state.filter.area = "";
       state.filter.rooms = 0;
     },
-    
+
     // Главная страница, фильтр для слайда
     selectMetroMainPage(state, action: PayloadAction<string>) {
       state.mainPage.metro = action.payload;
     },
     selectAreaMainPage(state, action: PayloadAction<string>) {
       state.mainPage.area = action.payload;
+    },
+
+    // При изменении, вызов функции в navbar'e
+    selectCallCity(state, action: PayloadAction<boolean>) {
+      state.callCity = action.payload;
     },
   },
 });
@@ -81,6 +88,7 @@ export const {
   selectMetroMainPage,
   selectAreaMainPage,
   selectCountRooms,
+  selectCallCity,
   selectPriceMin,
   selectPriceMax,
   selectPlaces,
