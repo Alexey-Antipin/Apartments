@@ -1,25 +1,35 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./Catalog.module.scss";
 import { Context } from "../../components";
+import { useRouter } from "next/router";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
+import axios from "axios";
 import {
   PaginationNumbering,
+  redirectOfCatalog,
+  additionalOptions,
   LinkNavigation,
   MapBackground,
   ListArticles,
   FilterRooms,
   getData,
   Control,
-} from "../../common";
+} from "../../common/";
 import {
+  selectCountRooms,
   useAppDispatch,
   useAppSelector,
+  selectPriceMin,
+  selectPriceMax,
+  defaultPrice,
+  selectArea,
   choiceCity,
   RootState,
+  reset,
 } from "../../redux";
 
 type Params = { params: { page: string } };
@@ -31,25 +41,21 @@ type Props = {
 };
 
 const Catalog: React.FC<Props> = (props) => {
+  const [recommendedRooms, setRecommendedRooms] = useState<any>(false);
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
-  const network = useAppSelector((state: RootState) => state.main.network);
-  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
-  const catalog = useAppSelector((state: RootState) => state.catalog);
-  const select = useAppSelector((state: RootState) => state.select);
+  const { header, main, checkbox, catalog, select } = useAppSelector(
+    (state: RootState) => state
+  );
   const context = useContext(Context);
   const dispatch = useAppDispatch();
-  const header = useAppSelector(
-    (state: RootState) => state.header.underList[0]
-  );
+  const router = useRouter();
 
   useEffect(() => {
-    const town = header.list[select.filter.city].text.replace(/на сутки/gi, "");
-    const linkTown = header.list[select.filter.city].text.replace(
-      /квартиры/gi,
-      "Аренда квартир"
-    );
+    const list = header.underList[0].list[select.filter.city];
+    const linkTown = list.text.replace(/квартиры/gi, "Аренда квартир");
+    const town = list.text.replace(/на сутки/gi, "");
 
     setLinkCity(linkTown);
     setCity(town);
@@ -64,6 +70,62 @@ const Catalog: React.FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleClick = async (word: string, view: string, num: number) => {
+    // Обнуляем
+    dispatch(defaultPrice());
+    dispatch(reset());
+
+    // При клике, выбираем
+    switch (view) {
+      case "price":
+        dispatch(selectPriceMin("60"));
+        dispatch(selectPriceMax("120"));
+        break;
+      case "room":
+        dispatch(selectCountRooms(num));
+        break;
+      case "area":
+        dispatch(selectArea(word));
+        break;
+      default:
+        break;
+    }
+
+    setRecommendedRooms(true);
+  };
+
+  useEffect(() => {
+    if (!recommendedRooms) return;
+
+    const handleClickOfButton = async () => {
+      const statuses = additionalOptions(checkbox);
+
+      // Запрос города
+      let { data } = await axios.get<ArticleRoom[]>(
+        "http://localhost:3000/api/get-city/",
+        {
+          params: {
+            city: select.filter.city,
+            priceMin: select.filter.priceMin,
+            priceMax: select.filter.priceMax,
+            rooms: select.filter.rooms,
+            places: select.filter.places,
+            metro: select.filter.metro,
+            area: select.filter.area,
+            statuses: statuses,
+          },
+        }
+      );
+
+      // Перенаправление в каталог, деление на страницы
+      redirectOfCatalog(data, dispatch, router);
+    };
+    handleClickOfButton();
+
+    setRecommendedRooms(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recommendedRooms]);
+
   return (
     <>
       <Head>
@@ -77,15 +139,17 @@ const Catalog: React.FC<Props> = (props) => {
           {catalog.recommendedRooms.map((item, index) => (
             <div
               className={styles.link}
-              onClick={() => {}}
+              onClick={() =>
+                handleClick(item.word, item.view, item.num as number)
+              }
               key={index}>
-              {item}
+              {item.word}
             </div>
           ))}
         </div>
       </div>
 
-      <div className={checkboxs.settings ? styles["filterRooms-position"] : ""}>
+      <div className={checkbox.settings ? styles["filterRooms-position"] : ""}>
         <FilterRooms
           classes={{
             classNavbar: styles.navbar,
@@ -129,7 +193,7 @@ const Catalog: React.FC<Props> = (props) => {
         />
         <div className={styles["block-network"]}>
           <p className={styles["network-text"]}>Поделиться</p>
-          {network.map((el, index) => (
+          {main.network.map((el, index) => (
             <Link className={styles.network} key={index} href={el.href}>
               <Sprite id={el.net} height="16" width="18" colour="black" />
             </Link>

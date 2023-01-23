@@ -11,30 +11,22 @@ import { Select } from "./select";
 import { List } from "./list";
 import {
   additionalOptions,
-  filterApartment,
+  redirectOfCatalog,
   selectionPrice,
-  selectionCity,
-  filterSelects,
   FilterRooms,
-  filterPrice,
-  filterSend,
 } from "./blockFilter";
 
 export {
   PaginationNumbering,
+  redirectOfCatalog,
   additionalOptions,
-  filterApartment,
   LinkNavigation,
   selectionPrice,
-  selectionCity,
   MapBackground,
-  filterSelects,
   DateArticles,
   ListArticles,
   FilterRooms,
-  filterPrice,
   ImageBlock,
-  filterSend,
   Checkbox,
   Control,
   getData,
