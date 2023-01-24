@@ -37,8 +37,5 @@
 занятие №16:https://github.com/Alexey-Antipin/Project-Next-js/pull/7
 
 Домашнее задание №9;<br/>
-занятие №18: https://github.com/Alexey-Antipin/Project-Next-js/pull/8/commits/81e758b2abd446028538fe5aa2fcc1c243e719d9
-
-Домашнее задание №10;<br/>
-Продолжение проекта https://github.com/Alexey-Antipin/Project-Next-js/pull/10
-занятие №20: typescript https://github.com/Alexey-Antipin/Project-Next-js/pull/10/files#diff-0a5203ab637b23f55678f9579c01c266a63fd9180b2f93de1faa5d299f8a5872
+Продолжение проекта https://github.com/Alexey-Antipin/Project-Next-js/pull/10 <br/>
+занятие №20: typescript https://github.com/Alexey-Antipin/Project-Next-js/pull/10/files#diff-0a5203ab637b23f55678f9579c01c266a63fd9180b2f93de1faa5d299f8a5872 <br/>
