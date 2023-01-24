@@ -1,10 +1,14 @@
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import styles from "../../styles/Main.module.scss";
-import { createSlice } from "@reduxjs/toolkit";
 import { MassiveOfSelect } from "../../ts";
+import axios from "axios";
+
+type LengthRooms = { amount: string[]; count: string[] };
 
 type Object = {
-  title: string;
   massive: string[];
+  sprite?: boolean;
+  title: string;
 };
 
 type ObjectCard = {
@@ -21,15 +25,23 @@ type ObjectSize = {
   cl_title_3h: string;
   title_2h: string;
   title_3h: string;
+  massive: string[];
   index: number;
   width: number;
 };
 
+type NetworkItems = {
+  href: string;
+  net: string;
+};
+
 type MainState = {
+  amountRooms: { amount: string[]; cottage: string[] };
   metroAndArea: MassiveOfSelect[];
   filterList: MassiveOfSelect[];
   massive: MassiveOfSelect[];
   pictureSize: ObjectSize[];
+  network: NetworkItems[];
   massiveList: Object[];
   card: ObjectCard[];
   cities: string[];
@@ -37,42 +49,15 @@ type MainState = {
 };
 
 const initialState: MainState = {
-  filterList: [
+  cities: ["Минск", "Гомель", "Брест", "Витебск", "Гродно", "Могилев"],
+  amountRooms: { amount: [], cottage: [] },
+  metroAndArea: [
     {
       id: 1,
-      title: "Спальные места",
-      text: "Выберите",
+      text: "Метро",
+      element: "Метро-главная-страница",
       sprite: "mark",
-      spriteColour: "#664EF9",
-      list: [
-        { id: 1, text: "Квартиры в Минске" },
-        { id: 2, text: "Квартиры в Гомеле" },
-        { id: 3, text: "Квартиры в Бресте" },
-        { id: 4, text: "Квартиры в Витебске" },
-        { id: 5, text: "Квартиры в Гродно" },
-        { id: 6, text: "Квартиры в Могилеве" },
-      ],
-    },
-    {
-      id: 1,
-      title: "Район",
-      text: "Выберите",
-      sprite: "mark",
-      spriteColour: "#664EF9",
-      list: [
-        { id: 1, text: "Минский" },
-        { id: 2, text: "Гомельский" },
-        { id: 3, text: "Брестский" },
-        { id: 4, text: "Витебский" },
-        { id: 5, text: "Гродновский" },
-        { id: 6, text: "Могилевский" },
-      ],
-    },
-    {
-      id: 1,
-      title: "Метро",
-      text: "Выберите",
-      sprite: "mark",
+      sprite_2: "metro",
       spriteColour: "#664EF9",
       list: [
         { id: 1, text: "Шабаны" },
@@ -83,14 +68,64 @@ const initialState: MainState = {
         { id: 6, text: "Площадь Ленина" },
       ],
     },
+    {
+      id: 2,
+      text: "Район",
+      element: "Район-главная-страница",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Заводской р." },
+        { id: 2, text: "Ленинский р." },
+        { id: 3, text: "Московский р." },
+        { id: 4, text: "Октябрьский р." },
+        { id: 5, text: "Шабанский р." },
+        { id: 6, text: "Могилёвский р." },
+      ],
+    },
   ],
-  array: [
-    "Квартиры на сутки",
-    "Коттеджи и усадьбы",
-    "Бани и сауны",
-    "Авто напрокат",
+  massiveList: [
+    {
+      title: "Квартиры",
+      massive: [
+        "Квартиры в Минске",
+        "Квартиры в Гомеле",
+        "Квартиры в Бресте",
+        "Квартиры в Витебске",
+        "Квартиры в Гродно",
+        "Квартиры в Могилеве",
+      ],
+    },
+    {
+      title: "Коттеджи и усадьбы",
+      massive: [
+        "Аггроусадьбы",
+        "Коттеджи",
+        "Загородный комплекс",
+        "Базы отдыха",
+      ],
+    },
+    {
+      title: "Еще",
+      sprite: true,
+      massive: [
+        "Пример - 1",
+        "Пример - 2",
+        "Пример - 3",
+        "Пример - 4",
+        "Пример - 5",
+      ],
+    },
+    {
+      title: "Популярные направления",
+      massive: [
+        "Коттеджи и усадьбы на о. Брасласких",
+        "Коттеджи и усадьбы (жилье) на Нарочи ",
+        "Коттеджи и усадьбы (жилье) у воды,",
+        "на берегу, на озере",
+      ],
+    },
   ],
-  cities: ["Минск", "Витебск", "Гродно", "Гомель", "Брест", "Могилев"],
   pictureSize: [
     {
       index: 1,
@@ -99,6 +134,7 @@ const initialState: MainState = {
       title_3h: "Квартиры на сутки",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-1"],
+      massive: ["picture-1"],
     },
     {
       index: 2,
@@ -107,6 +143,7 @@ const initialState: MainState = {
       title_3h: "Коттеджи и усадьбы",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-2"],
+      massive: ["picture-2", "room-1", "room-2", "room-3", "picture-2"],
     },
     {
       index: 3,
@@ -115,6 +152,7 @@ const initialState: MainState = {
       title_3h: "Бани и сауны",
       cl_title_2h: styles["title_2h-1"],
       cl_title_3h: styles["title_3h-2"],
+      massive: ["picture-3", "room-1", "room-2", "room-3", "picture-3"],
     },
     {
       index: 4,
@@ -123,6 +161,55 @@ const initialState: MainState = {
       title_3h: "Авто на прокат",
       cl_title_2h: styles["title_2h-2"],
       cl_title_3h: styles["title_3h-3"],
+      massive: ["picture-4", "room-1", "room-2", "room-3", "picture-4"],
+    },
+  ],
+  filterList: [
+    {
+      id: 1,
+      title: "Спальные места",
+      text: "Выберите",
+      element: "Спальные места",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "На Севере" },
+        { id: 2, text: "На Юге" },
+        { id: 3, text: "На Западе" },
+        { id: 4, text: "На Востоке" },
+      ],
+    },
+    {
+      id: 1,
+      title: "Район",
+      text: "Выберите",
+      element: "Район",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Заводской р." },
+        { id: 2, text: "Ленинский р." },
+        { id: 3, text: "Московский р." },
+        { id: 4, text: "Октябрьский р." },
+        { id: 5, text: "Шабанский р." },
+        { id: 6, text: "Могилёвский р." },
+      ],
+    },
+    {
+      id: 1,
+      title: "Метро",
+      text: "Выберите",
+      element: "Метро",
+      sprite: "mark",
+      spriteColour: "#664EF9",
+      list: [
+        { id: 1, text: "Шабаны" },
+        { id: 2, text: "Пушкинская" },
+        { id: 3, text: "Фрунзенская" },
+        { id: 4, text: "Октябрьская" },
+        { id: 5, text: "Площадь Победы" },
+        { id: 6, text: "Площадь Ленина" },
+      ],
     },
   ],
   massive: [
@@ -157,68 +244,18 @@ const initialState: MainState = {
       ],
     },
   ],
-  massiveList: [
-    {
-      title: "Квартиры",
-      massive: [
-        "Квартиры в Минске",
-        "Квартиры в Гомеле",
-        "Квартиры в Бресте",
-        "Квартиры в Витебске",
-        "Квартиры в Гродно",
-        "Квартиры в Могилеве",
-      ],
-    },
-    {
-      title: "Коттеджи и усадьбы",
-      massive: [
-        "Аггроусадьбы",
-        "Коттеджи",
-        "Загородный комплекс",
-        "Базы отдыха",
-        "Еще",
-      ],
-    },
-    {
-      title: "Популярные направления",
-      massive: [
-        "Коттеджи и усадьбы на о. Брасласких",
-        "Коттеджи и усадьбы (жилье) на Нарочи ",
-        "Коттеджи и усадьбы (жилье) у воды,",
-        "на берегу, на озере",
-      ],
-    },
+  network: [
+    { net: "vk", href: "./" },
+    { net: "facebook-2", href: "./" },
+    { net: "viber", href: "./" },
+    { net: "telegram", href: "./" },
+    { net: "whatsapp", href: "./" },
   ],
-  metroAndArea: [
-    {
-      id: 1,
-      text: "Метро",
-      sprite: "mark",
-      sprite_2: "metro",
-      spriteColour: "#664EF9",
-      list: [
-        { id: 1, text: "Шабаны" },
-        { id: 2, text: "Пушкинская" },
-        { id: 3, text: "Фрунзенская" },
-        { id: 4, text: "Октябрьская" },
-        { id: 5, text: "Площадь Победы" },
-        { id: 6, text: "Площадь Ленина" },
-      ],
-    },
-    {
-      id: 2,
-      text: "Район",
-      sprite: "mark",
-      spriteColour: "#664EF9",
-      list: [
-        { id: 1, text: "Минске" },
-        { id: 2, text: "Гомеле" },
-        { id: 3, text: "Бресте" },
-        { id: 4, text: "Витебске" },
-        { id: 5, text: "Гродно" },
-        { id: 6, text: "Могилеве" },
-      ],
-    },
+  array: [
+    "Квартиры на сутки",
+    "Коттеджи и усадьбы",
+    "Бани и сауны",
+    "Авто напрокат",
   ],
   card: [
     {
@@ -247,10 +284,27 @@ const initialState: MainState = {
   ],
 };
 
+export const amountOfRoomsThunk = createAsyncThunk(
+  "main/mainAmountOfRooms",
+  async () => {
+    let { data } = await axios.get("http://localhost:3000/api/get-amount");
+    return data;
+  }
+);
+
 export const mainSlice = createSlice({
   name: "main",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      amountOfRoomsThunk.fulfilled,
+      (state, action: PayloadAction<LengthRooms>) => {
+        state.amountRooms.cottage = action.payload.count;
+        state.amountRooms.amount = action.payload.amount;
+      }
+    );
+  },
 });
 
 export default mainSlice.reducer;

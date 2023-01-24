@@ -3,14 +3,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { ArticleRoom } from "../../ts";
 import axios from "axios";
 
-type MassiveNews = {
-  title: string;
-  date: string;
-};
-
 type ArticlesState = {
   articles: {
-    news: MassiveNews[];
     items: ArticleRoom[];
     lengthItems: number;
   };
@@ -18,7 +12,6 @@ type ArticlesState = {
 
 const initialState: ArticlesState = {
   articles: {
-    news: [],
     items: [],
     lengthItems: 0,
   },

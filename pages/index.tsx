@@ -1,33 +1,65 @@
-import { articlesThunk } from "../redux/reducers/articlesReducer";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { ImageBlock } from "../common/ImageBlock";
-import { LinkNavigation, List, ListArticles } from "../common";
 import styles from "../styles/Main.module.scss";
-import { FilterRooms } from "../common/filter";
-import { MapBackground } from "../common/map";
 import { useEffect, useState } from "react";
-import { RootState } from "../redux/store";
-import { Select } from "../common/Select";
-import { Slider } from "../common/Slider";
 import parse from "html-react-parser";
 import { Sprite } from "../svg";
+import { Article } from "../ts";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  LinkNavigation,
+  MapBackground,
+  ListArticles,
+  FilterRooms,
+  ImageBlock,
+  Select,
+  Slider,
+  List,
+} from "../common";
+import {
+  amountOfRoomsThunk,
+  useAppDispatch,
+  useAppSelector,
+  countNewsThunk,
+  articlesThunk,
+  RootState,
+} from "../redux";
 
 const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
   const [active, setActive] = useState<number>(0);
+  const dispatch = useAppDispatch();
 
-  const main = useAppSelector((state: RootState) => state.main);
+  const newsArticles = useAppSelector((state: RootState) => state.news);
   const rooms = useAppSelector((state: RootState) => state.articles);
+  const select = useAppSelector((state: RootState) => state.select);
+  const main = useAppSelector((state: RootState) => state.main);
+  const amount = [main.amountRooms.amount, main.amountRooms.cottage];
 
   useEffect(() => {
     let interval = 6;
     dispatch(articlesThunk(interval));
+    dispatch(amountOfRoomsThunk());
+    dispatch(countNewsThunk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    filterSlider();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [select.mainPage.metro, select.mainPage.area]);
+
+  // Фильтр
+  const filterSlider = () => {
+    if (!select.mainPage.metro || !select.mainPage.area) {
+      return rooms.articles.items;
+    }
+    return rooms.articles.items.filter(
+      (item) =>
+        select.mainPage.metro == item.station &&
+        select.mainPage.area == item.area
+    );
+  };
 
   return (
     <>
@@ -60,13 +92,14 @@ const Home: React.FC = () => {
           <div className={styles["block-picture"]}>
             {main.pictureSize.map((el) => (
               <ImageBlock
-                title_2h={el.title_2h}
-                title_3h={el.title_3h}
                 cl_title_2h={el.cl_title_2h}
                 cl_title_3h={el.cl_title_3h}
+                title_2h={el.title_2h}
+                title_3h={el.title_3h}
                 cities={main.cities}
+                massive={el.massive}
+                indexMap={el.index}
                 width={el.width}
-                index={el.index}
                 key={el.index}
               />
             ))}
@@ -74,28 +107,25 @@ const Home: React.FC = () => {
 
           {/* Выбор городов. */}
           <div className={styles["city-block"]}>
-            {[0, 1, 2].map((el) => (
+            {[0, 1, 2, 3].map((el) => (
               <List
                 key={el}
-                title={main.massiveList[el].title}
                 array={main.massiveList[el].massive}
+                header={main.massiveList[el]}
                 classes={{
-                  classList: styles["city-List"],
+                  classDisabled: styles["city-disabled"],
                   classTitle: styles["city-title"],
+                  classList: styles["city-list"],
                   classUl: styles["city-ul"],
                 }}
+                amount={amount[el]}
               />
             ))}
           </div>
 
           {/* Куб точек. */}
           <div className={styles["position-picture"]}>
-            <Image
-              src={"/points.png"}
-              alt="points"
-              height={61}
-              width={61}
-            />
+            <Image src={"/points.png"} alt="points" height={61} width={61} />
           </div>
         </div>
       </div>
@@ -114,7 +144,7 @@ const Home: React.FC = () => {
         <div className={styles["slider-margin"]}>
           <Slider interval={1490} step={1490}>
             <ListArticles
-              list={rooms.articles.items}
+              list={filterSlider()}
               useSquare={true}
               classes={{
                 classUl: styles["block-list"],
@@ -130,10 +160,10 @@ const Home: React.FC = () => {
         {/* Внутри фона. */}
         <div className={styles["background-select"]}>
           {/* Метро && Район */}
-          {[0, 1].map((_, index) => (
-            <div key={index}>
+          {[0, 1].map((elem) => (
+            <div key={elem}>
               <Select
-                massive={main.metroAndArea[index]}
+                massive={main.metroAndArea[elem]}
                 setActive={setActive}
                 option_3v={true}
                 active={active}
@@ -153,13 +183,10 @@ const Home: React.FC = () => {
           </div>
 
           <div
-            className={clsx(
-              styles["block-line-margin"],
-              styles["block-line"]
-            )}
+            className={clsx(styles["block-line-margin"], styles["block-line"])}
           />
 
-          <Link href="./" className={styles["button-watch-alles"]}>
+          <Link href="./catalog" className={styles["button-watch-alles"]}>
             Посмотреть все
             <div className={styles["sprite-margin"]}>
               <Sprite id="mark" colour="#ffffff" />
@@ -193,15 +220,11 @@ const Home: React.FC = () => {
                       <div className={styles["map-sprite"]}>
                         <Sprite id={el.sprite} />
                       </div>
-                      <h4 className={styles["map-title-h4"]}>
-                        {el.title}
-                      </h4>
+                      <h4 className={styles["map-title-h4"]}>{el.title}</h4>
                     </div>
                   ) : (
                     <div>
-                      <h4 className={styles["map-title-gold"]}>
-                        {el.title}
-                      </h4>
+                      <h4 className={styles["map-title-gold"]}>{el.title}</h4>
                     </div>
                   )}
 
@@ -291,8 +314,8 @@ const Home: React.FC = () => {
                 <p className={styles["description-paragraph"]}>
                   <strong>Нужна квартира на сутки в Минске?</strong>
                   <br />
-                  На веб-сайте sdaem.by вас ждет масса выгодных
-                  предложений. Каталог насчитывает
+                  На веб-сайте sdaem.by вас ждет масса выгодных предложений.
+                  Каталог насчитывает
                   <strong> более 500 квартир.</strong>
                   <br />
                   Благодаря удобной навигации вы быстро найдете подходящий
@@ -314,12 +337,12 @@ const Home: React.FC = () => {
             <p className={styles["description-paragraph"]}>
               Чтобы снять квартиру на сутки в Минске, вам достаточно
               определиться с выбором и связаться с владельцем для уточнения
-              условий аренды и заключить договор. Заметим, на сайте
-              представлены исключительно квартиры на сутки без посредников,
-              что избавляет посетителей от необходимости взаимодействовать
-              с агентствами, тратя свое время и деньги. Также пользователи
-              сайта могут совершенно бесплатно размещать объявления о
-              готовности сдать квартиру на сутки.
+              условий аренды и заключить договор. Заметим, на сайте представлены
+              исключительно квартиры на сутки без посредников, что избавляет
+              посетителей от необходимости взаимодействовать с агентствами,
+              тратя свое время и деньги. Также пользователи сайта могут
+              совершенно бесплатно размещать объявления о готовности сдать
+              квартиру на сутки.
             </p>
           </div>
 
@@ -337,26 +360,26 @@ const Home: React.FC = () => {
 
             {/* Список новостей. */}
             <div className={styles["description-list"]}>
-              {rooms.articles.news.map((el: any, index) => (
+              {newsArticles.news.map((el: Article, index: number) => (
                 <div key={index}>
-                  <p className={styles["description-paragraph-news"]}>
+                  <Link
+                    className={styles["description-paragraph-news"]}
+                    href={`news-detailed/${el.id}`}>
                     {el.title}
-                  </p>
+                  </Link>
 
                   <time
                     className={styles["description-time"]}
-                    dateTime="2023-01-15">
-                    {el.date}
+                    dateTime={el.time}>
+                    {el.time}
                   </time>
 
-                  {index !== 4 && (
-                    <hr className={styles["description-line"]} />
-                  )}
+                  {index !== 4 && <hr className={styles["description-line"]} />}
                 </div>
               ))}
             </div>
 
-            <Link className={styles["description-button"]} href="./">
+            <Link className={styles["description-button"]} href="./news">
               Посмотреть все
               <div className={styles["description-sprite"]}>
                 <Sprite id="mark" colour="#664ef9" />

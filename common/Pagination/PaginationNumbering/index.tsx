@@ -1,6 +1,6 @@
 import styles from "./Pagination.module.scss";
 import { PaginationProps } from "../../../ts";
-import { Logic } from "../Logic";
+import { Logic } from "../logic";
 import Link from "next/link";
 
 export const PaginationNumbering = ({

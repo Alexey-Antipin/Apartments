@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../../components/context";
 import styles from "./ListArticles.module.scss";
+import { Context } from "../../components";
 import { ArticleProps } from "../../ts";
 import { Sprite } from "../../svg";
-import { Slider } from "../Slider";
+import { Slider } from "../slider";
 import Image from "next/image";
 import clsx from "clsx";
 
@@ -56,9 +56,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
         return;
       }
       if (
-        !ref.current.childNodes[openContacts].contains(
-          event.target as Element
-        )
+        !ref.current.childNodes[openContacts].contains(event.target as Element)
       ) {
         setOpenContacts(null);
         return;
@@ -101,8 +99,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
                     containerSlider: styles["slider-container"],
                     buttonDisabled: styles["slider-button-disabled"],
                     blockButton:
-                      (alternative &&
-                        styles["alternative-slider-block"]) ||
+                      (alternative && styles["alternative-slider-block"]) ||
                       styles["slider-block"],
                     button: styles["slider-button"],
                   }}
@@ -112,8 +109,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
                   {[0, 1, 2, 3, 4].map((el, index) => (
                     <div
                       className={
-                        (alternative &&
-                          styles["alternative-slider-image"]) ||
+                        (alternative && styles["alternative-slider-image"]) ||
                         styles["slider-image"]
                       }
                       key={index}>
@@ -145,10 +141,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
             </div>
 
             {/* Контент */}
-            <div
-              className={
-                (alternative && styles["alternative-block"]) || ""
-              }>
+            <div className={(alternative && styles["alternative-block"]) || ""}>
               {item.price && (
                 <div>
                   <div
@@ -168,10 +161,8 @@ export const ListArticles: React.FC<ArticleProps> = ({
                         alternative && styles["alternative-info-price"],
                         styles["info-price"]
                       )}>
-                      {item.price}  BYN
-                      <span className={styles["info-price-day"]}>
-                        за сутки
-                      </span>
+                      {item.price} BYN
+                      <span className={styles["info-price-day"]}>за сутки</span>
                     </div>
 
                     {!alternative && (
@@ -202,8 +193,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
                     )}
                   </div>
 
-                  <div
-                    className={!alternative ? styles["block-city"] : ""}>
+                  <div className={!alternative ? styles["block-city"] : ""}>
                     {/* Улица */}
                     <div
                       className={clsx(
@@ -281,9 +271,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
                 </div>
               )}
 
-              {item.title && (
-                <h3 className={styles.title}>{item.title}</h3>
-              )}
+              {item.title && <h3 className={styles.title}>{item.title}</h3>}
 
               {/* Описание */}
               <p
@@ -303,7 +291,7 @@ export const ListArticles: React.FC<ArticleProps> = ({
               {!item.price && (
                 <div className={styles.block}>
                   <time className={styles.date}>{item.time}</time>
-                  <a className={styles.link} href={`./${item.id}`}>
+                  <a className={styles.link} href={`/news-detailed/${item.id}`}>
                     Читать
                   </a>
                 </div>
@@ -369,7 +357,10 @@ export const ListArticles: React.FC<ArticleProps> = ({
                   alternative && styles["alternative-contacts"],
                   styles.contacts
                 )}>
-                <div className={styles["contacts-face"]}></div>
+                <Image
+                  className={styles["contacts-face"]}
+                  src="/user/user.png"
+                  alt="master" height={60} width={60}/>
                 <h2 className={styles["contacts-title"]}>Владелец</h2>
                 <div className={styles["contacts-data"]}>
                   {item.contacts.master}

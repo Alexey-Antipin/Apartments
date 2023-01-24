@@ -14,6 +14,7 @@ type ArticleRoom = {
   width: number;
   description: string;
   photo: string;
+  places: string;
   photoMassive: PhotoMassive[];
   title?: string;
   time?: string;
@@ -54,6 +55,7 @@ type SelectOfProps = {
   setZeroing?: (value: number) => void;
   zeroing?: number;
 
+  cancelClosed?: (value: boolean) => void;
   massive: MassiveOfSelect;
   option_1v?: boolean;
   option_2v?: boolean;
@@ -66,33 +68,33 @@ type MassiveOfSelectList = {
 };
 
 type MassiveOfSelect = {
-  id: number;
-  text: string;
-  title?: string;
-  sprite?: string;
-  element?: string;
-  sprite_2?: string;
-  spriteColour?: string;
   list: MassiveOfSelectList[];
+  spriteColour?: string;
+  sprite_2?: string;
+  element?: string;
+  sprite?: string;
+  title?: string;
+  text: string;
+  id: number;
 };
 
 type RegistrationOfFormik = {
+  confirmPassword: string;
+  password: string;
   login: string;
   email: string;
-  password: string;
-  confirmPassword: string;
 };
 
 type AuthorizationOfFormik = {
-  login: string;
   password: string;
-  remember: string;
+  remember: boolean;
+  login: string;
 };
 
 type ContactsOfField = {
-  name: string;
-  email: string;
   message: string;
+  email: string;
+  name: string;
 };
 
 type ResetForm = {
@@ -135,7 +137,7 @@ type ResponseError = {
 };
 
 type ArticleProps = {
-  list: ArticleRoom[];
+  list: any[];
   alternative?: boolean;
   sliderTrue?: boolean;
   useSquare?: boolean;
@@ -183,14 +185,16 @@ type MassiveOfListProps = {
   classes?: MassiveOfClassesProps;
   beginNumber?: number;
   active?: boolean;
-  title?: string;
+  header?: { sprite?: boolean; title: string };
+  amount?: string[];
   array: string[];
 };
 
 type MassiveOfClassesProps = {
-  classUl?: string;
-  classList?: string;
+  classDisabled?: string;
   classTitle?: string;
+  classList?: string;
+  classUl?: string;
 };
 
 type MassiveOfList = {
@@ -219,6 +223,10 @@ type CheckboxState = {
   settings: boolean;
 };
 
+type MoreCheckbox = {
+  [key: string]: boolean;
+};
+
 type CheckboxProps = {
   massive: Object[];
   numberling: any;
@@ -227,12 +235,14 @@ type CheckboxProps = {
 export type {
   CheckboxProps,
   CheckboxState,
+  MoreCheckbox,
   ArticleRoom,
   ResetForm,
+  Object,
   SelectOfProps,
   MassiveOfSelect,
-  RegistrationOfFormik,
   AuthorizationOfFormik,
+  RegistrationOfFormik,
   ContactsOfField,
   Icon,
   PageProps,

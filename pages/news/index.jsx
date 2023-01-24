@@ -1,15 +1,18 @@
-import { PaginationNumbering } from "../../common/Pagination/PaginationNumbering";
-import { LinkNavigation, ListArticles } from "../../common";
-import getProducts from "../../common/Pagination/GetData";
-import styles from "./NewsDetailed.module.scss";
-import {cities} from "../../mocks";
+import styles from "./News.module.scss";
+import { cities } from "../../mocks";
 import propTypes from "prop-types";
 import { Sprite } from "../../svg";
 import { useState } from "react";
 import Head from "next/head";
+import {
+  PaginationNumbering,
+  LinkNavigation,
+  ListArticles,
+  DateArticles,
+  getProducts,
+} from "../../common";
 
-const NewsDetailed = ({ articles, totalData, currentPage }) => {
-  const news = "Новости";
+const News = ({ articles, totalData, currentPage }) => {
   const [value, setValue] = useState("");
   const [list, setList] = useState(articles);
 
@@ -21,14 +24,18 @@ const NewsDetailed = ({ articles, totalData, currentPage }) => {
   };
 
   return (
-    <div className="NewsDetailed">
+    <div>
       <Head>
         <title>Новости</title>
       </Head>
 
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <LinkNavigation main={news} deepLink={news} option_v1={true} />
+          <LinkNavigation
+            deepLink={"Новости"}
+            main={"Новости"}
+            option_v1={true}
+          />
         </div>
 
         <div className={styles["container-list"]}>
@@ -42,7 +49,7 @@ const NewsDetailed = ({ articles, totalData, currentPage }) => {
           totalItems={totalData}
           currentPage={currentPage}
           itemsPerPage={9}
-          link={"news-detailed"}
+          link={"news"}
         />
 
         <div className={styles.background}>
@@ -53,9 +60,7 @@ const NewsDetailed = ({ articles, totalData, currentPage }) => {
               onChange={(event) => setValue(event.target.value)}
               value={value}
             />
-            <button
-              className={styles.button}
-              onClick={() => searchArticle()}>
+            <button className={styles.button} onClick={() => searchArticle()}>
               <Sprite id="search" />
             </button>
           </div>
@@ -65,11 +70,16 @@ const NewsDetailed = ({ articles, totalData, currentPage }) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const { articles, total } = await getProducts({
+export const getStaticProps = () => {
+  const { articles, total } = getProducts({
     limit: 9,
     page: 1,
     array: cities.articlesNews,
+  });
+
+  articles.forEach((_, index, array) => {
+    let timeCurrent = DateArticles(array[index].time);
+    array[index].time = timeCurrent;
   });
 
   return {
@@ -81,7 +91,7 @@ export const getStaticProps = async () => {
   };
 };
 
-NewsDetailed.propTypes = {
+News.propTypes = {
   articles: propTypes.arrayOf(
     propTypes.shape({
       description: propTypes.string,
@@ -97,4 +107,4 @@ NewsDetailed.propTypes = {
   currentPage: propTypes.number,
 };
 
-export default NewsDetailed;
+export default News;

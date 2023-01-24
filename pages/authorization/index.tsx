@@ -1,30 +1,31 @@
-import {
-  authorizationThunk,
-  remember,
-} from "../../redux/reducers/authorizationReducer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { AuthorizationOfFormik } from "../../ts";
 import styles from "./Authorization.module.scss";
-import { RootState } from "../../redux/store";
 import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
 import * as Yup from "yup";
 import clsx from "clsx";
+import {
+  authorizationThunk,
+  useAppDispatch,
+  useAppSelector,
+  accountUser,
+  RootState,
+} from "../../redux";
 
 const Authorization: React.FC = () => {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
   const authorization = useAppSelector(
     (state: RootState) => state.authorization
   );
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const initialValues: AuthorizationOfFormik = {
-    login: "",
+    remember: false,
     password: "",
-    remember: "false",
+    login: "",
   };
 
   const validationField = Yup.object({
@@ -35,14 +36,13 @@ const Authorization: React.FC = () => {
   const onSubmit = (values: AuthorizationOfFormik) => {
     let { login, password, remember } = values;
 
-    dispatch(authorizationThunk({ login, password, remember })).then(
-      (authorization: any) => {
-        authorization.meta.requestStatus == "fulfilled" &&
-          router.push("./");
+    dispatch(authorizationThunk({ login, password, remember })).then((res) => {
+      if (res.meta.requestStatus == "fulfilled") {
+        dispatch(accountUser());
+        router.push("./");
       }
-    );
+    });
   };
-
   return (
     <div className={styles.background}>
       <Head>
@@ -61,8 +61,9 @@ const Authorization: React.FC = () => {
             initialValues={initialValues}
             validationSchema={validationField}
             onSubmit={onSubmit}>
-            {({ errors, touched }) => (
+            {({ errors, touched, values }) => (
               <Form>
+                {/* Логин */}
                 <label htmlFor="login" className={styles.position}>
                   <Field
                     className={clsx(
@@ -88,6 +89,7 @@ const Authorization: React.FC = () => {
                   name="login"
                 />
 
+                {/* Пароль */}
                 <label htmlFor="password" className={styles.position}>
                   <Field
                     className={clsx(
@@ -103,9 +105,7 @@ const Authorization: React.FC = () => {
                   />
                   <span
                     className={
-                      errors.password
-                        ? styles["error-icons"]
-                        : styles.icons
+                      errors.password ? styles["error-icons"] : styles.icons
                     }>
                     <Sprite id="lock" colour="#686868" />
                   </span>
@@ -116,26 +116,29 @@ const Authorization: React.FC = () => {
                   name="password"
                 />
 
+                {/* Контроль */}
                 <div className={styles.control}>
-                  <label
-                    className={styles["label-block"]}
-                    htmlFor="switch">
-                    <button
+                  <label className={styles["label-block"]} htmlFor="switch">
+                    {/* Переключатель */}
+                    <Field
+                      className={styles["switch-block"]}
+                      type="checkbox"
+                      name="remember"
+                      id="switch"
+                    />
+                    {/* Поле */}
+                    <div
                       className={clsx(
                         styles.switch,
-                        authorization.remember && styles["switch-on"]
-                      )}
-                      onClick={() =>
-                        dispatch(remember(!authorization.remember))
-                      }
-                      type="button"
-                      id="switch">
+                        values.remember && styles["switch-on"]
+                      )}>
+                      {/* Круг */}
                       <div
                         className={clsx(
                           styles.round,
-                          authorization.remember && styles["round-on"]
+                          values.remember && styles["round-on"]
                         )}></div>
-                    </button>
+                    </div>
 
                     <div className={styles.remember}>Запомнить меня</div>
                   </label>
@@ -145,6 +148,7 @@ const Authorization: React.FC = () => {
                   </Link>
                 </div>
 
+                {/* Кнопка */}
                 <button className={styles.entrance} type="submit">
                   Войти
                 </button>
@@ -160,9 +164,7 @@ const Authorization: React.FC = () => {
 
           <p className={styles.account}>
             Еще нет аккаунта?
-            <Link
-              className={styles["account-create"]}
-              href="/registration">
+            <Link className={styles["account-create"]} href="/registration">
               Создайте акканут
             </Link>
           </p>

@@ -8,22 +8,23 @@ type HeaderState = {
 
 const initialState: HeaderState = {
   link: [
-    { id: 1, text: "Главная", href: "./" },
-    { id: 2, text: "Новости", href: "./news" },
-    { id: 3, text: "Размещение и тарифы", href: "./" },
+    { id: 1, text: "Главная", href: "/" },
+    { id: 2, text: "Новости", href: "/news" },
+    { id: 3, text: "Размещение и тарифы", href: "/" },
     {
       id: 4,
       text: "Объявления на карте",
       href: "./",
       sprite: "sign",
     },
-    { id: 5, text: "Контакты", href: "./contacts" },
-    { id: 6, text: "Закладки", href: "./", sprite: "heart" },
+    { id: 5, text: "Контакты", href: "/contacts" },
+    { id: 6, text: "Закладки", href: "/", sprite: "heart" },
   ],
   underList: [
     {
       id: 7,
       text: "Квартиры на сутки",
+      element: "Город-Меню",
       sprite: "sign",
       list: [
         { id: 1, text: "Квартиры на сутки в Минске" },
@@ -37,6 +38,7 @@ const initialState: HeaderState = {
     {
       id: 8,
       text: "Коттеджи и усадьбы",
+      element: "Город-Меню",
       list: [
         { id: 1, text: "Коттеджи на сутки в Минске" },
         { id: 2, text: "Коттеджи на сутки в Гомеле" },
@@ -49,6 +51,7 @@ const initialState: HeaderState = {
     {
       id: 9,
       text: "Бани и Сауны",
+      element: "Город-Меню",
       list: [
         { id: 1, text: "Бани и Сауны в Минске" },
         { id: 2, text: "Бани и Сауны в Гомеле" },
@@ -61,6 +64,7 @@ const initialState: HeaderState = {
     {
       id: 10,
       text: "Авто напрокат",
+      element: "Город-Меню",
       list: [
         { id: 1, text: "Авто напрокат в Минске" },
         { id: 2, text: "Авто напрокат в Гомеле" },

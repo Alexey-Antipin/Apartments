@@ -1,16 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
 import styles from "./Select.module.scss";
 import { SelectOfProps } from "../../ts";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import clsx from "clsx";
 import {
+  selectMetroMainPage,
+  selectAreaMainPage,
   selectCountRooms,
+  useAppDispatch,
+  selectCallCity,
+  defaultPrice,
+  selectPlaces,
+  selectMetro,
   selectCity,
-} from "../../redux/reducers/selectReducer";
+  selectArea,
+  reset,
+} from "../../redux";
 
 export const Select: React.FC<SelectOfProps> = ({
+  cancelClosed,
   setActive,
   active,
   setZeroing,
@@ -36,10 +45,13 @@ export const Select: React.FC<SelectOfProps> = ({
     if (!open) return;
 
     const handleClick = (e: MouseEvent) => {
-      if (ref.current == null) {
-        return;
-      }
-      if (!ref.current.contains(e.target as Element)) {
+      if (ref.current == null) return;
+      let listRef = ref.current.contains(e.target as Element);
+
+      if (listRef) {
+        cancelClosed && cancelClosed(open);
+      } else {
+        cancelClosed && cancelClosed(!open);
         setOpen(false);
       }
     };
@@ -62,11 +74,34 @@ export const Select: React.FC<SelectOfProps> = ({
 
   const handleClickOfDispatch = (type: string, num: number) => {
     switch (type) {
+      case "Город-Меню":
+        dispatch(selectCallCity(true));
+        dispatch(selectCity(num));
+
+        // Обнуляем
+        dispatch(defaultPrice());
+        dispatch(reset());
+        break;
       case "Город":
         dispatch(selectCity(num));
         break;
       case "Комнаты":
-        dispatch(selectCountRooms(num));
+        dispatch(selectCountRooms(num + 1));
+        break;
+      case "Спальные места":
+        dispatch(selectPlaces(massive.list[num].text));
+        break;
+      case "Метро":
+        dispatch(selectMetro(massive.list[num].text));
+        break;
+      case "Район":
+        dispatch(selectArea(massive.list[num].text));
+        break;
+      case "Метро-главная-страница":
+        dispatch(selectMetroMainPage(massive.list[num].text));
+        break;
+      case "Район-главная-страница":
+        dispatch(selectAreaMainPage(massive.list[num].text));
         break;
       default:
         break;
@@ -163,8 +198,7 @@ export const Select: React.FC<SelectOfProps> = ({
               )}
               onClick={() => (
                 handleClickOfItem(elem.id),
-                (option_1v || option_2v) &&
-                  handleClickOfDispatch(massive.element || "", elem.id)
+                handleClickOfDispatch(massive.element || "", index)
               )}
               key={index}>
               {option_1v && (

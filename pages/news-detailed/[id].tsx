@@ -1,22 +1,32 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { newsThunk } from "../../redux/reducers/newsReducer";
 import { LinkNavigation, ListArticles } from "../../common";
-import { RootState } from "../../redux/store";
-import styles from "./News.module.scss";
+import styles from "./NewsDetailed.module.scss";
+import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import {
+  useAppDispatch,
+  useAppSelector,
+  RootState,
+  newsThunk,
+} from "../../redux";
 
 const News: React.FC = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
-  const { list, item } = useAppSelector((state: RootState) => state.news);
+  const { articles, articleCurrent } = useAppSelector(
+    (state: RootState) => state.news
+  );
 
   useEffect(() => {
-    dispatch(newsThunk());
+    if (!router.isReady) return;
+    let id = router.query.id as string;
+
+    dispatch(newsThunk(+id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [router.isReady]);
 
   const network: Array<string> = [
     "vk",
@@ -35,7 +45,7 @@ const News: React.FC = () => {
       <div className={styles.header}>
         <div className={styles.wrapper}>
           <LinkNavigation
-            deepLink={item[0]?.title || "Cтатьи не существует."}
+            deepLink={articleCurrent.title || "Cтатьи не существует."}
             option_v2={true}
             main={"Новости"}
           />
@@ -43,7 +53,7 @@ const News: React.FC = () => {
 
         <div className={styles.network}>
           <time className={styles.date}>
-            {item[0]?.time || "00.00.0000"}
+            {articleCurrent.time || "00.00.0000"}
           </time>
 
           <div className={styles.nav}>
@@ -74,7 +84,7 @@ const News: React.FC = () => {
           <div className={styles["news-photo-position"]}>
             <Image
               className={styles["news-photo"]}
-              src={item[0]?.photo || "/nophoto.png"}
+              src={articleCurrent.photo || "/nophoto.png"}
               alt="article"
               priority
               fill
@@ -83,22 +93,23 @@ const News: React.FC = () => {
         </div>
 
         <div className={styles["text-block"]}>
-          {item[0]?.text.map((item: string, index: number) => {
-            return (
-              <div key={index}>
-                <p>{item}</p>
-                <br />
-              </div>
-            );
-          })}
-          {!item[0] && <div>Cтатьи не существует.</div>}
+          {articleCurrent.text &&
+            articleCurrent.text.map((item: string, index: number) => {
+              return (
+                <div key={index}>
+                  <p>{item}</p>
+                  <br />
+                </div>
+              );
+            })}
+          {!articleCurrent && <div>Cтатьи не существует.</div>}
         </div>
       </div>
 
       <div className={styles.footer}>
         <div className={styles.container}>
           <h2 className={styles["main-title"]}>Читайте также</h2>
-          <ListArticles list={list} />
+          <ListArticles list={articles} />
         </div>
       </div>
     </>

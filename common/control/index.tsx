@@ -1,4 +1,4 @@
-import { Context } from "../../components/context";
+import { Context } from "../../components";
 import styles from "./Control.module.scss";
 import { useContext } from "react";
 import { Sprite } from "../../svg";

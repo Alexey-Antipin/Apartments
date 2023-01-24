@@ -9,7 +9,7 @@ const CreateAccount = (
 
   try {
     writeFile(
-      "./mocks/users.json",
+      "./mocks/user/users.json",
       JSON.stringify({
         login,
         email,

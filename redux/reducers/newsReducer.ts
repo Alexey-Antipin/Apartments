@@ -1,38 +1,59 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { DateArticles } from "../../common/date";
 import { Article } from "../../ts";
 import axios from "axios";
 
+type NewsAndArticles = { articleCurrent: Article; articles: Article[] };
+type News = { articles: Article[] };
+
 type NewsState = {
-  item: Article[];
-  list: Article[];
+  articleCurrent: Article;
+  articles: Article[];
+  news: Article[];
 };
 
 const initialState: NewsState = {
-  list: [],
-  item: [],
+  articleCurrent: {} as Article,
+  articles: [],
+  news: [],
 };
 
-export const newsThunk = createAsyncThunk("news/newsList", async () => {
-  let id: number = 1;
-  let rangeMin: number = id - 1;
-  let rangeMax: number = rangeMin + 4;
+export const newsThunk = createAsyncThunk(
+  "news/newsList",
+  async (id: number) => {
+    let { data } = await axios.get<NewsState>(
+      `http://localhost:3000/api/articles/${id}`
+    );
 
-  let { data } = await axios.get<Article[]>(
-    "http://localhost:3000/api/articles",
-    {
-      params: { rangeMin, rangeMax },
-    }
-  );
+    // Массив статей, перевод формата времени
+    let articles = data.articles;
 
-  const articles = data.slice(rangeMin, rangeMax);
+    articles.forEach((_, index, array) => {
+      let timeCurrent = DateArticles(array[index].time);
 
-  const item = articles.filter((el) => el.id == id.toString());
+      array[index].time = timeCurrent as string;
+    });
 
-  const list = data.slice(rangeMin + 1, rangeMax);
+    // Выбранная статья, перевод формата времени
+    let articleCurrent = data.articleCurrent;
 
-  return { list, item };
-});
+    let date = DateArticles(articleCurrent.time);
+    articleCurrent.time = date as string;
+
+    return { articles, articleCurrent };
+  }
+);
+
+export const countNewsThunk = createAsyncThunk(
+  "news/amountNewsThunk",
+  async () => {
+    let { data } = await axios.get("http://localhost:3000/api/news");
+    let articles = data.articles;
+
+    return { articles };
+  }
+);
 
 export const newsSlice = createSlice({
   name: "news",
@@ -41,9 +62,16 @@ export const newsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       newsThunk.fulfilled,
-      (state, action: PayloadAction<NewsState>) => {
-        state.list = action.payload.list;
-        state.item = action.payload.item;
+      (state, action: PayloadAction<NewsAndArticles>) => {
+        state.articleCurrent = action.payload.articleCurrent;
+        state.articles = action.payload.articles;
+      }
+    );
+    builder.addCase(
+      countNewsThunk.fulfilled,
+      (state, action: PayloadAction<News>) => {
+
+        state.news = action.payload.articles;
       }
     );
   },

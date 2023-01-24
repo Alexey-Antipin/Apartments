@@ -7,10 +7,11 @@
     "room": "4",
     "city": "Гродно",
     "street": "б-р Мулявина, д. 10",
-    "station": "Грушевка",
-    "area": "Шабаны",
+    "station": "Шабаны",
+    "area": "Заводской р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },
@@ -57,6 +58,7 @@
     "area": "Заводской р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_3.png", "width": 406 },
@@ -103,6 +105,7 @@
     "area": "Ленинский р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Востоке",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_4.png", "width": 406 },
@@ -148,6 +151,7 @@
     "area": "Московский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room_5.png", "width": 406 },
       { "photo": "/picture/room.png", "width": 165 },
@@ -193,6 +197,7 @@
     "area": "Октябрьский р.",
     "square": "179 м²",
     "photo": "/picture/room_2.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room_4.png", "width": 406 },
       { "photo": "/picture/room.png", "width": 165 },
@@ -238,6 +243,7 @@
     "area": "Октябрьский р.",
     "square": "179 м²",
     "photo": "/picture/room.png",
+    "places": "На Западе",
     "photoMassive": [
       { "photo": "/picture/room.png", "width": 165 },
       { "photo": "/picture/room_2.png", "width": 406 },

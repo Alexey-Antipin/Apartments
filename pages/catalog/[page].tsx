@@ -1,64 +1,130 @@
-import { ListArticles, PaginationNumbering } from "../../common";
-import { LinkNavigation } from "../../common/LinkNavigation";
-import getProducts from "../../common/Pagination/GetData";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../components/context";
-import { useAppSelector } from "../../redux/hooks";
-import { FilterRooms } from "../../common/filter";
-import { MapBackground } from "../../common/map";
-import { Control } from "../../common/control";
-import { RootState } from "../../redux/store";
 import styles from "./Catalog.module.scss";
+import { Context } from "../../components";
+import { useRouter } from "next/router";
 import { ArticleRoom } from "../../ts";
 import { cities } from "../../mocks";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
+import axios from "axios";
+import {
+  PaginationNumbering,
+  redirectOfCatalog,
+  additionalOptions,
+  LinkNavigation,
+  MapBackground,
+  ListArticles,
+  FilterRooms,
+  getData,
+  Control,
+} from "../../common/";
+import {
+  selectCountRooms,
+  useAppDispatch,
+  useAppSelector,
+  selectPriceMin,
+  selectPriceMax,
+  defaultPrice,
+  selectArea,
+  choiceCity,
+  RootState,
+  reset,
+} from "../../redux";
 
 type Params = { params: { page: string } };
 
 type Props = {
+  articles: ArticleRoom[];
   currentPage: number;
   totalData: number;
-  articles: ArticleRoom[];
 };
 
-const Catalog: React.FC<Props> = ({
-  articles,
-  totalData,
-  currentPage,
-}) => {
+const Catalog: React.FC<Props> = (props) => {
+  const [recommendedRooms, setRecommendedRooms] = useState<any>(false);
   const [linkCity, setLinkCity] = useState<string>("");
   const [city, setCity] = useState<string>("");
 
-  const checkboxs = useAppSelector((state: RootState) => state.checkbox);
-  const tagRooms = useAppSelector((state: RootState) => state.catalog);
-  const header = useAppSelector(
-    (state: RootState) => state.header.underList[0]
+  const { header, main, checkbox, catalog, select } = useAppSelector(
+    (state: RootState) => state
   );
-  const select = useAppSelector((state: RootState) => state.select);
   const context = useContext(Context);
-
-  const network = [
-    { net: "vk", href: "./" },
-    { net: "facebook-2", href: "./" },
-    { net: "viber", href: "./" },
-    { net: "telegram", href: "./" },
-    { net: "whatsapp", href: "./" },
-  ];
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    const town = header.list[select.city].text.replace(/на сутки/gi, "");
-    const linkTown = header.list[select.city].text.replace(
-      /квартиры/gi,
-      "Аренда квартир"
-    );
+    const list = header.underList[0].list[select.filter.city];
+    const linkTown = list.text.replace(/квартиры/gi, "Аренда квартир");
+    const town = list.text.replace(/на сутки/gi, "");
 
     setLinkCity(linkTown);
     setCity(town);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [select.filter.city]);
+
+  useEffect(() => {
+    if (!catalog.articles.length) {
+      dispatch(choiceCity(props));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleClick = async (word: string, view: string, num: number) => {
+    // Обнуляем
+    dispatch(defaultPrice());
+    dispatch(reset());
+
+    // При клике, выбираем
+    switch (view) {
+      case "price":
+        dispatch(selectPriceMin("60"));
+        dispatch(selectPriceMax("120"));
+        break;
+      case "room":
+        dispatch(selectCountRooms(num));
+        break;
+      case "area":
+        dispatch(selectArea(word));
+        break;
+      default:
+        break;
+    }
+
+    setRecommendedRooms(true);
+  };
+
+  useEffect(() => {
+    if (!recommendedRooms) return;
+
+    const handleClickOfButton = async () => {
+      const statuses = additionalOptions(checkbox);
+
+      // Запрос города
+      let { data } = await axios.get<ArticleRoom[]>(
+        "http://localhost:3000/api/get-city/",
+        {
+          params: {
+            city: select.filter.city,
+            priceMin: select.filter.priceMin,
+            priceMax: select.filter.priceMax,
+            rooms: select.filter.rooms,
+            places: select.filter.places,
+            metro: select.filter.metro,
+            area: select.filter.area,
+            statuses: statuses,
+          },
+        }
+      );
+
+      // Перенаправление в каталог, деление на страницы
+      redirectOfCatalog(data, dispatch, router);
+    };
+    handleClickOfButton();
+
+    setRecommendedRooms(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recommendedRooms]);
 
   return (
     <>
@@ -70,18 +136,20 @@ const Catalog: React.FC<Props> = ({
         <LinkNavigation option_v1={true} main={city} deepLink={linkCity} />
         <h3 className={styles["title-h3"]}>Рекомендуем посмотреть</h3>
         <div className={styles["block-link"]}>
-          {tagRooms.recommendedRooms.map((el, index) => (
-            <Link className={styles.link} key={index} href="./">
-              {el}
-            </Link>
+          {catalog.recommendedRooms.map((item, index) => (
+            <div
+              className={styles.link}
+              onClick={() =>
+                handleClick(item.word, item.view, item.num as number)
+              }
+              key={index}>
+              {item.word}
+            </div>
           ))}
         </div>
       </div>
 
-      <div
-        className={
-          checkboxs.settings ? styles["filterRooms-position"] : ""
-        }>
+      <div className={checkbox.settings ? styles["filterRooms-position"] : ""}>
         <FilterRooms
           classes={{
             classNavbar: styles.navbar,
@@ -98,13 +166,13 @@ const Catalog: React.FC<Props> = ({
       </div>
 
       <h2 className={styles["title-h2"]}>
-        Найдено {totalData} результата
+        Найдено {catalog.totalData} результата
       </h2>
 
       <ListArticles
         alternative={!context.colourSprite}
         sliderTrue={true}
-        list={articles}
+        list={catalog.articles}
         classes={{
           classUl: context.colourSprite
             ? styles["catalog-list"]
@@ -118,14 +186,14 @@ const Catalog: React.FC<Props> = ({
       <div className={styles["block-footer"]}>
         <PaginationNumbering
           classes={{ wrapper: styles["pagination-wrapper"] }}
-          totalItems={totalData}
-          currentPage={currentPage}
+          totalItems={catalog.totalData}
+          currentPage={catalog.currentPage}
           itemsPerPage={9}
           link={`catalog`}
         />
         <div className={styles["block-network"]}>
           <p className={styles["network-text"]}>Поделиться</p>
-          {network.map((el, index) => (
+          {main.network.map((el, index) => (
             <Link className={styles.network} key={index} href={el.href}>
               <Sprite id={el.net} height="16" width="18" colour="black" />
             </Link>
@@ -138,9 +206,9 @@ const Catalog: React.FC<Props> = ({
   );
 };
 
-export const getStaticProps = async ({ params }: Params) => {
+export const getStaticProps = ({ params }: Params) => {
   const page = Number(params?.page) || 1;
-  const { articles, total } = await getProducts({
+  const { articles, total } = getData({
     limit: 9,
     page,
     array: cities.minsk,
@@ -166,7 +234,6 @@ export const getStaticProps = async ({ params }: Params) => {
       articles,
       totalData: total,
       currentPage: page,
-      a: params,
     },
     revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
   };
@@ -174,9 +241,7 @@ export const getStaticProps = async ({ params }: Params) => {
 
 export const getStaticPaths = async () => {
   return {
-    paths: Array.from({ length: 5 }).map(
-      (_, index) => `/catalog/${index + 2}`
-    ),
+    paths: Array.from({ length: 5 }).map((_, index) => `/catalog/${index + 2}`),
     fallback: "blocking",
   };
 };

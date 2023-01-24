@@ -4,12 +4,14 @@ import { AuthorizationOfFormik } from "../../ts";
 import axios from "axios";
 
 type AuthorizationState = {
-  remember: boolean;
+  account: boolean;
   error_user: string;
 };
 
+type GetData = { rememberUser: boolean; token: string };
+
 const initialState: AuthorizationState = {
-  remember: false,
+  account: false,
   error_user: "",
 };
 
@@ -20,17 +22,18 @@ export const authorizationThunk = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      await axios
-        .get("http://localhost:3000/api/get-account/", {
+      let { data } = await axios.get<GetData>(
+        "http://localhost:3000/api/get-account/",
+        {
           params: { login, password, remember },
-        })
-        .then((res) => {
-          if (res.data.rememberUser == "true") {
-            document.cookie = `user=${res.data[0]}; max-age=10800`;
-          } else {
-            document.cookie = `user=${res.data[0]};`;
-          }
-        });
+        }
+      );
+
+      if (data.rememberUser) {
+        document.cookie = `user=${data.token}; max-age=10800`;
+      } else {
+        document.cookie = `user=${data.token};`;
+      }
     } catch (error: any) {
       let response: string = error.response.data;
       return rejectWithValue(response);
@@ -42,14 +45,17 @@ export const authorizationSlice = createSlice({
   name: "authorization",
   initialState,
   reducers: {
-    remember(state, action: PayloadAction<boolean>) {
-      state.remember = action.payload;
+    accountDelete(state) {
+      state.account = false;
+    },
+    accountUser(state) {
+      state.account = true;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(authorizationThunk.fulfilled, (state) => {
       state.error_user = "";
-      state.remember = false;
+      state.account = true;
     });
     builder.addCase(
       authorizationThunk.rejected,
@@ -60,6 +66,6 @@ export const authorizationSlice = createSlice({
   },
 });
 
-export const { remember } = authorizationSlice.actions;
+export const { accountUser, accountDelete } = authorizationSlice.actions;
 
 export default authorizationSlice.reducer;

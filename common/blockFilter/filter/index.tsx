@@ -1,22 +1,21 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { choiceCity } from "../../redux/reducers/catalogReducer";
-import { toogleBox } from "../../redux/reducers/checkboxReducer";
-import getProducts from "../../common/Pagination/GetData";
-import { ArticleRoom, MassiveOfSelect } from "../../ts";
+import { additionalOptions, redirectOfCatalog, selectionPrice } from "../";
+import { MassiveOfSelect, ArticleRoom } from "../../../ts";
 import { useEffect, useRef, useState } from "react";
-import { RootState } from "../../redux/store";
 import styles from "./Filter.module.scss";
+import { Checkbox } from "../../checkbox";
 import { useRouter } from "next/router";
-import { Checkbox } from "../checkbox";
-import { cities } from "../../mocks";
-import { Select } from "../Select";
-import { Sprite } from "../../svg";
+import { Select } from "../../select";
+import { Sprite } from "../../../svg";
+import axios from "axios";
 import clsx from "clsx";
 import {
-  selectPriceMin,
-  selectPriceMax,
+  useAppDispatch,
+  useAppSelector,
   defaultPrice,
-} from "../../redux/reducers/selectReducer";
+  RootState,
+  toogleBox,
+  reset,
+} from "../../../redux";
 
 type ClassFilter = {
   classSelectflex: string;
@@ -45,111 +44,51 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   const select = useAppSelector((state: RootState) => state.select);
   const main = useAppSelector((state: RootState) => state.main);
   const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
+  const [cancelClosed, setCancelClosed] = useState<boolean>(false);
   const [activeSettings, setActiveSettings] = useState<number>(0);
-  const [settings, setSettings] = useState<boolean>(false);
   const [valueMax, setValueMax] = useState<string>("");
   const [valueMin, setValueMin] = useState<string>("");
   const [zeroing, setZeroing] = useState<number>();
   const [active, setActive] = useState<number>(0);
   const rooms: MassiveOfSelect = main.massive[1];
 
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
-  useEffect(() => {
-    optionPrice();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [valueMin, valueMax]);
-
   // Показать объекты
-  const handleClick = () => {
-    // Выбор города
-    const newCity: ArticleRoom[] = optionCity();
+  const handleClick = async () => {
+    const statuses = additionalOptions(checkbox);
 
-    // Фильтр цен
-    const arrayPrice = filterPrice(newCity);
-
-    const { articles, total } = getProducts({
-      limit: 9,
-      page: 1,
-      array: arrayPrice,
-    });
-
-    dispatch(
-      choiceCity({
-        articles,
-        totalData: total,
-        currentPage: 1,
-      })
+    // Запрос города
+    let { data } = await axios.get<ArticleRoom[]>(
+      "http://localhost:3000/api/get-city/",
+      {
+        params: {
+          city: select.filter.city,
+          priceMin: select.filter.priceMin,
+          priceMax: select.filter.priceMax,
+          rooms: select.filter.rooms,
+          places: select.filter.places,
+          metro: select.filter.metro,
+          area: select.filter.area,
+          statuses: statuses,
+        },
+      }
     );
 
-    if (router.pathname !== "/catalog") {
-      router.push(`./catalog/`);
-    }
-  };
-
-  // Выбор города
-  const optionCity = () => {
-    switch (select.city) {
-      case 0:
-        return cities.minsk;
-      case 1:
-        return cities.gomel;
-      case 2:
-        return cities.brest;
-      case 3:
-        return cities.vitebsk;
-      case 4:
-        return cities.grodno;
-      case 5:
-        return cities.mogilev;
-      default:
-        return cities.minsk;
-    }
-  };
-
-  // Выбор цен
-  const optionPrice = () => {
-    // Минимум цена
-    if (valueMin) {
-      dispatch(selectPriceMin(valueMin));
-    } else {
-      dispatch(selectPriceMin("0"));
-    }
-
-    // Максимум цена
-    if (!valueMax) {
-      dispatch(selectPriceMax("10000"));
-      return;
-    }
-
-    if (valueMin >= valueMax) {
-      dispatch(selectPriceMax(valueMin));
-    } else {
-      dispatch(selectPriceMax(valueMax));
-    }
-  };
-
-  // Фильтр цен и комнат
-  const filterPrice = (array: ArticleRoom[]) => {
-    return array.filter(
-      (item) =>
-        +select.priceMin <= +item.price &&
-        +item.price <= +select.priceMax &&
-        (select.rooms !== 0 ? select.rooms == item.room : item.room)
-    );
+    // Перенаправление в каталог, деление на страницы
+    redirectOfCatalog(data, dispatch, router);
   };
 
   // Больше опций
   const handleClickSettings = () => {
-    setSettings(!settings);
-    dispatch(toogleBox(!settings));
+    dispatch(toogleBox(!checkbox.settings));
   };
 
   // Очистить всё
   const handleClickOfClean = () => {
     dispatch(defaultPrice());
+    dispatch(reset());
     setValueMax("");
     setValueMin("");
     setZeroing(0);
@@ -161,14 +100,18 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
   };
 
   useEffect(() => {
-    if (!settings) return;
+    selectionPrice(valueMin, valueMax, dispatch);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valueMin, valueMax]);
+
+  useEffect(() => {
+    if (!checkbox.settings) return;
 
     const handleClick = (e: MouseEvent) => {
-      if (ref.current == null) {
-        return;
-      }
-      if (!ref.current.contains(e.target as Element)) {
-        setSettings(false);
+      if (ref.current == null) return;
+
+      if (!ref.current.contains(e.target as Element) && !cancelClosed) {
+        dispatch(toogleBox(false));
       }
     };
 
@@ -181,28 +124,30 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
 
   return (
     <div className={clsx(classes?.classNavbar, styles.navbar)} ref={ref}>
+      {/* Фильтр блок */}
       <div className={classes?.classSelectflex || styles["select-flex"]}>
         {/* Город && Комнаты */}
         {((arrayRooms && [rooms]) || main.massive).map((item, index) => (
           <div className={styles["select-map"]} key={index}>
             <div
               className={classes?.classFlex}
-              onClick={() => setSettings(false)}>
+              onClick={() => dispatch(toogleBox(false))}>
               <h2 className={classes?.classTitle || styles["title-under"]}>
                 {item.element}
               </h2>
               <Select
-                setActive={setActive}
-                active={active}
                 setZeroing={setZeroing}
+                setActive={setActive}
                 zeroing={zeroing}
                 option_2v={true}
+                active={active}
                 massive={item}
               />
             </div>
             <div className={clsx(classes?.classLine, styles.line)} />
           </div>
         ))}
+
         {/* Цена за сутки (BYN) */}
         <div className={classes?.classFlex}>
           <h2 className={classes?.classTitle || styles["title-under"]}>
@@ -226,6 +171,7 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
             />
           </div>
         </div>
+
         {/* Больше опций */}
         <div
           className={styles["button-center"]}
@@ -237,6 +183,8 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
 
           <div className={clsx(classes?.classLine, styles.line)} />
         </div>
+
+        {/* Остальное */}
         {option ? (
           <>
             {/* На карте */}
@@ -272,8 +220,11 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
           </>
         )}
       </div>
-      {settings && (
+
+      {/* Открывающийся блок */}
+      {checkbox.settings && (
         <div className={classes?.classSettings || styles["filter-block"]}>
+          {/* Спальные места, Район, Метро */}
           <div className={styles.filter}>
             {main.filterList.map((array, index) => (
               <div
@@ -283,15 +234,19 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
                   {array.title}
                 </h2>
                 <Select
-                  massive={array}
-                  option_3v={true}
+                  cancelClosed={setCancelClosed}
                   setActive={setActiveSettings}
                   active={activeSettings}
+                  setZeroing={setZeroing}
+                  zeroing={zeroing}
+                  option_3v={true}
+                  massive={array}
                 />
               </div>
             ))}
           </div>
 
+          {/* Флажки */}
           <div className={styles["checkbox-block"]}>
             <Checkbox
               massive={checkbox.checkboxMassive[0].list}
@@ -304,6 +259,8 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
           </div>
         </div>
       )}
+
+      {/* Компонент любой */}
       {component}
     </div>
   );

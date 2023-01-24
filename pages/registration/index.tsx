@@ -1,36 +1,32 @@
-import { redistrationThunk } from "../../redux/reducers/registrationReducer";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RegistrationOfFormik } from "../../ts";
 import styles from "./Registration.module.scss";
-import { RootState } from "../../redux/store";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
 import * as Yup from "yup";
 import {
+  redistrationThunk,
+  useAppDispatch,
+  useAppSelector,
+  RootState,
+} from "../../redux";
+import {
+  FormikTouched,
   ErrorMessage,
+  FormikErrors,
+  Formik,
   Field,
   Form,
-  Formik,
-  FormikErrors,
-  FormikTouched,
 } from "formik";
 
 const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
-  const registration = useAppSelector(
-    (state: RootState) => state.registration
-  );
+  const registration = useAppSelector((state: RootState) => state.registration);
 
   const field = {
     type: ["text", "email", "password", "password"],
     sprite: ["user", "email", "lock", "lock"],
-    denotation: [
-      "Логин",
-      "Электронная почта",
-      "Пароль",
-      "Повторите пароль",
-    ],
+    denotation: ["Логин", "Электронная почта", "Пароль", "Повторите пароль"],
   };
   const text: Array<string> = [
     `предоставлять достоверную и актуальную 
@@ -111,10 +107,7 @@ const Registration: React.FC = () => {
                 <h1 className={styles.title}>Регистрация</h1>
 
                 {Object.keys(values).map((item, index) => (
-                  <label
-                    className={styles.block}
-                    htmlFor={item}
-                    key={index}>
+                  <label className={styles.block} htmlFor={item} key={index}>
                     <Field
                       className={
                         errorsField(errors, touched, index)
@@ -134,10 +127,7 @@ const Registration: React.FC = () => {
                     />
 
                     <div className={styles.icon}>
-                      <Sprite
-                        id={field.sprite[index]}
-                        colour={"#686868"}
-                      />
+                      <Sprite id={field.sprite[index]} colour={"#686868"} />
                     </div>
 
                     <ErrorMessage name={item}>
@@ -193,9 +183,7 @@ const Registration: React.FC = () => {
 
             <p className={styles["text-account"]}>
               Уже есть аккаунт?
-              <Link
-                className={styles["text-entrance"]}
-                href="/authorization">
+              <Link className={styles["text-entrance"]} href="/authorization">
                 Войдите
               </Link>
             </p>
@@ -203,13 +191,10 @@ const Registration: React.FC = () => {
         </div>
       ) : (
         <div className={styles.modal}>
-          <h2 className={styles["modal-title"]}>
-            Подтвердите регистрацию
-          </h2>
+          <h2 className={styles["modal-title"]}>Подтвердите регистрацию</h2>
           <p className={styles["modal-paragraph"]}>
-            Письмо для подтверждения аккаунта отправлено почту. Перейдите
-            по ссылке, указанной в письме. Если письма нет, то проверьте
-            спам.
+            Письмо для подтверждения аккаунта отправлено почту. Перейдите по
+            ссылке, указанной в письме. Если письма нет, то проверьте спам.
           </p>
           <Link className={styles["modal-button"]} href="./">
             Понятно

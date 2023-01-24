@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Sprite } from "../../svg";
 import { FooterOfArrayList, Network } from "../../ts";
 import styles from "./Footer.module.scss";
-import { List } from "../../common/List";
+import { List } from "../../common";
+import { Sprite } from "../../svg";
+import Image from "next/image";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
   const socialNetwork: Network[] = [

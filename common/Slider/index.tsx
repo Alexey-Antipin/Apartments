@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { Context } from "../../components/context";
+import { Context } from "../../components";
 import styles from "./Slider.module.scss";
 import { Sprite } from "../../svg";
 
 type SliderOfProps = {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
   classes?: {
     containerSlider: string;
     buttonDisabled: string;
@@ -52,7 +52,7 @@ export const Slider: React.FC<SliderOfProps> = ({
     } else {
       setPositionRound(237);
     }
-    setPosition(0)
+    setPosition(0);
   }, [context.colourSprite]);
 
   const controller = () => {
@@ -111,9 +111,7 @@ export const Slider: React.FC<SliderOfProps> = ({
         {/* Справа */}
         <button
           className={
-            (disabled == false
-              ? classes?.buttonDisabled
-              : classes?.button) ||
+            (disabled == false ? classes?.buttonDisabled : classes?.button) ||
             (disabled == false ? styles["button-disabled"] : styles.button)
           }
           onClick={() => handleClickNext()}

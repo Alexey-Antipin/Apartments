@@ -1,10 +1,16 @@
 .block {
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.block-image {
+  border-radius: 10px;
 }
 
 .button {
   position: absolute;
-  bottom: 28px;
+  bottom: 52px;
   right: 20px;
 
   height: 40px;
@@ -16,6 +22,10 @@
   background: none;
   z-index: 1;
 }
+.button:hover {
+  border: 2px solid #ffffff;
+  background: rgba(250, 247, 247, 0.197);
+}
 
 .title_2h {
   position: absolute;
@@ -23,10 +33,12 @@
   font-family: "Inter-Bold";
   font-size: 13px;
   line-height: 16px;
+
   background: linear-gradient(90deg, #9d94ff 0%, #6b50e9 94.5%);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
+  z-index: 2;
 }
 
 .title_3h {
@@ -37,6 +49,7 @@
 
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   color: #ffffff;
+  z-index: 2;
 }
 
 .block-cities {
@@ -48,6 +61,7 @@
   flex-wrap: wrap;
   gap: 16px;
   width: 360px;
+  z-index: 1;
 }
 .block-cities-button {
   font-family: "Inter-Medium";
@@ -62,4 +76,17 @@
 
   border-radius: 16px;
   border: none;
+}
+.block-cities-button:hover {
+  background: #806cff;
+}
+.image {
+  position: absolute;
+  border-radius: 10px;
+  min-width: 100%;
+}
+
+.shift-image {
+  transition: all 1s;
+  transform: translateX(-600px);
 }

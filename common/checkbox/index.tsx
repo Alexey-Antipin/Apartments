@@ -1,18 +1,17 @@
-import { checkbox } from "../../redux/reducers/checkboxReducer";
+import { useAppDispatch, checkbox } from "../../redux";
 import styles from "./Checkbox.module.scss";
-import { useDispatch } from "react-redux";
 import { CheckboxProps } from "../../ts";
 import { Sprite } from "../../svg";
 
 export const Checkbox: React.FC<CheckboxProps> = ({ massive, numberling }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleClick = (element: { id: number; status: boolean }) => {
     dispatch(
       checkbox({
-        index: numberling,
         indexElement: element.id - 1,
         status: !element.status,
+        index: numberling,
       })
     );
   };
@@ -28,7 +27,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({ massive, numberling }) => {
             <Sprite id="checkbox" />
           </button>
 
-          <label className={styles.text} htmlFor={`click-button-${numberling}-${el.id}`}>
+          <label
+            className={styles.text}
+            htmlFor={`click-button-${numberling}-${el.id}`}>
             {el.text}
           </label>
         </li>

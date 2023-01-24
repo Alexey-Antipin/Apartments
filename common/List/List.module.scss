@@ -25,3 +25,24 @@
   background: #ffffff;
   border-radius: 10px 10px 0px 0px;
 }
+.count {
+  font-family: "Inter-Regular";
+  line-height: 17px;
+  font-size: 14px;
+
+  color: #bdbdbd;
+}
+.sprite {
+  margin-top: 1px;
+  margin-left: 6px;
+  svg {
+    transition: 1s;
+    transform: rotate(-90deg);
+  }
+}
+.sprite-active {
+  svg {
+    transform: rotate(90deg);
+  }
+}
+
