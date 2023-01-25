@@ -1,5 +1,6 @@
 import { RegistrationOfFormik } from "../../ts";
 import styles from "./Registration.module.scss";
+import { Captcha } from "../../common";
 import { Sprite } from "../../svg";
 import Link from "next/link";
 import Head from "next/head";
@@ -161,6 +162,8 @@ const Registration: React.FC = () => {
                     />
                   </div>
                 )}
+
+                <Captcha/>
 
                 <button className={styles.send} type="submit">
                   Зарегистрироваться
