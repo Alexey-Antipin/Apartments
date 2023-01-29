@@ -8,6 +8,9 @@
 }
 .container-list {
   min-height: 1450px;
+  width: 90%;
+  
+  margin: 0px auto;
 }
 .background {
   display: block;
@@ -65,13 +68,9 @@
 
 .link-articles {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   gap: 31px;
-
-  padding-left: 60px;
-  padding-right: 90px;
-
+ 
   position: relative;
   z-index: 1;
 }
