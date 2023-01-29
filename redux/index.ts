@@ -1,6 +1,5 @@
 import { checkbox, toogleBox, reset } from "./reducers/checkboxReducer";
 import { newsThunk, countNewsThunk } from "./reducers/newsReducer";
-import { redistrationThunk } from "./reducers/registrationReducer";
 import { amountOfRoomsThunk } from "./reducers/mainReducer";
 import { articlesThunk } from "./reducers/articlesReducer";
 import { choiceCity } from "./reducers/catalogReducer";
@@ -9,6 +8,12 @@ import {
   accountUser,
   accountDelete,
 } from "./reducers/authorizationReducer";
+import {
+  redistrationThunk,
+  confirmDataThunk,
+  toggleCaptcha,
+  captchaThunk,
+} from "./reducers/registrationReducer";
 import {
   contactsThunk,
   closeModal,
@@ -36,9 +41,11 @@ export {
   authorizationThunk,
   amountOfRoomsThunk,
   redistrationThunk,
+  confirmDataThunk,
   countNewsThunk,
   articlesThunk,
   contactsThunk,
+  captchaThunk,
   newsThunk,
 
   // Method
@@ -49,6 +56,7 @@ export {
   selectPriceMax,
   selectCallCity,
   accountDelete,
+  toggleCaptcha,
   selectPlaces,
   defaultPrice,
   selectMetro,

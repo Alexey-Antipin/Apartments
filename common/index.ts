@@ -6,6 +6,7 @@ import { MapBackground } from "./map";
 import { DateArticles } from "./date";
 import { Checkbox } from "./checkbox";
 import { Control } from "./control";
+import { Captcha } from "./captcha";
 import { Slider } from "./slider";
 import { Select } from "./select";
 import { List } from "./list";
@@ -30,6 +31,7 @@ export {
   Checkbox,
   Control,
   getData,
+  Captcha,
   Select,
   Slider,
   List,
