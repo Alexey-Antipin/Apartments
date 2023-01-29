@@ -93,11 +93,7 @@
   @extend %input;
   border: 2px solid lightcoral;
 }
-.input-errors:focus + .icon {
-  svg {
-    fill: none;
-  }
-}
+
 .errors {
   color: #ff7300;
   width: 306px;

@@ -20,28 +20,19 @@ import {
   Form,
 } from "formik";
 
+type FormikValues = {
+  errors: FormikErrors<{ [field: string]: any }>;
+  touched: FormikTouched<{ [field: string]: any }>;
+  values: RegistrationOfFormik;
+};
+
 const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
-  const registration = useAppSelector((state: RootState) => state.registration);
+  const { modal, field, text, captchaUnblock } = useAppSelector(
+    (state: RootState) => state.registration
+  );
 
-  const field = {
-    type: ["text", "email", "password", "password"],
-    sprite: ["user", "email", "lock", "lock"],
-    denotation: ["Логин", "Электронная почта", "Пароль", "Повторите пароль"],
-  };
-  const text: Array<string> = [
-    `предоставлять достоверную и актуальную 
-      информацию при регистрации и добавлении объекта;`,
-    `добавлять фотографии объектов соответствующие
-    действительности. Администрация сайта sdaem.by оставляет за
-    собой право удалять любую информацию, размещенную
-    пользователем, если сочтет, что информация не соответствует
-    действительности, носит оскорбительный характер, нарушает
-    права и законные интересы других граждан либо действующее 
-    законодательство Республики Беларусь.`,
-  ];
-
-  let initialValues: RegistrationOfFormik = {
+  const initialValues: RegistrationOfFormik = {
     login: "",
     email: "",
     password: "",
@@ -66,29 +57,27 @@ const Registration: React.FC = () => {
       .required("Обязательное поле!"),
   });
 
-  const onSubmit = (values: RegistrationOfFormik) => {
-    let { login, email, password } = values;
+  // Если есть ошибки, будет табличка
+  const errorFields = ({ errors, touched, values }: FormikValues) => {
+    let answer:boolean = false;
+    let keys:string[] = Object.keys(values);
 
-    dispatch(redistrationThunk({ login, email, password }));
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+
+      if (errors[key] && touched[key]) {
+        answer = true;
+        break;
+      }
+    }
+
+    return answer;
   };
 
-  const errorsField = (
-    errors: FormikErrors<RegistrationOfFormik>,
-    touched: FormikTouched<RegistrationOfFormik>,
-    index: number
-  ) => {
-    switch (index + 1) {
-      case 1:
-        return errors.login && touched.login;
-      case 2:
-        return errors.email && touched.email;
-      case 3:
-        return errors.password && touched.password;
-      case 4:
-        return errors.confirmPassword && touched.confirmPassword;
-      default:
-        return true;
-    }
+  // Отправка
+  const onSubmit = (values: RegistrationOfFormik) => {
+    let { login, email, password } = values;
+    dispatch(redistrationThunk({ login, email, password }));
   };
 
   return (
@@ -97,21 +86,21 @@ const Registration: React.FC = () => {
         <title>Регистрация</title>
       </Head>
 
-      {!registration.modal ? (
+      {!modal ? (
         <div className={styles.registration}>
           <Formik
             initialValues={initialValues}
             validationSchema={validationField}
             onSubmit={onSubmit}>
-            {({ errors, values, touched }) => (
+            {({ errors, touched, values }: FormikValues) => (
               <Form className={styles.form}>
                 <h1 className={styles.title}>Регистрация</h1>
-
+                {/* Поля */}
                 {Object.keys(values).map((item, index) => (
                   <label className={styles.block} htmlFor={item} key={index}>
                     <Field
                       className={
-                        errorsField(errors, touched, index)
+                        errors[item] && touched[item]
                           ? styles["input-errors"]
                           : styles.input
                       }
@@ -121,16 +110,12 @@ const Registration: React.FC = () => {
                       id={item}
                     />
 
-                    <ErrorMessage
-                      className={styles.errors}
-                      component="div"
-                      name={item}
-                    />
-
+                    {/* Иконка */}
                     <div className={styles.icon}>
                       <Sprite id={field.sprite[index]} colour={"#686868"} />
                     </div>
 
+                    {/* Иконка ошибка */}
                     <ErrorMessage name={item}>
                       {() => (
                         <div className={styles["icon-error"]}>
@@ -143,13 +128,18 @@ const Registration: React.FC = () => {
                         </div>
                       )}
                     </ErrorMessage>
+
+                    {/* Под полем */}
+                    <ErrorMessage
+                      className={styles.errors}
+                      component="div"
+                      name={item}
+                    />
                   </label>
                 ))}
 
-                {((errors.login && touched.login) ||
-                  (errors.email && touched.email) ||
-                  (errors.password && touched.password) ||
-                  (errors.confirmPassword && touched.confirmPassword)) && (
+                {/* Ошибка ввода */}
+                {errorFields({ errors, touched, values }) && (
                   <div className={styles["button-error"]}>
                     <span className={styles["button-error-text"]}>
                       Ошибка ввода
@@ -163,9 +153,14 @@ const Registration: React.FC = () => {
                   </div>
                 )}
 
-                <Captcha/>
+                {/* Captcha */}
+                <Captcha props={{ errors, values }} />
 
-                <button className={styles.send} type="submit">
+                {/* Зарегистрироваться */}
+                <button
+                  className={styles.send}
+                  disabled={!captchaUnblock}
+                  type="submit">
                   Зарегистрироваться
                 </button>
               </Form>

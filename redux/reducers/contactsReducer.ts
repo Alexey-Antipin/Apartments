@@ -1,9 +1,9 @@
+import { ContactsOfField } from "../../ts";
 import {
   createAsyncThunk,
-  createSlice,
   PayloadAction,
+  createSlice,
 } from "@reduxjs/toolkit";
-import { ContactsOfField } from "../../ts";
 import axios from "axios";
 
 type AuthorizationState = { messageOfSend: string; modal: boolean };
