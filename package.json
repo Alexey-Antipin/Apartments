@@ -1,12 +1,13 @@
 {
-  "name": "project",
-  "version": "0.1.0",
+  "name": "alexey_antipin",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "project": "concurrently \"next build && next start\""
   },
   "dependencies": {

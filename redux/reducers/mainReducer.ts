@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import styles from "../../styles/Main.module.scss";
+import styles from "../../components/home/Home.module.scss";
 import { MassiveOfSelect } from "../../ts";
 import axios from "axios";
 
