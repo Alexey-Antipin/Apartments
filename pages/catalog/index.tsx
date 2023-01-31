@@ -18,7 +18,7 @@ import {
   FilterRooms,
   getData,
   Control,
-} from "../../common/";
+} from "../../common";
 import {
   selectCountRooms,
   useAppDispatch,

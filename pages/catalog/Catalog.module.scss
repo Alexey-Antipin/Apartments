@@ -147,8 +147,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: space-between;
-  gap: 31px;
+  gap: 100px;
 
   min-height: 1600px;
   padding: 0 80px;
@@ -165,6 +164,7 @@
   box-shadow: 0px 5px 15px 0px rgba(205, 205, 205, 0.5);
   border-radius: 10px;
 }
+
 
 .catalog-list-row {
   display: flex;

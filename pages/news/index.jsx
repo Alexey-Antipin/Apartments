@@ -9,7 +9,7 @@ import {
   LinkNavigation,
   ListArticles,
   DateArticles,
-  getProducts,
+  getData,
 } from "../../common";
 
 const News = ({ articles, totalData, currentPage }) => {
@@ -71,7 +71,7 @@ const News = ({ articles, totalData, currentPage }) => {
 };
 
 export const getStaticProps = () => {
-  const { articles, total } = getProducts({
+  const { articles, total } = getData({
     limit: 9,
     page: 1,
     array: cities.articlesNews,

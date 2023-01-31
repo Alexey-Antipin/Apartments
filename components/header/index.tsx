@@ -1,13 +1,15 @@
+import { additionalOptions, redirectOfCatalog, Select } from "../../common";
 import { useContext, useEffect, useRef, useState } from "react";
 import { deleteCookie } from "cookies-next";
 import styles from "./Header.module.scss";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import { additionalOptions, redirectOfCatalog, Select } from "../../common";
+import { ArticleRoom } from "../../ts";
 import { Context } from "../context";
 import { Sprite } from "../../svg";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 import clsx from "clsx";
 import {
   selectCallCity,
@@ -16,8 +18,6 @@ import {
   accountDelete,
   RootState,
 } from "../../redux";
-import { ArticleRoom } from "../../ts";
-import axios from "axios";
 
 export const Header: React.FC = () => {
   const [cookie, setCookie] = useState<string | boolean>("");

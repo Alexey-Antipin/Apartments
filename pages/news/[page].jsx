@@ -9,7 +9,7 @@ import {
   LinkNavigation,
   ListArticles,
   DateArticles,
-  getProducts,
+  getData,
 } from "../../common";
 
 const PaginatedPage = ({ articles, currentPage, totalData }) => {
@@ -72,7 +72,7 @@ const PaginatedPage = ({ articles, currentPage, totalData }) => {
 
 export const getStaticProps = ({ params }) => {
   const page = Number(params?.page) || 1;
-  const { articles, total } = getProducts({
+  const { articles, total } = getData({
     limit: 9,
     page,
     array: cities.articlesNews,
