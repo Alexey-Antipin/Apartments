@@ -12,7 +12,7 @@ import {
   getData,
 } from "../../common";
 
-const News = ({ articles, totalData, currentPage }) => {
+const PaginatedPage = ({ articles, totalData, currentPage }) => {
   const [value, setValue] = useState("");
   const [list, setList] = useState(articles);
 
@@ -91,7 +91,7 @@ export const getStaticProps = () => {
   };
 };
 
-News.propTypes = {
+PaginatedPage.propTypes = {
   articles: propTypes.arrayOf(
     propTypes.shape({
       description: propTypes.string,
@@ -107,4 +107,4 @@ News.propTypes = {
   currentPage: propTypes.number,
 };
 
-export default News;
+export default PaginatedPage;
