@@ -1,0 +1,336 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error component snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="error"
+      >
+        <div
+          class="wrapper"
+        >
+          <img
+            alt="points"
+            class="picture"
+            data-nimg="1"
+            decoding="async"
+            height="60"
+            loading="lazy"
+            src="/_next/image?url=%2Fpoints.png&w=128&q=75"
+            srcset="/_next/image?url=%2Fpoints.png&w=64&q=75 1x, /_next/image?url=%2Fpoints.png&w=128&q=75 2x"
+            style="color: transparent;"
+            width="60"
+          />
+          <div>
+            <h2
+              class="title"
+            >
+              Ошибка 404
+            </h2>
+            <p
+              class="text"
+            >
+              Возможно, у вас опечатка в адресе страницы, или её просто не существует
+            </p>
+            <a
+              class="button"
+              href="/"
+            >
+              <svg
+                fill="none"
+                height="12"
+                viewBox="0 0 12 12"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.7984 5.36427L6.41443 0.458394C6.17811 0.243027 5.82174 0.243051 5.58551 0.458371L0.201486 5.3643C0.0121814 5.5368 -0.0503497 5.80258 0.0421345 6.04138C0.134642 6.28019 0.359876 6.43448 0.615977 6.43448H1.4759V11.3498C1.4759 11.5447 1.63391 11.7027 1.8288 11.7027H4.7799C4.97478 11.7027 5.1328 11.5447 5.1328 11.3498V8.36537H6.86721V11.3498C6.86721 11.5447 7.02523 11.7027 7.22011 11.7027H10.1711C10.366 11.7027 10.524 11.5447 10.524 11.3498V6.43448H11.3841C11.6401 6.43448 11.8654 6.28016 11.9579 6.04138C12.0503 5.80256 11.9877 5.5368 11.7984 5.36427Z"
+                  fill="#1E2123"
+                />
+              </svg>
+              <span
+                class="button-text"
+              >
+                Вернуться на главную
+              </span>
+            </a>
+          </div>
+          <div>
+            <svg
+              fill="none"
+              height="273"
+              viewBox="0 0 613 273"
+              width="613"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                filter="url(#filter0_d_552_2303)"
+                opacity="0.3"
+              >
+                <path
+                  d="M30 201.328H128.868V237.481H170.507V201.328H196.053V166.481H170.507V31.8119H115.994L30 167.083V201.328ZM129.672 166.481H73.8518V164.874L128.063 79.2122H129.672V166.481Z"
+                  fill="white"
+                />
+                <path
+                  d="M305.834 242C357.631 242 388.911 202.634 389.011 134.847C389.112 67.5629 357.43 29 305.834 29C254.137 29 222.757 67.4625 222.656 134.847C222.455 202.433 253.936 241.9 305.834 242ZM305.834 205.948C282.198 205.948 266.91 182.248 267.011 134.847C267.111 88.1499 282.299 64.6507 305.834 64.6507C329.268 64.6507 344.556 88.1499 344.556 134.847C344.657 182.248 329.369 205.948 305.834 205.948Z"
+                  fill="white"
+                />
+                <path
+                  d="M416.947 201.328H515.814V237.481H557.453V201.328H583V166.481H557.453V31.8119H502.94L416.947 167.083V201.328ZM516.619 166.481H460.798V164.874L515.01 79.2122H516.619V166.481Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <filter
+                  color-interpolation-filters="sRGB"
+                  filterUnits="userSpaceOnUse"
+                  height="273"
+                  id="filter0_d_552_2303"
+                  width="613"
+                  x="0"
+                  y="0"
+                >
+                  <feflood
+                    flood-opacity="0"
+                    result="BackgroundImageFix"
+                  />
+                  <fecolormatrix
+                    in="SourceAlpha"
+                    result="hardAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  />
+                  <feoffset
+                    dy="1"
+                  />
+                  <fegaussianblur
+                    stdDeviation="15"
+                  />
+                  <fecolormatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                  />
+                  <feblend
+                    in2="BackgroundImageFix"
+                    mode="normal"
+                    result="effect1_dropShadow_552_2303"
+                  />
+                  <feblend
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_552_2303"
+                    mode="normal"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+          <img
+            alt="points"
+            class="picture-white"
+            data-nimg="1"
+            decoding="async"
+            height="60"
+            loading="lazy"
+            src="/_next/image?url=%2Fwhite-points.png&w=128&q=75"
+            srcset="/_next/image?url=%2Fwhite-points.png&w=64&q=75 1x, /_next/image?url=%2Fwhite-points.png&w=128&q=75 2x"
+            style="color: transparent;"
+            width="60"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="error"
+    >
+      <div
+        class="wrapper"
+      >
+        <img
+          alt="points"
+          class="picture"
+          data-nimg="1"
+          decoding="async"
+          height="60"
+          loading="lazy"
+          src="/_next/image?url=%2Fpoints.png&w=128&q=75"
+          srcset="/_next/image?url=%2Fpoints.png&w=64&q=75 1x, /_next/image?url=%2Fpoints.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="60"
+        />
+        <div>
+          <h2
+            class="title"
+          >
+            Ошибка 404
+          </h2>
+          <p
+            class="text"
+          >
+            Возможно, у вас опечатка в адресе страницы, или её просто не существует
+          </p>
+          <a
+            class="button"
+            href="/"
+          >
+            <svg
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.7984 5.36427L6.41443 0.458394C6.17811 0.243027 5.82174 0.243051 5.58551 0.458371L0.201486 5.3643C0.0121814 5.5368 -0.0503497 5.80258 0.0421345 6.04138C0.134642 6.28019 0.359876 6.43448 0.615977 6.43448H1.4759V11.3498C1.4759 11.5447 1.63391 11.7027 1.8288 11.7027H4.7799C4.97478 11.7027 5.1328 11.5447 5.1328 11.3498V8.36537H6.86721V11.3498C6.86721 11.5447 7.02523 11.7027 7.22011 11.7027H10.1711C10.366 11.7027 10.524 11.5447 10.524 11.3498V6.43448H11.3841C11.6401 6.43448 11.8654 6.28016 11.9579 6.04138C12.0503 5.80256 11.9877 5.5368 11.7984 5.36427Z"
+                fill="#1E2123"
+              />
+            </svg>
+            <span
+              class="button-text"
+            >
+              Вернуться на главную
+            </span>
+          </a>
+        </div>
+        <div>
+          <svg
+            fill="none"
+            height="273"
+            viewBox="0 0 613 273"
+            width="613"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              filter="url(#filter0_d_552_2303)"
+              opacity="0.3"
+            >
+              <path
+                d="M30 201.328H128.868V237.481H170.507V201.328H196.053V166.481H170.507V31.8119H115.994L30 167.083V201.328ZM129.672 166.481H73.8518V164.874L128.063 79.2122H129.672V166.481Z"
+                fill="white"
+              />
+              <path
+                d="M305.834 242C357.631 242 388.911 202.634 389.011 134.847C389.112 67.5629 357.43 29 305.834 29C254.137 29 222.757 67.4625 222.656 134.847C222.455 202.433 253.936 241.9 305.834 242ZM305.834 205.948C282.198 205.948 266.91 182.248 267.011 134.847C267.111 88.1499 282.299 64.6507 305.834 64.6507C329.268 64.6507 344.556 88.1499 344.556 134.847C344.657 182.248 329.369 205.948 305.834 205.948Z"
+                fill="white"
+              />
+              <path
+                d="M416.947 201.328H515.814V237.481H557.453V201.328H583V166.481H557.453V31.8119H502.94L416.947 167.083V201.328ZM516.619 166.481H460.798V164.874L515.01 79.2122H516.619V166.481Z"
+                fill="white"
+              />
+            </g>
+            <defs>
+              <filter
+                color-interpolation-filters="sRGB"
+                filterUnits="userSpaceOnUse"
+                height="273"
+                id="filter0_d_552_2303"
+                width="613"
+                x="0"
+                y="0"
+              >
+                <feflood
+                  flood-opacity="0"
+                  result="BackgroundImageFix"
+                />
+                <fecolormatrix
+                  in="SourceAlpha"
+                  result="hardAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                />
+                <feoffset
+                  dy="1"
+                />
+                <fegaussianblur
+                  stdDeviation="15"
+                />
+                <fecolormatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feblend
+                  in2="BackgroundImageFix"
+                  mode="normal"
+                  result="effect1_dropShadow_552_2303"
+                />
+                <feblend
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_552_2303"
+                  mode="normal"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <img
+          alt="points"
+          class="picture-white"
+          data-nimg="1"
+          decoding="async"
+          height="60"
+          loading="lazy"
+          src="/_next/image?url=%2Fwhite-points.png&w=128&q=75"
+          srcset="/_next/image?url=%2Fwhite-points.png&w=64&q=75 1x, /_next/image?url=%2Fwhite-points.png&w=128&q=75 2x"
+          style="color: transparent;"
+          width="60"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
