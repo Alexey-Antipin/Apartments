@@ -19,7 +19,10 @@ import {
 } from "../../redux";
 
 export const Select: React.FC<SelectOfProps> = ({
+  underlistCustom,
   cancelClosed,
+  noneCustom,
+  textCustom,
   setActive,
   active,
   setZeroing,
@@ -139,7 +142,7 @@ export const Select: React.FC<SelectOfProps> = ({
           {(option_2v || option_3v || active === massive.id) && listId ? (
             <div
               className={clsx(
-                option_1v && styles.text,
+                option_1v && (textCustom || styles.text),
                 option_2v && styles["alternative-text"],
                 option_3v && styles["metro-text"]
               )}>
@@ -148,7 +151,7 @@ export const Select: React.FC<SelectOfProps> = ({
           ) : (
             <div
               className={clsx(
-                option_1v && styles.text,
+                option_1v && (textCustom || styles.text),
                 option_2v && styles["alternative-text"],
                 option_3v && styles["metro-text"]
               )}>
@@ -161,7 +164,8 @@ export const Select: React.FC<SelectOfProps> = ({
             <span
               className={clsx(
                 option_1v && styles["sprite-margin"],
-                (option_2v || option_3v) && styles["alternative-sprite"]
+                (option_2v || option_3v) && styles["alternative-sprite"],
+                noneCustom
               )}>
               <Sprite
                 id={massive.sprite}
@@ -174,11 +178,12 @@ export const Select: React.FC<SelectOfProps> = ({
         </div>
 
         {/* Почёркивание при клике. */}
-        {!option_2v && !option_3v && (
+        {option_1v && (
           <span
             className={clsx(
+              active === massive.id && styles["focus-active"],
               styles.focus,
-              active === massive.id && styles["focus-active"]
+              noneCustom
             )}></span>
         )}
       </li>
@@ -187,7 +192,7 @@ export const Select: React.FC<SelectOfProps> = ({
       {active === massive.id && open && (
         <ul
           className={clsx(
-            option_1v && styles.underlist,
+            option_1v && styles.underlist, underlistCustom,
             (option_2v || option_3v) && styles["alternative-underlist"]
           )}>
           {massive.list.map((elem, index: number) => (

@@ -56,10 +56,16 @@ type SelectOfProps = {
   zeroing?: number;
 
   cancelClosed?: (value: boolean) => void;
+
   massive: MassiveOfSelect;
+
   option_1v?: boolean;
   option_2v?: boolean;
   option_3v?: boolean;
+
+  underlistCustom?:string;
+  noneCustom?:string;
+  textCustom?:string;
 };
 
 type MassiveOfSelectList = {
@@ -198,10 +204,11 @@ type MassiveOfClassesProps = {
 };
 
 type MassiveOfList = {
-  id: number;
-  text: string;
+  mobileVersion?: string;
   sprite?: string;
   href: string;
+  text: string;
+  id: number;
 };
 
 type SpriteProps = {

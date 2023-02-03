@@ -23,7 +23,9 @@ exports[`Error component snapshot 1`] = `
             style="color: transparent;"
             width="60"
           />
-          <div>
+          <div
+            class="block"
+          >
             <h2
               class="title"
             >
@@ -57,7 +59,9 @@ exports[`Error component snapshot 1`] = `
               </span>
             </a>
           </div>
-          <div>
+          <div
+            class="sprite"
+          >
             <svg
               fill="none"
               height="273"
@@ -162,7 +166,9 @@ exports[`Error component snapshot 1`] = `
           style="color: transparent;"
           width="60"
         />
-        <div>
+        <div
+          class="block"
+        >
           <h2
             class="title"
           >
@@ -196,7 +202,9 @@ exports[`Error component snapshot 1`] = `
             </span>
           </a>
         </div>
-        <div>
+        <div
+          class="sprite"
+        >
           <svg
             fill="none"
             height="273"

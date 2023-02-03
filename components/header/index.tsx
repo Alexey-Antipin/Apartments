@@ -156,6 +156,13 @@ export const Header: React.FC = () => {
                   href={elem.href}>
                   {elem.text}
                 </Link>
+
+                {/* Для mobile версии */}
+                {elem.mobileVersion && (
+                  <Link className={styles.mobile} href={elem.href}>
+                    <Sprite id={elem.mobileVersion as string} />
+                  </Link>
+                )}
               </div>
 
               {/* Почеркивание */}
@@ -214,8 +221,13 @@ export const Header: React.FC = () => {
             <li className={styles.item}>
               <Link
                 href={"./authorization"}
-                className={clsx(styles.login, styles.login)}>
+                className={clsx(styles.login, styles["computer-version"])}>
                 Вход и регистрация
+              </Link>
+              <Link
+                href={"./authorization"}
+                className={clsx(styles.login, styles.mobile)}>
+                <Sprite id={"door"} height="18" width="18" />
               </Link>
             </li>
           )}
@@ -224,12 +236,17 @@ export const Header: React.FC = () => {
 
       {/* Нижний блок */}
       <nav className={styles.navigation}>
-        <Image src="/logo.png" height="20" width="134" alt="logo" />
+        <div className={styles["computer-version"]}>
+          <Image src="/logo.png" height="20" width="134" alt="logo" />
+        </div>
 
         <ul className={styles["navigation-list"]}>
           {[0, 1, 2, 3].map((element) => (
             <Select
               key={element}
+              underlistCustom={styles["navigation-underlist"]}
+              noneCustom={styles["navigation-none"]}
+              textCustom={styles["navigation-text"]}
               massive={header.underList[element]}
               setActive={setActiveId}
               active={activeId}
@@ -238,7 +255,14 @@ export const Header: React.FC = () => {
           ))}
         </ul>
 
-        <button className={styles.button}>+ Разместить объявление</button>
+        <button className={clsx(styles.button, styles["computer-version"])}>
+          + Разместить объявление
+        </button>
+
+        {/* mobile версия */}
+        <button className={clsx(styles["button-mobile"],styles.mobile)}>
+          <Sprite id="add_window" />
+        </button>
       </nav>
     </>
   );
