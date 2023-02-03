@@ -26,21 +26,19 @@ export const Footer: React.FC = () => {
       "Квартиры в Гродно",
       "Квартиры в Могилеве",
     ],
-    d: [
-      "Новости",
-      "Размещение и тарифы",
-      "Объявления на карте",
-      "Контакты",
-    ],
+    d: ["Новости", "Размещение и тарифы", "Объявления на карте", "Контакты"],
   };
 
   return (
     <footer className={styles.footer}>
       <div className={styles.info}>
-        <Link href="./">
-          <Image src="/logo.png" height="20" width="134" alt="logo" />
-        </Link>
-        <h4 className={styles["title-address"]}>СДАЁМ БАЙ</h4>
+        <div>
+          <Link href="./">
+            <Image src="/logo.png" height="20" width="134" alt="logo" />
+          </Link>
+          <h4 className={styles["title-address"]}>СДАЁМ БАЙ</h4>
+        </div>
+
         <address className={styles.address}>
           ИП Шушкевич Андрей Викторович
           <br /> УНП 192602485 Минским горисполкомом
@@ -81,7 +79,7 @@ export const Footer: React.FC = () => {
             <h3 className={styles.title}>Мы в соцсетях</h3>
             {socialNetwork.map((elem, index) => (
               <li key={index}>
-                <Link href={elem.href}>
+                <Link className={styles.sprite} href={elem.href}>
                   <Sprite id={elem.name} />
                 </Link>
               </li>
