@@ -1,10 +1,13 @@
 .background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: url("/background.png"), linear-gradient(#7e6af3, #6540cd);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 
-  min-height: 100vh;
+  height: 757px;
   max-width: 1940px;
   width: 100%;
 }
