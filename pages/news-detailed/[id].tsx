@@ -42,6 +42,7 @@ const News: React.FC = () => {
         <title>Новости</title>
       </Head>
 
+      {/* Заголовок */}
       <div className={styles.header}>
         <div className={styles.wrapper}>
           <LinkNavigation
@@ -72,6 +73,7 @@ const News: React.FC = () => {
         </div>
       </div>
 
+      {/* Главная картинка */}
       <div className={styles.main}>
         <div className={styles.block}>
           <Image
@@ -106,10 +108,18 @@ const News: React.FC = () => {
         </div>
       </div>
 
+      {/* Предложенные */}
       <div className={styles.footer}>
         <div className={styles.container}>
           <h2 className={styles["main-title"]}>Читайте также</h2>
-          <ListArticles list={articles} />
+          <ListArticles
+            classes={{
+              classCustomContent: styles.content,
+              classUl: styles["list-articles"],
+              classList: styles.items,
+            }}
+            list={articles}
+          />
         </div>
       </div>
     </>

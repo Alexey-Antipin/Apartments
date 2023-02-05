@@ -7,7 +7,6 @@
   max-width: 1940px;
   position: relative;
 
-  margin: 0 auto;
   background: linear-gradient(
     90deg,
     rgba(148, 175, 255, 0.1),
@@ -25,8 +24,8 @@
   align-items: center;
   justify-content: space-between;
   max-width: 840px;
-  width: 100%;
-
+  width: 90%;
+  margin: 0 30px;
   margin-top: 30px;
 }
 .date {
@@ -66,7 +65,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 2px;
-  
+
   height: 34px;
   width: 34px;
 
@@ -103,11 +102,13 @@
   border-radius: 10px;
 }
 .text-block {
-  height: 540px;
-  width: 844px;
+  min-height: 540px;
+  max-width: 844px;
 
   font-family: "Inter-Regular", sans-serif;
   font-size: 16px;
+  margin: 0 30px;
+  margin-bottom: 30px;
 }
 
 .footer {
@@ -133,4 +134,121 @@
   padding-bottom: 45px;
   padding-left: 10px;
   color: #1e2123;
+}
+
+.list-articles {
+  display: flex;
+  justify-content: center;
+  gap: 31px;
+
+  position: relative;
+  z-index: 1;
+}
+
+.items {
+  height: 500px;
+  width: 406px;
+
+  background: #fffefe;
+  box-shadow: 0px 5px 15px 0px rgba(205, 205, 205, 0.5);
+  border-radius: 10px;
+}
+
+@media (max-width: 970px) {
+  .wrapper {
+    margin-right: 0px;
+  }
+  .point {
+    display: none;
+  }
+  .block {
+    height: 534px;
+    width: 100%;
+  }
+  .news-photo-position {
+    margin: 0 30px;
+  }
+}
+@media (max-width: 900px) {
+  .header {
+    height: 300px;
+  }
+  .wrapper {
+    margin: 0 30px;
+    margin-top: 60px;
+    width: 90%;
+  }
+}
+@media (max-width: 580px) {
+  .label{
+    display: none;
+  }
+  .header {
+    height: 320px;
+  }
+}
+@media (max-width: 650px) {
+  .block {
+    height: 400px;
+  }
+}
+@media (max-width: 550px) {
+  .block {
+    height: 360px;
+  }
+}
+@media (min-width: 700px) and (max-width: 1330px) {
+  .main-title {
+    padding: 32px 0px;
+    margin: 0 auto;
+    width: 200px;
+  }
+  .container {
+    width: 100%;
+  }
+  .list-articles {
+    flex-wrap: wrap;
+  }
+  .items {
+    display: flex;
+    height: 220px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+  }
+  .footer {
+    height: 900px;
+  }
+}
+@media (min-width: 700px) and (max-width: 970px) {
+  .list-articles {
+    margin: 0 30px;
+  }
+}
+@media (min-width: 700px) and (max-width: 960px) {
+  .items {
+    align-items: center;
+    height: 240px;
+    padding-left: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .main-title {
+    padding: 32px 0px;
+    margin: 0 auto;
+    width: 200px;
+  }
+  .list-articles {
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 300px;
+  }
+  .container {
+    width: 100%;
+  }
+  .footer {
+    height: 1680px;
+  }
 }

@@ -1,9 +1,20 @@
 import styles from "./Error.module.scss";
+import { useRouter } from "next/router";
 import { Sprite } from "../../svg";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Error: React.FC = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.asPath == "/news-detailed") {
+      router.push(`${router.asPath}/1`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={styles.error}>
       <div className={styles.wrapper}>

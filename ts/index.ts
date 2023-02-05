@@ -148,8 +148,9 @@ type ArticleProps = {
   sliderTrue?: boolean;
   useSquare?: boolean;
   classes?: {
-    classUl?: string;
+    classCustomContent?: string;
     classList?: string;
+    classUl?: string;
   };
 };
 
