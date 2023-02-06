@@ -1,5 +1,5 @@
 .container-background {
-  height: 320px;
+  min-height: 320px;
   padding: 42px 80px;
 
   background: linear-gradient(
@@ -53,6 +53,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-left: 90px;
 }
 .network-text {
   font-family: "Inter-Medium";
@@ -79,7 +80,9 @@
 }
 .block-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 30px;
   margin: 86px 80px 58px 0px;
 }
 .filterRooms-position {
@@ -165,7 +168,6 @@
   border-radius: 10px;
 }
 
-
 .catalog-list-row {
   display: flex;
   flex-direction: column;
@@ -190,4 +192,102 @@
 .pagination-wrapper {
   display: flex;
   margin-left: 80px;
+}
+
+@media (max-width: 1600px) {
+  .catalog-list {
+    padding: 0 60px;
+    gap: 80px;
+  }
+}
+@media (max-width: 1565px) {
+  .catalog-list {
+    padding: 0 40px;
+    gap: 60px;
+  }
+}
+@media (max-width: 1436px) {
+  .catalog-list {
+    padding: 0 20px;
+    gap: 40px;
+  }
+}
+@media (max-width: 1200px) {
+  .select-flex {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 1390px) {
+  .catalog-list {
+    padding: 0 20px;
+    gap: 30px;
+  }
+}
+@media (max-width: 1334px) {
+  .catalog-list {
+    padding: 0 80px;
+    gap: 160px;
+  }
+}
+@media (max-width: 1300px) {
+  .title-h2 {
+    padding: 140px 20px;
+    padding-bottom: 30px;
+  }
+  .catalog-list-row {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 1150px) {
+  .catalog-list {
+    padding: 0 40px;
+    gap: 90px;
+  }
+}
+@media (max-width: 1000px) {
+  .catalog-list {
+    padding: 0 20px;
+    gap: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .catalog-list {
+    padding: 0 10px;
+    gap: 10px;
+  }
+}
+@media (max-width: 858px) {
+  .title-h2{
+    width: 300px;
+    margin: 0 auto;
+  }
+  .catalog-list {
+    justify-content: center;
+    padding: 0 10px;
+    gap: 10px;
+  }
+}
+@media (max-width: 800px) {
+  .title-under {
+    font-size: 12px;
+  }
+}
+@media (max-width: 700px) {
+  .container-background {
+    padding: 42px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .select-flex {
+    padding: 0 10px;
+  }
+  .settings-flex {
+    padding: 20px 20px;
+  }
+  .filter-flex {
+    flex-direction: column;
+  }
+  .title-under {
+    height: 6px;
+  }
 }

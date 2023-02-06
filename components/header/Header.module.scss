@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.mobile {
+  display: none;
+}
+
 .block {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -142,6 +146,13 @@
   padding: 0px 40px;
 }
 
+.navigation-text{
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  color: #0b0b0b;
+  padding: 20px 0px;
+}
+
 .button {
   font-family: "Inter-Bold", sans-serif;
   font-size: 14px;
@@ -192,7 +203,7 @@
   svg {
     transition: 1s;
   }
-  
+
   transform: rotate(90deg);
   margin-left: 14px;
   margin-bottom: 2px;
@@ -236,6 +247,18 @@
   color: black;
 }
 
+.login-svg {
+  display: none;
+}
+.computer-version {
+  display: block;
+}
+
+.button-mobile{
+  border: none;
+  background: none;
+}
+
 @keyframes underLogin_on {
   0% {
     height: 0px;
@@ -260,5 +283,95 @@
   100% {
     height: 0px;
     opacity: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .list {
+    gap: 10px;
+    padding: 0 20px;
+  }
+  .navigation {
+    padding: 0px 20px;
+  }
+  .navigation-list {
+    padding: 0 20px;
+  }
+  .text {
+    font-size: 12px;
+  }
+  .button {
+    min-width: 120px;
+  }
+}
+@media (max-width: 950px) {
+  .mobile {
+    display: block;
+  }
+  .computer-version {
+    display: none;
+  }
+  .navigation-underlist{
+    height: 360px;
+    width: 130px;
+  }
+
+  .list {
+    padding: 0 30px;
+  }
+  .navigation {
+    padding: 0 30px;
+  }
+  .navigation-list {
+    padding: 0px;
+    padding-right:10px;
+  }
+  .login-svg {
+    display: block;
+  }
+  .sprite-active {
+    display: none;
+  }
+  .text {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+
+    height: 16px;
+    padding: 0px;
+  }
+  .item {
+    align-items: center;
+    justify-content: center;
+  }
+  .navigation-text{
+    font-size: 12px;
+  }
+  .navigation-none{
+    display: none;
+  }
+  .item:nth-child(1) .text {
+    display: none;
+  }
+  .item:nth-child(2) .text {
+    display: none;
+  }
+  .item:nth-child(6) .text {
+    display: none;
+  }
+  .item:nth-child(6) {
+    margin-top: 2px;
+  }
+  .sprite {
+    display: none;
+  }
+}
+@media (max-width: 650px) {
+  .list {
+    padding: 0 10px;
+  }
+  .navigation{
+    padding: 0 10px;
+
   }
 }

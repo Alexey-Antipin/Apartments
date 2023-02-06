@@ -334,7 +334,7 @@ export const Home: React.FC = () => {
               </div>
             </div>
 
-            <p className={styles["description-paragraph"]}>
+            <p className={styles["description-under-paragraph"]}>
               Чтобы снять квартиру на сутки в Минске, вам достаточно
               определиться с выбором и связаться с владельцем для уточнения
               условий аренды и заключить договор. Заметим, на сайте представлены

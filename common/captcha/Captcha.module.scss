@@ -279,7 +279,7 @@
   position: absolute;
 }
 
-.mark-on{
+.mark-on {
   visibility: visible;
 }
 
@@ -300,5 +300,10 @@
   100% {
     width: 0px;
     margin-left: 20px;
+  }
+}
+@media (max-width: 950px) {
+  .container {
+    left: -50px;
   }
 }

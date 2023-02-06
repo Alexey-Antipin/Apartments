@@ -90,3 +90,12 @@
   transition: all 1s;
   transform: translateX(-600px);
 }
+
+@media (max-width: 1020px) {
+  .block:nth-child(2) {
+    display: none;
+  }
+  .block:nth-child(3) {
+    display: none;
+  }
+}

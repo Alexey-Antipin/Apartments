@@ -141,7 +141,11 @@ export const ListArticles: React.FC<ArticleProps> = ({
             </div>
 
             {/* Контент */}
-            <div className={(alternative && styles["alternative-block"]) || ""}>
+            <div
+              className={
+                (alternative && styles["alternative-block"]) ||
+                classes?.classCustomContent
+              }>
               {item.price && (
                 <div>
                   <div
@@ -360,7 +364,10 @@ export const ListArticles: React.FC<ArticleProps> = ({
                 <Image
                   className={styles["contacts-face"]}
                   src="/user/user.png"
-                  alt="master" height={60} width={60}/>
+                  alt="master"
+                  height={60}
+                  width={60}
+                />
                 <h2 className={styles["contacts-title"]}>Владелец</h2>
                 <div className={styles["contacts-data"]}>
                   {item.contacts.master}

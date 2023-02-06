@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 
-  height: 100vh;
+  min-height: 100vh;
   max-width: 1940px;
   width: 100%;
 }
@@ -112,8 +112,6 @@
 }
 
 .block-text {
-  height: 230px;
-  width: 388px;
   padding-top: 50px;
 }
 .text-title {
@@ -212,4 +210,30 @@
 .modal-button:hover {
   background: #f7c624;
   color: #ffffff;
+}
+
+@media (max-width:950px) {
+  .registration{
+    flex-direction: column;
+    gap: 0;
+
+    padding:20px 50px;
+    width:440px;
+  }
+  .background{
+    height: 1000px;
+  }
+  .send{
+    width:306px;
+  }
+  .form{
+    align-items:center;
+  }
+  .block-text{
+    padding-top: 30px;
+    margin-left: 20px;
+  }
+  .text-account{
+    padding-top: 30px;
+  }
 }

@@ -220,7 +220,7 @@ exports[`News-detailed component snapshot 1`] = `
             Читайте также
           </h2>
           <ul
-            class="list"
+            class="list-articles"
           />
         </div>
       </div>
@@ -442,7 +442,7 @@ exports[`News-detailed component snapshot 1`] = `
           Читайте также
         </h2>
         <ul
-          class="list"
+          class="list-articles"
         />
       </div>
     </div>

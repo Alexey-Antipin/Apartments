@@ -100,7 +100,7 @@
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
-  z-index: 1;
+  z-index: 3;
 }
 .alternative-underlist-item {
   font-family: "Inter-SemiBold";
@@ -140,4 +140,19 @@
 
   padding: 12px;
   color: #686868;
+}
+
+@media (max-width: 900px) {
+  .alternative-list {
+    width: 120px;
+  }
+  .metro-block{
+    min-width: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .metro-text{
+    font-size: 12px;
+  }
 }

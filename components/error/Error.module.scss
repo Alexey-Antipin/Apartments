@@ -2,8 +2,7 @@
   position: relative;
   height: 669px;
   width: 100%;
-  background-image: url("/background.png"),
-    linear-gradient(#7e6af3, #6540cd);
+  background-image: url("/background.png"), linear-gradient(#7e6af3, #6540cd);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -62,4 +61,38 @@
   font-size: 16px;
 
   color: #1e2123;
+}
+
+.sprite {
+  display: block;
+}
+
+.block {
+  display: block;
+}
+
+@media (max-width: 1200px) {
+  .sprite {
+    display: none;
+  }
+  .block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .title {
+    width: 380px;
+  }
+}
+@media (max-width: 1000px) {
+  .picture-white {
+    display: none;
+  }
+  .picture {
+    display: none;
+  }
+  .wrapper {
+    margin: 0 0px;
+  }
 }

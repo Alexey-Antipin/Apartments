@@ -491,6 +491,7 @@
 }
 .alternative-info {
   @extend %info;
+  white-space: nowrap;
   padding: 8px 14px;
 }
 .alternative-room-block {
