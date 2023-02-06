@@ -165,7 +165,6 @@
   border-radius: 10px;
 }
 
-
 .catalog-list-row {
   display: flex;
   flex-direction: column;
@@ -190,4 +189,21 @@
 .pagination-wrapper {
   display: flex;
   margin-left: 80px;
+}
+
+@media (max-width: 1200px) {
+  .select-flex {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 600px) {
+  .select-flex {
+    padding: 0 10px;
+  }
+  .settings-flex {
+    padding: 20px 20px;
+  }
+  .filter-flex{
+    flex-direction: column;
+  }
 }

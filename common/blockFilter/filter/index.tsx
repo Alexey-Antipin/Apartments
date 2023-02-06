@@ -179,7 +179,9 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
           <div className={clsx(classes?.classLine, styles.line)} />
 
           <button className={styles.button}>Больше опций</button>
-          <Sprite id="setting" />
+          <div className={styles["sprite-button"]}>
+            <Sprite id="setting" />
+          </div>
 
           <div className={clsx(classes?.classLine, styles.line)} />
         </div>
@@ -190,7 +192,9 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
             {/* На карте */}
             <div className={styles.padding}>
               <button className={styles.button}>На карте</button>
-              <Sprite id="sign" colour="#664EF9" height="15" width="12" />
+              <div className={styles["sprite-button"]}>
+                <Sprite id="sign" colour="#664EF9" height="15" width="12" />
+              </div>
             </div>
 
             {/* Показать */}
@@ -207,14 +211,23 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
             <button
               className={styles["button-clear"]}
               onClick={() => handleClickOfClean()}>
-              Очистить
+              <span className={styles["close-text-adaptive"]}>Очистить</span>
+              <div className={styles["button-clear-svg"]}>
+                <Sprite id="brush" />
+              </div>
             </button>
 
             {/* Показать объекты */}
             <button
-              className={clsx(styles["button-main"], styles["button-colour"])}
+              className={styles["button-main-catalog"]}
               onClick={() => handleClick()}>
-              <span className={styles["text-padding"]}>Показать объекты</span>
+              <span
+                className={clsx(
+                  styles["text-padding"],
+                  styles["turn-off-text"]
+                )}>
+                Показать объекты
+              </span>
               <Sprite id="mark" colour="#FFFFFF" />
             </button>
           </>
