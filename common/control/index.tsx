@@ -1,6 +1,6 @@
+import { useContext, useEffect } from "react";
 import { Context } from "../../components";
 import styles from "./Control.module.scss";
-import { useContext } from "react";
 import { Sprite } from "../../svg";
 
 type List = {
@@ -45,16 +45,14 @@ export const Control = () => {
       sprite: "list",
       text: "Список",
       view: handleClickOfList,
-      classBtn:
-        (context.colourSprite && styles.button) || styles["button-off"],
+      classBtn: (context.colourSprite && styles.button) || styles["button-off"],
       colour: context.colourSprite ? "#664EF9" : "#BDBDBD",
     },
     {
       sprite: "square",
       text: "Плитки",
       view: handleClickOfList,
-      classBtn:
-        (context.colourSprite && styles["button-off"]) || styles.button,
+      classBtn: (context.colourSprite && styles["button-off"]) || styles.button,
       colour: context.colourSprite ? "#BDBDBD" : "#664EF9",
     },
     {
@@ -66,6 +64,23 @@ export const Control = () => {
     },
   ];
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 700 || window.innerWidth < 500) {
+        return;
+      }
+      if(context.colourSprite === true){
+        return
+      }
+      context.setColourSprite(true);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+
   return (
     <div className={styles.wrapper}>
       {list.map((el, index) => (
@@ -73,12 +88,7 @@ export const Control = () => {
           className={el.classBtn}
           onClick={() => el.view(index)}
           key={index}>
-          <Sprite
-            id={el.sprite}
-            colour={el.colour}
-            height="15"
-            width="12"
-          />
+          <Sprite id={el.sprite} colour={el.colour} height="15" width="12" />
 
           {el.text}
 
