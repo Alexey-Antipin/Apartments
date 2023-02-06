@@ -1,6 +1,18 @@
 import { render } from "@testing-library/react";
 import { Error } from "../components/error";
 
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      route: "./",
+      pathname: "",
+      query: "",
+      asPath: "/",
+      push: jest.fn(),
+    };
+  },
+}));
+
 describe("Error", () => {
   test("heading", () => {
     const { getByRole } = render(<Error />);

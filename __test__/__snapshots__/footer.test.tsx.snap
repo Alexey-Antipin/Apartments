@@ -11,26 +11,28 @@ exports[`Footer component snapshot 1`] = `
         <div
           class="info"
         >
-          <a
-            href="./"
-          >
-            <img
-              alt="logo"
-              data-nimg="1"
-              decoding="async"
-              height="20"
-              loading="lazy"
-              src="/_next/image?url=%2Flogo.png&w=384&q=75"
-              srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
-              style="color: transparent;"
-              width="134"
-            />
-          </a>
-          <h4
-            class="title-address"
-          >
-            СДАЁМ БАЙ
-          </h4>
+          <div>
+            <a
+              href="./"
+            >
+              <img
+                alt="logo"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/_next/image?url=%2Flogo.png&w=384&q=75"
+                srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
+                style="color: transparent;"
+                width="134"
+              />
+            </a>
+            <h4
+              class="title-address"
+            >
+              СДАЁМ БАЙ
+            </h4>
+          </div>
           <address
             class="address"
           >
@@ -179,6 +181,7 @@ exports[`Footer component snapshot 1`] = `
               </h3>
               <li>
                 <a
+                  class="sprite"
                   href="https://www.instagram.com/"
                 >
                   <svg
@@ -197,6 +200,7 @@ exports[`Footer component snapshot 1`] = `
               </li>
               <li>
                 <a
+                  class="sprite"
                   href="https://vk.com/"
                 >
                   <svg
@@ -215,6 +219,7 @@ exports[`Footer component snapshot 1`] = `
               </li>
               <li>
                 <a
+                  class="sprite"
                   href="https://ru-ru.facebook.com/"
                 >
                   <svg
@@ -326,26 +331,28 @@ exports[`Footer component snapshot 1`] = `
       <div
         class="info"
       >
-        <a
-          href="./"
-        >
-          <img
-            alt="logo"
-            data-nimg="1"
-            decoding="async"
-            height="20"
-            loading="lazy"
-            src="/_next/image?url=%2Flogo.png&w=384&q=75"
-            srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
-            style="color: transparent;"
-            width="134"
-          />
-        </a>
-        <h4
-          class="title-address"
-        >
-          СДАЁМ БАЙ
-        </h4>
+        <div>
+          <a
+            href="./"
+          >
+            <img
+              alt="logo"
+              data-nimg="1"
+              decoding="async"
+              height="20"
+              loading="lazy"
+              src="/_next/image?url=%2Flogo.png&w=384&q=75"
+              srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
+              style="color: transparent;"
+              width="134"
+            />
+          </a>
+          <h4
+            class="title-address"
+          >
+            СДАЁМ БАЙ
+          </h4>
+        </div>
         <address
           class="address"
         >
@@ -494,6 +501,7 @@ exports[`Footer component snapshot 1`] = `
             </h3>
             <li>
               <a
+                class="sprite"
                 href="https://www.instagram.com/"
               >
                 <svg
@@ -512,6 +520,7 @@ exports[`Footer component snapshot 1`] = `
             </li>
             <li>
               <a
+                class="sprite"
                 href="https://vk.com/"
               >
                 <svg
@@ -530,6 +539,7 @@ exports[`Footer component snapshot 1`] = `
             </li>
             <li>
               <a
+                class="sprite"
                 href="https://ru-ru.facebook.com/"
               >
                 <svg
