@@ -1,5 +1,5 @@
 <h2>docker:</h2> 
-docker push stierlitz2023/project
+docker pull stierlitz2023/project:latest<br/>
 docker compose up
 
 <br/>
