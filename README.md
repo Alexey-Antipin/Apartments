@@ -2,9 +2,6 @@
 docker push stierlitz2023/project
 docker compose up
 
-<h2>Команды docker'a:</h2> 
-docker run build<br/>
-docker run start<br/>
 <br/>
 Если не выходит, то скачиваем из гитхаба репозиторий.
 
