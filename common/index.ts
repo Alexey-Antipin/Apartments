@@ -1,7 +1,7 @@
 import { PaginationNumbering, getData } from "./pagination";
 import { LinkNavigation } from "./linkNavigation";
 import { ListArticles } from "./listArticles";
-import { ImageBlock } from "./ImageBlock";
+import { ImageBlock } from "./imageBlock";
 import { MapBackground } from "./map";
 import { DateArticles } from "./date";
 import { Checkbox } from "./checkbox";
