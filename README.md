@@ -1,19 +1,17 @@
-<h2>docker:</h2>
+<h2>docker: вариант - 1</h2>
 Скачиваем из гитхаба репозиторий.<br/>
 docker pull stierlitz2023/project:latest<br/>
 docker compose up<br/>
+Переходим по http://localhost:3000/<br/>
 
-Если не выходит, то только скачиваем из гитхаба репозиторий.
+<h2>Используем команды: вариант - 2</h2>
 
-<h2>Используем команды</h2>
+Скачиваем из гитхаба репозиторий.<br/>
+npm run project<br/> 
 
-npm run project
-
-Если не выходит, используем команду 
-
+Если не выходит, используем команду<br/>
 npm run build,<br/> 
-npm run start
-
+npm run start<br/> 
 Переходим по http://localhost:3000/
 
 <h2>Авторизация:<br/></h2>
