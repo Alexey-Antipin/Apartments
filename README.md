@@ -1,5 +1,6 @@
 <h2>docker:</h2> 
 docker push stierlitz2023/project
+docker compose up
 
 <h2>Команды docker'a:</h2> 
 docker run build<br/>
