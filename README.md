@@ -1,15 +1,49 @@
-Перенос проекта на next-js.
+<h2>docker:</h2> 
+docker push stierlitz2023/project
 
-1 собирание и запуск проекта: npm run project
+<h2>Команды docker'a:</h2> 
+docker run build<br/>
+docker run start<br/>
+<br/>
+Если не выходит, то скачиваем из гитхаба репозиторий.
 
-2 если не выходит, используем команду 
-  npm run build, после: npm run start
+<h2>Используем команды</h2>
 
-3 переходим по http://localhost:3000/
+npm run project
+
+Если не выходит, используем команду 
+
+npm run build,<br/> 
+npm run start
+
+Переходим по http://localhost:3000/
+
+<h2>Авторизация:<br/></h2>
+"login": myloginAlexey<br/>
+"email": alexeyantipin@gmail.com<br/>
+"password": 1917196120002023<br/>
+
+<h2>Регистрация:</h2> 
+Можем свои записать данные, либо пользуйтесь, что выше.
+
+<h2>Самодельная капча:</h2> 
+Ответы, порядок сверху направо.
+
+1 - астронавт : 2,3,6,7,10,11
+
+2 - кот : 5,6
+
+3 - земля : 2,3,6,7
+
+4 - божья коровка : 6,7,10,11
+
+5 - дерево : 9,10
+
+<h2>Перенос проекта на next-js.</h2>
 
 Перенёс из https://github.com/Alexey-Antipin/Project/
 
-Домашние задания:
+<h2>Домашние задания:</h2>
 
 Домашнее задание №1;<br/>
 занятие №2:https://github.com/Alexey-Antipin/flue-pipe
