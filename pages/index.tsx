@@ -1,5 +1,3 @@
-const Home = () => {
-  return <div>Главная</div>;
-};
+import {Home} from "../components"
 
 export default Home;

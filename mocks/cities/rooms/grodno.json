@@ -1,0 +1,281 @@
+[
+  {
+    "id": "1",
+    "class": "Gold",
+    "price": "65.00",
+    "room_people": "4 (2+2)",
+    "room": "4",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Шабаны",
+    "area": "Заводской р.",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "places": "На Востоке",
+    "photoMassive": [
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_4.png", "width": 406 },
+      { "photo": "/picture/room_5.png", "width": 406 }
+    ],
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },
+    "more": {
+      "gasCooker": true,
+      "oven": false,
+      "coffeeMaker": false,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
+    }
+  },
+  {
+    "id": "2",
+    "class": "Gold",
+    "price": "165.00",
+    "room_people": "3 (2+1)",
+    "room": "3",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Октябрьская",
+    "area": "Заводской р.",
+    "square": "179 м²",
+    "photo": "/picture/room_2.png",
+    "places": "На Востоке",
+    "photoMassive": [
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_4.png", "width": 406 },
+      { "photo": "/picture/room_5.png", "width": 406 }
+    ],
+    "width": "406",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },
+    "more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": false,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
+    }
+  },
+  {
+    "id": "3",
+    "class": "Gold",
+    "price": "265.00",
+    "room_people": "2 (2+0)",
+    "room": "2",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Площадь Ленина",
+    "area": "Ленинский р.",
+    "square": "179 м²",
+    "photo": "/picture/room_2.png",
+    "places": "На Востоке",
+    "photoMassive": [
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_4.png", "width": 406 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_5.png", "width": 406 }
+    ],
+    "width": "406",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
+    }
+  },
+  {
+    "id": "4",
+    "class": "Gold",
+    "price": "65.00",
+    "room_people": "1 (1+0)",
+    "room": "1",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Фрунзенская",
+    "area": "Московский р.",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "places": "На Западе",
+    "photoMassive": [
+      { "photo": "/picture/room_5.png", "width": 406 },
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_4.png", "width": 406 }
+    ],
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": true,
+      "dishes": true,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
+    }
+  },
+  {
+    "id": "5",
+    "class": "Gold",
+    "price": "365.00",
+    "room_people": "5 (2+3)",
+    "room": "5",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Пушкинская",
+    "area": "Октябрьский р.",
+    "square": "179 м²",
+    "photo": "/picture/room_2.png",
+    "places": "На Западе",
+    "photoMassive": [
+      { "photo": "/picture/room_4.png", "width": 406 },
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_5.png", "width": 406 }
+    ],
+    "width": "406",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": false,
+      "dishwasher": false,
+      "tv": false,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": true,
+      "water": true
+    }
+  },
+  {
+    "id": "6",
+    "class": "Gold",
+    "price": "335.00",
+    "room_people": "2 (1+1)",
+    "room": "2",
+    "city": "Гродно",
+    "street": "б-р Мулявина, д. 10",
+    "station": "Пушкинская",
+    "area": "Октябрьский р.",
+    "square": "179 м²",
+    "photo": "/picture/room.png",
+    "places": "На Западе",
+    "photoMassive": [
+      { "photo": "/picture/room.png", "width": 165 },
+      { "photo": "/picture/room_2.png", "width": 406 },
+      { "photo": "/picture/room_3.png", "width": 406 },
+      { "photo": "/picture/room_4.png", "width": 406 },
+      { "photo": "/picture/room_5.png", "width": 406 }
+    ],
+    "width": "165",
+    "description": "Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание 1 Какое-то описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание квартиры, описание",
+    "contacts": {
+      "master": "Dmitriy",
+      "telefon": " +375 (29) 291-14-44",
+      "email": "vladimir6234@tut.by",
+      "link": {
+        "viber": "viber://chat?number=%2B7962242XXXX",
+        "whats_app": "89999999996",
+        "email": "vladimir6234@tut.by"
+      }
+    },"more": {
+      "gasCooker": true,
+      "oven": true,
+      "coffeeMaker": true,
+      "microwave": false,
+      "dishes": true,
+      "dishwasher": false,
+      "tv": true,
+      "teapot": false,
+      "refrigerator": false,
+      "broom": false,
+      "food": false,
+      "water": false
+    }
+  }
+]
+

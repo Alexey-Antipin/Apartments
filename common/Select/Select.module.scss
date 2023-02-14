@@ -1,0 +1,158 @@
+.position {
+  position: relative;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  color: #0b0b0b;
+  padding: 20px 0px;
+}
+
+.sprite-margin {
+  margin-left: 15px;
+}
+
+.focus {
+  height: 3px;
+}
+
+.focus-active {
+  background: #ffd54f;
+  width: 100%;
+}
+
+.underlist {
+  position: absolute;
+  top: 84px;
+
+  height: 222px;
+  width: 242px;
+
+  box-shadow: 0px 0px 40px rgba(135, 124, 202, 0.3);
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.underlist-item {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+.underlist-item:hover {
+  background: #f8f8f8;
+}
+
+// alternative.
+.alternative-list {
+  @extend %block;
+  width: 150px;
+}
+.alternative-block {
+  display: flex;
+  align-items: center;
+
+  height: 37px;
+
+  border: 2px solid rgba(101, 78, 249, 0);
+  border-radius: 20px;
+  width: 100%;
+}
+.alternative-block-active {
+  background: #ffffff;
+  box-shadow: 0px 25px 40px rgba(135, 124, 202, 0.3);
+  border: 2px solid rgba(102, 78, 249, 0.8);
+}
+.alternative-block-hover:hover {
+  background: rgba(102, 78, 249, 0.1);
+}
+.alternative-text {
+  @extend %text;
+}
+.alternative-sprite {
+  margin-left: auto;
+  margin-right: 14px;
+  transform: rotate(90deg);
+}
+
+.alternative-underlist {
+  position: absolute;
+  top: 50px;
+
+  height: 222px;
+  width: 100%;
+
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 3;
+}
+.alternative-underlist-item {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  padding: 10px 10px;
+}
+.alternative-underlist-item:hover {
+  background: #f8f8f8;
+}
+
+// metro.
+.metro-block {
+  @extend %block;
+  min-width: 180px;
+  box-shadow: 0px 10px 20px rgba(0, 96, 206, 0.1);
+}
+.metro-sprite {
+  padding-left: 14px;
+}
+.metro-text {
+  @extend %text;
+  padding-left: 8px;
+}
+
+%block {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  background: #f8f8f8;
+  border-radius: 20px;
+}
+%text {
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 17px;
+
+  padding: 12px;
+  color: #686868;
+}
+
+@media (max-width: 900px) {
+  .alternative-list {
+    width: 120px;
+  }
+  .metro-block{
+    min-width: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .metro-text{
+    font-size: 12px;
+  }
+}

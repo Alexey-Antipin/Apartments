@@ -1,14 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: black;
 }
 
-* {
-  box-sizing: border-box;
+h1 {
+  font-weight: normal;
+  margin: 0;
+}
+
+h2 {
+  font-weight: normal;
+  margin: 0;
+}
+h3 {
+  font-weight: normal;
+  margin: 0;
+}
+h4 {
+  font-weight: normal;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+//300
+@font-face {
+  font-family: "Inter-Light";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/Inter-Light.ttf");
+}
+//400
+@font-face {
+  font-family: "Inter-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Inter-Regular.ttf");
+}
+//500
+@font-face {
+  font-family: "Inter-Medium";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/Inter-Medium.ttf");
+}
+//600
+@font-face {
+  font-family: "Inter-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/Inter-SemiBold.ttf");
+}
+//700
+@font-face {
+  font-family: "Inter-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/Inter-Bold.ttf");
 }

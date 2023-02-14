@@ -1,0 +1,698 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <footer
+        class="footer"
+      >
+        <div
+          class="info"
+        >
+          <div>
+            <a
+              href="./"
+            >
+              <img
+                alt="logo"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/_next/image?url=%2Flogo.png&w=384&q=75"
+                srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
+                style="color: transparent;"
+                width="134"
+              />
+            </a>
+            <h4
+              class="title-address"
+            >
+              СДАЁМ БАЙ
+            </h4>
+          </div>
+          <address
+            class="address"
+          >
+            ИП Шушкевич Андрей Викторович
+            <br />
+             УНП 192602485 Минским горисполкомом
+            <br />
+            <time>
+              10.02.2016
+            </time>
+            <br />
+             220068, РБ, г. Минск, ул. Осипенко, 21, кв.23
+            <br />
+            <a
+              class="telefon"
+              href="tel:+375296214833"
+            >
+              +375 29 621 48 33,
+            </a>
+            <a
+              class="colour"
+              href="mailto:sdaem@sdaem.by"
+            >
+              sdaem@sdaem.by
+            </a>
+            <br />
+             Режим работы: 
+            <time>
+              08:00-22:00
+            </time>
+          </address>
+        </div>
+        <div
+          class="container"
+        >
+          <nav
+            class="navigation"
+          >
+            <h2 />
+            <ul
+              class="list-black"
+            >
+              <li
+                class="item"
+              >
+                Коттеджи и усадьбы
+              </li>
+              <li
+                class="item"
+              >
+                Бани и сауны
+              </li>
+              <li
+                class="item"
+              >
+                Авто на прокат
+              </li>
+            </ul>
+            <h2 />
+            <ul
+              class="list"
+            >
+              <li
+                class="item-second-block"
+              >
+                Квартиры
+              </li>
+              <li
+                class="item-second-block"
+              >
+                Квартиры в Минске
+              </li>
+              <li
+                class="item-second-block"
+              >
+                Квартиры в Гомеле
+              </li>
+              <li
+                class="item-second-block"
+              >
+                Квартиры в Бресте
+              </li>
+            </ul>
+            <h2 />
+            <ul
+              class="list"
+            >
+              <li
+                class="item"
+              />
+              <li
+                class="item"
+              />
+              <li
+                class="item"
+              >
+                Квартиры в Витебске
+              </li>
+              <li
+                class="item"
+              >
+                Квартиры в Гродно
+              </li>
+              <li
+                class="item"
+              >
+                Квартиры в Могилеве
+              </li>
+            </ul>
+            <h2 />
+            <ul
+              class="list"
+            >
+              <li
+                class="item"
+              >
+                Новости
+              </li>
+              <li
+                class="item"
+              >
+                Размещение и тарифы
+              </li>
+              <li
+                class="item"
+              >
+                Объявления на карте
+              </li>
+              <li
+                class="item"
+              >
+                Контакты
+              </li>
+            </ul>
+          </nav>
+          <div
+            class="block"
+          >
+            <ul
+              class="social-network"
+            >
+              <h3
+                class="title"
+              >
+                Мы в соцсетях
+              </h3>
+              <li>
+                <a
+                  class="sprite"
+                  href="https://www.instagram.com/"
+                >
+                  <svg
+                    fill="none"
+                    height="25"
+                    viewBox="0 0 24 25"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.8055 6.56142C8.4803 6.56142 5.7967 9.24501 5.7967 12.5702C5.7967 15.8954 8.4803 18.579 11.8055 18.579C15.1307 18.579 17.8143 15.8954 17.8143 12.5702C17.8143 9.24501 15.1307 6.56142 11.8055 6.56142ZM11.8055 16.4755C9.6551 16.4755 7.90022 14.7206 7.90022 12.5702C7.90022 10.4198 9.6551 8.66494 11.8055 8.66494C13.9559 8.66494 15.7108 10.4198 15.7108 12.5702C15.7108 14.7206 13.9559 16.4755 11.8055 16.4755ZM18.0604 4.91493C17.284 4.91493 16.6571 5.54189 16.6571 6.31825C16.6571 7.09462 17.284 7.72158 18.0604 7.72158C18.8367 7.72158 19.4637 7.09755 19.4637 6.31825C19.4639 6.1339 19.4278 5.95132 19.3573 5.78095C19.2869 5.61059 19.1835 5.4558 19.0532 5.32544C18.9228 5.19509 18.768 5.09173 18.5977 5.02128C18.4273 4.95084 18.2447 4.9147 18.0604 4.91493ZM23.5184 12.5702C23.5184 10.953 23.533 9.35048 23.4422 7.73622C23.3514 5.86122 22.9237 4.19716 21.5526 2.82607C20.1785 1.45204 18.5174 1.02724 16.6424 0.936418C15.0252 0.845598 13.4227 0.860246 11.8084 0.860246C10.1912 0.860246 8.5887 0.845598 6.97444 0.936418C5.09944 1.02724 3.43538 1.45497 2.06428 2.82607C0.69026 4.20009 0.265455 5.86122 0.174635 7.73622C0.0838143 9.35341 0.0984628 10.956 0.0984628 12.5702C0.0984628 14.1845 0.0838143 15.7899 0.174635 17.4042C0.265455 19.2792 0.693189 20.9433 2.06428 22.3144C3.43831 23.6884 5.09944 24.1132 6.97444 24.204C8.59163 24.2948 10.1942 24.2802 11.8084 24.2802C13.4256 24.2802 15.0281 24.2948 16.6424 24.204C18.5174 24.1132 20.1815 23.6854 21.5526 22.3144C22.9266 20.9403 23.3514 19.2792 23.4422 17.4042C23.536 15.7899 23.5184 14.1874 23.5184 12.5702ZM20.9403 19.4784C20.7264 20.0116 20.4686 20.4101 20.0555 20.8202C19.6424 21.2333 19.2469 21.4911 18.7137 21.705C17.1727 22.3173 13.5135 22.1796 11.8055 22.1796C10.0975 22.1796 6.43538 22.3173 4.89436 21.7079C4.36116 21.494 3.96272 21.2362 3.55256 20.8231C3.13948 20.4101 2.88167 20.0145 2.6678 19.4813C2.05842 17.9374 2.19612 14.2782 2.19612 12.5702C2.19612 10.8622 2.05842 7.20009 2.6678 5.65908C2.88167 5.12587 3.13948 4.72743 3.55256 4.31728C3.96565 3.90712 4.36116 3.64638 4.89436 3.43251C6.43538 2.82314 10.0975 2.96083 11.8055 2.96083C13.5135 2.96083 17.1756 2.82314 18.7166 3.43251C19.2498 3.64638 19.6483 3.90419 20.0584 4.31728C20.4715 4.73036 20.7293 5.12587 20.9432 5.65908C21.5526 7.20009 21.4149 10.8622 21.4149 12.5702C21.4149 14.2782 21.5526 17.9374 20.9403 19.4784Z"
+                      fill="#1E2123"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="sprite"
+                  href="https://vk.com/"
+                >
+                  <svg
+                    fill="none"
+                    height="15"
+                    viewBox="0 0 25 15"
+                    width="25"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M24.2554 1.26839C24.4231 0.721422 24.2554 0.320312 23.4625 0.320312H20.836C20.1676 0.320312 19.8622 0.667314 19.6946 1.04843C19.6946 1.04843 18.3591 4.24671 16.4668 6.32048C15.8559 6.92391 15.5769 7.11446 15.2439 7.11446C15.0774 7.11446 14.8355 6.92391 14.8355 6.37694V1.26839C14.8355 0.612028 14.6427 0.320312 14.0857 0.320312H9.95847C9.54167 0.320312 9.29015 0.623791 9.29015 0.913154C9.29015 1.53423 10.2363 1.67773 10.3333 3.42803V7.22503C10.3333 8.05666 10.1812 8.2084 9.84589 8.2084C8.956 8.2084 6.79056 4.99835 5.50543 1.32367C5.25511 0.609676 5.0024 0.321489 4.33169 0.321489H1.70633C0.955376 0.321489 0.805664 0.66849 0.805664 1.0496C0.805664 1.73419 1.69555 5.12186 4.9509 9.60228C7.12112 12.6618 10.1765 14.3203 12.9599 14.3203C14.6283 14.3203 14.8343 13.9521 14.8343 13.317V11.0044C14.8343 10.2681 14.9936 10.1198 15.5218 10.1198C15.9098 10.1198 16.5781 10.3128 18.1364 11.7866C19.9161 13.5346 20.2108 14.3191 21.2108 14.3191H23.8362C24.586 14.3191 24.9608 13.951 24.7452 13.224C24.5093 12.5006 23.6589 11.4479 22.5307 10.2022C21.9175 9.49171 21.0012 8.72714 20.7222 8.34485C20.3329 7.85199 20.4455 7.63438 20.7222 7.1968C20.7234 7.19798 23.9224 2.77284 24.2554 1.26839Z"
+                      fill="#1E2123"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="sprite"
+                  href="https://ru-ru.facebook.com/"
+                >
+                  <svg
+                    fill="none"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    width="21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.8047 0.320312C5.28266 0.320312 0.805664 4.79731 0.805664 10.3193C0.805664 15.3093 4.46166 19.4453 9.24266 20.1983V13.2103H6.70266V10.3193H9.24266V8.11631C9.24266 5.60831 10.7357 4.22531 13.0187 4.22531C14.1127 4.22531 15.2587 4.42031 15.2587 4.42031V6.87931H13.9947C12.7547 6.87931 12.3667 7.65131 12.3667 8.44231V10.3173H15.1377L14.6947 13.2083H12.3667V20.1963C17.1477 19.4473 20.8037 15.3103 20.8037 10.3193C20.8037 4.79731 16.3267 0.320312 10.8047 0.320312Z"
+                      fill="#1E2123"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+            <ul
+              class="card"
+            >
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="13"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi1.png&w=96&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi1.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi1.png&w=96&q=75 2x"
+                  style="color: transparent;"
+                  width="42"
+                />
+              </li>
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="13"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi2.png&w=256&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi2.png&w=96&q=75 1x, /_next/image?url=%2Fcard%2Fi2.png&w=256&q=75 2x"
+                  style="color: transparent;"
+                  width="86"
+                />
+              </li>
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="16"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi3.png&w=96&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi3.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi3.png&w=96&q=75 2x"
+                  style="color: transparent;"
+                  width="38"
+                />
+              </li>
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="20"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi4.png&w=64&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi4.png&w=32&q=75 1x, /_next/image?url=%2Fcard%2Fi4.png&w=64&q=75 2x"
+                  style="color: transparent;"
+                  width="26"
+                />
+              </li>
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="16"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi5.png&w=96&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi5.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi5.png&w=96&q=75 2x"
+                  style="color: transparent;"
+                  width="46"
+                />
+              </li>
+              <li>
+                <img
+                  alt="card"
+                  data-nimg="1"
+                  decoding="async"
+                  height="30"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fcard%2Fi6.png&w=48&q=75"
+                  srcset="/_next/image?url=%2Fcard%2Fi6.png&w=32&q=75 1x, /_next/image?url=%2Fcard%2Fi6.png&w=48&q=75 2x"
+                  style="color: transparent;"
+                  width="22"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>,
+  "container": <div>
+    <footer
+      class="footer"
+    >
+      <div
+        class="info"
+      >
+        <div>
+          <a
+            href="./"
+          >
+            <img
+              alt="logo"
+              data-nimg="1"
+              decoding="async"
+              height="20"
+              loading="lazy"
+              src="/_next/image?url=%2Flogo.png&w=384&q=75"
+              srcset="/_next/image?url=%2Flogo.png&w=256&q=75 1x, /_next/image?url=%2Flogo.png&w=384&q=75 2x"
+              style="color: transparent;"
+              width="134"
+            />
+          </a>
+          <h4
+            class="title-address"
+          >
+            СДАЁМ БАЙ
+          </h4>
+        </div>
+        <address
+          class="address"
+        >
+          ИП Шушкевич Андрей Викторович
+          <br />
+           УНП 192602485 Минским горисполкомом
+          <br />
+          <time>
+            10.02.2016
+          </time>
+          <br />
+           220068, РБ, г. Минск, ул. Осипенко, 21, кв.23
+          <br />
+          <a
+            class="telefon"
+            href="tel:+375296214833"
+          >
+            +375 29 621 48 33,
+          </a>
+          <a
+            class="colour"
+            href="mailto:sdaem@sdaem.by"
+          >
+            sdaem@sdaem.by
+          </a>
+          <br />
+           Режим работы: 
+          <time>
+            08:00-22:00
+          </time>
+        </address>
+      </div>
+      <div
+        class="container"
+      >
+        <nav
+          class="navigation"
+        >
+          <h2 />
+          <ul
+            class="list-black"
+          >
+            <li
+              class="item"
+            >
+              Коттеджи и усадьбы
+            </li>
+            <li
+              class="item"
+            >
+              Бани и сауны
+            </li>
+            <li
+              class="item"
+            >
+              Авто на прокат
+            </li>
+          </ul>
+          <h2 />
+          <ul
+            class="list"
+          >
+            <li
+              class="item-second-block"
+            >
+              Квартиры
+            </li>
+            <li
+              class="item-second-block"
+            >
+              Квартиры в Минске
+            </li>
+            <li
+              class="item-second-block"
+            >
+              Квартиры в Гомеле
+            </li>
+            <li
+              class="item-second-block"
+            >
+              Квартиры в Бресте
+            </li>
+          </ul>
+          <h2 />
+          <ul
+            class="list"
+          >
+            <li
+              class="item"
+            />
+            <li
+              class="item"
+            />
+            <li
+              class="item"
+            >
+              Квартиры в Витебске
+            </li>
+            <li
+              class="item"
+            >
+              Квартиры в Гродно
+            </li>
+            <li
+              class="item"
+            >
+              Квартиры в Могилеве
+            </li>
+          </ul>
+          <h2 />
+          <ul
+            class="list"
+          >
+            <li
+              class="item"
+            >
+              Новости
+            </li>
+            <li
+              class="item"
+            >
+              Размещение и тарифы
+            </li>
+            <li
+              class="item"
+            >
+              Объявления на карте
+            </li>
+            <li
+              class="item"
+            >
+              Контакты
+            </li>
+          </ul>
+        </nav>
+        <div
+          class="block"
+        >
+          <ul
+            class="social-network"
+          >
+            <h3
+              class="title"
+            >
+              Мы в соцсетях
+            </h3>
+            <li>
+              <a
+                class="sprite"
+                href="https://www.instagram.com/"
+              >
+                <svg
+                  fill="none"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.8055 6.56142C8.4803 6.56142 5.7967 9.24501 5.7967 12.5702C5.7967 15.8954 8.4803 18.579 11.8055 18.579C15.1307 18.579 17.8143 15.8954 17.8143 12.5702C17.8143 9.24501 15.1307 6.56142 11.8055 6.56142ZM11.8055 16.4755C9.6551 16.4755 7.90022 14.7206 7.90022 12.5702C7.90022 10.4198 9.6551 8.66494 11.8055 8.66494C13.9559 8.66494 15.7108 10.4198 15.7108 12.5702C15.7108 14.7206 13.9559 16.4755 11.8055 16.4755ZM18.0604 4.91493C17.284 4.91493 16.6571 5.54189 16.6571 6.31825C16.6571 7.09462 17.284 7.72158 18.0604 7.72158C18.8367 7.72158 19.4637 7.09755 19.4637 6.31825C19.4639 6.1339 19.4278 5.95132 19.3573 5.78095C19.2869 5.61059 19.1835 5.4558 19.0532 5.32544C18.9228 5.19509 18.768 5.09173 18.5977 5.02128C18.4273 4.95084 18.2447 4.9147 18.0604 4.91493ZM23.5184 12.5702C23.5184 10.953 23.533 9.35048 23.4422 7.73622C23.3514 5.86122 22.9237 4.19716 21.5526 2.82607C20.1785 1.45204 18.5174 1.02724 16.6424 0.936418C15.0252 0.845598 13.4227 0.860246 11.8084 0.860246C10.1912 0.860246 8.5887 0.845598 6.97444 0.936418C5.09944 1.02724 3.43538 1.45497 2.06428 2.82607C0.69026 4.20009 0.265455 5.86122 0.174635 7.73622C0.0838143 9.35341 0.0984628 10.956 0.0984628 12.5702C0.0984628 14.1845 0.0838143 15.7899 0.174635 17.4042C0.265455 19.2792 0.693189 20.9433 2.06428 22.3144C3.43831 23.6884 5.09944 24.1132 6.97444 24.204C8.59163 24.2948 10.1942 24.2802 11.8084 24.2802C13.4256 24.2802 15.0281 24.2948 16.6424 24.204C18.5174 24.1132 20.1815 23.6854 21.5526 22.3144C22.9266 20.9403 23.3514 19.2792 23.4422 17.4042C23.536 15.7899 23.5184 14.1874 23.5184 12.5702ZM20.9403 19.4784C20.7264 20.0116 20.4686 20.4101 20.0555 20.8202C19.6424 21.2333 19.2469 21.4911 18.7137 21.705C17.1727 22.3173 13.5135 22.1796 11.8055 22.1796C10.0975 22.1796 6.43538 22.3173 4.89436 21.7079C4.36116 21.494 3.96272 21.2362 3.55256 20.8231C3.13948 20.4101 2.88167 20.0145 2.6678 19.4813C2.05842 17.9374 2.19612 14.2782 2.19612 12.5702C2.19612 10.8622 2.05842 7.20009 2.6678 5.65908C2.88167 5.12587 3.13948 4.72743 3.55256 4.31728C3.96565 3.90712 4.36116 3.64638 4.89436 3.43251C6.43538 2.82314 10.0975 2.96083 11.8055 2.96083C13.5135 2.96083 17.1756 2.82314 18.7166 3.43251C19.2498 3.64638 19.6483 3.90419 20.0584 4.31728C20.4715 4.73036 20.7293 5.12587 20.9432 5.65908C21.5526 7.20009 21.4149 10.8622 21.4149 12.5702C21.4149 14.2782 21.5526 17.9374 20.9403 19.4784Z"
+                    fill="#1E2123"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="sprite"
+                href="https://vk.com/"
+              >
+                <svg
+                  fill="none"
+                  height="15"
+                  viewBox="0 0 25 15"
+                  width="25"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M24.2554 1.26839C24.4231 0.721422 24.2554 0.320312 23.4625 0.320312H20.836C20.1676 0.320312 19.8622 0.667314 19.6946 1.04843C19.6946 1.04843 18.3591 4.24671 16.4668 6.32048C15.8559 6.92391 15.5769 7.11446 15.2439 7.11446C15.0774 7.11446 14.8355 6.92391 14.8355 6.37694V1.26839C14.8355 0.612028 14.6427 0.320312 14.0857 0.320312H9.95847C9.54167 0.320312 9.29015 0.623791 9.29015 0.913154C9.29015 1.53423 10.2363 1.67773 10.3333 3.42803V7.22503C10.3333 8.05666 10.1812 8.2084 9.84589 8.2084C8.956 8.2084 6.79056 4.99835 5.50543 1.32367C5.25511 0.609676 5.0024 0.321489 4.33169 0.321489H1.70633C0.955376 0.321489 0.805664 0.66849 0.805664 1.0496C0.805664 1.73419 1.69555 5.12186 4.9509 9.60228C7.12112 12.6618 10.1765 14.3203 12.9599 14.3203C14.6283 14.3203 14.8343 13.9521 14.8343 13.317V11.0044C14.8343 10.2681 14.9936 10.1198 15.5218 10.1198C15.9098 10.1198 16.5781 10.3128 18.1364 11.7866C19.9161 13.5346 20.2108 14.3191 21.2108 14.3191H23.8362C24.586 14.3191 24.9608 13.951 24.7452 13.224C24.5093 12.5006 23.6589 11.4479 22.5307 10.2022C21.9175 9.49171 21.0012 8.72714 20.7222 8.34485C20.3329 7.85199 20.4455 7.63438 20.7222 7.1968C20.7234 7.19798 23.9224 2.77284 24.2554 1.26839Z"
+                    fill="#1E2123"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="sprite"
+                href="https://ru-ru.facebook.com/"
+              >
+                <svg
+                  fill="none"
+                  height="21"
+                  viewBox="0 0 21 21"
+                  width="21"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.8047 0.320312C5.28266 0.320312 0.805664 4.79731 0.805664 10.3193C0.805664 15.3093 4.46166 19.4453 9.24266 20.1983V13.2103H6.70266V10.3193H9.24266V8.11631C9.24266 5.60831 10.7357 4.22531 13.0187 4.22531C14.1127 4.22531 15.2587 4.42031 15.2587 4.42031V6.87931H13.9947C12.7547 6.87931 12.3667 7.65131 12.3667 8.44231V10.3173H15.1377L14.6947 13.2083H12.3667V20.1963C17.1477 19.4473 20.8037 15.3103 20.8037 10.3193C20.8037 4.79731 16.3267 0.320312 10.8047 0.320312Z"
+                    fill="#1E2123"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <ul
+            class="card"
+          >
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="13"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi1.png&w=96&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi1.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi1.png&w=96&q=75 2x"
+                style="color: transparent;"
+                width="42"
+              />
+            </li>
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="13"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi2.png&w=256&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi2.png&w=96&q=75 1x, /_next/image?url=%2Fcard%2Fi2.png&w=256&q=75 2x"
+                style="color: transparent;"
+                width="86"
+              />
+            </li>
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="16"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi3.png&w=96&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi3.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi3.png&w=96&q=75 2x"
+                style="color: transparent;"
+                width="38"
+              />
+            </li>
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="20"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi4.png&w=64&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi4.png&w=32&q=75 1x, /_next/image?url=%2Fcard%2Fi4.png&w=64&q=75 2x"
+                style="color: transparent;"
+                width="26"
+              />
+            </li>
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="16"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi5.png&w=96&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi5.png&w=48&q=75 1x, /_next/image?url=%2Fcard%2Fi5.png&w=96&q=75 2x"
+                style="color: transparent;"
+                width="46"
+              />
+            </li>
+            <li>
+              <img
+                alt="card"
+                data-nimg="1"
+                decoding="async"
+                height="30"
+                loading="lazy"
+                src="/_next/image?url=%2Fcard%2Fi6.png&w=48&q=75"
+                srcset="/_next/image?url=%2Fcard%2Fi6.png&w=32&q=75 1x, /_next/image?url=%2Fcard%2Fi6.png&w=48&q=75 2x"
+                style="color: transparent;"
+                width="22"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

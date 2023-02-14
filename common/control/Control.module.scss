@@ -1,0 +1,82 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+
+  padding: 20px 80px;
+  width: 100%;
+}
+.button {
+  @extend %btn;
+  white-space: nowrap;
+  background: #ffffff;
+  box-shadow: 0px 5px 20px rgba(0, 96, 206, 0.1);
+}
+
+.button-off {
+  @extend %btn;
+  background: none;
+}
+.button-off:hover {
+  background: #f8f8f8;
+}
+.button:first-child {
+  margin-right: auto;
+}
+.button:last-child {
+  margin-left: 65px;
+}
+.sprite {
+  margin-top: 2px;
+  margin-left: 66px;
+  transform: rotate(90deg);
+}
+
+%btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  line-height: 17px;
+  color: #1e2123;
+
+  border-radius: 18px;
+  padding: 10px 15px;
+
+  outline: none;
+  border: none;
+}
+
+@media (max-width: 1300px) {
+  .wrapper {
+    padding: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .wrapper {
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .button:first-child {
+    margin-right: 0px;
+  }
+  .button:last-child {
+    margin-left: 0px;
+  }
+}
+@media (max-width: 700px) {
+  .button {
+    display: none;
+  }
+  .button-off {
+    display: none;
+  }
+  .button:first-child {
+    display: flex;
+  }
+  .button:last-child {
+    display: flex;
+  }
+}

@@ -1,0 +1,57 @@
+.list {
+  font-family: "Inter-Regular", sans-serif;
+  color: #8291a3;
+}
+.list:nth-child(2) {
+  padding-right: 55px;
+}
+.list:nth-child(3) {
+  padding-right: 116px;
+}
+.item {
+  padding: 8px;
+}
+
+.list-text {
+  font-family: "Inter-SemiBold";
+  font-size: 14px;
+  line-height: 17px;
+
+  padding: 13px 20px;
+  color: #ffffff;
+}
+.text-active {
+  color: #664ef9;
+  background: #ffffff;
+  border-radius: 10px 10px 0px 0px;
+}
+.count {
+  font-family: "Inter-Regular";
+  line-height: 17px;
+  font-size: 14px;
+
+  color: #bdbdbd;
+}
+.sprite {
+  margin-top: 1px;
+  margin-left: 6px;
+  svg {
+    transition: 1s;
+    transform: rotate(-90deg);
+  }
+}
+.sprite-active {
+  svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 670px) {
+  .list-text {
+    font-family: "Inter-SemiBold";
+    font-size: 12px;
+    line-height: 17px;
+
+    padding: 13px 8px;
+  }
+}

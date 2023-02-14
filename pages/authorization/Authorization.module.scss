@@ -1,0 +1,214 @@
+.background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/background.png"), linear-gradient(#7e6af3, #6540cd);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  height: 757px;
+  max-width: 1940px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.authorization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 530px;
+  width: 406px;
+
+  background: #fffefe;
+  padding: 50px 50px;
+  box-shadow: 0px 20px 40px rgba(39, 95, 158, 0.2);
+  border-radius: 10px;
+}
+.title {
+  font-family: "Inter-Bold";
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+  margin-bottom: 15px;
+}
+.paragraph {
+  @extend %text;
+  padding: 0 40px;
+  margin-bottom: 15px;
+}
+
+.input {
+  height: 50px;
+  width: 306px;
+
+  font-family: "Inter-Medium";
+  font-size: 14px;
+
+  border-radius: 30px;
+  background: #f7f7f7;
+
+  padding-left: 55px;
+  margin-top: 20px;
+  border: none;
+}
+.input:focus {
+  background: #ffffff;
+  outline: 2px solid #4e64f9cc;
+}
+.input:focus::placeholder {
+  color: #1e2123;
+}
+.position {
+  position: relative;
+}
+.icons {
+  @extend %icon;
+}
+.input:focus + .icons {
+  svg {
+    fill: #664ef9;
+  }
+}
+
+.control {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 38px;
+}
+.label-block {
+  display: flex;
+}
+
+.round {
+  height: 14px;
+  width: 14px;
+
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  margin-left: 3px;
+  transition: 0.5s;
+}
+.round-on {
+  margin-left: 16px;
+}
+
+.switch-block {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch {
+  height: 20px;
+  width: 34px;
+
+  border-radius: 100px;
+  border: none;
+
+  background: #bdbdbd;
+  transition: 0.5s;
+
+  margin-right: 8px;
+  padding-top: 3px;
+}
+.switch-on {
+  background: #664ef9;
+}
+
+.remember {
+  font-family: "Inter-Regular";
+  font-size: 14px;
+  color: #686868;
+}
+.forgot {
+  @extend %text-violet;
+  margin-left: 36px;
+}
+.forgot:hover {
+  color: #9a8cf5;
+}
+.entrance {
+  height: 50px;
+  width: 306px;
+
+  font-family: "Inter-Bold";
+  font-size: 16px;
+
+  background: #ffd54f;
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 25px;
+}
+.entrance:hover {
+  background: #ffcc25;
+}
+
+.account {
+  @extend %text;
+  margin-top: 25px;
+  padding: 5px;
+}
+.account-create {
+  @extend %text-violet;
+  padding-left: 10px;
+}
+.account-create:hover {
+  color: #9a8cf5;
+}
+.formik-error-block {
+  border: 2px solid lightcoral;
+}
+.formik-error-block:focus {
+  outline: lightcoral;
+}
+.formik-error {
+  font-family: "Inter-Regular";
+  color: lightcoral;
+
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.error-icons {
+  @extend %icon;
+}
+.input:focus + .error-icons {
+  svg {
+    fill: #686868;
+  }
+}
+
+.error-from-server {
+  text-align: center;
+  font-family: "Inter-Regular";
+  color: lightcoral;
+}
+
+%text {
+  height: 34px;
+  width: 310px;
+
+  font-family: "Inter-Regular";
+  font-size: 14px;
+
+  text-align: center;
+  color: #686868;
+}
+%text-violet {
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #664ef9;
+}
+%icon {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+}
