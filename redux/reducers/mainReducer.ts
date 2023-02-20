@@ -287,7 +287,7 @@ const initialState: MainState = {
 export const amountOfRoomsThunk = createAsyncThunk(
   "main/mainAmountOfRooms",
   async () => {
-    let { data } = await axios.get("http://localhost:3000/api/get-amount");
+    let { data } = await axios.get(process.env.NEXT_PUBLIC_SITE_GET_AMOUNT);
     return data;
   }
 );

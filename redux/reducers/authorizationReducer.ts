@@ -23,7 +23,7 @@ export const authorizationThunk = createAsyncThunk(
   ) => {
     try {
       let { data } = await axios.get<GetData>(
-        "http://localhost:3000/api/get-account/",
+        process.env.NEXT_PUBLIC_SITE_GET_ACCOUNT,
         {
           params: { login, password, remember },
         }

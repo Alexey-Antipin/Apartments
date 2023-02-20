@@ -22,7 +22,7 @@ export const articlesThunk = createAsyncThunk(
   async (interval: number, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/get-articles/",
+        process.env.NEXT_PUBLIC_SITE_GET_ARTICLES,
         {
           params: { interval },
         }

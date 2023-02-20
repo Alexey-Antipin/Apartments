@@ -65,7 +65,7 @@ const initialState: RegistrationState = {
 export const redistrationThunk = createAsyncThunk(
   "redistration/redistrationUser",
   async ({ login, email, password }: RegistrationField) => {
-    await axios.post<string>("http://localhost:3000/api/create-account/", {
+    await axios.post<string>(process.env.NEXT_PUBLIC_SITE_CREATE_ACCOUNT, {
       login,
       email,
       password,
@@ -77,7 +77,7 @@ export const captchaThunk = createAsyncThunk(
   "redistration/captcha",
   async ({ captcha, captchaId }: Captcha) => {
     let { data } = await axios.get<PayloadCaptchaThunk>(
-      "http://localhost:3000/api/captcha/",
+      process.env.NEXT_PUBLIC_SITE_CAPTCHA,
       {
         params: { captcha, captchaId },
       }
@@ -90,7 +90,7 @@ export const confirmDataThunk = createAsyncThunk(
   "redistration/captchaConfirm",
   async ({ countOfImages, captcha }: CaptchaConfirm) => {
     let { data } = await axios.get<boolean>(
-      "http://localhost:3000/api/checkCaptcha/",
+      process.env.NEXT_PUBLIC_SITE_CHECK_CAPTCHA,
       {
         params: {
           captcha,

@@ -17,7 +17,7 @@ export const contactsThunk = createAsyncThunk(
   "contacts/contactsField",
   async ({ name, email, message }: ContactsOfField) => {
     let { data } = await axios.post<string>(
-      `http://localhost:3000/api/send/`,
+      process.env.NEXT_PUBLIC_SITE_SEND,
       {
         name,
         email,

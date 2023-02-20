@@ -91,7 +91,7 @@ export const Header: React.FC = () => {
 
       // Запрос города
       let { data } = await axios.get<ArticleRoom[]>(
-        "http://localhost:3000/api/get-city/",
+        process.env.NEXT_PUBLIC_SITE_GET_CITY,
         {
           params: {
             city: select.filter.city,

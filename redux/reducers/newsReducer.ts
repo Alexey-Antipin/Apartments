@@ -23,7 +23,7 @@ export const newsThunk = createAsyncThunk(
   "news/newsList",
   async (id: number) => {
     let { data } = await axios.get<NewsState>(
-      `http://localhost:3000/api/articles/${id}`
+      process.env.NEXT_PUBLIC_SITE_ARTICLES + id
     );
 
     // Массив статей, перевод формата времени
@@ -48,7 +48,7 @@ export const newsThunk = createAsyncThunk(
 export const countNewsThunk = createAsyncThunk(
   "news/amountNewsThunk",
   async () => {
-    let { data } = await axios.get("http://localhost:3000/api/news");
+    let { data } = await axios.get(process.env.NEXT_PUBLIC_SITE_NEWS);
     let articles = data.articles;
 
     return { articles };
@@ -70,7 +70,6 @@ export const newsSlice = createSlice({
     builder.addCase(
       countNewsThunk.fulfilled,
       (state, action: PayloadAction<News>) => {
-
         state.news = action.payload.articles;
       }
     );
