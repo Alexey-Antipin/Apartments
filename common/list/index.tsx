@@ -1,6 +1,6 @@
 import { useAppDispatch, choiceCity, selectCity } from "../../redux";
-import getProducts from "../pagination/getData";
 import { MassiveOfListProps } from "../../ts";
+import getProducts from "../paginat/getData";
 import styles from "./List.module.scss";
 import { useRouter } from "next/router";
 import { cities } from "../../mocks";

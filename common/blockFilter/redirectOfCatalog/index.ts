@@ -1,5 +1,5 @@
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import getProducts from "../../pagination/getData";
+import getProducts from "../../paginat/getData";
 import { choiceCity } from "../../../redux";
 import { ArticleRoom } from "../../../ts";
 import { NextRouter } from "next/router";
