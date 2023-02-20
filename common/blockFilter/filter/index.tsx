@@ -60,21 +60,18 @@ export const FilterRooms: React.FC<FilterRoomsTypes> = ({
     const statuses = additionalOptions(checkbox);
 
     // Запрос города
-    let { data } = await axios.get<ArticleRoom[]>(
-      "http://localhost:3000/api/get-city/",
-      {
-        params: {
-          city: select.filter.city,
-          priceMin: select.filter.priceMin,
-          priceMax: select.filter.priceMax,
-          rooms: select.filter.rooms,
-          places: select.filter.places,
-          metro: select.filter.metro,
-          area: select.filter.area,
-          statuses: statuses,
-        },
-      }
-    );
+    let { data } = await axios.get<ArticleRoom[]>(process.env.GET_CITY, {
+      params: {
+        city: select.filter.city,
+        priceMin: select.filter.priceMin,
+        priceMax: select.filter.priceMax,
+        rooms: select.filter.rooms,
+        places: select.filter.places,
+        metro: select.filter.metro,
+        area: select.filter.area,
+        statuses: statuses,
+      },
+    });
 
     // Перенаправление в каталог, деление на страницы
     redirectOfCatalog(data, dispatch, router);
